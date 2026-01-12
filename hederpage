@@ -1,0 +1,44 @@
+<section id="hero-sainiwalaa">
+
+  <div class="hero-wrap">
+
+    <!-- LEFT CONTENT -->
+    <div class="hero-left">
+
+      <!-- LOGO -->
+      <div style="margin-bottom:14px;">
+        <img src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/logo.png"
+             alt="Sainiwalaa"
+             style="max-height:60px;">
+      </div>
+
+      <h1>SAINIWALAA</h1>
+
+      <p class="animated-text">
+        Jaipur Handpicked Kurtis & Custom Printed Gifts
+      </p>
+
+      <!-- BUTTONS -->
+      <div class="btn-wrap">
+        <a href="https://www.meesho.com/SAINIWALAA?ms=2" class="btn meesho">🛍 Meesho</a>
+        <a href="https://www.flipkart.com/" class="btn flipkart">🛒 Flipkart</a>
+        <a href="#" class="btn amazon">🛒 Amazon (Soon)</a>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="cats">
+        <div class="catbox">👗 Kurtis</div>
+        <div class="catbox">👕 T-Shirts</div>
+        <div class="catbox">☕ Mugs</div>
+        <div class="catbox">🎁 Gifts</div>
+        <div class="catbox">🖨 Print Orders</div>
+      </div>
+    </div>
+
+    <!-- RIGHT IMAGE SLIDER -->
+    <div class="slider-frame">
+      <img id="sliderImg" src="">
+    </div>
+
+  </div>
+</section>
