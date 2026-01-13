@@ -1,29 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>SAINIWALAA – LIVE TEST</title>
+  <meta charset="UTF-8">
+  <title>SAINIWALAA – Best Deals</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
-    body{margin:0;font-family:Arial}
-    .header{
-      background:#b30000;
-      color:white;
-      padding:50px;
-      text-align:center;
-      font-size:32px;
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:#f5f5f5;
+    }
+
+    /* HEADER */
+    header{
+      background:#111;
+      color:#fff;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 30px;
+    }
+    .logo{
+      font-size:24px;
       font-weight:bold;
+    }
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+      font-size:16px;
+    }
+    nav a:hover{
+      color:#ff9900;
+    }
+
+    /* HERO */
+    .hero{
+      background:linear-gradient(135deg,#ff9900,#ff6600);
+      color:white;
+      text-align:center;
+      padding:80px 20px;
+    }
+    .hero h1{
+      font-size:40px;
+      margin-bottom:15px;
+    }
+    .hero p{
+      font-size:18px;
+      margin-bottom:30px;
+    }
+    .hero button{
+      padding:15px 25px;
+      font-size:16px;
+      border:none;
+      border-radius:5px;
+      margin:5px;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background:black;
+      color:white;
+    }
+    .btn-secondary{
+      background:white;
+      color:black;
+    }
+
+    /* CONTENT */
+    .content{
+      padding:40px;
+      text-align:center;
     }
   </style>
 </head>
 <body>
 
-<div class="header">
-  🔥 SAINIWALAA WEBSITE LIVE 🔥
-</div>
+<header>
+  <div class="logo">SAINIWALAA</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Amazon Deals</a>
+    <a href="#">Mugs</a>
+    <a href="#">Print Orders</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
 
-<p style="padding:20px;font-size:18px">
-Agar ye RED HEADER dikhe, matlab GitHub Pages sahi index.html se chal raha hai ✅
-</p>
+<section class="hero">
+  <h1>Best Online Deals</h1>
+  <p>Amazon | Gadgets | Daily Needs</p>
+  <button class="btn-primary">🔥 Amazon Deals</button>
+  <button class="btn-secondary">🛒 Shop Now</button>
+</section>
+
+<div class="content">
+  <h2>Welcome to SAINIWALAA</h2>
+  <p>Yahan Google Sheet se live products show honge.</p>
+</div>
 
 </body>
 </html>
