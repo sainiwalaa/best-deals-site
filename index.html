@@ -1,238 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
-<title>SAINIWALAA | Jaipur Kurtis & Printed Gifts</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sainiwalaa – Trusted Online Shopping & Deals</title>
+<meta name="description" content="Sainiwalaa par mile Amazon deals, kurti collection, custom mug & t-shirt. Trusted, fast & secure shopping.">
+<meta name="keywords" content="Sainiwalaa, Amazon Deals, Kurti, Custom Mug, Online Shopping India">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --primary:#0f172a;
+  --secondary:#1e293b;
+  --accent:#ff9900;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#111;
+}
+.dark{
+  --bg:#0b1220;
+  --card:#111827;
+  --text:#f9fafb;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#fff;
-}
-
-/* ================= HEADER ================= */
-.main-header{
-  background:#111;
-  position:sticky;
-  top:0;
-  z-index:999;
-}
-.header-wrap{
-  max-width:1200px;
-  margin:auto;
-  padding:16px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.logo{
-  color:#fff;
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:2px;
-}
-nav a{
-  color:#fff;
-  text-decoration:none;
-  margin-left:20px;
-  font-weight:600;
-}
-nav a:hover{color:#ff9800}
-
-/* ================= HERO ================= */
-#hero-sainiwalaa{
-  background:linear-gradient(135deg,#ff9800,#ff6a00);
-  padding:70px 20px;
-  overflow:hidden;
-}
-
-.hero-wrap{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  gap:40px;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-}
-
-.hero-left{
-  flex:1;
-  min-width:260px;
-}
-
-.hero-left h1{
-  font-size:44px;
-  font-weight:900;
-  letter-spacing:4px;
-  color:#111;
-  margin:0 0 12px;
-}
-
-.animated-text{
-  font-size:18px;
-  color:#222;
-  animation:fadeSlide 3s infinite alternate;
-}
-@keyframes fadeSlide{
-  from{opacity:.6;transform:translateY(4px)}
-  to{opacity:1;transform:translateY(-2px)}
-}
-
-/* BUTTONS */
-.btn-wrap{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-  margin:28px 0;
-}
-.btn{
-  padding:12px 22px;
-  border-radius:9px;
-  font-weight:700;
-  text-decoration:none;
-  color:#fff;
+  background:var(--bg);
+  color:var(--text);
   transition:.3s;
 }
-.btn:hover{transform:translateY(-3px)}
-.meesho{background:#e91e63}
-.flipkart{background:#2874f0}
-.amazon{background:#111}
 
-/* CATEGORY */
-.cats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:14px;
+/* MARQUEE */
+.marquee{
+  background:var(--accent);
+  color:#000;
+  padding:10px;
+  overflow:hidden;
+  white-space:nowrap;
+  font-weight:600;
 }
-.catbox{
-  background:#fff;
-  border-radius:12px;
-  padding:16px;
+.marquee span{
+  display:inline-block;
+  animation:scroll 16s linear infinite;
+}
+@keyframes scroll{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
+/* COUNTDOWN */
+.countdown{
   text-align:center;
+  padding:12px;
   font-weight:700;
-  color:#111;
-  box-shadow:0 6px 16px rgba(0,0,0,.2);
+  background:var(--card);
+  margin:12px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,.1);
 }
+.countdown span{color:var(--accent)}
 
 /* SLIDER */
-.slider-frame{
-  width:240px;
-  height:340px;
-  background:#fff;
-  padding:6px;
-  border-radius:22px;
-  box-shadow:0 14px 30px rgba(0,0,0,.45);
+.slider{
+  position:relative;
+  height:260px;
   overflow:hidden;
 }
-.slider-frame img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:16px;
-  transition:opacity .7s ease;
-}
-
-/* ================= FOOTER ================= */
-footer{
-  background:#111;
+.slide{position:absolute;inset:0;display:none}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide-content{
+  position:absolute;
+  bottom:16px;
+  left:16px;
+  right:16px;
+  background:rgba(0,0,0,.55);
+  padding:14px;
+  border-radius:12px;
   color:#fff;
-  text-align:center;
-  padding:26px 10px;
 }
-footer a{
-  color:#ff9800;
-  text-decoration:none;
+.slide-content a{
+  display:inline-block;
+  margin-top:8px;
+  background:var(--accent);
+  padding:8px 16px;
+  color:#000;
   font-weight:700;
+  text-decoration:none;
+  border-radius:6px;
 }
 
-/* MOBILE */
-@media(max-width:768px){
-  .hero-wrap{flex-direction:column;text-align:center}
-  nav{display:none}
+/* SECTION */
+.section{padding:20px}
+.section h2{margin-bottom:14px;font-size:20px}
+
+/* CATEGORIES */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:16px;
+}
+.cat{
+  background:var(--card);
+  border-radius:14px;
+  padding:12px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  transition:.25s;
+}
+.cat:hover{transform:translateY(-6px)}
+.cat img{
+  width:100%;
+  height:130px;
+  object-fit:cover;
+  border-radius:10px;
+}
+.cat p{margin-top:10px;font-weight:600}
+
+/* BANNER */
+.banner img{
+  width:100%;
+  border-radius:14px;
+  margin:14px 0;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+@media(max-width:600px){
+  .slider{height:220px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="main-header">
-  <div class="header-wrap">
-    <div class="logo">SAINIWALAA</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="jaipurkurti.html">Jaipur Kurtis</a>
-      <a href="amazon.html">Amazon Deals</a>
-      <a href="mugs.html">Mugs</a>
-      <a href="print.html">Print Orders</a>
-    </nav>
-  </div>
-</header>
+<!-- 🔹 COMMON HEADER -->
+<div id="header"></div>
 
-<!-- HERO -->
-<section id="hero-sainiwalaa">
-  <div class="hero-wrap">
+<!-- 🔹 MARQUEE -->
+<div class="marquee">
+  <span id="marqueeText">Loading offers...</span>
+</div>
 
-    <!-- LEFT -->
-    <div class="hero-left">
-      <h1>SAINIWALAA</h1>
-      <p class="animated-text">
-        Jaipur Handpicked Kurtis & Custom Printed Gifts
-      </p>
+<!-- 🔹 COUNTDOWN -->
+<div class="countdown">
+  ⏳ Offer Ends In : <span id="timer">Loading...</span>
+</div>
 
-      <div class="btn-wrap">
-        <a href="https://www.meesho.com/SAINIWALAA?ms=2" class="btn meesho">🛍 Meesho</a>
-        <a href="https://www.flipkart.com/" class="btn flipkart">🛒 Flipkart</a>
-        <a href="#" class="btn amazon">🛒 Amazon (Soon)</a>
-      </div>
+<!-- 🔹 SLIDER -->
+<div class="slider" id="slider"></div>
 
-      <div class="cats">
-        <div class="catbox">👗 Jaipur Kurtis</div>
-        <div class="catbox">👕 T-Shirts</div>
-        <div class="catbox">☕ Mugs</div>
-        <div class="catbox">🎁 Gifts</div>
-        <div class="catbox">🖨 Print Orders</div>
-      </div>
-    </div>
+<!-- 🔹 CATEGORIES -->
+<div class="section">
+  <h2>🛍️ Shop by Category</h2>
+  <div class="categories" id="categories"></div>
+</div>
 
-    <!-- RIGHT SLIDER -->
-    <div class="slider-frame">
-      <img id="sliderImg">
-    </div>
+<!-- 🔹 BANNERS -->
+<div class="section banner" id="banners"></div>
 
-  </div>
-</section>
+<!-- 🔹 COMMON FOOTER -->
+<div id="footer"></div>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 SAINIWALAA</p>
-  <p>
-    📞 <a href="https://wa.me/91XXXXXXXXXX">WhatsApp Order</a> |
-    📧 sainiwalaa@gmail.com
-  </p>
-</footer>
+<!-- 🔹 HEADER + FOOTER LOAD -->
+<script>
+fetch("header.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("header").innerHTML=d);
+
+fetch("footer.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("footer").innerHTML=d);
+</script>
+
+<!-- 🔹 MENU FROM SHEET -->
+<script src="menu.js"></script>
 
 <script>
-const images = [
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/stl_u1.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/PURPAL_STYL_1_1.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/BLAK_051.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png"
-];
-let i=0;
-const img=document.getElementById("sliderImg");
-img.src=images[0];
+/* COUNTDOWN */
+const endDate = new Date("2026-01-26T23:59:59").getTime();
 setInterval(()=>{
-  img.style.opacity=0;
-  setTimeout(()=>{
-    i=(i+1)%images.length;
-    img.src=images[i];
-    img.style.opacity=1;
-  },600);
-},3000);
+  const now = new Date().getTime();
+  const d = endDate - now;
+  if(d<0){document.getElementById("timer").innerText="Expired";return;}
+  const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((d%(1000*60*60))/(1000*60));
+  const s=Math.floor((d%(1000*60))/1000);
+  document.getElementById("timer").innerText=`${h}h ${m}m ${s}s`;
+},1000);
+
+/* API */
+const API="https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
+
+fetch(API).then(r=>r.json()).then(d=>{
+
+/* MARQUEE */
+document.getElementById("marqueeText").innerText =
+d.marquee.map(x=>x.TEXT).join(" | ");
+
+/* SLIDER */
+const slider=document.getElementById("slider");
+d.hero.forEach(x=>{
+  slider.innerHTML+=`
+  <div class="slide">
+    <img src="${x.IMAGE_URL}">
+    <div class="slide-content">
+      <h3>${x.TITLE||""}</h3>
+      <p>${x.SUB_TITLE||""}</p>
+      ${x.BUTTON_TEXT?`<a href="${x.BUTTON_LINK}">${x.BUTTON_TEXT}</a>`:""}
+    </div>
+  </div>`;
+});
+let slides=document.querySelectorAll(".slide"),i=0;
+if(slides.length){
+  slides[0].style.display="block";
+  setInterval(()=>{
+    slides[i].style.display="none";
+    i=(i+1)%slides.length;
+    slides[i].style.display="block";
+  },3500);
+}
+
+/* CATEGORIES */
+const cat=document.getElementById("categories");
+d.categories.forEach(x=>{
+  cat.innerHTML+=`
+  <div class="cat" onclick="location.href='${x.PAGE_LINK||"#"}'">
+    <img src="${x.IMAGE}">
+    <p>${x.NAME||x.TEXT}</p>
+  </div>`;
+});
+
+/* BANNERS */
+const ban=document.getElementById("banners");
+d.banners.forEach(x=>{
+  ban.innerHTML+=`
+  <a href="${x.LINK||"#"}">
+    <img src="${x.IMAGE_URL||x.IMAGE}">
+  </a>`;
+});
+
+});
 </script>
 
 </body>
