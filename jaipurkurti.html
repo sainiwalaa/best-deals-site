@@ -14,7 +14,7 @@ body{
 
 /* PAGE TITLE */
 .page-title{
-  padding:20px;
+  padding:24px 10px;
   text-align:center;
   font-size:28px;
   font-weight:900;
@@ -86,14 +86,37 @@ body{
 
 <body>
 
+<!-- 🔹 COMMON HEADER -->
+<div id="header"></div>
+
+<!-- 🔹 PAGE CONTENT -->
 <div class="page-title">Jaipur Kurtis Collection</div>
 
 <div class="products" id="products">
   Loading products...
 </div>
 
+<!-- 🔹 COMMON FOOTER -->
+<div id="footer"></div>
+
+<!-- 🔹 LOAD HEADER & FOOTER -->
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbzg-c_zIrSNqREI6wgjk54BkhpNrevz75kI8nJEQcg0n-nd9cBwCE0xWGUdioMiZ0ox/exec";
+fetch("header.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("header").innerHTML=d);
+
+fetch("footer.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("footer").innerHTML=d);
+</script>
+
+<!-- 🔹 MENU FROM SHEET -->
+<script src="menu.js"></script>
+
+<!-- 🔹 PRODUCT LOAD -->
+<script>
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzg-c_zIrSNqREI6wgjk54BkhpNrevz75kI8nJEQcg0n-nd9cBwCE0xWGUdioMiZ0ox/exec";
 
 fetch(API_URL)
 .then(res => res.json())
