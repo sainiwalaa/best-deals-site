@@ -134,7 +134,7 @@ body{
 
 <body>
 
-<!-- 🔹 COMMON HEADER -->
+<!-- 🔹 HEADER -->
 <div id="header"></div>
 
 <!-- 🔹 MARQUEE -->
@@ -159,44 +159,46 @@ body{
 <!-- 🔹 BANNERS -->
 <div class="section banner" id="banners"></div>
 
-<!-- 🔹 COMMON FOOTER -->
+<!-- 🔹 FOOTER -->
 <div id="footer"></div>
 
-<!-- 🔹 HEADER + FOOTER LOAD -->
+<!-- 🔹 HEADER / FOOTER LOAD -->
 <script>
-fetch("header.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("header").innerHTML=d);
+Promise.all([
+  fetch("header.html").then(r=>r.text()),
+  fetch("footer.html").then(r=>r.text())
+]).then(([h,f])=>{
+  document.getElementById("header").innerHTML=h;
+  document.getElementById("footer").innerHTML=f;
 
-fetch("footer.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("footer").innerHTML=d);
+  /* MENU LOAD AFTER HEADER */
+  const s=document.createElement("script");
+  s.src="menu.js";
+  document.body.appendChild(s);
+});
 </script>
-
-<!-- 🔹 MENU FROM SHEET -->
-<script src="menu.js"></script>
 
 <script>
 /* COUNTDOWN */
 const endDate = new Date("2026-01-26T23:59:59").getTime();
 setInterval(()=>{
-  const now = new Date().getTime();
-  const d = endDate - now;
-  if(d<0){document.getElementById("timer").innerText="Expired";return;}
-  const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-  const m=Math.floor((d%(1000*60*60))/(1000*60));
-  const s=Math.floor((d%(1000*60))/1000);
-  document.getElementById("timer").innerText=`${h}h ${m}m ${s}s`;
+  const d=endDate-Date.now();
+  if(d<=0){timer.innerText="Expired";return;}
+  const h=Math.floor(d/36e5)%24;
+  const m=Math.floor(d/6e4)%60;
+  const s=Math.floor(d/1e3)%60;
+  timer.innerText=`${h}h ${m}m ${s}s`;
 },1000);
 
 /* API */
 const API="https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
 
-fetch(API).then(r=>r.json()).then(d=>{
+fetch(API)
+.then(r=>r.json())
+.then(d=>{
 
 /* MARQUEE */
-document.getElementById("marqueeText").innerText =
-d.marquee.map(x=>x.TEXT).join(" | ");
+marqueeText.innerText=d.marquee.map(x=>x.TEXT).join(" | ");
 
 /* SLIDER */
 const slider=document.getElementById("slider");
@@ -222,24 +224,27 @@ if(slides.length){
 }
 
 /* CATEGORIES */
-const cat=document.getElementById("categories");
+categories.innerHTML="";
 d.categories.forEach(x=>{
-  cat.innerHTML+=`
-  <div class="cat" onclick="location.href='${x.PAGE_LINK||"#"}'">
+  categories.innerHTML+=`
+  <div class="cat" onclick="location.href='${x.PAGE_LINK}'">
     <img src="${x.IMAGE}">
     <p>${x.NAME||x.TEXT}</p>
   </div>`;
 });
 
 /* BANNERS */
-const ban=document.getElementById("banners");
+banners.innerHTML="";
 d.banners.forEach(x=>{
-  ban.innerHTML+=`
-  <a href="${x.LINK||"#"}">
+  banners.innerHTML+=`
+  <a href="${x.LINK}">
     <img src="${x.IMAGE_URL||x.IMAGE}">
   </a>`;
 });
 
+})
+.catch(()=>{
+  marqueeText.innerText="⚠️ Offers loading failed";
 });
 </script>
 
