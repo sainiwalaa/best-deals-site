@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Today Best Deals</title>
+<title>Amazon Best Deals | Sainiwalaa</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -23,10 +25,8 @@ body{
   color:var(--text);
 }
 
-/* HEADER */
-.header{
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  color:#fff;
+/* PAGE TITLE */
+.page-title{
   padding:18px;
   text-align:center;
   font-size:22px;
@@ -62,7 +62,6 @@ body{
   grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
-
 @media(max-width:900px){
   .products{grid-template-columns:repeat(2,1fr)}
 }
@@ -129,9 +128,28 @@ body{
 
 <body>
 
-<div class="header" id="siteTitle">Loading…</div>
+<!-- 🔹 COMMON HEADER -->
+<div id="header"></div>
+
+<!-- 🔹 PAGE CONTENT -->
+<div class="page-title" id="siteTitle">Loading deals…</div>
+
 <div class="categories" id="categories"></div>
 <div class="products" id="products"></div>
+
+<!-- 🔹 COMMON FOOTER -->
+<div id="footer"></div>
+
+<!-- 🔹 LOAD HEADER & FOOTER -->
+<script>
+fetch("header.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("header").innerHTML=d);
+
+fetch("footer.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("footer").innerHTML=d);
+</script>
 
 <script>
 const API_URL =
@@ -158,14 +176,13 @@ fetch(API_URL)
 
   document.getElementById("siteTitle").innerText = s.SITE_TITLE;
 
-  buildCategories(); // auto load first category
+  buildCategories();
 })
-.catch(err=>{
-  document.getElementById("siteTitle").innerText="API Error";
-  document.getElementById("products").innerText=err;
+.catch(()=>{
+  document.getElementById("siteTitle").innerText="❌ Failed to load deals";
 });
 
-/* CREATE CATEGORY BUTTONS (NO ALL) */
+/* CREATE CATEGORY BUTTONS */
 function buildCategories(){
   const box = document.getElementById("categories");
   const cats = [...new Set(ALL_PRODUCTS.map(p=>p.CATEGORY))];
@@ -198,7 +215,7 @@ function filterCat(cat,btn){
   );
 }
 
-/* RENDER PRODUCTS */
+/* RENDER */
 function renderProducts(list){
   const grid = document.getElementById("products");
   let html = "";
@@ -211,7 +228,9 @@ function renderProducts(list){
       <div class="info">
         <div class="title">${x.NAME}</div>
         ${x.DISCOUNT ? `<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>` : ``}
-        <a class="btn" href="${x.LINK}" target="_blank">View Deal</a>
+        <a class="btn" href="${x.LINK}" target="_blank" rel="noopener">
+          View Deal
+        </a>
       </div>
     </div>`;
   });
