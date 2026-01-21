@@ -9,6 +9,8 @@
 
 <style>
 body{margin:0;font-family:Poppins,sans-serif;background:#f4f6fb}
+
+/* WRAPPER */
 .wrapper{max-width:1200px;margin:auto;padding:20px}
 
 /* CATEGORY */
@@ -69,7 +71,6 @@ body{margin:0;font-family:Poppins,sans-serif;background:#f4f6fb}
 @media(max-width:768px){
   .order-layout{grid-template-columns:1fr}
 }
-
 .order-img img{width:100%;border-radius:16px}
 
 .form-box{
@@ -125,57 +126,73 @@ input,textarea{
 </head>
 
 <body>
+
+<!-- ✅ HEADER AUTO LOAD -->
+<div id="header"></div>
+
 <div class="wrapper">
 
-<!-- CATEGORY -->
-<div id="categoryBar"></div>
+  <!-- CATEGORY -->
+  <div id="categoryBar"></div>
 
-<!-- PRODUCTS -->
-<div id="productGrid"></div>
+  <!-- PRODUCTS -->
+  <div id="productGrid"></div>
 
-<!-- ORDER -->
-<div id="orderPage">
-  <button class="btn back-btn" onclick="backToProducts()">← Back to Products</button>
+  <!-- ORDER -->
+  <div id="orderPage">
+    <button class="btn back-btn" onclick="backToProducts()">← Back to Products</button>
 
-  <div class="order-layout">
-    <div class="order-img">
-      <img id="oImg">
-      <h3 id="oName"></h3>
-      <div class="price" id="oPrice"></div>
-    </div>
-
-    <div class="form-box">
-      <h2>Place Your Order</h2>
-
-      <div class="note">
-        📌 Kripya <b>Mobile, PIN aur poora Address</b> sahi bharein.  
-        Galat jankari par delivery delay ho sakti hai.
+    <div class="order-layout">
+      <div class="order-img">
+        <img id="oImg">
+        <h3 id="oName"></h3>
+        <div class="price" id="oPrice"></div>
       </div>
 
-      <input id="cName" placeholder="Full Name">
-      <input id="cMobile" placeholder="Mobile Number">
-      <textarea id="cAddress" placeholder="Complete Address"></textarea>
-      <input id="cPin" placeholder="PIN Code">
+      <div class="form-box">
+        <h2>Place Your Order</h2>
 
-      <div id="error"></div>
+        <div class="note">
+          📌 Kripya <b>Mobile, PIN aur poora Address</b> sahi bharein.
+        </div>
 
-      <button class="btn submit-btn" id="submitBtn" onclick="submitOrder()">
-        CONFIRM ORDER
-      </button>
+        <input id="cName" placeholder="Full Name">
+        <input id="cMobile" placeholder="Mobile Number">
+        <textarea id="cAddress" placeholder="Complete Address"></textarea>
+        <input id="cPin" placeholder="PIN Code">
+
+        <div id="error"></div>
+
+        <button class="btn submit-btn" id="submitBtn" onclick="submitOrder()">
+          CONFIRM ORDER
+        </button>
+      </div>
     </div>
   </div>
+
+  <!-- SUCCESS -->
+  <div id="successBox">
+    <h2>🎉 Order Successful!</h2>
+    <p id="orderMsg"></p>
+    <button class="btn submit-btn" onclick="backToProducts()">🛍_attach Back to Products</button>
+  </div>
+
 </div>
 
-<!-- SUCCESS -->
-<div id="successBox">
-  <h2>🎉 Order Successful!</h2>
-  <p id="orderMsg"></p>
-  <button class="btn submit-btn" onclick="backToProducts()">🛍️ Back to Products</button>
-</div>
-
-</div>
+<!-- ✅ FOOTER AUTO LOAD -->
+<div id="footer"></div>
 
 <script>
+/* HEADER & FOOTER */
+fetch("header.html").then(r=>r.text()).then(d=>{
+  document.getElementById("header").innerHTML=d;
+});
+fetch("footer.html").then(r=>r.text()).then(d=>{
+  document.getElementById("footer").innerHTML=d;
+});
+
+/* ================= PRODUCT SYSTEM ================= */
+
 const API_URL="https://script.google.com/macros/s/AKfycbwnHCxxocmdkD0sr8SDu7VKDiQf7e2fukIwtLJazF9-kVwpTkoQ561nDYbCWyePvirM/exec";
 
 let products=[],currentProduct=null,submitted=false;
@@ -261,7 +278,7 @@ async function submitOrder(){
   if(submitted) return;
 
   if(!cName.value||!/^[6-9]\d{9}$/.test(cMobile.value)||!cAddress.value||!/^\d{6}$/.test(cPin.value)){
-    err.innerText="❌ Kripya sahi Mobile Number, PIN Code aur poora Address bharein.";
+    err.innerText="❌ Kripya sahi Mobile, PIN aur Address bharein.";
     return;
   }
 
@@ -286,9 +303,8 @@ async function submitOrder(){
     orderPage.style.display="none";
     successBox.style.display="block";
     orderMsg.innerHTML=`
-      🙏 <b>Sainiwalaa</b> se order karne ke liye dhanyavaad.<br>
-      <b>Order ID:</b> ${data.orderId}<br>
-      Aapka product jald hi dispatch kiya jayega.
+      🙏 <b>Sainiwalaa</b> se order ke liye dhanyavaad.<br>
+      <b>Order ID:</b> ${data.orderId}
     `;
   }else{
     err.innerText=data.message;
@@ -298,5 +314,6 @@ async function submitOrder(){
   }
 }
 </script>
+
 </body>
 </html>
