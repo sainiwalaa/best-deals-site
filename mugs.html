@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Personalized Mug Order</title>
+<title>Personalized Mug Order | Sainiwalaa</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-body{font-family:Poppins,sans-serif;margin:0;background:#f4f6fb}
+body{
+  font-family:Poppins,sans-serif;
+  margin:0;
+  background:#f4f6fb;
+}
 
 /* Layout */
 .wrapper{max-width:1100px;margin:auto;padding:20px}
@@ -94,12 +100,15 @@ button:disabled{opacity:.6;cursor:not-allowed}
 
 <body>
 
+<!-- 🔹 COMMON HEADER -->
+<div id="header"></div>
+
+<!-- 🔹 PAGE CONTENT -->
 <div class="wrapper">
 
-  <!-- 🔔 MOVING NOTE -->
   <div class="marquee">
     <span>
-      ☕ Personalized Photo Mug • Use Product Images Below • Fill All Details Correctly • Valid Mobile & PIN Required • Free Delivery 🚚
+      ☕ Personalized Photo Mug • Upload 2 Photos • Fill Correct Details • Free Delivery 🚚
     </span>
   </div>
 
@@ -126,7 +135,7 @@ button:disabled{opacity:.6;cursor:not-allowed}
       <label>Mobile Number</label><input id="mobile" maxlength="10">
       <label>Full Address</label><textarea id="address" rows="2"></textarea>
       <label>PIN Code</label><input id="pin" maxlength="6">
-      <label>Mug Print Text or SUK ID</label><textarea id="mugText" rows="2"></textarea>
+      <label>Mug Print Text / SUK ID</label><textarea id="mugText" rows="2"></textarea>
 
       <label>Upload 2 Photos</label>
       <input type="file" id="img1" accept="image/png,image/jpeg">
@@ -140,6 +149,23 @@ button:disabled{opacity:.6;cursor:not-allowed}
 
   </div>
 </div>
+
+<!-- 🔹 COMMON FOOTER -->
+<div id="footer"></div>
+
+<!-- 🔹 HEADER & FOOTER LOAD -->
+<script>
+fetch("header.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("header").innerHTML=d);
+
+fetch("footer.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("footer").innerHTML=d);
+</script>
+
+<!-- 🔹 MENU FROM SHEET -->
+<script src="menu.js"></script>
 
 <script>
 const SCRIPT_URL =
@@ -159,26 +185,25 @@ async function submitOrder(){
   const success=document.getElementById("success");
   error.innerText=""; success.innerText="";
 
-  const name=nameEl().value.trim();
-  const mobile=mobileEl().value.trim();
-  const address=addressEl().value.trim();
-  const pin=pinEl().value.trim();
-  const mugText=mugTextEl().value.trim();
-  const img1=img1El().files[0];
-  const img2=img2El().files[0];
+  const name=document.getElementById("name").value.trim();
+  const mobile=document.getElementById("mobile").value.trim();
+  const address=document.getElementById("address").value.trim();
+  const pin=document.getElementById("pin").value.trim();
+  const mugText=document.getElementById("mugText").value.trim();
+  const img1=document.getElementById("img1").files[0];
+  const img2=document.getElementById("img2").files[0];
 
-  /* 🔐 VALIDATION */
   if(!name||!mobile||!address||!pin||!mugText){
     error.innerText="❌ Please fill all details";return;
   }
   if(!/^[6-9]\d{9}$/.test(mobile)){
-    error.innerText="❌ Enter valid 10-digit mobile number";return;
+    error.innerText="❌ Invalid mobile number";return;
   }
   if(!/^\d{6}$/.test(pin)){
-    error.innerText="❌ Enter valid 6-digit PIN code";return;
+    error.innerText="❌ Invalid PIN code";return;
   }
   if(!img1||!img2){
-    error.innerText="❌ Please upload 2 images";return;
+    error.innerText="❌ Upload 2 images";return;
   }
 
   submitted=true;
@@ -202,7 +227,7 @@ async function submitOrder(){
     const data=await res.json();
 
     if(data.status==="success"){
-      success.innerHTML=`✅ Order Placed Successfully<br>Order ID: <b>${data.orderId}</b>`;
+      success.innerHTML=`✅ Order Placed<br>Order ID: <b>${data.orderId}</b>`;
       btn.innerText="Order Placed";
     }else{
       error.innerText=data.message;
@@ -210,20 +235,11 @@ async function submitOrder(){
       submitted=false;
     }
   }catch(e){
-    error.innerText="❌ Network error, try again";
+    error.innerText="❌ Network error";
     btn.disabled=false;
     submitted=false;
   }
 }
-
-/* ELEMENT HELPERS */
-const nameEl=()=>document.getElementById("name");
-const mobileEl=()=>document.getElementById("mobile");
-const addressEl=()=>document.getElementById("address");
-const pinEl=()=>document.getElementById("pin");
-const mugTextEl=()=>document.getElementById("mugText");
-const img1El=()=>document.getElementById("img1");
-const img2El=()=>document.getElementById("img2");
 </script>
 
 </body>
