@@ -317,3 +317,12 @@ async function submitOrder(){
 
 </body>
 </html>
+<!-- COMMON FOOTER -->
+<div id="footer"></div>
+
+<script>
+fetch("footer.html")
+  .then(r => r.text())
+  .then(d => document.getElementById("footer").innerHTML = d);
+</script>
+
