@@ -86,38 +86,42 @@ body{
 
 <body>
 
-<!-- HEADER LOAD -->
+<!-- 🔹 HEADER -->
 <div id="header"></div>
 
-<!-- PAGE TITLE -->
+<!-- 🔹 PAGE TITLE -->
 <div class="page-title">Jaipur Kurtis Collection</div>
 
-<!-- PRODUCTS -->
+<!-- 🔹 PRODUCTS -->
 <div class="products" id="products">
   Loading products...
 </div>
 
-<!-- FOOTER LOAD -->
+<!-- 🔹 FOOTER -->
 <div id="footer"></div>
 
 <script>
-/* HEADER */
-fetch("header.html")
+/* LOAD HEADER */
+fetch("./header.html")
 .then(r=>r.text())
 .then(d=>document.getElementById("header").innerHTML=d);
 
-/* FOOTER */
-fetch("footer.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("footer").innerHTML=d);
+/* LOAD FOOTER */
+fetch("./footer.html")
+.then(r=>{
+  if(!r.ok) throw new Error("Footer not found");
+  return r.text();
+})
+.then(d=>document.getElementById("footer").innerHTML=d)
+.catch(e=>console.error("FOOTER ERROR:", e));
 
-/* KURTI PRODUCTS API (MEESHO LINK WORKING) */
-const API_URL = "https://script.google.com/macros/s/AKfycbzg-c_zIrSNqREI6wgjk54BkhpNrevz75kI8nJEQcg0n-nd9cBwCE0xWGUdioMiZ0ox/exec";
+/* KURTI PRODUCTS */
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzg-c_zIrSNqREI6wgjk54BkhpNrevz75kI8nJEQcg0n-nd9cBwCE0xWGUdioMiZ0ox/exec";
 
 fetch(API_URL)
 .then(res => res.json())
 .then(data => {
-
   const box = document.getElementById("products");
   box.innerHTML = "";
 
@@ -128,37 +132,19 @@ fetch(API_URL)
         <div class="card-body">
           <h3>${p.NAME}</h3>
           <div class="price">₹${p.PRICE}</div>
-          <a class="buy-btn"
-             href="${p.LINK}"
-             target="_blank"
-             rel="noopener">
-             Order on Meesho
+          <a class="buy-btn" href="${p.LINK}" target="_blank" rel="noopener">
+            Order on Meesho
           </a>
         </div>
       </div>
     `;
   });
-
 })
 .catch(()=>{
   document.getElementById("products").innerHTML =
     "❌ Products load nahi ho pa rahe";
 });
 </script>
-
-<!-- COMMON FOOTER -->
-<div id="footer"></div>
-
-<script>
-fetch("./footer.html")
-.then(r => {
-  if(!r.ok) throw new Error("Footer not found");
-  return r.text();
-})
-.then(d => document.getElementById("footer").innerHTML = d)
-.catch(e => console.error("FOOTER ERROR:", e));
-</script>
-t>
 
 </body>
 </html>
