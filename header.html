@@ -1,20 +1,13 @@
-<!-- SAINIWALAA GLOBAL HEADER -->
 <style>
-:root{
-  --h-bg:#0b1730;
-  --h-accent:#ff9800;
-  --h-text:#ffffff;
-}
-
-#sw-header{
+/* ===== HEADER ===== */
+.sw-header{
   position:sticky;
   top:0;
   z-index:999;
-  background:linear-gradient(90deg,#050b1a,#0b1730);
-  box-shadow:0 4px 12px rgba(0,0,0,.25);
+  background:#0b1730;
+  color:#fff;
 }
-
-.sw-nav{
+.sw-header-inner{
   max-width:1200px;
   margin:auto;
   padding:14px 18px;
@@ -22,102 +15,118 @@
   align-items:center;
   justify-content:space-between;
 }
-
-/* LOGO */
 .sw-logo{
-  font-size:26px;
-  font-weight:800;
-  color:var(--h-accent);
-  text-decoration:none;
-  letter-spacing:.5px;
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:2px;
 }
-
-/* MENU */
-.sw-menu{
-  display:flex;
-  gap:22px;
-}
-
-.sw-menu a{
+.sw-nav a{
+  color:#fff;
   text-decoration:none;
-  color:var(--h-text);
+  margin-left:18px;
   font-weight:600;
-  font-size:15px;
-  position:relative;
+}
+.sw-nav a:hover{color:#ff9800}
+
+/* ===== HERO ===== */
+#sw-hero{
+  background:linear-gradient(135deg,#ff9800,#ff6a00);
+  padding:70px 20px;
+}
+.sw-hero-wrap{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  flex-wrap:wrap;
+}
+.sw-hero-left{
+  flex:1;
+  min-width:260px;
+}
+.sw-hero-left h1{
+  font-size:42px;
+  font-weight:900;
+  margin:0 0 12px;
+}
+.sw-hero-left p{
+  font-size:18px;
+  opacity:.9;
 }
 
-.sw-menu a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:2px;
-  background:var(--h-accent);
-  transition:.3s;
+/* BUTTONS */
+.sw-btns{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:22px;
 }
+.sw-btn{
+  padding:12px 24px;
+  border-radius:10px;
+  font-weight:700;
+  text-decoration:none;
+  color:#fff;
+}
+.sw-amazon{background:#111}
+.sw-meesho{background:#e91e63}
+.sw-flipkart{background:#2874f0}
 
-.sw-menu a:hover::after,
-.sw-menu a.active::after{
+/* HERO IMAGE */
+.sw-hero-img{
+  width:260px;
+  height:360px;
+  background:#fff;
+  border-radius:22px;
+  padding:8px;
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+.sw-hero-img img{
   width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:16px;
 }
 
 /* MOBILE */
-.sw-toggle{
-  display:none;
-  font-size:26px;
-  color:#fff;
-  cursor:pointer;
-}
-
 @media(max-width:768px){
-  .sw-toggle{display:block}
-  .sw-menu{
-    position:absolute;
-    left:0;
-    top:64px;
-    width:100%;
-    background:#050b1a;
-    flex-direction:column;
-    display:none;
-    padding:16px 0;
-  }
-  .sw-menu a{
-    padding:12px;
-    text-align:center;
-    font-size:16px;
-  }
-  .sw-menu.show{display:flex}
+  .sw-nav{display:none}
+  .sw-hero-wrap{text-align:center}
 }
 </style>
 
-<header id="sw-header">
-  <nav class="sw-nav">
-    <a href="index.html" class="sw-logo">SAINIWALAA</a>
-
-    <div class="sw-toggle" onclick="toggleMenu()">☰</div>
-
-    <div class="sw-menu" id="swMenu">
+<header class="sw-header">
+  <div class="sw-header-inner">
+    <div class="sw-logo">SAINIWALAA</div>
+    <nav class="sw-nav">
       <a href="index.html">Home</a>
-      <a href="amazon.html">Amazon Deals</a>
       <a href="jaipurkurti.html">Jaipur Kurtis</a>
+      <a href="amazon.html">Amazon Deals</a>
       <a href="mugs.html">Mugs</a>
       <a href="print.html">Print Orders</a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
 
-<script>
-function toggleMenu(){
-  document.getElementById("swMenu").classList.toggle("show");
-}
+<section id="sw-hero">
+  <div class="sw-hero-wrap">
 
-/* ACTIVE PAGE */
-const links=document.querySelectorAll(".sw-menu a");
-links.forEach(l=>{
-  if(l.href===location.href){
-    l.classList.add("active");
-  }
-});
-</script>
-<!-- HEADER END -->
+    <div class="sw-hero-left">
+      <h1>Jaipur Kurtis & Printed Gifts</h1>
+      <p>Premium Quality | Direct Order | Best Deals</p>
+
+      <div class="sw-btns">
+        <a class="sw-btn sw-meesho" href="#">Meesho</a>
+        <a class="sw-btn sw-flipkart" href="#">Flipkart</a>
+        <a class="sw-btn sw-amazon" href="#">Amazon</a>
+      </div>
+    </div>
+
+    <div class="sw-hero-img">
+      <img src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png">
+    </div>
+
+  </div>
+</section>
