@@ -1,12 +1,73 @@
-<header class="main-header">
-  <div class="header-wrap">
+<header class="sw-header">
+  <div class="sw-header-inner">
+
     <div class="logo">SAINIWALAA</div>
-    <nav>
+
+    <nav class="nav" id="navMenu">
       <a href="index.html">Home</a>
       <a href="jaipurkurti.html">Jaipur Kurtis</a>
       <a href="amazon.html">Amazon Deals</a>
       <a href="mugs.html">Mugs</a>
       <a href="print.html">Print Orders</a>
     </nav>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </div>
 </header>
+
+<style>
+.sw-header{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:#131921;
+  color:#fff;
+}
+.sw-header-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{
+  font-size:22px;
+  font-weight:800;
+}
+.nav{
+  display:flex;
+  gap:18px;
+}
+.nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+}
+.nav a:hover{color:#ff9900}
+.menu-btn{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+}
+@media(max-width:768px){
+  .nav{
+    position:absolute;
+    top:60px;
+    left:0;
+    right:0;
+    background:#232f3e;
+    flex-direction:column;
+    display:none;
+  }
+  .nav.show{display:flex}
+  .nav a{text-align:center;padding:12px}
+  .menu-btn{display:block}
+}
+</style>
+
+<script>
+function toggleMenu(){
+  document.getElementById("navMenu").classList.toggle("show");
+}
+</script>
