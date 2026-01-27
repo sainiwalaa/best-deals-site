@@ -1,73 +1,123 @@
-<header class="sw-header">
-  <div class="sw-header-inner">
-
-    <div class="logo">SAINIWALAA</div>
-
-    <nav class="nav" id="navMenu">
-      <a href="index.html">Home</a>
-      <a href="jaipurkurti.html">Jaipur Kurtis</a>
-      <a href="amazon.html">Amazon Deals</a>
-      <a href="mugs.html">Mugs</a>
-      <a href="print.html">Print Orders</a>
-    </nav>
-
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-  </div>
-</header>
-
+<!-- SAINIWALAA GLOBAL HEADER -->
 <style>
-.sw-header{
+:root{
+  --h-bg:#0b1730;
+  --h-accent:#ff9800;
+  --h-text:#ffffff;
+}
+
+#sw-header{
   position:sticky;
   top:0;
   z-index:999;
-  background:#131921;
-  color:#fff;
+  background:linear-gradient(90deg,#050b1a,#0b1730);
+  box-shadow:0 4px 12px rgba(0,0,0,.25);
 }
-.sw-header-inner{
+
+.sw-nav{
   max-width:1200px;
   margin:auto;
-  padding:14px 20px;
+  padding:14px 18px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 }
-.logo{
-  font-size:22px;
+
+/* LOGO */
+.sw-logo{
+  font-size:26px;
   font-weight:800;
-}
-.nav{
-  display:flex;
-  gap:18px;
-}
-.nav a{
-  color:#fff;
+  color:var(--h-accent);
   text-decoration:none;
-  font-weight:600;
+  letter-spacing:.5px;
 }
-.nav a:hover{color:#ff9900}
-.menu-btn{
+
+/* MENU */
+.sw-menu{
+  display:flex;
+  gap:22px;
+}
+
+.sw-menu a{
+  text-decoration:none;
+  color:var(--h-text);
+  font-weight:600;
+  font-size:15px;
+  position:relative;
+}
+
+.sw-menu a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--h-accent);
+  transition:.3s;
+}
+
+.sw-menu a:hover::after,
+.sw-menu a.active::after{
+  width:100%;
+}
+
+/* MOBILE */
+.sw-toggle{
   display:none;
   font-size:26px;
+  color:#fff;
   cursor:pointer;
 }
+
 @media(max-width:768px){
-  .nav{
+  .sw-toggle{display:block}
+  .sw-menu{
     position:absolute;
-    top:60px;
     left:0;
-    right:0;
-    background:#232f3e;
+    top:64px;
+    width:100%;
+    background:#050b1a;
     flex-direction:column;
     display:none;
+    padding:16px 0;
   }
-  .nav.show{display:flex}
-  .nav a{text-align:center;padding:12px}
-  .menu-btn{display:block}
+  .sw-menu a{
+    padding:12px;
+    text-align:center;
+    font-size:16px;
+  }
+  .sw-menu.show{display:flex}
 }
 </style>
 
+<header id="sw-header">
+  <nav class="sw-nav">
+    <a href="index.html" class="sw-logo">SAINIWALAA</a>
+
+    <div class="sw-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="sw-menu" id="swMenu">
+      <a href="index.html">Home</a>
+      <a href="amazon.html">Amazon Deals</a>
+      <a href="jaipurkurti.html">Jaipur Kurtis</a>
+      <a href="mugs.html">Mugs</a>
+      <a href="print.html">Print Orders</a>
+    </div>
+  </nav>
+</header>
+
 <script>
 function toggleMenu(){
-  document.getElementById("navMenu").classList.toggle("show");
+  document.getElementById("swMenu").classList.toggle("show");
 }
+
+/* ACTIVE PAGE */
+const links=document.querySelectorAll(".sw-menu a");
+links.forEach(l=>{
+  if(l.href===location.href){
+    l.classList.add("active");
+  }
+});
 </script>
+<!-- HEADER END -->
