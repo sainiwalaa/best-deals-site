@@ -1,13 +1,10 @@
-<!-- SAINIWALAA FOOTER -->
 <style>
 #sw-footer{
-  width:100%;
   background:linear-gradient(180deg,#050b1a,#0b1730);
+  color:#fff;
   padding:40px 20px 20px;
   font-family:Poppins,Arial,sans-serif;
-  color:#fff;
 }
-
 #sw-inner{
   max-width:1200px;
   margin:auto;
@@ -15,39 +12,17 @@
   grid-template-columns:repeat(3,1fr);
   gap:30px;
 }
-
-.sw-col h2{margin:0 0 10px;font-size:22px}
-.sw-col p{margin:6px 0;font-size:14px;opacity:.85}
-
-.sw-links a{
-  display:block;
-  margin:6px 0;
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-}
-.sw-links a::before{content:"› ";color:#ff9800}
-
-.sw-btn{
-  display:inline-block;
-  margin-top:12px;
-  padding:10px 24px;
-  background:linear-gradient(90deg,#ff9800,#ff5722);
-  color:#000;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:700;
-}
-
+.sw-col h2{font-size:20px;margin-bottom:10px}
+.sw-col p{font-size:14px;opacity:.85}
+.sw-links a{display:block;color:#fff;text-decoration:none;margin:6px 0}
 #sw-bottom{
   text-align:center;
-  margin-top:25px;
+  margin-top:20px;
   font-size:13px;
   opacity:.7;
   border-top:1px solid rgba(255,255,255,.1);
-  padding-top:12px;
+  padding-top:10px;
 }
-
 @media(max-width:768px){
   #sw-inner{grid-template-columns:1fr;text-align:center}
 }
@@ -67,9 +42,8 @@ fetch("https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP
 .then(r=>r.json())
 .then(d=>{
   if(!d.footer) return;
-
   d.footer.forEach(i=>{
-    let box =
+    const box =
       i.POSITION==="LEFT" ? sw("sw-left") :
       i.POSITION==="CENTER" ? sw("sw-center") :
       i.POSITION==="RIGHT" ? sw("sw-right") :
@@ -78,10 +52,8 @@ fetch("https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP
     if(i.TYPE==="TITLE") box.innerHTML+=`<h2>${i.TEXT}</h2>`;
     if(i.TYPE==="TEXT") box.innerHTML+=`<p>${i.TEXT}</p>`;
     if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
-    if(i.TYPE==="BUTTON") box.innerHTML+=`<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
     if(i.TYPE==="BOTTOM") box.innerText=i.TEXT;
   });
 });
-
 function sw(id){return document.getElementById(id);}
 </script>
