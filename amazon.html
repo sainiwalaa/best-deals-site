@@ -18,6 +18,10 @@
   --btnText:#fff;
 }
 
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   font-family:Poppins,Arial,sans-serif;
@@ -41,6 +45,7 @@ body{
   padding:15px;
   justify-content:center;
 }
+
 .cat-btn{
   padding:8px 16px;
   border-radius:20px;
@@ -50,6 +55,7 @@ body{
   font-weight:600;
   cursor:pointer;
 }
+
 .cat-btn.active{
   background:var(--primary);
   color:#fff;
@@ -62,9 +68,11 @@ body{
   grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
+
 @media(max-width:900px){
   .products{grid-template-columns:repeat(2,1fr)}
 }
+
 @media(max-width:500px){
   .products{grid-template-columns:repeat(1,1fr)}
 }
@@ -78,7 +86,10 @@ body{
   position:relative;
   transition:.3s;
 }
-.card:hover{transform:translateY(-4px)}
+
+.card:hover{
+  transform:translateY(-4px)
+}
 
 .card img{
   width:100%;
@@ -87,7 +98,10 @@ body{
   background:#fff;
 }
 
-.info{padding:14px}
+.info{
+  padding:14px
+}
+
 .title{
   font-size:14px;
   font-weight:600;
@@ -123,36 +137,37 @@ body{
   font-size:12px;
   border-radius:6px;
 }
+
+/* FOOTER IFRAME FIX */
+iframe{
+  width:100%;
+  border:none;
+  display:block;
+  background:transparent;
+}
 </style>
 </head>
 
 <body>
 
-<!-- 🔹 HEADER -->
-<div id="header"></div>
+<!-- 🔹 HEADER (STATIC FILE) -->
+<iframe 
+  src="header.html"
+  style="height:80px"
+  loading="lazy">
+</iframe>
 
 <!-- 🔹 PAGE CONTENT -->
 <div class="page-title" id="siteTitle">Loading deals…</div>
 <div class="categories" id="categories"></div>
 <div class="products" id="products"></div>
 
-<!-- 🔹 FOOTER (ONLY ONCE) -->
-<div id="footer"></div>
-
-<!-- 🔹 LOAD HEADER & FOOTER -->
-<script>
-fetch("./header.html")
-  .then(r=>r.text())
-  .then(d=>document.getElementById("header").innerHTML=d);
-
-fetch("./footer.html")
-  .then(r=>{
-    if(!r.ok) throw new Error("Footer not found");
-    return r.text();
-  })
-  .then(d=>document.getElementById("footer").innerHTML=d)
-  .catch(e=>console.error("FOOTER ERROR:",e));
-</script>
+<!-- 🔹 FOOTER (SHEET CONTROLLED) -->
+<iframe 
+  src="footer.html"
+  style="min-height:480px"
+  loading="lazy">
+</iframe>
 
 <script>
 const API_URL =
@@ -176,7 +191,11 @@ fetch(API_URL)
   document.documentElement.style.setProperty("--btnText", s.BUTTON_TEXT_COLOR);
 
   document.getElementById("siteTitle").innerText = s.SITE_TITLE;
+
   buildCategories();
+})
+.catch(()=>{
+  document.getElementById("siteTitle").innerText="❌ Deals load nahi ho rahe";
 });
 
 /* CATEGORY */
@@ -188,7 +207,8 @@ function buildCategories(){
     <button class="cat-btn ${i===0?'active':''}"
       onclick="filterCat('${c}',this)">
       ${c}
-    </button>`).join("");
+    </button>
+  `).join("");
 
   if(cats.length){
     renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cats[0]));
@@ -204,25 +224,20 @@ function filterCat(cat,btn){
 function renderProducts(list){
   document.getElementById("products").innerHTML =
     list.map(x=>`
-    <div class="card">
-      ${x.TOP==="TOP" ? `<div class="top">TOP DEAL</div>` : ``}
-      <img src="${x.IMAGE}">
-      <div class="info">
-        <div class="title">${x.NAME}</div>
-        ${x.DISCOUNT?`<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>`:""}
-        <a class="btn" href="${x.LINK}" target="_blank">View Deal</a>
+      <div class="card">
+        ${x.TOP==="TOP" ? `<div class="top">TOP DEAL</div>` : ``}
+        <img src="${x.IMAGE}">
+        <div class="info">
+          <div class="title">${x.NAME}</div>
+          ${x.DISCOUNT?`<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>`:""}
+          <a class="btn" href="${x.LINK}" target="_blank" rel="noopener">
+            View Deal
+          </a>
+        </div>
       </div>
-    </div>`).join("");
+    `).join("");
 }
 </script>
-
-
-<!-- COMMON FOOTER -->
-<iframe 
-  src="footer.html"
-  style="width:100%;border:none;min-height:420px"
-  loading="lazy">
-</iframe>
 
 </body>
 </html>
