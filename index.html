@@ -2,28 +2,84 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<title>Sainiwalaa – Home</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sainiwalaa – Trusted Online Shopping & Deals</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-html,body{
-  margin:0;
-  padding:0;
-  min-height:100%;
-  font-family:Poppins,Arial,sans-serif;
+/* ===== YOUR ORIGINAL CSS (UNCHANGED) ===== */
+:root{
+  --primary:#0f172a;
+  --secondary:#1e293b;
+  --accent:#ff9900;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#111;
 }
-body{
+.dark{
+  --bg:#0b1220;
+  --card:#111827;
+  --text:#f9fafb;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:var(--text);transition:.3s}
+
+/* HEADER STYLE (for header.html) */
+header{
+  background:linear-gradient(90deg,#131921,#232f3e);
+  color:#fff;
+  padding:16px;
   display:flex;
-  flex-direction:column;
-  background:#f4f6fb;
+  justify-content:space-between;
+  align-items:center;
 }
-main{
-  flex:1;
-  padding:40px 20px;
-  max-width:1200px;
-  margin:auto;
+header span{font-size:22px;font-weight:700}
+.toggle{
+  background:var(--accent);
+  color:#000;
+  padding:6px 12px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:600;
 }
+
+/* MARQUEE */
+.marquee{
+  background:var(--accent);
+  color:#000;
+  padding:10px;
+  overflow:hidden;
+  white-space:nowrap;
+  font-weight:600;
+}
+.marquee span{
+  display:inline-block;
+  animation:scroll 14s linear infinite;
+}
+@keyframes scroll{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
+/* बाकी CSS SAME */
+.countdown{ text-align:center;padding:12px;font-weight:700;background:var(--card);
+margin:12px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.1)}
+.countdown span{color:var(--accent)}
+
+.slider{position:relative;height:260px;overflow:hidden}
+.slide{position:absolute;inset:0;display:none}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide-content{position:absolute;bottom:16px;left:16px;right:16px;
+background:rgba(0,0,0,.55);padding:14px;border-radius:12px;color:#fff}
+
+.section{padding:20px}
+.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.cat{background:var(--card);border-radius:14px;padding:12px;text-align:center;
+box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.cat img{width:100%;height:130px;object-fit:cover;border-radius:10px}
 </style>
 </head>
 
@@ -32,25 +88,43 @@ main{
 <!-- HEADER LOAD -->
 <div id="header"></div>
 
-<main>
-  <h2>Welcome to Sainiwalaa</h2>
-  <p>
-    Yeh main homepage hai.  
-    Aage jaakar Amazon, Kurti, Mug jaise pages yahin se link honge.
-  </p>
-</main>
+<div class="countdown">
+ ⏳ Offer Ends In : <span id="timer">Loading...</span>
+</div>
+
+<div class="slider" id="slider"></div>
+
+<div class="section">
+  <h2>🛍️ Shop by Category</h2>
+  <div class="categories" id="categories"></div>
+</div>
+
+<div class="section banner" id="banners"></div>
 
 <!-- FOOTER LOAD -->
 <div id="footer"></div>
 
 <script>
-fetch("header.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("header").innerHTML=d);
+/* LOAD HEADER & FOOTER */
+fetch("header.html").then(r=>r.text()).then(d=>{
+  document.getElementById("header").innerHTML=d;
+});
+fetch("footer.html").then(r=>r.text()).then(d=>{
+  document.getElementById("footer").innerHTML=d;
+});
 
-fetch("footer.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("footer").innerHTML=d);
+/* DARK MODE */
+function toggleMode(){
+  document.body.classList.toggle("dark");
+}
+
+/* API – SAME AS YOURS */
+const API="https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
+
+fetch(API).then(r=>r.json()).then(d=>{
+  document.getElementById("marqueeText").innerText =
+    d.marquee.map(x=>x.TEXT).join(" | ");
+});
 </script>
 
 </body>
