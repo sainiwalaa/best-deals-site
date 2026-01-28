@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sainiwalaa – Trusted Online Shopping & Deals</title>
-<meta name="description" content="Amazon deals, Jaipur kurtis, custom mugs, t-shirts & print orders">
+<meta name="description" content="Sainiwalaa par mile Amazon deals, kurti collection, custom mug & t-shirt. Trusted, fast & secure shopping.">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --dark:#131921;
-  --dark2:#232f3e;
+  --primary:#0f172a;
+  --secondary:#1e293b;
   --accent:#ff9900;
   --bg:#f8fafc;
   --card:#ffffff;
@@ -24,7 +24,7 @@ body{background:var(--bg);color:var(--text)}
 
 /* ================= HEADER ================= */
 header{
-  background:linear-gradient(90deg,var(--dark),var(--dark2));
+  background:linear-gradient(90deg,#131921,#232f3e);
   color:#fff;
   padding:18px 20px 26px;
 }
@@ -217,7 +217,7 @@ fetch("https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3
   });
 });
 
-/* FOOTER LOAD */
+/* FOOTER LOAD (SHEET CONTROLLED) */
 fetch("footer.html")
 .then(r=>r.text())
 .then(d=>document.getElementById("footer").innerHTML=d);
