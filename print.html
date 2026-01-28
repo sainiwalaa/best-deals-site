@@ -1,328 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Sainiwalaa Store</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<title>Print Orders</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Poppins,sans-serif;background:#f4f6fb}
-
-/* WRAPPER */
-.wrapper{max-width:1200px;margin:auto;padding:20px}
-
-/* CATEGORY */
-#categoryBar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-.cat-btn{
-  padding:12px 22px;
-  border:none;
-  border-radius:30px;
-  background:#e0e0e0;
-  font-weight:600;
-  cursor:pointer;
-  font-size:15px
-}
-.cat-btn.active{background:#e91e63;color:#fff}
-
-/* GRID */
-#productGrid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px
-}
-.card{
-  background:#fff;
-  border-radius:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.12);
-  overflow:hidden;
-  text-align:center
-}
-.card img{width:100%;height:220px;object-fit:cover}
-.card h4{margin:10px;font-size:16px}
-.price{font-size:18px;font-weight:700;color:#2e7d32}
-.card button{
-  margin:14px;
-  padding:12px;
-  width:calc(100% - 28px);
-  border:none;
-  border-radius:25px;
-  background:linear-gradient(135deg,#e91e63,#ff5722);
-  color:#fff;
-  font-size:16px;
-  font-weight:700;
-  cursor:pointer
-}
-
-/* ORDER PAGE */
-#orderPage{
-  display:none;
-  background:#fff;
-  padding:22px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.18)
-}
-.order-layout{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px
-}
-@media(max-width:768px){
-  .order-layout{grid-template-columns:1fr}
-}
-.order-img img{width:100%;border-radius:16px}
-
-.form-box{
-  background:#fff;
-  padding:22px;
-  border-radius:18px;
-  box-shadow:0 6px 20px rgba(0,0,0,.1)
-}
-.form-box h2{margin-top:0;color:#e91e63}
-
-input,textarea{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #ccc;
-  margin-bottom:12px;
-  font-family:Poppins
-}
-
-.note{
-  font-size:14px;
-  background:#fff3cd;
-  padding:12px;
-  border-radius:12px;
-  margin-bottom:12px
-}
-
-.btn{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:30px;
-  font-size:16px;
-  font-weight:700;
-  cursor:pointer
-}
-.submit-btn{background:linear-gradient(135deg,#43a047,#2e7d32);color:#fff}
-.back-btn{background:#6c757d;color:#fff;margin-bottom:12px}
-
-#error{color:red;font-size:14px}
-
-/* SUCCESS */
-#successBox{
-  display:none;
-  text-align:center;
-  background:#fff;
-  padding:40px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.18)
-}
-#successBox h2{color:#2e7d32}
+html,body{margin:0;font-family:Poppins;background:#f4f6fb}
+header,footer{background:#0b1730;color:#fff}
+.header-inner{max-width:1200px;margin:auto;padding:15px;display:flex;justify-content:space-between}
+nav a{color:#fff;margin-left:16px;text-decoration:none}
+main{min-height:70vh;padding:40px;text-align:center}
+footer{background:#050b1a;text-align:center;padding:15px}
 </style>
 </head>
-
 <body>
 
-<!-- ✅ HEADER AUTO LOAD -->
-<div id="header"></div>
-
-<div class="wrapper">
-
-  <!-- CATEGORY -->
-  <div id="categoryBar"></div>
-
-  <!-- PRODUCTS -->
-  <div id="productGrid"></div>
-
-  <!-- ORDER -->
-  <div id="orderPage">
-    <button class="btn back-btn" onclick="backToProducts()">← Back to Products</button>
-
-    <div class="order-layout">
-      <div class="order-img">
-        <img id="oImg">
-        <h3 id="oName"></h3>
-        <div class="price" id="oPrice"></div>
-      </div>
-
-      <div class="form-box">
-        <h2>Place Your Order</h2>
-
-        <div class="note">
-          📌 Kripya <b>Mobile, PIN aur poora Address</b> sahi bharein.
-        </div>
-
-        <input id="cName" placeholder="Full Name">
-        <input id="cMobile" placeholder="Mobile Number">
-        <textarea id="cAddress" placeholder="Complete Address"></textarea>
-        <input id="cPin" placeholder="PIN Code">
-
-        <div id="error"></div>
-
-        <button class="btn submit-btn" id="submitBtn" onclick="submitOrder()">
-          CONFIRM ORDER
-        </button>
-      </div>
-    </div>
+<header>
+  <div class="header-inner">
+    <b>SAINIWALAA</b>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="mugs.html">Mugs</a>
+    </nav>
   </div>
+</header>
 
-  <!-- SUCCESS -->
-  <div id="successBox">
-    <h2>🎉 Order Successful!</h2>
-    <p id="orderMsg"></p>
-    <button class="btn submit-btn" onclick="backToProducts()">🛍_attach Back to Products</button>
-  </div>
+<main>
+  <h2>🖨️ Print Orders</h2>
+</main>
 
-</div>
-
-<!-- ✅ FOOTER AUTO LOAD -->
-<div id="footer"></div>
-
-<script>
-/* HEADER & FOOTER */
-fetch("header.html").then(r=>r.text()).then(d=>{
-  document.getElementById("header").innerHTML=d;
-});
-fetch("footer.html").then(r=>r.text()).then(d=>{
-  document.getElementById("footer").innerHTML=d;
-});
-
-/* ================= PRODUCT SYSTEM ================= */
-
-const API_URL="https://script.google.com/macros/s/AKfycbwnHCxxocmdkD0sr8SDu7VKDiQf7e2fukIwtLJazF9-kVwpTkoQ561nDYbCWyePvirM/exec";
-
-let products=[],currentProduct=null,submitted=false;
-
-const grid=document.getElementById("productGrid");
-const categoryBar=document.getElementById("categoryBar");
-const orderPage=document.getElementById("orderPage");
-const successBox=document.getElementById("successBox");
-
-const oImg=document.getElementById("oImg");
-const oName=document.getElementById("oName");
-const oPrice=document.getElementById("oPrice");
-
-const cName=document.getElementById("cName");
-const cMobile=document.getElementById("cMobile");
-const cAddress=document.getElementById("cAddress");
-const cPin=document.getElementById("cPin");
-const err=document.getElementById("error");
-const submitBtn=document.getElementById("submitBtn");
-const orderMsg=document.getElementById("orderMsg");
-
-/* LOAD PRODUCTS */
-fetch(API_URL)
-.then(r=>r.json())
-.then(d=>{
-  products=d.products;
-  loadCategories();
-  renderProducts(products);
-});
-
-function loadCategories(){
-  const cats=[...new Set(products.map(p=>p.CATEGORY))];
-  categoryBar.innerHTML=cats.map((c,i)=>`
-    <button class="cat-btn ${i==0?"active":""}" onclick="filterCat('${c}',this)">${c}</button>
-  `).join("");
-}
-
-function filterCat(cat,btn){
-  document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-  renderProducts(products.filter(p=>p.CATEGORY===cat));
-}
-
-function renderProducts(list){
-  grid.innerHTML=list.map(p=>`
-    <div class="card">
-      <img src="${p.IMAGE}">
-      <h4>${p.NAME}</h4>
-      <div class="price">₹ ${p.PRIZE}</div>
-      <button onclick='openOrder(${JSON.stringify(p)})'>ORDER NOW</button>
-    </div>
-  `).join("");
-}
-
-function openOrder(p){
-  currentProduct=p;
-  grid.style.display="none";
-  categoryBar.style.display="none";
-  orderPage.style.display="block";
-  successBox.style.display="none";
-
-  oImg.src=p.IMAGE;
-  oName.innerText=p.NAME;
-  oPrice.innerText="₹ "+p.PRIZE;
-  window.scrollTo(0,0);
-}
-
-function backToProducts(){
-  submitted=false;
-  cName.value=cMobile.value=cAddress.value=cPin.value="";
-  err.innerText="";
-  submitBtn.disabled=false;
-  submitBtn.innerText="CONFIRM ORDER";
-
-  orderPage.style.display="none";
-  successBox.style.display="none";
-  grid.style.display="grid";
-  categoryBar.style.display="flex";
-  window.scrollTo(0,0);
-}
-
-async function submitOrder(){
-  if(submitted) return;
-
-  if(!cName.value||!/^[6-9]\d{9}$/.test(cMobile.value)||!cAddress.value||!/^\d{6}$/.test(cPin.value)){
-    err.innerText="❌ Kripya sahi Mobile, PIN aur Address bharein.";
-    return;
-  }
-
-  submitted=true;
-  submitBtn.disabled=true;
-  submitBtn.innerText="Processing...";
-
-  const res=await fetch(API_URL,{
-    method:"POST",
-    body:JSON.stringify({
-      name:cName.value,
-      mobile:cMobile.value,
-      address:cAddress.value,
-      pin:cPin.value,
-      suk:currentProduct.SUK
-    })
-  });
-
-  const data=await res.json();
-
-  if(data.status==="success"){
-    orderPage.style.display="none";
-    successBox.style.display="block";
-    orderMsg.innerHTML=`
-      🙏 <b>Sainiwalaa</b> se order ke liye dhanyavaad.<br>
-      <b>Order ID:</b> ${data.orderId}
-    `;
-  }else{
-    err.innerText=data.message;
-    submitted=false;
-    submitBtn.disabled=false;
-    submitBtn.innerText="CONFIRM ORDER";
-  }
-}
-</script>
+<footer>© Sainiwalaa</footer>
 
 </body>
 </html>
-<!-- COMMON FOOTER -->
-<div id="footer"></div>
-
-<script>
-fetch("footer.html")
-  .then(r => r.text())
-  .then(d => document.getElementById("footer").innerHTML = d);
-</script>
-
