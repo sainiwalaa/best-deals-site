@@ -140,14 +140,11 @@ fetch(API_URL)
     `;
   });
 })
-  
-<!-- COMMON FOOTER -->
-<iframe 
-  src="footer.html"
-  style="width:100%;border:none;min-height:420px"
-  loading="lazy">
-</iframe>
+.catch(()=>{
+  document.getElementById("products").innerHTML =
+    "❌ Products load nahi ho pa rahe";
+});
+</script>
 
 </body>
 </html>
- 
