@@ -3,13 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Sainiwalaa – Trusted Online Shopping & Deals</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Sainiwalaa – Trusted Online Shopping</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial}
 
 html,body{
   height:100%;
@@ -22,11 +19,11 @@ body{
 }
 
 /* HEADER PLACE */
-#header{
+#site-header{
   flex-shrink:0;
 }
 
-/* MAIN CONTENT */
+/* PAGE CONTENT */
 main{
   flex:1;
   max-width:1200px;
@@ -34,8 +31,20 @@ main{
   padding:30px 20px;
 }
 
+.section{
+  background:#fff;
+  padding:24px;
+  border-radius:14px;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  margin-bottom:24px;
+}
+
+.section h2{
+  margin-bottom:12px;
+}
+
 /* FOOTER PLACE */
-#footer{
+#site-footer{
   flex-shrink:0;
 }
 </style>
@@ -43,26 +52,35 @@ main{
 
 <body>
 
-<!-- HERO HEADER (TOP FIXED) -->
-<div id="header"></div>
+<!-- HERO HEADER (ONLY ONCE) -->
+<div id="site-header"></div>
 
-<!-- PAGE CONTENT -->
+<!-- HOME PAGE CONTENT -->
 <main>
-  <h2>Welcome to Sainiwalaa</h2>
-  <p>Trusted deals, genuine products and fast delivery.</p>
+
+  <div class="section">
+    <h2>🔥 Today Best Deals</h2>
+    <p>Amazon, Meesho & Flipkart handpicked offers.</p>
+  </div>
+
+  <div class="section">
+    <h2>🛍 Shop Categories</h2>
+    <p>Kurtis • T-Shirts • Mugs • Gifts • Custom Prints</p>
+  </div>
+
 </main>
 
-<!-- FOOTER (BOTTOM FIXED) -->
-<div id="footer"></div>
+<!-- FOOTER -->
+<div id="site-footer"></div>
 
 <script>
 fetch("header.html")
 .then(r=>r.text())
-.then(d=>document.getElementById("header").innerHTML=d);
+.then(d=>document.getElementById("site-header").innerHTML=d);
 
 fetch("footer.html")
 .then(r=>r.text())
-.then(d=>document.getElementById("footer").innerHTML=d);
+.then(d=>document.getElementById("site-footer").innerHTML=d);
 </script>
 
 </body>
