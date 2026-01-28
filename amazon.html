@@ -1,55 +1,61 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Amazon Best Deals – Sainiwalaa</title>
+<title>Today Best Deals</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --primary:#131921;
-  --secondary:#232f3e;
-  --accent:#ff9900;
+  --primary:#2874f0;
+  --secondary:#ff5722;
   --card:#ffffff;
   --bg:#f4f6fb;
   --text:#222;
+  --btn:#2874f0;
+  --btnText:#fff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-
 body{
+  margin:0;
+  font-family:Poppins,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
 }
 
-/* ===== CATEGORY BAR ===== */
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
+  padding:18px;
+  text-align:center;
+  font-size:22px;
+  font-weight:700;
+}
+
+/* CATEGORY BAR */
 .categories{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  padding:16px;
+  padding:15px;
   justify-content:center;
-  background:#fff;
-  border-bottom:1px solid #ddd;
 }
 .cat-btn{
-  padding:8px 18px;
+  padding:8px 16px;
   border-radius:20px;
-  border:1px solid var(--accent);
+  border:1px solid var(--primary);
   background:#fff;
-  color:#111;
+  color:var(--primary);
   font-weight:600;
   cursor:pointer;
 }
 .cat-btn.active{
-  background:var(--accent);
-  color:#000;
+  background:var(--primary);
+  color:#fff;
 }
 
-/* ===== PRODUCTS GRID ===== */
+/* GRID */
 .products{
   padding:18px;
   display:grid;
@@ -61,19 +67,19 @@ body{
   .products{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:500px){
-  .products{grid-template-columns:1fr}
+  .products{grid-template-columns:repeat(1,1fr)}
 }
 
-/* ===== CARD ===== */
+/* CARD */
 .card{
   background:var(--card);
-  border-radius:14px;
+  border-radius:12px;
   overflow:hidden;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
-  transition:.3s;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
   position:relative;
+  transition:.3s;
 }
-.card:hover{transform:translateY(-6px)}
+.card:hover{transform:translateY(-4px)}
 
 .card img{
   width:100%;
@@ -86,7 +92,7 @@ body{
 .title{
   font-size:14px;
   font-weight:600;
-  height:44px;
+  height:42px;
   overflow:hidden;
 }
 
@@ -98,21 +104,21 @@ body{
 
 .btn{
   display:block;
-  background:var(--accent);
-  color:#000;
+  background:var(--btn);
+  color:var(--btnText);
   text-decoration:none;
   text-align:center;
   padding:10px;
   border-radius:8px;
   margin-top:8px;
-  font-weight:700;
+  font-weight:600;
 }
 
 .top{
   position:absolute;
   top:10px;
   left:10px;
-  background:#e53935;
+  background:red;
   color:#fff;
   padding:4px 8px;
   font-size:12px;
@@ -123,87 +129,94 @@ body{
 
 <body>
 
-<!-- ===== HEADER LOAD ===== -->
-<div id="header"></div>
-
-<!-- ===== CATEGORY BAR ===== -->
+<div class="header" id="siteTitle">Loading…</div>
 <div class="categories" id="categories"></div>
-
-<!-- ===== PRODUCTS ===== -->
-<div class="products" id="products">Loading deals…</div>
-
-<!-- ===== FOOTER LOAD ===== -->
-<div id="footer"></div>
+<div class="products" id="products"></div>
 
 <script>
-/* ===== LOAD HEADER & FOOTER ===== */
-fetch("/best-deals-site/header.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("header").innerHTML=d);
-
-fetch("/best-deals-site/footer.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("footer").innerHTML=d);
-
-/* ===== AMAZON API ===== */
 const API_URL =
 "https://script.google.com/macros/s/AKfycbzLaiWevyBr-34R2VZ7zTnwP4yfOJT7SHhA6XY8k85pfgzeyI9ad1RTzHnKM7qruuz_MA/exec";
 
-let ALL_PRODUCTS=[];
+let ALL_PRODUCTS = [];
 
 fetch(API_URL)
-.then(r=>r.json())
-.then(data=>{
-  ALL_PRODUCTS=data.products;
-  buildCategories();
+.then(r => r.json())
+.then(data => {
+
+  const s = data.settings;
+  ALL_PRODUCTS = data.products;
+
+  /* APPLY SETTINGS */
+  document.documentElement.style.setProperty("--primary", s.PRIMARY_COLOR);
+  document.documentElement.style.setProperty("--secondary", s.SECONDARY_COLOR);
+  document.documentElement.style.setProperty("--card", s.CARD_BG);
+  document.documentElement.style.setProperty("--bg", s.PAGE_BG);
+  document.documentElement.style.setProperty("--text", s.TEXT_COLOR);
+  document.documentElement.style.setProperty("--btn", s.BUTTON_COLOR);
+  document.documentElement.style.setProperty("--btnText", s.BUTTON_TEXT_COLOR);
+  document.body.style.fontFamily = s.FONT_FAMILY;
+
+  document.getElementById("siteTitle").innerText = s.SITE_TITLE;
+
+  buildCategories(); // auto load first category
 })
-.catch(()=>{
-  document.getElementById("products").innerText="Failed to load deals";
+.catch(err=>{
+  document.getElementById("siteTitle").innerText="API Error";
+  document.getElementById("products").innerText=err;
 });
 
-/* ===== BUILD CATEGORY BUTTONS ===== */
+/* CREATE CATEGORY BUTTONS (NO ALL) */
 function buildCategories(){
-  const box=document.getElementById("categories");
-  const cats=[...new Set(ALL_PRODUCTS.map(p=>p.CATEGORY))];
+  const box = document.getElementById("categories");
+  const cats = [...new Set(ALL_PRODUCTS.map(p=>p.CATEGORY))];
 
-  box.innerHTML=cats.map((c,i)=>`
-    <button class="cat-btn ${i===0?'active':''}"
-      onclick="filterCat('${c}',this)">
-      ${c}
-    </button>
-  `).join("");
+  let html = "";
+  cats.forEach((c,i)=>{
+    html += `
+      <button class="cat-btn ${i===0?'active':''}"
+        onclick="filterCat('${c}',this)">
+        ${c}
+      </button>`;
+  });
+
+  box.innerHTML = html;
 
   if(cats.length){
-    renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cats[0]));
+    renderProducts(
+      ALL_PRODUCTS.filter(p=>p.CATEGORY===cats[0])
+    );
   }
 }
 
-/* ===== FILTER ===== */
+/* FILTER */
 function filterCat(cat,btn){
   document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
-  renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cat));
+
+  renderProducts(
+    ALL_PRODUCTS.filter(p=>p.CATEGORY===cat)
+  );
 }
 
-/* ===== RENDER PRODUCTS ===== */
+/* RENDER PRODUCTS */
 function renderProducts(list){
-  const grid=document.getElementById("products");
-  if(!list.length){
-    grid.innerText="No deals found";
-    return;
-  }
+  const grid = document.getElementById("products");
+  let html = "";
 
-  grid.innerHTML=list.map(x=>`
+  list.forEach(x=>{
+    html+=`
     <div class="card">
-      ${x.TOP==="TOP"?`<div class="top">TOP DEAL</div>`:""}
-      <img src="${x.IMAGE}">
+      ${x.TOP==="TOP" ? `<div class="top">TOP DEAL</div>` : ``}
+      <img src="${x.IMAGE || 'https://via.placeholder.com/300'}">
       <div class="info">
         <div class="title">${x.NAME}</div>
-        ${x.DISCOUNT?`<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>`:""}
-        <a class="btn" href="${x.LINK}" target="_blank">View on Amazon</a>
+        ${x.DISCOUNT ? `<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>` : ``}
+        <a class="btn" href="${x.LINK}" target="_blank">View Deal</a>
       </div>
-    </div>
-  `).join("");
+    </div>`;
+  });
+
+  grid.innerHTML = html || "No products found";
 }
 </script>
 
