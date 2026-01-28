@@ -14,10 +14,11 @@
   --dark:#131921;
   --dark2:#232f3e;
   --accent:#ff9900;
-  --bg:#f4f6f8;
+  --bg:#f8fafc;
   --card:#ffffff;
   --text:#111;
 }
+
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 body{background:var(--bg);color:var(--text)}
 
@@ -32,6 +33,7 @@ header{
   justify-content:space-between;
   align-items:center;
   flex-wrap:wrap;
+  gap:10px;
 }
 .logo{font-size:26px;font-weight:700}
 .menu{
@@ -49,7 +51,7 @@ header{
   font-size:14px;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 .hero{
   margin-top:22px;
   display:grid;
@@ -73,10 +75,10 @@ header{
   font-weight:600;
 }
 
-/* SLIDER */
+/* HERO SLIDER */
 .hero-slider{
   position:relative;
-  height:240px;
+  height:260px;
   border-radius:16px;
   overflow:hidden;
 }
@@ -86,6 +88,7 @@ header{
 /* ================= HOME ================= */
 .marquee{
   background:var(--accent);
+  color:#000;
   padding:10px;
   overflow:hidden;
   white-space:nowrap;
@@ -101,6 +104,8 @@ header{
 }
 
 .section{padding:30px 20px}
+.section h2{margin-bottom:14px}
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
@@ -133,7 +138,7 @@ header{
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- ================= HEADER + HERO ================= -->
 <header>
   <div class="header-top">
     <div class="logo">SAINIWALAA</div>
@@ -173,26 +178,26 @@ header{
   <div class="grid" id="categoryGrid"></div>
 </div>
 
-<!-- ================= FOOTER LOAD ================= -->
+<!-- ================= FOOTER ================= -->
 <div id="footer"></div>
 
 <script>
 /* HERO SLIDER */
 const imgs=[
- "https://images.unsplash.com/photo-1583394838336-acd977736f90",
- "https://images.unsplash.com/photo-1520975916090-3105956dac38",
- "https://images.unsplash.com/photo-1512436991641-6745cdb1723f"
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/stl_u1.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/PURPAL_STYL_1_1.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/BLAK_051.png"
 ];
 const hs=document.getElementById("heroSlider");
 imgs.forEach(src=>{
   hs.innerHTML+=`<div class="hero-slide"><img src="${src}"></div>`;
 });
-let i=0,s=document.querySelectorAll(".hero-slide");
-s[0].style.display="block";
+let i=0,slides=document.querySelectorAll(".hero-slide");
+slides[0].style.display="block";
 setInterval(()=>{
-  s[i].style.display="none";
-  i=(i+1)%s.length;
-  s[i].style.display="block";
+  slides[i].style.display="none";
+  i=(i+1)%slides.length;
+  slides[i].style.display="block";
 },3000);
 
 /* HOME API */
@@ -212,7 +217,7 @@ fetch("https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3
   });
 });
 
-/* STATIC FOOTER */
+/* FOOTER LOAD */
 fetch("footer.html")
 .then(r=>r.text())
 .then(d=>document.getElementById("footer").innerHTML=d);
