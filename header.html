@@ -1,26 +1,26 @@
-<!-- SAINIWALAA GLOBAL HEADER -->
+<!-- SAINIWALAA HERO HEADER (GLOBAL) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box}
 .sw-header{
-  background:linear-gradient(90deg,#131921,#232f3e);
+  background:linear-gradient(135deg,#131921,#232f3e);
   color:#fff;
   font-family:Poppins,Arial,sans-serif;
 }
 
-/* NAV */
-.sw-nav{
+/* TOP MENU */
+.sw-top{
   max-width:1200px;
   margin:auto;
-  padding:14px 20px;
+  padding:16px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 .sw-logo{
-  font-size:24px;
-  font-weight:900;
-  letter-spacing:1px;
+  font-size:26px;
+  font-weight:800;
 }
 .sw-menu a{
   color:#fff;
@@ -30,13 +30,40 @@
 }
 .sw-menu a:hover{color:#ff9900}
 
+/* HERO */
+.sw-hero{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px 60px;
+  display:flex;
+  gap:40px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.sw-hero-text{flex:1;min-width:260px}
+.sw-hero-text h1{font-size:42px;margin:0 0 10px;font-weight:800}
+.sw-hero-text p{font-size:18px;opacity:.9}
+.sw-hero-img{
+  width:260px;height:360px;
+  background:#fff;border-radius:22px;
+  padding:10px;
+  box-shadow:0 18px 40px rgba(0,0,0,.4);
+}
+.sw-hero-img img{
+  width:100%;height:100%;
+  object-fit:cover;border-radius:18px;
+}
+
 @media(max-width:768px){
   .sw-menu{display:none}
+  .sw-hero{text-align:center}
+  .sw-hero-img{margin:auto}
 }
 </style>
 
 <header class="sw-header">
-  <div class="sw-nav">
+
+  <div class="sw-top">
     <div class="sw-logo">SAINIWALAA</div>
     <nav class="sw-menu">
       <a href="index.html">Home</a>
@@ -45,47 +72,19 @@
       <a href="mugs.html">Mugs</a>
     </nav>
   </div>
-</header>
-<!-- HOME HERO -->
-<section class="home-hero">
-  <div class="hero-wrap">
-    <div class="hero-text">
+
+  <div class="sw-hero">
+    <div class="sw-hero-text">
       <h1>Trusted Online Deals</h1>
       <p>Best Prices • Genuine Products • Fast Delivery</p>
     </div>
-    <div class="hero-img">
+    <div class="sw-hero-img">
       <img id="heroImg"
       src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png">
     </div>
   </div>
-</section>
 
-<style>
-.home-hero{
-  background:linear-gradient(135deg,#ff9900,#ff5722);
-  color:#fff;
-}
-.hero-wrap{
-  max-width:1200px;
-  margin:auto;
-  padding:50px 20px 60px;
-  display:flex;
-  gap:40px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-.hero-text h1{font-size:42px;margin:0 0 10px}
-.hero-text p{font-size:18px}
-.hero-img{
-  width:260px;height:360px;
-  background:#fff;border-radius:22px;
-  padding:10px;
-}
-.hero-img img{
-  width:100%;height:100%;
-  object-fit:cover;border-radius:18px;
-}
-</style>
+</header>
 
 <script>
 const heroImages=[
@@ -99,6 +98,3 @@ setInterval(()=>{
  document.getElementById("heroImg").src=heroImages[hi];
 },3500);
 </script>
-
-
-<!-- HEADER END -->
