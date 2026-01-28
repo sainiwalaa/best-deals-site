@@ -1,80 +1,172 @@
-<!-- ================= SAINIWALAA FOOTER ================= -->
+<!-- SAINIWALAA NEXT SYSTEM FOOTER (INDEX MATCHED) -->
 <style>
 #sw-footer{
   width:100%;
-  background:linear-gradient(180deg,#050b1a,#0b1730);
-  padding:40px 20px 20px;
-  box-sizing:border-box;
+  background:linear-gradient(180deg,#0b1220,#020617);
+  padding:40px 20px 18px;
   font-family:Poppins,Arial,sans-serif;
-  color:#ffffff;
+  color:#fff;
 }
 
+/* MARQUEE */
+#sw-marquee{
+  overflow:hidden;
+  white-space:nowrap;
+  text-align:center;
+  margin-bottom:26px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+#sw-marquee span{
+  display:inline-block;
+  animation:sw-scroll 22s linear infinite;
+  font-weight:600;
+}
+@keyframes sw-scroll{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
+/* GRID */
 #sw-inner{
-  max-width:1200px;
+  max-width:1100px;
   margin:auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:30px;
-  text-align:center;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:34px;
 }
 
-#sw-inner h3{
-  margin-bottom:8px;
+/* TEXT */
+.sw-col h2{
+  margin:0 0 10px;
   font-size:22px;
+  font-weight:700;
+}
+.sw-col p{
+  margin:6px 0;
+  font-size:14px;
+  opacity:.85;
 }
 
-#sw-inner p,
-#sw-inner a{
-  font-size:14px;
-  color:#ddd;
-  text-decoration:none;
+/* LINKS */
+.sw-links a{
   display:block;
   margin:6px 0;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
 }
-
-#sw-inner a:hover{
+.sw-links a::before{
+  content:"› ";
   color:#ff9900;
 }
 
+/* BUTTON */
+.sw-btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 22px;
+  background:linear-gradient(90deg,#ff9900,#ff5722);
+  color:#000 !important;
+  border-radius:22px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+}
+
+/* SOCIAL */
+.sw-social a{
+  margin-right:14px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+}
+
+/* BOTTOM */
 #sw-bottom{
-  margin-top:25px;
   text-align:center;
+  margin-top:22px;
   font-size:13px;
   opacity:.7;
-  border-top:1px solid rgba(255,255,255,.1);
+  border-top:1px solid rgba(255,255,255,.12);
   padding-top:12px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  #sw-inner{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  .sw-social a{margin:0 10px}
 }
 </style>
 
-<footer id="sw-footer">
+<div id="sw-footer">
+
+  <div id="sw-marquee"></div>
+
   <div id="sw-inner">
-
-    <div>
-      <h3>SAINIWALAA</h3>
-      <p>Trusted Online Shopping</p>
-      <p>Jaipur Kurtis & Custom Prints</p>
-    </div>
-
-    <div>
-      <h3>Quick Links</h3>
-      <a href="index.html">Home</a>
-      <a href="amazon.html">Amazon Deals</a>
-      <a href="jaipurkurti.html">Jaipur Kurtis</a>
-      <a href="prints.html">Custom Prints</a>
-    </div>
-
-    <div>
-      <h3>Shop</h3>
-      <p>👗 Kurtis</p>
-      <p>👕 T-Shirts</p>
-      <p>☕ Mugs</p>
-      <p>🎁 Gifts</p>
-    </div>
-
+    <div class="sw-col" id="sw-left"></div>
+    <div class="sw-col" id="sw-center"></div>
+    <div class="sw-col sw-social" id="sw-right"></div>
   </div>
 
-  <div id="sw-bottom">
-    © 2026 Sainiwalaa • All Rights Reserved
-  </div>
-</footer>
-<!-- ================= FOOTER END ================= -->
+  <div id="sw-bottom"></div>
+
+</div>
+
+<script>
+const FOOTER_API="https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
+
+fetch(FOOTER_API)
+.then(r=>r.json())
+.then(d=>{
+  if(!d.footer) return;
+
+  d.footer.forEach(i=>{
+    let box =
+      i.POSITION==="LEFT" ? document.getElementById("sw-left") :
+      i.POSITION==="CENTER" ? document.getElementById("sw-center") :
+      i.POSITION==="RIGHT" ? document.getElementById("sw-right") :
+      i.POSITION==="BOTTOM" ? document.getElementById("sw-bottom") :
+      document.getElementById("sw-marquee");
+
+    if(i.TYPE==="MARQUEE"){
+      box.innerHTML=`<span style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</span>`;
+    }
+    if(i.TYPE==="TITLE"){
+      box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
+    }
+    if(i.TYPE==="TEXT"){
+      box.innerHTML+=`<p style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</p>`;
+    }
+    if(i.TYPE==="LINK"){
+      box.innerHTML+=`
+        <div class="sw-links">
+          <a href="${i.LINK}" style="color:${i.COLOR}">
+            ${i.TEXT}
+          </a>
+        </div>`;
+    }
+    if(i.TYPE==="BUTTON"){
+      box.innerHTML+=`
+        <a class="sw-btn" href="${i.LINK}">
+          ${i.TEXT}
+        </a>`;
+    }
+    if(i.TYPE==="SOCIAL"){
+      box.innerHTML+=`
+        <a href="${i.LINK}" style="color:${i.COLOR}">
+          ${i.TEXT}
+        </a>`;
+    }
+    if(i.TYPE==="BOTTOM"){
+      box.innerText=i.TEXT;
+      box.style.color=i.COLOR;
+    }
+  });
+});
+</script>
+<!-- FOOTER END -->
