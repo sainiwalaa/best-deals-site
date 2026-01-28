@@ -1,95 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
-<title>Sainiwalaa | Best Deals Hub</title>
+<title>Sainiwalaa – Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-body{
+html,body{
   margin:0;
+  padding:0;
+  min-height:100%;
   font-family:Poppins,Arial,sans-serif;
+}
+body{
+  display:flex;
+  flex-direction:column;
   background:#f4f6fb;
-  color:#222;
 }
-
-/* HERO */
-.hero{
-  background:linear-gradient(120deg,#2874f0,#1a5ad9);
-  color:#fff;
-  text-align:center;
-  padding:60px 20px;
-}
-.hero h1{margin:0;font-size:32px}
-.hero p{opacity:.9}
-
-/* SECTIONS */
-.section{
+main{
+  flex:1;
+  padding:40px 20px;
   max-width:1200px;
-  margin:40px auto;
-  padding:0 20px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-.card{
-  background:#fff;
-  border-radius:14px;
-  padding:20px;
-  text-align:center;
-  box-shadow:0 6px 18px rgba(0,0,0,.1);
-}
-.card a{
-  display:inline-block;
-  margin-top:12px;
-  padding:10px 20px;
-  background:#2874f0;
-  color:#fff;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:600;
+  margin:auto;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- HEADER LOAD -->
 <div id="header"></div>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>India’s Best Online Deals</h1>
-  <p>Amazon • Meesho • Fashion • Gadgets</p>
-</section>
+<main>
+  <h2>Welcome to Sainiwalaa</h2>
+  <p>
+    Yeh main homepage hai.  
+    Aage jaakar Amazon, Kurti, Mug jaise pages yahin se link honge.
+  </p>
+</main>
 
-<!-- CATEGORIES -->
-<section class="section">
-  <div class="grid">
-    <div class="card">
-      <h3>Amazon Deals</h3>
-      <a href="amazon.html">Explore</a>
-    </div>
-    <div class="card">
-      <h3>Meesho Offers</h3>
-      <a href="meesho.html">Explore</a>
-    </div>
-    <div class="card">
-      <h3>Jaipur Kurtis</h3>
-      <a href="jaipurkurti.html">Explore</a>
-    </div>
-    <div class="card">
-      <h3>Trending Gadgets</h3>
-      <a href="gadgets.html">Explore</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
+<!-- FOOTER LOAD -->
 <div id="footer"></div>
 
 <script>
