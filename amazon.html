@@ -8,28 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --primary:#2874f0;
-  --secondary:#ff5722;
-  --card:#ffffff;
-  --bg:#f4f6fb;
-  --text:#222;
-  --btn:#2874f0;
-  --btnText:#fff;
-}
-
-*{
-  box-sizing:border-box;
-}
-
-body{
+html,body{
   margin:0;
+  padding:0;
   font-family:Poppins,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  background:#f4f6fb;
+  color:#222;
 }
 
-/* PAGE TITLE */
+/* ================= PAGE ================= */
 .page-title{
   padding:18px;
   text-align:center;
@@ -45,19 +32,17 @@ body{
   padding:15px;
   justify-content:center;
 }
-
 .cat-btn{
   padding:8px 16px;
   border-radius:20px;
-  border:1px solid var(--primary);
+  border:1px solid #2874f0;
   background:#fff;
-  color:var(--primary);
+  color:#2874f0;
   font-weight:600;
   cursor:pointer;
 }
-
 .cat-btn.active{
-  background:var(--primary);
+  background:#2874f0;
   color:#fff;
 }
 
@@ -68,28 +53,22 @@ body{
   grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
-
 @media(max-width:900px){
   .products{grid-template-columns:repeat(2,1fr)}
 }
-
 @media(max-width:500px){
-  .products{grid-template-columns:repeat(1,1fr)}
+  .products{grid-template-columns:1fr}
 }
 
 /* CARD */
 .card{
-  background:var(--card);
+  background:#fff;
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 4px 12px rgba(0,0,0,.08);
-  position:relative;
   transition:.3s;
 }
-
-.card:hover{
-  transform:translateY(-4px)
-}
+.card:hover{transform:translateY(-4px)}
 
 .card img{
   width:100%;
@@ -98,27 +77,22 @@ body{
   background:#fff;
 }
 
-.info{
-  padding:14px
-}
-
+.info{padding:14px}
 .title{
   font-size:14px;
   font-weight:600;
   height:42px;
   overflow:hidden;
 }
-
 .discount{
   color:#e91e63;
   font-weight:700;
   margin:6px 0;
 }
-
 .btn{
   display:block;
-  background:var(--btn);
-  color:var(--btnText);
+  background:#2874f0;
+  color:#fff;
   text-decoration:none;
   text-align:center;
   padding:10px;
@@ -126,7 +100,6 @@ body{
   margin-top:8px;
   font-weight:600;
 }
-
 .top{
   position:absolute;
   top:10px;
@@ -139,36 +112,40 @@ body{
 }
 
 /* FOOTER IFRAME FIX */
-iframe{
+.footer-frame{
   width:100%;
-  border:none;
+  border:0;
   display:block;
-  background:transparent;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔹 HEADER (STATIC FILE) -->
-<iframe 
-  src="header.html"
-  style="height:80px"
-  loading="lazy">
-</iframe>
+<!-- ================= HEADER ================= -->
+<div id="header"></div>
 
-<!-- 🔹 PAGE CONTENT -->
+<!-- ================= CONTENT ================= -->
 <div class="page-title" id="siteTitle">Loading deals…</div>
 <div class="categories" id="categories"></div>
 <div class="products" id="products"></div>
 
-<!-- 🔹 FOOTER (SHEET CONTROLLED) -->
+<!-- ================= FOOTER ================= -->
 <iframe 
   src="footer.html"
-  style="min-height:480px"
-  loading="lazy">
+  class="footer-frame"
+  loading="lazy"
+  onload="this.style.height=this.contentWindow.document.body.scrollHeight + 'px';">
 </iframe>
 
+<!-- ================= HEADER LOAD ================= -->
+<script>
+fetch("./header.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("header").innerHTML=d);
+</script>
+
+<!-- ================= AMAZON API ================= -->
 <script>
 const API_URL =
 "https://script.google.com/macros/s/AKfycbzLaiWevyBr-34R2VZ7zTnwP4yfOJT7SHhA6XY8k85pfgzeyI9ad1RTzHnKM7qruuz_MA/exec";
@@ -176,43 +153,24 @@ const API_URL =
 let ALL_PRODUCTS = [];
 
 fetch(API_URL)
-.then(r => r.json())
-.then(data => {
-
-  const s = data.settings;
-  ALL_PRODUCTS = data.products;
-
-  document.documentElement.style.setProperty("--primary", s.PRIMARY_COLOR);
-  document.documentElement.style.setProperty("--secondary", s.SECONDARY_COLOR);
-  document.documentElement.style.setProperty("--card", s.CARD_BG);
-  document.documentElement.style.setProperty("--bg", s.PAGE_BG);
-  document.documentElement.style.setProperty("--text", s.TEXT_COLOR);
-  document.documentElement.style.setProperty("--btn", s.BUTTON_COLOR);
-  document.documentElement.style.setProperty("--btnText", s.BUTTON_TEXT_COLOR);
-
-  document.getElementById("siteTitle").innerText = s.SITE_TITLE;
-
+.then(r=>r.json())
+.then(data=>{
+  ALL_PRODUCTS=data.products;
+  document.getElementById("siteTitle").innerText=data.settings.SITE_TITLE;
   buildCategories();
-})
-.catch(()=>{
-  document.getElementById("siteTitle").innerText="❌ Deals load nahi ho rahe";
 });
 
-/* CATEGORY */
 function buildCategories(){
-  const box = document.getElementById("categories");
-  const cats = [...new Set(ALL_PRODUCTS.map(p=>p.CATEGORY))];
+  const box=document.getElementById("categories");
+  const cats=[...new Set(ALL_PRODUCTS.map(p=>p.CATEGORY))];
 
-  box.innerHTML = cats.map((c,i)=>`
+  box.innerHTML=cats.map((c,i)=>`
     <button class="cat-btn ${i===0?'active':''}"
       onclick="filterCat('${c}',this)">
       ${c}
-    </button>
-  `).join("");
+    </button>`).join("");
 
-  if(cats.length){
-    renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cats[0]));
-  }
+  if(cats.length) renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cats[0]));
 }
 
 function filterCat(cat,btn){
@@ -223,19 +181,19 @@ function filterCat(cat,btn){
 
 function renderProducts(list){
   document.getElementById("products").innerHTML =
-    list.map(x=>`
-      <div class="card">
-        ${x.TOP==="TOP" ? `<div class="top">TOP DEAL</div>` : ``}
-        <img src="${x.IMAGE}">
-        <div class="info">
-          <div class="title">${x.NAME}</div>
-          ${x.DISCOUNT?`<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>`:""}
-          <a class="btn" href="${x.LINK}" target="_blank" rel="noopener">
-            View Deal
-          </a>
-        </div>
+  list.map(x=>`
+    <div class="card">
+      ${x.TOP==="TOP"?`<div class="top">TOP DEAL</div>`:""}
+      <img src="${x.IMAGE}">
+      <div class="info">
+        <div class="title">${x.NAME}</div>
+        ${x.DISCOUNT?`<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>`:""}
+        <a class="btn" href="${x.LINK}" target="_blank" rel="noopener">
+          View Deal
+        </a>
       </div>
-    `).join("");
+    </div>
+  `).join("");
 }
 </script>
 
