@@ -1,4 +1,4 @@
-<!-- SAINIWALAA NEXT SYSTEM FOOTER (SHEET CONTROLLED) -->
+<!-- ===== SAINIWALAA SHEET CONTROLLED FOOTER ===== -->
 
 <style>
 #sw-footer{
@@ -7,22 +7,70 @@
   padding:50px 20px 25px;
   font-family:Poppins,Arial,sans-serif;
   color:#ffffff;
+  box-sizing:border-box;
 }
-#sw-marquee{overflow:hidden;white-space:nowrap;text-align:center;margin-bottom:30px}
-#sw-marquee span{display:inline-block;animation:sw-scroll 28s linear infinite;font-weight:600}
-@keyframes sw-scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
 
-#sw-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px}
+/* MARQUEE */
+#sw-marquee{
+  overflow:hidden;
+  white-space:nowrap;
+  text-align:center;
+  margin-bottom:30px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  padding-bottom:12px;
+}
+#sw-marquee span{
+  display:inline-block;
+  animation:sw-scroll 28s linear infinite;
+  font-weight:600;
+}
+@keyframes sw-scroll{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
+/* GRID */
+#sw-inner{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:40px;
+}
+
 .sw-col h2{margin:0 0 8px;font-size:30px}
 .sw-col p{margin:6px 0;font-size:15px;opacity:.85}
 
-.sw-links a{display:block;margin:6px 0;color:#fff;text-decoration:none;font-weight:600}
+.sw-links a{
+  display:block;
+  margin:6px 0;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+}
 .sw-links a::before{content:"› ";color:#ff9800}
 
-.sw-btn{display:inline-block;margin-top:12px;padding:12px 26px;background:linear-gradient(90deg,#ff9800,#ff5722);color:#000;border-radius:30px;text-decoration:none;font-weight:700}
+.sw-btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:12px 26px;
+  background:linear-gradient(90deg,#ff9800,#ff5722);
+  color:#000;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:700;
+}
+
 .sw-social a{margin-right:14px;font-weight:700}
 
-#sw-bottom{text-align:center;margin-top:30px;font-size:13px;opacity:.7;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}
+#sw-bottom{
+  text-align:center;
+  margin-top:30px;
+  font-size:13px;
+  opacity:.7;
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:14px;
+}
 
 @media(max-width:768px){
   #sw-inner{grid-template-columns:1fr;text-align:center}
@@ -31,11 +79,13 @@
 
 <div id="sw-footer">
   <div id="sw-marquee"></div>
+
   <div id="sw-inner">
     <div class="sw-col" id="sw-left"></div>
     <div class="sw-col" id="sw-center"></div>
     <div class="sw-col sw-social" id="sw-right"></div>
   </div>
+
   <div id="sw-bottom"></div>
 </div>
 
@@ -46,41 +96,32 @@ const FOOTER_API =
 fetch(FOOTER_API)
 .then(r=>r.json())
 .then(d=>{
-  if(!d || !d.footer) return;
+  if(!d.footer) return;
 
   d.footer.forEach(i=>{
-    const map={
-      LEFT:"sw-left",
-      CENTER:"sw-center",
-      RIGHT:"sw-right",
-      BOTTOM:"sw-bottom",
-      MARQUEE:"sw-marquee"
-    };
-
-    const el=document.getElementById(map[i.POSITION]||"sw-marquee");
-    if(!el) return;
+    const box =
+      i.POSITION==="LEFT"   ? sw("sw-left") :
+      i.POSITION==="CENTER" ? sw("sw-center") :
+      i.POSITION==="RIGHT"  ? sw("sw-right") :
+      i.POSITION==="BOTTOM" ? sw("sw-bottom") :
+                              sw("sw-marquee");
 
     if(i.TYPE==="MARQUEE")
-      el.innerHTML=`<span>${i.TEXT}</span>`;
-
+      box.innerHTML=`<span>${i.TEXT}</span>`;
     if(i.TYPE==="TITLE")
-      el.innerHTML+=`<h2>${i.TEXT}</h2>`;
-
+      box.innerHTML+=`<h2>${i.TEXT}</h2>`;
     if(i.TYPE==="TEXT")
-      el.innerHTML+=`<p>${i.TEXT}</p>`;
-
+      box.innerHTML+=`<p>${i.TEXT}</p>`;
     if(i.TYPE==="LINK")
-      el.innerHTML+=`<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
-
+      box.innerHTML+=`<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
     if(i.TYPE==="BUTTON")
-      el.innerHTML+=`<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
-
+      box.innerHTML+=`<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
     if(i.TYPE==="SOCIAL")
-      el.innerHTML+=`<a href="${i.LINK}">${i.TEXT}</a>`;
-
+      box.innerHTML+=`<a href="${i.LINK}">${i.TEXT}</a>`;
     if(i.TYPE==="BOTTOM")
-      el.innerText=i.TEXT;
+      box.innerText=i.TEXT;
   });
-})
-.catch(e=>console.error("FOOTER ERROR",e));
+});
+
+function sw(id){ return document.getElementById(id); }
 </script>
