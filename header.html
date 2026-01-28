@@ -1,100 +1,148 @@
-<!-- SAINIWALAA HERO HEADER (GLOBAL) -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<!-- SAINIWALAA GLOBAL HEADER / HERO -->
+<section id="hero-sainiwalaa">
+
+  <div class="hero-wrap">
+
+    <!-- LEFT -->
+    <div class="hero-left">
+      <img src="logo.png" alt="Sainiwalaa" class="logo">
+
+      <h1>SAINIWALAA</h1>
+      <p class="animated-text">
+        Jaipur Handpicked Kurtis & Custom Printed Gifts
+      </p>
+
+      <div class="btn-wrap">
+        <a href="https://www.meesho.com/SAINIWALAA?ms=2" class="btn meesho">🛍 Meesho</a>
+        <a href="https://www.flipkart.com/" class="btn flipkart">🛒 Flipkart</a>
+        <a href="amazon.html" class="btn amazon">🛒 Amazon</a>
+      </div>
+
+      <div class="cats">
+        <div class="catbox">👗 Kurtis</div>
+        <div class="catbox">👕 T-Shirts</div>
+        <div class="catbox">☕ Mugs</div>
+        <div class="catbox">🎁 Gifts</div>
+        <div class="catbox">🖨 Print Orders</div>
+      </div>
+    </div>
+
+    <!-- RIGHT SLIDER -->
+    <div class="slider-frame">
+      <img id="sliderImg">
+    </div>
+
+  </div>
+
+</section>
 
 <style>
-*{box-sizing:border-box}
-.sw-header{
-  background:linear-gradient(135deg,#131921,#232f3e);
-  color:#fff;
+#hero-sainiwalaa{
+  background:linear-gradient(135deg,#4b0f14,#7a1f26);
+  padding:60px 20px;
+  margin:0;
+  border:0;
   font-family:Poppins,Arial,sans-serif;
 }
 
-/* TOP MENU */
-.sw-top{
+.hero-wrap{
   max-width:1200px;
   margin:auto;
-  padding:16px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.sw-logo{
-  font-size:26px;
-  font-weight:800;
-}
-.sw-menu a{
-  color:#fff;
-  text-decoration:none;
-  margin-left:18px;
-  font-weight:600;
-}
-.sw-menu a:hover{color:#ff9900}
-
-/* HERO */
-.sw-hero{
-  max-width:1200px;
-  margin:auto;
-  padding:40px 20px 60px;
   display:flex;
   gap:40px;
   align-items:center;
+  justify-content:space-between;
   flex-wrap:wrap;
 }
-.sw-hero-text{flex:1;min-width:260px}
-.sw-hero-text h1{font-size:42px;margin:0 0 10px;font-weight:800}
-.sw-hero-text p{font-size:18px;opacity:.9}
-.sw-hero-img{
-  width:260px;height:360px;
-  background:#fff;border-radius:22px;
-  padding:10px;
-  box-shadow:0 18px 40px rgba(0,0,0,.4);
+
+.hero-left{flex:1;min-width:260px}
+
+.logo{max-height:60px;margin-bottom:12px}
+
+.hero-left h1{
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:4px;
+  color:#f6d27c;
+  margin:0 0 10px;
 }
-.sw-hero-img img{
-  width:100%;height:100%;
-  object-fit:cover;border-radius:18px;
+
+.animated-text{
+  font-size:18px;
+  color:#ffe9b0;
+  animation:fadeSlide 3s infinite alternate;
+}
+
+@keyframes fadeSlide{
+  from{opacity:.6;transform:translateY(4px)}
+  to{opacity:1;transform:translateY(-2px)}
+}
+
+.btn-wrap{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0}
+.btn{
+  padding:12px 22px;
+  border-radius:9px;
+  font-weight:700;
+  text-decoration:none;
+  color:#fff;
+}
+.meesho{background:#ff9800}
+.flipkart{background:#2874f0}
+.amazon{background:#111}
+
+.cats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:14px;
+}
+
+.catbox{
+  background:#fff6e1;
+  border:2px solid #f6d27c;
+  border-radius:12px;
+  padding:16px;
+  text-align:center;
+  font-weight:700;
+  color:#5a1a1f;
+}
+
+.slider-frame{
+  width:230px;
+  height:330px;
+  background:#fff6e1;
+  padding:6px;
+  border-radius:22px;
+  box-shadow:0 14px 30px rgba(0,0,0,.45);
+  overflow:hidden;
+}
+.slider-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:16px;
 }
 
 @media(max-width:768px){
-  .sw-menu{display:none}
-  .sw-hero{text-align:center}
-  .sw-hero-img{margin:auto}
+  .hero-wrap{flex-direction:column}
 }
 </style>
 
-<header class="sw-header">
-
-  <div class="sw-top">
-    <div class="sw-logo">SAINIWALAA</div>
-    <nav class="sw-menu">
-      <a href="index.html">Home</a>
-      <a href="amazon.html">Amazon</a>
-      <a href="kurti.html">Kurti</a>
-      <a href="mugs.html">Mugs</a>
-    </nav>
-  </div>
-
-  <div class="sw-hero">
-    <div class="sw-hero-text">
-      <h1>Trusted Online Deals</h1>
-      <p>Best Prices • Genuine Products • Fast Delivery</p>
-    </div>
-    <div class="sw-hero-img">
-      <img id="heroImg"
-      src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png">
-    </div>
-  </div>
-
-</header>
-
 <script>
-const heroImages=[
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/71uTvmGg7zL._SY879.jpg",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/61EmiUve-AL._SX522.jpg"
+const images=[
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/stl_u1.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/PURPAL_STYL_1_1.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/BLAK_051.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png"
 ];
-let hi=0;
+let i=0;
+const img=document.getElementById("sliderImg");
+img.src=images[0];
 setInterval(()=>{
- hi=(hi+1)%heroImages.length;
- document.getElementById("heroImg").src=heroImages[hi];
-},3500);
+  img.style.opacity=0;
+  setTimeout(()=>{
+    i=(i+1)%images.length;
+    img.src=images[i];
+    img.style.opacity=1;
+  },500);
+},3000);
 </script>
