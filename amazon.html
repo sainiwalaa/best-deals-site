@@ -8,8 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
-
 html,body{
   margin:0;
   padding:0;
@@ -20,7 +18,7 @@ html,body{
 
 /* PAGE TITLE */
 .page-title{
-  padding:18px 10px;
+  padding:18px;
   text-align:center;
   font-size:22px;
   font-weight:700;
@@ -31,7 +29,7 @@ html,body{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  padding:10px 15px 20px;
+  padding:15px;
   justify-content:center;
 }
 .cat-btn{
@@ -52,7 +50,7 @@ html,body{
 .products{
   max-width:1200px;
   margin:auto;
-  padding:0 15px 40px;
+  padding:18px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
@@ -60,7 +58,7 @@ html,body{
 @media(max-width:900px){
   .products{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:520px){
+@media(max-width:500px){
   .products{grid-template-columns:1fr}
 }
 
@@ -70,8 +68,7 @@ html,body{
   border-radius:12px;
   overflow:hidden;
   box-shadow:0 4px 12px rgba(0,0,0,.08);
-  transition:.25s;
-  position:relative;
+  transition:.3s;
 }
 .card:hover{transform:translateY(-4px)}
 
@@ -86,15 +83,14 @@ html,body{
 .title{
   font-size:14px;
   font-weight:600;
-  min-height:40px;
+  height:42px;
+  overflow:hidden;
 }
-
 .discount{
   color:#e91e63;
   font-weight:700;
   margin:6px 0;
 }
-
 .btn{
   display:block;
   background:#2874f0;
@@ -106,12 +102,11 @@ html,body{
   margin-top:8px;
   font-weight:600;
 }
-
 .top{
   position:absolute;
   top:10px;
   left:10px;
-  background:#e53935;
+  background:red;
   color:#fff;
   padding:4px 8px;
   font-size:12px;
@@ -125,27 +120,35 @@ html,body{
 <!-- ================= HEADER ================= -->
 <div id="header"></div>
 
-<!-- ================= PAGE CONTENT ================= -->
+<!-- ================= CONTENT ================= -->
 <div class="page-title" id="siteTitle">Loading Amazon Deals…</div>
-
 <div class="categories" id="categories"></div>
-<div class="products" id="products"></div>
+<div class="products" id="products">Loading products…</div>
 
-<!-- ================= FOOTER ================= -->
-<div id="footer"></div>
+<!-- ================= FOOTER PLACEHOLDER ================= -->
+<div id="footer">
+  <div style="
+    background:#050b1a;
+    color:#fff;
+    padding:30px;
+    text-align:center;
+    opacity:.8">
+    Loading footer…
+  </div>
+</div>
 
-<!-- ================= LOAD HEADER & FOOTER ================= -->
+<!-- ================= HEADER & FOOTER LOAD ================= -->
 <script>
 fetch("./header.html")
   .then(r=>r.text())
   .then(d=>document.getElementById("header").innerHTML=d);
 
-fetch("./footer.html")
+fetch("./footer.html",{cache:"force-cache"})
   .then(r=>r.text())
   .then(d=>document.getElementById("footer").innerHTML=d);
 </script>
 
-<!-- ================= AMAZON DATA ================= -->
+<!-- ================= AMAZON API ================= -->
 <script>
 const API_URL =
 "https://script.google.com/macros/s/AKfycbzLaiWevyBr-34R2VZ7zTnwP4yfOJT7SHhA6XY8k85pfgzeyI9ad1RTzHnKM7qruuz_MA/exec";
@@ -158,13 +161,13 @@ fetch(API_URL)
   ALL_PRODUCTS=data.products || [];
   document.getElementById("siteTitle").innerText =
     data.settings?.SITE_TITLE || "Amazon Best Deals";
-
   buildCategories();
 })
 .catch(()=>{
-  document.getElementById("siteTitle").innerText="❌ Deals load nahi ho rahe";
+  document.getElementById("products").innerHTML="❌ Deals load nahi ho pa rahe";
 });
 
+/* BUILD CATEGORY */
 function buildCategories(){
   const box=document.getElementById("categories");
   const cats=[...new Set(ALL_PRODUCTS.map(p=>p.CATEGORY))];
@@ -173,32 +176,31 @@ function buildCategories(){
     <button class="cat-btn ${i===0?'active':''}"
       onclick="filterCat('${c}',this)">
       ${c}
-    </button>
-  `).join("");
+    </button>`).join("");
 
   if(cats.length){
     renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cats[0]));
   }
 }
 
+/* FILTER */
 function filterCat(cat,btn){
   document.querySelectorAll(".cat-btn")
     .forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
-
   renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cat));
 }
 
+/* RENDER */
 function renderProducts(list){
   const grid=document.getElementById("products");
-
   grid.innerHTML=list.map(x=>`
     <div class="card">
-      ${x.TOP==="TOP" ? `<div class="top">TOP DEAL</div>` : ``}
-      <img src="${x.IMAGE || 'https://via.placeholder.com/300'}">
+      ${x.TOP==="TOP"?`<div class="top">TOP DEAL</div>`:""}
+      <img src="${x.IMAGE}">
       <div class="info">
         <div class="title">${x.NAME}</div>
-        ${x.DISCOUNT ? `<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>` : ``}
+        ${x.DISCOUNT?`<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>`:""}
         <a class="btn" href="${x.LINK}" target="_blank" rel="noopener">
           View Deal
         </a>
