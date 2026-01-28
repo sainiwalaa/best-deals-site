@@ -1,25 +1,14 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sainiwalaa – Trusted Online Shopping</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sainiwalaa – Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:#f8fafc;color:#111}
-
-/* HOME CONTENT */
-.home-section{
-  max-width:1200px;
-  margin:40px auto;
-  padding:0 20px;
-}
-.home-section h2{
-  margin-bottom:14px;
-}
+body{margin:0;font-family:Poppins;background:#f8fafc}
+.section{max-width:1200px;margin:auto;padding:40px 20px}
+.section h2{margin-bottom:20px}
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -37,11 +26,9 @@ body{background:#f8fafc;color:#111}
 
 <body>
 
-<!-- HEADER -->
 <div id="header"></div>
 
-<!-- HOME CONTENT -->
-<div class="home-section">
+<div class="section">
   <h2>🔥 Featured Categories</h2>
   <div class="cards">
     <div class="card">👗 Jaipur Kurtis</div>
@@ -51,17 +38,11 @@ body{background:#f8fafc;color:#111}
   </div>
 </div>
 
-<!-- FOOTER -->
 <div id="footer"></div>
 
 <script>
-fetch("header.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("header").innerHTML=d);
-
-fetch("footer.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("footer").innerHTML=d);
+fetch("header.html").then(r=>r.text()).then(d=>header.innerHTML=d);
+fetch("footer.html").then(r=>r.text()).then(d=>footer.innerHTML=d);
 </script>
 
 </body>
