@@ -1,115 +1,28 @@
-<!-- SAINIWALAA HEADER + HERO -->
+<!-- SAINIWALAA GLOBAL FOOTER -->
+<div id="sw-footer"></div>
 
 <style>
-*{box-sizing:border-box}
-.sw-header{
-  background:linear-gradient(135deg,#ff9800,#ff5722);
-  color:#fff;
-}
-.sw-nav{
-  max-width:1200px;
-  margin:auto;
-  padding:16px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.sw-logo{
-  font-size:24px;
-  font-weight:900;
-  letter-spacing:2px;
-}
-.sw-menu a{
-  color:#fff;
-  text-decoration:none;
-  margin-left:18px;
-  font-weight:600;
-}
-.sw-menu a:hover{opacity:.8}
-
-/* HERO */
-.sw-hero{
-  padding:60px 20px;
-}
-.sw-hero-inner{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:40px;
-  flex-wrap:wrap;
-}
-.sw-hero-text{
-  flex:1;
-  min-width:260px;
-}
-.sw-hero-text h1{
-  font-size:42px;
-  margin:0 0 12px;
-  font-weight:900;
-}
-.sw-hero-text p{
-  font-size:18px;
-  opacity:.95;
-}
-.sw-hero-img{
-  width:260px;
-  height:360px;
-  background:#fff;
-  border-radius:24px;
-  padding:10px;
-  box-shadow:0 20px 40px rgba(0,0,0,.35);
-}
-.sw-hero-img img{
+#sw-footer{
   width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:18px;
-}
-
-@media(max-width:768px){
-  .sw-menu{display:none}
-  .sw-hero-inner{text-align:center}
+  background:linear-gradient(180deg,#050b1a,#0b1730);
+  padding:40px 20px 20px;
+  font-family:Poppins,Arial,sans-serif;
+  color:#fff;
 }
 </style>
 
-<header class="sw-header">
-  <div class="sw-nav">
-    <div class="sw-logo">SAINIWALAA</div>
-    <nav class="sw-menu">
-      <a href="index.html">Home</a>
-      <a href="#">Amazon</a>
-      <a href="#">Kurtis</a>
-      <a href="#">Mugs</a>
-    </nav>
-  </div>
-
-  <section class="sw-hero">
-    <div class="sw-hero-inner">
-      <div class="sw-hero-text">
-        <h1 id="heroTitle">Premium Online Deals</h1>
-        <p id="heroSub">Best Quality • Trusted • Fast Delivery</p>
-      </div>
-      <div class="sw-hero-img">
-        <img id="heroImg" src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png">
+<script>
+fetch("https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec")
+.then(r=>r.json())
+.then(d=>{
+  document.getElementById("sw-footer").innerHTML = `
+    <div style="max-width:1200px;margin:auto;text-align:center">
+      <h2>${d.title||"SAINIWALAA"}</h2>
+      <p>${d.text||"Trusted Online Shopping"}</p>
+      <div style="opacity:.6;font-size:13px;margin-top:10px">
+        © 2026 Sainiwalaa
       </div>
     </div>
-  </section>
-</header>
-
-<script>
-/* HERO IMAGE ROTATE */
-const heroImages=[
-  "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png",
-  "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/71uTvmGg7zL._SY879.jpg",
-  "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/61EmiUve-AL._SX522.jpg"
-];
-let hi=0;
-setInterval(()=>{
-  hi=(hi+1)%heroImages.length;
-  document.getElementById("heroImg").src=heroImages[hi];
-},4000);
+  `;
+});
 </script>
-
-<!-- HEADER END -->
