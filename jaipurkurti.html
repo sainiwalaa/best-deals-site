@@ -1,150 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Jaipur Kurtis | Sainiwalaa</title>
+<title>Jaipur Kurtis</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f5f5;
-}
-
-/* PAGE TITLE */
-.page-title{
-  padding:22px 10px;
-  text-align:center;
-  font-size:30px;
-  font-weight:900;
-  color:#e65100;
-}
-
-/* PRODUCT GRID */
-.products{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-
-/* CARD */
-.card{
-  background:#fff;
-  border-radius:14px;
-  box-shadow:0 6px 18px rgba(0,0,0,.12);
-  overflow:hidden;
-  transition:.3s;
-}
-.card:hover{
-  transform:translateY(-6px);
-}
-
-/* IMAGE */
-.card img{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-}
-
-/* CONTENT */
-.card-body{
-  padding:14px;
-}
-.card-body h3{
-  font-size:16px;
-  margin:0 0 8px;
-  color:#333;
-  min-height:42px;
-}
-.price{
-  font-size:18px;
-  font-weight:800;
-  color:#2e7d32;
-  margin-bottom:12px;
-}
-
-/* BUTTON */
-.buy-btn{
-  display:block;
-  text-align:center;
-  background:#ff9800;
-  color:#fff;
-  padding:12px;
-  border-radius:8px;
-  font-weight:700;
-  text-decoration:none;
-}
-.buy-btn:hover{
-  background:#fb8c00;
-}
+html,body{margin:0;font-family:Poppins;background:#f4f6fb}
+header,footer{background:#0b1730;color:#fff}
+.header-inner{max-width:1200px;margin:auto;padding:15px;display:flex;justify-content:space-between}
+nav a{color:#fff;margin-left:16px;text-decoration:none}
+main{min-height:70vh;padding:40px;text-align:center}
+footer{background:#050b1a;text-align:center;padding:15px}
 </style>
 </head>
-
 <body>
 
-<!-- 🔹 HEADER -->
-<div id="header"></div>
+<header>
+  <div class="header-inner">
+    <b>SAINIWALAA</b>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="amazon.html">Amazon</a>
+    </nav>
+  </div>
+</header>
 
-<!-- 🔹 PAGE TITLE -->
-<div class="page-title">Jaipur Kurtis Collection</div>
+<main>
+  <h2>👗 Jaipur Kurtis Collection</h2>
+</main>
 
-<!-- 🔹 PRODUCTS -->
-<div class="products" id="products">
-  Loading products...
-</div>
-
-<!-- 🔹 FOOTER -->
-<div id="footer"></div>
-
-<script>
-/* LOAD HEADER */
-fetch("./header.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("header").innerHTML=d);
-
-/* LOAD FOOTER */
-fetch("./footer.html")
-.then(r=>{
-  if(!r.ok) throw new Error("Footer not found");
-  return r.text();
-})
-.then(d=>document.getElementById("footer").innerHTML=d)
-.catch(e=>console.error("FOOTER ERROR:", e));
-
-/* KURTI PRODUCTS */
-const API_URL =
-"https://script.google.com/macros/s/AKfycbzg-c_zIrSNqREI6wgjk54BkhpNrevz75kI8nJEQcg0n-nd9cBwCE0xWGUdioMiZ0ox/exec";
-
-fetch(API_URL)
-.then(res => res.json())
-.then(data => {
-  const box = document.getElementById("products");
-  box.innerHTML = "";
-
-  data.forEach(p => {
-    box.innerHTML += `
-      <div class="card">
-        <img src="${p.IMAGE}" alt="${p.NAME}">
-        <div class="card-body">
-          <h3>${p.NAME}</h3>
-          <div class="price">₹${p.PRICE}</div>
-          <a class="buy-btn" href="${p.LINK}" target="_blank" rel="noopener">
-            Order on Meesho
-          </a>
-        </div>
-      </div>
-    `;
-  });
-})
-.catch(()=>{
-  document.getElementById("products").innerHTML =
-    "❌ Products load nahi ho pa rahe";
-});
-</script>
+<footer>© Sainiwalaa</footer>
 
 </body>
 </html>
