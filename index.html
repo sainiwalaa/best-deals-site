@@ -319,4 +319,33 @@ fetch(FOOTER_API)
       .sw-links a::before{content:"› ";color:#ff9800}
       .sw-btn{display:inline-block;margin-top:12px;padding:12px 26px;background:linear-gradient(90deg,#ff9800,#ff5722);color:#000;border-radius:30px;text-decoration:none;font-weight:700}
       .sw-social a{margin-right:14px;text-decoration:none;font-weight:700}
-      #sw-bottom{text-align:center;margin-top:30px;font-size:13px;opacity:.7;border-top:1px solid rgba(255,255,255,.1
+      #sw-bottom{text-align:center;margin-top:30px;font-size:13px;opacity:.7;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}
+      @media(max-width:768px){#sw-inner{grid-template-columns:1fr;text-align:center}}
+    </style>
+    <div id="sw-marquee"></div>
+    <div id="sw-inner">
+      <div class="sw-col" id="sw-left"></div>
+      <div class="sw-col" id="sw-center"></div>
+      <div class="sw-col sw-social" id="sw-right"></div>
+    </div>
+    <div id="sw-bottom"></div>`;
+  
+  d.footer.forEach(i=>{
+    let box = i.POSITION==="LEFT"?document.getElementById("sw-left"):
+              i.POSITION==="CENTER"?document.getElementById("sw-center"):
+              i.POSITION==="RIGHT"?document.getElementById("sw-right"):
+              i.POSITION==="BOTTOM"?document.getElementById("sw-bottom"):
+              document.getElementById("sw-marquee");
+    if(i.TYPE==="MARQUEE") box.innerHTML=`<span style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</span>`;
+    if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
+    if(i.TYPE==="TEXT") box.innerHTML+=`<p style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</p>`;
+    if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links"><a href="${i.LINK}" style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</a></div>`;
+    if(i.TYPE==="BUTTON") box.innerHTML+=`<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
+    if(i.TYPE==="SOCIAL") box.innerHTML+=`<a href="${i.LINK}" style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</a>`;
+    if(i.TYPE==="BOTTOM"){box.innerText=i.TEXT;box.style.color=i.COLOR;}
+  });
+});
+</script>
+
+</body>
+</html>
