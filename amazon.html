@@ -16,7 +16,7 @@ html,body{
   color:#222;
 }
 
-/* ================= PAGE ================= */
+/* PAGE TITLE */
 .page-title{
   padding:18px;
   text-align:center;
@@ -110,13 +110,6 @@ html,body{
   font-size:12px;
   border-radius:6px;
 }
-
-/* FOOTER IFRAME FIX */
-.footer-frame{
-  width:100%;
-  border:0;
-  display:block;
-}
 </style>
 </head>
 
@@ -131,18 +124,17 @@ html,body{
 <div class="products" id="products"></div>
 
 <!-- ================= FOOTER ================= -->
-<iframe 
-  src="footer.html"
-  class="footer-frame"
-  loading="lazy"
-  onload="this.style.height=this.contentWindow.document.body.scrollHeight + 'px';">
-</iframe>
+<div id="footer"></div>
 
-<!-- ================= HEADER LOAD ================= -->
+<!-- ================= LOAD HEADER & FOOTER ================= -->
 <script>
-fetch("./header.html")
+fetch("header.html")
 .then(r=>r.text())
 .then(d=>document.getElementById("header").innerHTML=d);
+
+fetch("footer.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("footer").innerHTML=d);
 </script>
 
 <!-- ================= AMAZON API ================= -->
@@ -150,7 +142,7 @@ fetch("./header.html")
 const API_URL =
 "https://script.google.com/macros/s/AKfycbzLaiWevyBr-34R2VZ7zTnwP4yfOJT7SHhA6XY8k85pfgzeyI9ad1RTzHnKM7qruuz_MA/exec";
 
-let ALL_PRODUCTS = [];
+let ALL_PRODUCTS=[];
 
 fetch(API_URL)
 .then(r=>r.json())
@@ -180,7 +172,7 @@ function filterCat(cat,btn){
 }
 
 function renderProducts(list){
-  document.getElementById("products").innerHTML =
+  document.getElementById("products").innerHTML=
   list.map(x=>`
     <div class="card">
       ${x.TOP==="TOP"?`<div class="top">TOP DEAL</div>`:""}
