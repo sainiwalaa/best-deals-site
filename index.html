@@ -6,10 +6,11 @@
 
 <title>Sainiwalaa – Trusted Online Shopping & Deals</title>
 
+<meta name="description" content="Sainiwalaa par mile Amazon deals, kurti collection, custom mug & t-shirt. Trusted, fast & secure shopping.">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ===== YOUR ORIGINAL CSS (UNCHANGED) ===== */
 :root{
   --primary:#0f172a;
   --secondary:#1e293b;
@@ -24,84 +25,119 @@
   --text:#f9fafb;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:var(--bg);color:var(--text);transition:.3s}
 
-/* HEADER STYLE (for header.html) */
-header{
-  background:linear-gradient(90deg,#131921,#232f3e);
-  color:#fff;
-  padding:16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-header span{font-size:22px;font-weight:700}
-.toggle{
-  background:var(--accent);
-  color:#000;
-  padding:6px 12px;
-  border-radius:20px;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:600;
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
 }
 
-/* MARQUEE */
-.marquee{
-  background:var(--accent);
-  color:#000;
-  padding:10px;
-  overflow:hidden;
-  white-space:nowrap;
-  font-weight:600;
-}
-.marquee span{
-  display:inline-block;
-  animation:scroll 14s linear infinite;
-}
-@keyframes scroll{
-  from{transform:translateX(100%)}
-  to{transform:translateX(-100%)}
+/* HOME CONTENT STARTS AFTER HEADER */
+.home-wrap{
+  max-width:1200px;
+  margin:auto;
 }
 
-/* बाकी CSS SAME */
-.countdown{ text-align:center;padding:12px;font-weight:700;background:var(--card);
-margin:12px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.1)}
+/* COUNTDOWN */
+.countdown{
+  text-align:center;
+  padding:14px;
+  font-weight:700;
+  background:var(--card);
+  margin:18px;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.1);
+}
 .countdown span{color:var(--accent)}
 
-.slider{position:relative;height:260px;overflow:hidden}
+/* SLIDER */
+.slider{
+  position:relative;
+  height:280px;
+  overflow:hidden;
+  border-radius:16px;
+  margin:0 18px;
+}
 .slide{position:absolute;inset:0;display:none}
 .slide img{width:100%;height:100%;object-fit:cover}
-.slide-content{position:absolute;bottom:16px;left:16px;right:16px;
-background:rgba(0,0,0,.55);padding:14px;border-radius:12px;color:#fff}
+.slide-content{
+  position:absolute;
+  bottom:16px;
+  left:16px;
+  right:16px;
+  background:rgba(0,0,0,.55);
+  padding:14px;
+  border-radius:12px;
+  color:#fff;
+}
 
-.section{padding:20px}
-.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-.cat{background:var(--card);border-radius:14px;padding:12px;text-align:center;
-box-shadow:0 6px 18px rgba(0,0,0,.08)}
-.cat img{width:100%;height:130px;object-fit:cover;border-radius:10px}
+/* SECTION */
+.section{padding:22px 18px}
+.section h2{margin-bottom:14px;font-size:22px}
+
+/* CATEGORIES */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:16px;
+}
+.cat{
+  background:var(--card);
+  border-radius:16px;
+  padding:12px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  transition:.25s;
+}
+.cat:hover{transform:translateY(-6px)}
+.cat img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:12px;
+}
+.cat p{margin-top:10px;font-weight:600}
+
+/* BANNER */
+.banner img{
+  width:100%;
+  border-radius:16px;
+  margin:14px 0;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .slider{height:230px}
+}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER LOAD -->
+<!-- HEADER -->
 <div id="header"></div>
 
-<div class="countdown">
- ⏳ Offer Ends In : <span id="timer">Loading...</span>
+<!-- HOME CONTENT -->
+<div class="home-wrap">
+
+  <div class="countdown">
+    ⏳ Offer Ends In : <span id="timer">Loading...</span>
+  </div>
+
+  <div class="slider" id="slider"></div>
+
+  <div class="section">
+    <h2>🛍️ Shop by Category</h2>
+    <div class="categories" id="categories"></div>
+  </div>
+
+  <div class="section banner" id="banners"></div>
+
 </div>
 
-<div class="slider" id="slider"></div>
-
-<div class="section">
-  <h2>🛍️ Shop by Category</h2>
-  <div class="categories" id="categories"></div>
-</div>
-
-<div class="section banner" id="banners"></div>
-
-<!-- FOOTER LOAD -->
+<!-- FOOTER -->
 <div id="footer"></div>
 
 <script>
@@ -113,17 +149,72 @@ fetch("footer.html").then(r=>r.text()).then(d=>{
   document.getElementById("footer").innerHTML=d;
 });
 
-/* DARK MODE */
+/* DARK MODE (HEADER BUTTON) */
 function toggleMode(){
   document.body.classList.toggle("dark");
 }
 
-/* API – SAME AS YOURS */
+/* COUNTDOWN */
+const endDate = new Date("2026-01-26T23:59:59").getTime();
+setInterval(()=>{
+  const now = new Date().getTime();
+  const d = endDate - now;
+  if(d < 0){
+    document.getElementById("timer").innerText="Expired";
+    return;
+  }
+  const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((d%(1000*60*60))/(1000*60));
+  const s=Math.floor((d%(1000*60))/1000);
+  document.getElementById("timer").innerText=`${h}h ${m}m ${s}s`;
+},1000);
+
+/* HOME API */
 const API="https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
 
 fetch(API).then(r=>r.json()).then(d=>{
-  document.getElementById("marqueeText").innerText =
-    d.marquee.map(x=>x.TEXT).join(" | ");
+
+  /* SLIDER */
+  const slider=document.getElementById("slider");
+  d.hero.forEach(x=>{
+    slider.innerHTML+=`
+    <div class="slide">
+      <img src="${x.IMAGE_URL}">
+      <div class="slide-content">
+        <h3>${x.TITLE||""}</h3>
+        <p>${x.SUB_TITLE||""}</p>
+      </div>
+    </div>`;
+  });
+  let slides=document.querySelectorAll(".slide"),i=0;
+  if(slides.length){
+    slides[0].style.display="block";
+    setInterval(()=>{
+      slides[i].style.display="none";
+      i=(i+1)%slides.length;
+      slides[i].style.display="block";
+    },3500);
+  }
+
+  /* CATEGORIES */
+  const cat=document.getElementById("categories");
+  d.categories.forEach(x=>{
+    cat.innerHTML+=`
+    <div class="cat" onclick="location.href='${x.PAGE_LINK||"#"}'">
+      <img src="${x.IMAGE}">
+      <p>${x.NAME||x.TEXT}</p>
+    </div>`;
+  });
+
+  /* BANNERS */
+  const ban=document.getElementById("banners");
+  d.banners.forEach(x=>{
+    ban.innerHTML+=`
+    <a href="${x.LINK||"#"}">
+      <img src="${x.IMAGE_URL||x.IMAGE}">
+    </a>`;
+  });
+
 });
 </script>
 
