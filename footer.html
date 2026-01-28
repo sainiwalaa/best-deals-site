@@ -1,52 +1,33 @@
-<!-- ===== SAINIWALAA FOOTER ===== -->
 <div id="sw-footer">
-
-  <div id="sw-marquee"></div>
-
   <div id="sw-inner">
-    <div class="sw-col" id="sw-left"></div>
-    <div class="sw-col" id="sw-center"></div>
-    <div class="sw-col sw-social" id="sw-right"></div>
+    <div>
+      <h3>SAINIWALAA</h3>
+      <p>Trusted Online Shopping</p>
+    </div>
+    <div>
+      <p>Amazon Deals</p>
+      <p>Jaipur Kurtis</p>
+      <p>Custom Prints</p>
+    </div>
+    <div>
+      <p>© 2026 Sainiwalaa</p>
+    </div>
   </div>
-
-  <div id="sw-bottom"></div>
 </div>
 
 <style>
 #sw-footer{
-  background:#050b1a;
+  background:#0b1220;
   color:#fff;
-  padding:50px 20px 25px;
+  padding:40px 20px;
   font-family:Poppins,Arial,sans-serif;
 }
 #sw-inner{
   max-width:1200px;
   margin:auto;
   display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:40px;
-}
-@media(max-width:768px){
-  #sw-inner{grid-template-columns:1fr;text-align:center}
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  text-align:center;
 }
 </style>
-
-<script>
-fetch("https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec")
-.then(r=>r.json())
-.then(d=>{
-  d.footer.forEach(i=>{
-    const box =
-      i.POSITION==="LEFT"?sw("sw-left"):
-      i.POSITION==="CENTER"?sw("sw-center"):
-      i.POSITION==="RIGHT"?sw("sw-right"):
-      i.POSITION==="BOTTOM"?sw("sw-bottom"):
-      sw("sw-marquee");
-
-    if(i.TYPE==="TEXT") box.innerHTML+=`<p>${i.TEXT}</p>`;
-    if(i.TYPE==="TITLE") box.innerHTML+=`<h3>${i.TEXT}</h3>`;
-    if(i.TYPE==="BOTTOM") box.innerText=i.TEXT;
-  });
-});
-function sw(id){return document.getElementById(id)}
-</script>
