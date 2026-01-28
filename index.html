@@ -2,85 +2,66 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sainiwalaa – Trusted Online Shopping</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:#f8fafc;color:#111}
 
-html,body{
-  height:100%;
-}
-
-body{
-  display:flex;
-  flex-direction:column;
-  background:#f8fafc;
-}
-
-/* HEADER PLACE */
-#site-header{
-  flex-shrink:0;
-}
-
-/* PAGE CONTENT */
-main{
-  flex:1;
+/* HOME CONTENT */
+.home-section{
   max-width:1200px;
-  margin:auto;
-  padding:30px 20px;
+  margin:40px auto;
+  padding:0 20px;
 }
-
-.section{
+.home-section h2{
+  margin-bottom:14px;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.card{
   background:#fff;
-  padding:24px;
+  padding:20px;
   border-radius:14px;
-  box-shadow:0 6px 20px rgba(0,0,0,.08);
-  margin-bottom:24px;
-}
-
-.section h2{
-  margin-bottom:12px;
-}
-
-/* FOOTER PLACE */
-#site-footer{
-  flex-shrink:0;
+  text-align:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.1);
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO HEADER (ONLY ONCE) -->
-<div id="site-header"></div>
+<!-- HEADER -->
+<div id="header"></div>
 
-<!-- HOME PAGE CONTENT -->
-<main>
-
-  <div class="section">
-    <h2>🔥 Today Best Deals</h2>
-    <p>Amazon, Meesho & Flipkart handpicked offers.</p>
+<!-- HOME CONTENT -->
+<div class="home-section">
+  <h2>🔥 Featured Categories</h2>
+  <div class="cards">
+    <div class="card">👗 Jaipur Kurtis</div>
+    <div class="card">☕ Custom Mugs</div>
+    <div class="card">👕 Printed T-Shirts</div>
+    <div class="card">🎁 Gift Items</div>
   </div>
-
-  <div class="section">
-    <h2>🛍 Shop Categories</h2>
-    <p>Kurtis • T-Shirts • Mugs • Gifts • Custom Prints</p>
-  </div>
-
-</main>
+</div>
 
 <!-- FOOTER -->
-<div id="site-footer"></div>
+<div id="footer"></div>
 
 <script>
 fetch("header.html")
 .then(r=>r.text())
-.then(d=>document.getElementById("site-header").innerHTML=d);
+.then(d=>document.getElementById("header").innerHTML=d);
 
 fetch("footer.html")
 .then(r=>r.text())
-.then(d=>document.getElementById("site-footer").innerHTML=d);
+.then(d=>document.getElementById("footer").innerHTML=d);
 </script>
 
 </body>
