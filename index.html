@@ -4,12 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- SEO -->
 <title>Sainiwalaa – Trusted Online Shopping & Deals</title>
+<meta name="description" content="Sainiwalaa par mile Amazon deals, kurti collection, custom mug & t-shirt. Trusted, fast & secure shopping.">
+<meta name="keywords" content="Sainiwalaa, Amazon Deals, Kurti, Custom Mug, Online Shopping India">
+<meta name="robots" content="index, follow">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --primary:#0f172a;
+  --secondary:#1e293b;
+  --accent:#ff9900;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#111;
+}
+
+.dark{
+  --bg:#0b1220;
+  --card:#111827;
+  --text:#f9fafb;
+}
+
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:#f8fafc;color:#111}
+
+/* BODY */
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
+}
 
 /* HEADER */
 header{
@@ -19,81 +45,127 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  position:sticky;
+  top:0;
+  z-index:999;
 }
-header span{font-size:22px;font-weight:700}
-nav a{
-  color:#fff;
-  text-decoration:none;
-  margin-left:16px;
+header span{
+  font-size:22px;
+  font-weight:700;
+}
+.toggle{
+  background:var(--accent);
+  color:#000;
+  padding:6px 12px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:14px;
   font-weight:600;
 }
 
-/* MARQUEE */
-.marquee{
-  background:#ff9900;
-  padding:10px;
-  font-weight:600;
+/* HERO SECTION */
+#hero-sainiwalaa{
+  background:linear-gradient(135deg,#4b0f14,#7a1f26);
+  padding:60px 20px;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow:hidden;
+  margin:0;
+  border:0;
+  color:#ffe9b0;
+}
+.hero-wrap{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  gap:40px;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.hero-left{
+  flex:1;
+  min-width:260px;
+}
+.hero-left h1{
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:4px;
+  color:#f6d27c;
+  margin:0 0 10px;
+  text-shadow:2px 2px 6px rgba(0,0,0,.6);
+}
+.animated-text{
+  font-size:18px;
+  animation:fadeSlide 4s infinite alternate;
+}
+@keyframes fadeSlide{
+  from{opacity:.6;transform:translateY(4px)}
+  to{opacity:1;transform:translateY(-2px)}
+}
+.btn-wrap{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0}
+.btn{
+  padding:12px 22px;
+  border-radius:9px;
+  font-weight:700;
+  text-decoration:none;
+  color:#fff;
+  transition:.3s;
+}
+.btn:hover{transform:translateY(-3px)}
+.meesho{background:#ff9800}
+.flipkart{background:#2874f0}
+.amazon{background:#111}
+.cats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:14px;
+}
+.catbox{
+  background:#fff6e1;
+  border:2px solid #f6d27c;
+  border-radius:12px;
+  padding:16px;
+  text-align:center;
+  font-weight:700;
+  color:#5a1a1f;
+  transition:.3s;
+}
+.catbox:hover{background:#f6d27c;transform:translateY(-3px)}
+.slider-frame{
+  width:230px;
+  height:330px;
+  background:#fff6e1;
+  padding:6px;
+  border-radius:22px;
+  box-shadow:0 14px 30px rgba(0,0,0,.45);
   overflow:hidden;
 }
-.marquee span{
-  white-space:nowrap;
-  display:inline-block;
-  animation:scroll 14s linear infinite;
-}
-@keyframes scroll{
-  from{transform:translateX(100%)}
-  to{transform:translateX(-100%)}
+.slider-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:16px;
+  transition:opacity .7s ease;
 }
 
-/* COUNTDOWN */
-.countdown{
-  text-align:center;
-  padding:12px;
-  margin:12px;
-  background:#fff;
-  border-radius:12px;
-  font-weight:700;
-}
-
-/* HERO SLIDER */
-.slider{position:relative;height:260px;overflow:hidden}
-.slide{position:absolute;inset:0;display:none}
-.slide img{width:100%;height:100%;object-fit:cover}
-.slide-content{
-  position:absolute;
-  bottom:16px;
-  left:16px;
-  right:16px;
-  background:rgba(0,0,0,.55);
-  padding:14px;
-  border-radius:12px;
-  color:#fff;
-}
-.slide-content a{
-  display:inline-block;
-  margin-top:8px;
-  background:#ff9900;
-  padding:8px 16px;
-  color:#000;
-  text-decoration:none;
-  font-weight:700;
-}
-
-/* HOME */
+/* HOME SECTIONS */
 .section{padding:20px}
-.section h2{margin-bottom:14px}
+.section h2{margin-bottom:14px;font-size:20px}
 .categories{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:16px;
 }
 .cat{
-  background:#fff;
+  background:var(--card);
   border-radius:14px;
   padding:12px;
   text-align:center;
+  cursor:pointer;
   box-shadow:0 6px 18px rgba(0,0,0,.08);
+  transition:.25s;
 }
+.cat:hover{transform:translateY(-6px)}
 .cat img{
   width:100%;
   height:130px;
@@ -104,38 +176,67 @@ nav a{
 .banner img{
   width:100%;
   border-radius:14px;
-  margin-top:14px;
+  margin:14px 0;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+/* COUNTDOWN */
+.countdown{
+  text-align:center;
+  padding:12px;
+  font-weight:700;
+  background:var(--card);
+  margin:12px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,.1);
+}
+.countdown span{color:var(--accent);}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero-wrap{flex-direction:column}
+  .slider-frame{width:100%;height:250px;margin-top:20px}
+}
+@media(max-width:600px){
+  .slider{height:220px}
 }
 </style>
 </head>
-
 <body>
 
 <!-- HEADER -->
 <header>
   <span>SAINIWALAA</span>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#shop">Shop</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="toggle" onclick="toggleMode()">🌙 / ☀️</div>
 </header>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <span id="marqueeText">Loading offers...</span>
-</div>
-
-<!-- COUNTDOWN -->
-<div class="countdown">
-  ⏳ Offer Ends In : <span id="timer">Loading...</span>
-</div>
-
 <!-- HERO -->
-<div class="slider" id="slider"></div>
+<section id="hero-sainiwalaa">
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <h1>SAINIWALAA</h1>
+      <p class="animated-text">Jaipur Handpicked Kurtis & Custom Printed Gifts</p>
+      <div class="btn-wrap">
+        <a href="https://www.meesho.com/SAINIWALAA?ms=2" class="btn meesho">🛍 Meesho</a>
+        <a href="https://www.flipkart.com/" class="btn flipkart">🛒 Flipkart</a>
+        <a href="#" class="btn amazon">🛒 Amazon (Soon)</a>
+      </div>
+      <div class="cats">
+        <div class="catbox">👗 Kurtis</div>
+        <div class="catbox">👕 T-Shirts</div>
+        <div class="catbox">☕ Mugs</div>
+        <div class="catbox">🎁 Gifts</div>
+        <div class="catbox">🖨 Print Orders</div>
+      </div>
+    </div>
+    <div class="slider-frame">
+      <img id="sliderImg" src="">
+    </div>
+  </div>
+</section>
 
 <!-- HOME CONTENT -->
-<div class="section" id="shop">
+<div class="section">
   <h2>🛍️ Shop by Category</h2>
   <div class="categories" id="categories"></div>
 </div>
@@ -143,80 +244,79 @@ nav a{
 <div class="section banner" id="banners"></div>
 
 <!-- FOOTER -->
-<div id="footer-load"></div>
+<div id="sw-footer"></div>
 
 <script>
+/* DARK MODE */
+function toggleMode(){document.body.classList.toggle("dark");}
+
 /* COUNTDOWN */
 const endDate = new Date("2026-01-26T23:59:59").getTime();
 setInterval(()=>{
-  const d = endDate - new Date().getTime();
-  if(d<0) return;
+  const now = new Date().getTime();
+  const d = endDate - now;
+  if(d<0){return;}
   const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
   const m=Math.floor((d%(1000*60*60))/(1000*60));
   const s=Math.floor((d%(1000*60))/1000);
-  document.getElementById("timer").innerText=`${h}h ${m}m ${s}s`;
 },1000);
 
-/* GOOGLE SHEET API */
-const API="https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
+/* HERO SLIDER IMAGES */
+const images = [
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/stl_u1.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/PURPAL_STYL_1_1.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/BLAK_051.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png"
+];
+let i = 0;
+const img = document.getElementById("sliderImg");
+img.src = images[0];
+setInterval(()=>{
+  img.style.opacity=0;
+  setTimeout(()=>{
+    i=(i+1)%images.length;
+    img.src=images[i];
+    img.style.opacity=1;
+  },600);
+},3000);
 
-fetch(API)
+/* API FOR HOME CONTENT */
+const API="https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
+fetch(API).then(r=>r.json()).then(d=>{
+  /* CATEGORIES */
+  const cat=document.getElementById("categories");
+  d.categories.forEach(x=>{
+    cat.innerHTML+=`
+    <div class="cat" onclick="location.href='${x.PAGE_LINK||"#"}'">
+      <img src="${x.IMAGE}">
+      <p>${x.NAME||x.TEXT}</p>
+    </div>`;
+  });
+  /* BANNERS */
+  const ban=document.getElementById("banners");
+  d.banners.forEach(x=>{
+    ban.innerHTML+=`<a href="${x.LINK||"#"}"><img src="${x.IMAGE_URL||x.IMAGE}"></a>`;
+  });
+});
+
+/* FOOTER SHEET CONTROLLED */
+const FOOTER_API="https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
+fetch(FOOTER_API)
 .then(r=>r.json())
 .then(d=>{
-
-/* MARQUEE */
-document.getElementById("marqueeText").innerText =
-d.marquee.map(x=>x.TEXT).join(" | ");
-
-/* HERO */
-const slider=document.getElementById("slider");
-d.hero.forEach(x=>{
-  slider.innerHTML+=`
-  <div class="slide">
-    <img src="${x.IMAGE_URL}">
-    <div class="slide-content">
-      <h3>${x.TITLE||""}</h3>
-      <p>${x.SUB_TITLE||""}</p>
-      ${x.BUTTON_TEXT?`<a href="${x.BUTTON_LINK}">${x.BUTTON_TEXT}</a>`:""}
-    </div>
-  </div>`;
-});
-let slides=document.querySelectorAll(".slide"),i=0;
-if(slides.length){
-  slides[0].style.display="block";
-  setInterval(()=>{
-    slides[i].style.display="none";
-    i=(i+1)%slides.length;
-    slides[i].style.display="block";
-  },3500);
-}
-
-/* CATEGORIES */
-const cat=document.getElementById("categories");
-d.categories.forEach(x=>{
-  cat.innerHTML+=`
-  <div class="cat">
-    <img src="${x.IMAGE}">
-    <p>${x.NAME||x.TEXT}</p>
-  </div>`;
-});
-
-/* BANNERS */
-const ban=document.getElementById("banners");
-d.banners.forEach(x=>{
-  ban.innerHTML+=`
-  <a href="${x.LINK||"#"}"><img src="${x.IMAGE_URL||x.IMAGE}"></a>`;
-});
-
-});
-
-/* LOAD FOOTER */
-fetch("footer.html")
-.then(r=>r.text())
-.then(html=>{
-  document.getElementById("footer-load").innerHTML = html;
-});
-</script>
-
-</body>
-</html>
+  if(!d.footer) return;
+  const footer=document.getElementById("sw-footer");
+  footer.innerHTML=`
+    <style>
+      #sw-footer{width:100%;background:linear-gradient(180deg,#050b1a,#0b1730);padding:50px 20px 25px;box-sizing:border-box;font-family:Poppins,Arial,sans-serif;color:#ffffff;}
+      #sw-marquee{overflow:hidden;white-space:nowrap;text-align:center;margin-bottom:30px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:12px;}
+      #sw-marquee span{display:inline-block;animation:sw-scroll 28s linear infinite;font-weight:600;}
+      @keyframes sw-scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+      #sw-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;}
+      .sw-col h2{margin:0 0 8px;font-size:26px}
+      .sw-col p{margin:6px 0;font-size:15px;opacity:.85}
+      .sw-links a{display:block;margin:6px 0;color:#fff;text-decoration:none;font-weight:600}
+      .sw-links a::before{content:"› ";color:#ff9800}
+      .sw-btn{display:inline-block;margin-top:12px;padding:12px 26px;background:linear-gradient(90deg,#ff9800,#ff5722);color:#000;border-radius:30px;text-decoration:none;font-weight:700}
+      .sw-social a{margin-right:14px;text-decoration:none;font-weight:700}
+      #sw-bottom{text-align:center;margin-top:30px;font-size:13px;opacity:.7;border-top:1px solid rgba(255,255,255,.1
