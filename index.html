@@ -27,7 +27,7 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 body{background:var(--bg);color:var(--text);transition:.3s}
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
   background:linear-gradient(90deg,#131921,#232f3e);
   color:#fff;
@@ -36,7 +36,7 @@ header{
   justify-content:space-between;
   align-items:center;
 }
-header .logo{
+.logo{
   font-size:22px;
   font-weight:900;
   letter-spacing:2px;
@@ -51,7 +51,7 @@ header .logo{
   font-weight:700;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 #hero-sainiwalaa{
   background:linear-gradient(135deg,#4b0f14,#7a1f26);
   padding:60px 20px;
@@ -72,13 +72,17 @@ header .logo{
   font-weight:900;
   letter-spacing:4px;
   color:#f6d27c;
-  margin-bottom:10px;
 }
 .hero-left p{
   font-size:18px;
   color:#ffe9b0;
 }
-.btn-wrap{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0}
+.btn-wrap{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin:26px 0;
+}
 .btn{
   padding:12px 22px;
   border-radius:9px;
@@ -107,7 +111,7 @@ header .logo{
   color:#5a1a1f;
 }
 
-/* SLIDER */
+/* HERO SLIDER */
 .slider-frame{
   width:230px;
   height:330px;
@@ -124,7 +128,7 @@ header .logo{
   transition:.7s;
 }
 
-/* ================= HOME SECTIONS ================= */
+/* HOME */
 .section{padding:26px}
 .section h2{margin-bottom:16px;font-size:22px}
 
@@ -138,7 +142,6 @@ header .logo{
   border-radius:14px;
   padding:12px;
   text-align:center;
-  cursor:pointer;
   box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
 .cat img{
@@ -149,7 +152,6 @@ header .logo{
 }
 .cat p{margin-top:10px;font-weight:600}
 
-/* MOBILE */
 @media(max-width:768px){
   .hero-wrap{flex-direction:column}
 }
@@ -197,8 +199,8 @@ header .logo{
   <div class="categories" id="categories"></div>
 </div>
 
-<!-- FOOTER LOAD -->
-<div id="footer-load"></div>
+<!-- FOOTER -->
+<div id="footer-load">Loading footer...</div>
 
 <script>
 /* DARK MODE */
@@ -220,24 +222,25 @@ setInterval(()=>{
  img.src=images[i];
 },3000);
 
-/* CATEGORIES DEMO */
+/* DEMO CATEGORIES */
 const categories=document.getElementById("categories");
-[
- {n:"Kurtis",i:images[0]},
- {n:"Mugs",i:images[1]},
- {n:"T-Shirts",i:images[2]}
-].forEach(x=>{
+["Kurtis","Mugs","T-Shirts"].forEach((n,idx)=>{
  categories.innerHTML+=`
  <div class="cat">
-   <img src="${x.i}">
-   <p>${x.n}</p>
+   <img src="${images[idx]}">
+   <p>${n}</p>
  </div>`;
 });
 
-/* FOOTER FETCH */
-fetch("footer.html")
+/* FOOTER LOAD (FIXED FOR GITHUB PAGES) */
+fetch("/best-deals-site/footer.html")
 .then(r=>r.text())
-.then(d=>document.getElementById("footer-load").innerHTML=d);
+.then(d=>{
+  document.getElementById("footer-load").innerHTML=d;
+})
+.catch(()=>{
+  document.getElementById("footer-load").innerText="Footer load failed";
+});
 </script>
 
 </body>
