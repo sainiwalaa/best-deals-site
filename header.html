@@ -46,5 +46,59 @@
     </nav>
   </div>
 </header>
+<!-- HOME HERO -->
+<section class="home-hero">
+  <div class="hero-wrap">
+    <div class="hero-text">
+      <h1>Trusted Online Deals</h1>
+      <p>Best Prices • Genuine Products • Fast Delivery</p>
+    </div>
+    <div class="hero-img">
+      <img id="heroImg"
+      src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png">
+    </div>
+  </div>
+</section>
+
+<style>
+.home-hero{
+  background:linear-gradient(135deg,#ff9900,#ff5722);
+  color:#fff;
+}
+.hero-wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:50px 20px 60px;
+  display:flex;
+  gap:40px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.hero-text h1{font-size:42px;margin:0 0 10px}
+.hero-text p{font-size:18px}
+.hero-img{
+  width:260px;height:360px;
+  background:#fff;border-radius:22px;
+  padding:10px;
+}
+.hero-img img{
+  width:100%;height:100%;
+  object-fit:cover;border-radius:18px;
+}
+</style>
+
+<script>
+const heroImages=[
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/71uTvmGg7zL._SY879.jpg",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/61EmiUve-AL._SX522.jpg"
+];
+let hi=0;
+setInterval(()=>{
+ hi=(hi+1)%heroImages.length;
+ document.getElementById("heroImg").src=heroImages[hi];
+},3500);
+</script>
+
 
 <!-- HEADER END -->
