@@ -4,84 +4,107 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sainiwalaa – Trusted Online Shopping</title>
+<title>Sainiwalaa – Trusted Online Shopping & Deals</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --primary:#0f172a;
+  --secondary:#1e293b;
+  --accent:#ff9900;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#111;
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:#f8fafc;color:#111}
+body{background:var(--bg);color:var(--text)}
 
 /* HEADER */
 header{
   background:linear-gradient(90deg,#131921,#232f3e);
   color:#fff;
-  padding:16px 20px;
+  padding:16px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
-header h1{font-size:22px}
+header span{font-size:22px;font-weight:700}
 
-/* HERO */
-.hero{
-  height:300px;
-  background:url("https://images.unsplash.com/photo-1521335629791-ce4aec67dd47") center/cover;
-  position:relative;
+/* MARQUEE */
+.marquee{
+  background:var(--accent);
+  padding:10px;
+  font-weight:600;
+  overflow:hidden;
 }
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.55);
+.marquee span{
+  display:inline-block;
+  white-space:nowrap;
+  animation:scroll 14s linear infinite;
 }
-.hero-content{
-  position:relative;
-  z-index:2;
-  color:#fff;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+@keyframes scroll{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+
+/* COUNTDOWN */
+.countdown{
   text-align:center;
+  padding:12px;
+  margin:12px;
+  background:var(--card);
+  border-radius:12px;
 }
-.hero-content h2{font-size:28px}
-.hero-content p{margin-top:10px}
-.hero-content a{
-  margin-top:14px;
-  background:#ff9900;
-  padding:10px 22px;
+
+/* HERO SLIDER */
+.slider{position:relative;height:260px;overflow:hidden}
+.slide{position:absolute;inset:0;display:none}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide-content{
+  position:absolute;
+  bottom:16px;
+  left:16px;
+  right:16px;
+  background:rgba(0,0,0,.55);
+  padding:14px;
+  border-radius:12px;
+  color:#fff;
+}
+.slide-content a{
+  display:inline-block;
+  margin-top:8px;
+  background:var(--accent);
+  padding:8px 16px;
   color:#000;
   text-decoration:none;
-  border-radius:6px;
   font-weight:700;
 }
 
-/* HOME CONTENT */
-.section{padding:30px 20px}
-.cards{
+/* HOME */
+.section{padding:20px}
+.categories{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:16px;
 }
-.card{
-  background:#fff;
+.cat{
+  background:var(--card);
   border-radius:14px;
-  box-shadow:0 6px 16px rgba(0,0,0,.1);
-  padding:16px;
+  padding:12px;
   text-align:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
-.card img{
+.cat img{
   width:100%;
-  height:140px;
+  height:130px;
   object-fit:cover;
   border-radius:10px;
 }
-.card h3{margin-top:10px}
+.cat p{margin-top:10px;font-weight:600}
 
-/* FOOTER */
-#footer-container{margin-top:40px}
+/* FOOTER CONTAINER */
+#footer-container{margin-top:30px}
 </style>
 </head>
 
@@ -89,48 +112,89 @@ header h1{font-size:22px}
 
 <!-- HEADER -->
 <header>
-  <h1>SAINIWALAA</h1>
-  <div>Best Deals</div>
+  <span>SAINIWALAA</span>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <h2>Trusted Online Shopping</h2>
-    <p>Kurti • Custom Mug • Amazon Deals</p>
-    <a href="#home">Shop Now</a>
-  </div>
-</section>
+<!-- MARQUEE -->
+<div class="marquee">
+  <span id="marqueeText">Loading offers...</span>
+</div>
 
-<!-- HOME PAGE CONTENT -->
-<section class="section" id="home">
-  <h2>🛍️ Popular Categories</h2>
-  <div class="cards">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1520975922203-bc9a1c5b3b5c">
-      <h3>Kurtis</h3>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
-      <h3>Custom Mugs</h3>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f">
-      <h3>Deals</h3>
-    </div>
-  </div>
-</section>
+<!-- COUNTDOWN -->
+<div class="countdown">
+  ⏳ Offer Ends In : <span id="timer">Loading...</span>
+</div>
+
+<!-- HERO -->
+<div class="slider" id="slider"></div>
+
+<!-- HOME PAGE -->
+<div class="section">
+  <h2>🛍️ Shop by Category</h2>
+  <div class="categories" id="categories"></div>
+</div>
+
+<div class="section" id="banners"></div>
 
 <!-- FOOTER -->
 <div id="footer-container"></div>
 
 <script>
-/* LOAD FOOTER ON EVERY PAGE */
-fetch("footer.html")
-.then(res => res.text())
-.then(data => {
-  document.getElementById("footer-container").innerHTML = data;
+/* COUNTDOWN */
+const endDate=new Date("2026-01-26T23:59:59").getTime();
+setInterval(()=>{
+  const d=endDate-new Date().getTime();
+  if(d<0)return;
+  const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((d%(1000*60*60))/(1000*60));
+  const s=Math.floor((d%(1000*60))/1000);
+  timer.innerText=`${h}h ${m}m ${s}s`;
+},1000);
+
+/* API */
+const API="https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
+
+fetch(API).then(r=>r.json()).then(d=>{
+
+marqueeText.innerText=d.marquee.map(x=>x.TEXT).join(" | ");
+
+/* HERO */
+d.hero.forEach(x=>{
+  slider.innerHTML+=`
+  <div class="slide">
+    <img src="${x.IMAGE_URL}">
+    <div class="slide-content">
+      <h3>${x.TITLE||""}</h3>
+      <p>${x.SUB_TITLE||""}</p>
+      ${x.BUTTON_TEXT?`<a href="${x.BUTTON_LINK}">${x.BUTTON_TEXT}</a>`:""}
+    </div>
+  </div>`;
 });
+let slides=document.querySelectorAll(".slide"),i=0;
+if(slides.length){
+  slides[0].style.display="block";
+  setInterval(()=>{
+    slides[i].style.display="none";
+    i=(i+1)%slides.length;
+    slides[i].style.display="block";
+  },3500);
+}
+
+/* HOME */
+d.categories.forEach(x=>{
+  categories.innerHTML+=`
+  <div class="cat">
+    <img src="${x.IMAGE}">
+    <p>${x.NAME||x.TEXT}</p>
+  </div>`;
+});
+
+});
+
+/* FOOTER LOAD */
+fetch("footer.html")
+.then(r=>r.text())
+.then(d=>footer-container.innerHTML=d);
 </script>
 
 </body>
