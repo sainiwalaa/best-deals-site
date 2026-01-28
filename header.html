@@ -1,15 +1,13 @@
 <!-- ===== SAINIWALAA HEADER / HERO ===== -->
 <section id="hero-sainiwalaa">
 
-  <!-- TOP MENU -->
+  <!-- TOP BUTTON MENU -->
   <nav class="top-menu">
     <div class="logo">SAINIWALAA</div>
     <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="amazon.html">Amazon</a>
-      <a href="jaipurkurti.html">Kurtis</a>
-      <a href="mugs.html">Mugs</a>
-      <a href="print.html">Print Orders</a>
+      <a href="index.html" class="m-btn">Home</a>
+      <a href="amazon.html" class="m-btn">Amazon Deals</a>
+      <a href="jaipurkurti.html" class="m-btn">Jaipur Kurti</a>
     </div>
   </nav>
 
@@ -23,18 +21,10 @@
         Jaipur Handpicked Kurtis & Custom Printed Gifts
       </p>
 
-      <div class="btn-wrap">
-        <a href="https://www.meesho.com/SAINIWALAA?ms=2" class="btn meesho">🛍 Meesho</a>
-        <a href="https://www.flipkart.com/" class="btn flipkart">🛒 Flipkart</a>
-        <a href="#" class="btn amazon">🛒 Amazon (Soon)</a>
-      </div>
-
-      <div class="cats">
-        <div class="catbox">👗 Kurtis</div>
-        <div class="catbox">👕 T-Shirts</div>
-        <div class="catbox">☕ Mugs</div>
-        <div class="catbox">🎁 Gifts</div>
-        <div class="catbox">🖨 Print Orders</div>
+      <div class="store-btns">
+        <a href="https://www.meesho.com/SAINIWALAA?ms=2" class="store meesho">🛍 Meesho</a>
+        <a href="https://www.flipkart.com/" class="store flipkart">🛒 Flipkart</a>
+        <a href="#" class="store amazon">🛒 Amazon (Soon)</a>
       </div>
     </div>
 
@@ -47,8 +37,9 @@
 </section>
 
 <style>
+/* ===== THEME ===== */
 #hero-sainiwalaa{
-  background:linear-gradient(135deg,#4b0f14,#7a1f26);
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
   padding:0 20px 60px;
   color:#fff;
   font-family:Poppins,Arial,sans-serif;
@@ -58,19 +49,32 @@
 .top-menu{
   max-width:1200px;
   margin:auto;
+  padding:18px 0;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 0;
 }
-.logo{font-size:22px;font-weight:900;color:#f6d27c}
-.menu a{
+.logo{
+  font-size:24px;
+  font-weight:900;
+  color:#ffd369;
+}
+.menu{
+  display:flex;
+  gap:12px;
+}
+.m-btn{
+  padding:8px 16px;
+  border-radius:20px;
+  background:rgba(255,255,255,.15);
   color:#fff;
-  margin-left:16px;
   text-decoration:none;
   font-weight:600;
 }
-.menu a:hover{color:#ffcc80}
+.m-btn:hover{
+  background:#ffd369;
+  color:#000;
+}
 
 /* HERO */
 .hero-wrap{
@@ -84,57 +88,49 @@
 .hero-left{flex:1}
 .hero-left h1{
   font-size:42px;
-  color:#f6d27c;
   margin-bottom:10px;
 }
-.animated-text{color:#ffe9b0;font-size:18px}
+.animated-text{
+  font-size:18px;
+  color:#e0f2ff;
+}
 
-/* BUTTONS */
-.btn-wrap{display:flex;gap:14px;margin:24px 0;flex-wrap:wrap}
-.btn{
+/* STORE BUTTONS */
+.store-btns{
+  display:flex;
+  gap:14px;
+  margin-top:24px;
+  flex-wrap:wrap;
+}
+.store{
   padding:12px 22px;
   border-radius:10px;
-  color:#fff;
   font-weight:700;
   text-decoration:none;
+  color:#fff;
 }
 .meesho{background:#ff9800}
 .flipkart{background:#2874f0}
 .amazon{background:#111}
 
-/* CATEGORY BOX */
-.cats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:14px;
-}
-.catbox{
-  background:#fff6e1;
-  color:#5a1a1f;
-  padding:14px;
-  border-radius:12px;
-  font-weight:700;
-  text-align:center;
-}
-
 /* SLIDER */
 .slider-frame{
   width:230px;
   height:330px;
-  background:#fff6e1;
+  background:#ffffff;
   padding:6px;
-  border-radius:22px;
+  border-radius:20px;
 }
 .slider-frame img{
   width:100%;
   height:100%;
   object-fit:cover;
-  border-radius:16px;
+  border-radius:14px;
 }
 
 /* MOBILE */
 @media(max-width:768px){
-  .menu{display:none}
+  .menu{flex-wrap:wrap}
   .hero-wrap{flex-direction:column}
 }
 </style>
