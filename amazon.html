@@ -128,27 +128,30 @@ body{
 
 <body>
 
-<!-- 🔹 COMMON HEADER -->
+<!-- 🔹 HEADER -->
 <div id="header"></div>
 
 <!-- 🔹 PAGE CONTENT -->
 <div class="page-title" id="siteTitle">Loading deals…</div>
-
 <div class="categories" id="categories"></div>
 <div class="products" id="products"></div>
 
-<!-- 🔹 COMMON FOOTER -->
+<!-- 🔹 FOOTER (ONLY ONCE) -->
 <div id="footer"></div>
 
 <!-- 🔹 LOAD HEADER & FOOTER -->
 <script>
-fetch("header.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("header").innerHTML=d);
+fetch("./header.html")
+  .then(r=>r.text())
+  .then(d=>document.getElementById("header").innerHTML=d);
 
-fetch("footer.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("footer").innerHTML=d);
+fetch("./footer.html")
+  .then(r=>{
+    if(!r.ok) throw new Error("Footer not found");
+    return r.text();
+  })
+  .then(d=>document.getElementById("footer").innerHTML=d)
+  .catch(e=>console.error("FOOTER ERROR:",e));
 </script>
 
 <script>
@@ -164,7 +167,6 @@ fetch(API_URL)
   const s = data.settings;
   ALL_PRODUCTS = data.products;
 
-  /* APPLY SETTINGS */
   document.documentElement.style.setProperty("--primary", s.PRIMARY_COLOR);
   document.documentElement.style.setProperty("--secondary", s.SECONDARY_COLOR);
   document.documentElement.style.setProperty("--card", s.CARD_BG);
@@ -172,79 +174,46 @@ fetch(API_URL)
   document.documentElement.style.setProperty("--text", s.TEXT_COLOR);
   document.documentElement.style.setProperty("--btn", s.BUTTON_COLOR);
   document.documentElement.style.setProperty("--btnText", s.BUTTON_TEXT_COLOR);
-  document.body.style.fontFamily = s.FONT_FAMILY;
 
   document.getElementById("siteTitle").innerText = s.SITE_TITLE;
-
   buildCategories();
-})
-.catch(()=>{
-  document.getElementById("siteTitle").innerText="❌ Failed to load deals";
 });
 
-/* CREATE CATEGORY BUTTONS */
+/* CATEGORY */
 function buildCategories(){
   const box = document.getElementById("categories");
   const cats = [...new Set(ALL_PRODUCTS.map(p=>p.CATEGORY))];
 
-  let html = "";
-  cats.forEach((c,i)=>{
-    html += `
-      <button class="cat-btn ${i===0?'active':''}"
-        onclick="filterCat('${c}',this)">
-        ${c}
-      </button>`;
-  });
-
-  box.innerHTML = html;
+  box.innerHTML = cats.map((c,i)=>`
+    <button class="cat-btn ${i===0?'active':''}"
+      onclick="filterCat('${c}',this)">
+      ${c}
+    </button>`).join("");
 
   if(cats.length){
-    renderProducts(
-      ALL_PRODUCTS.filter(p=>p.CATEGORY===cats[0])
-    );
+    renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cats[0]));
   }
 }
 
-/* FILTER */
 function filterCat(cat,btn){
   document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
-
-  renderProducts(
-    ALL_PRODUCTS.filter(p=>p.CATEGORY===cat)
-  );
+  renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cat));
 }
 
-/* RENDER */
 function renderProducts(list){
-  const grid = document.getElementById("products");
-  let html = "";
-
-  list.forEach(x=>{
-    html+=`
+  document.getElementById("products").innerHTML =
+    list.map(x=>`
     <div class="card">
       ${x.TOP==="TOP" ? `<div class="top">TOP DEAL</div>` : ``}
-      <img src="${x.IMAGE || 'https://via.placeholder.com/300'}">
+      <img src="${x.IMAGE}">
       <div class="info">
         <div class="title">${x.NAME}</div>
-        ${x.DISCOUNT ? `<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>` : ``}
-        <a class="btn" href="${x.LINK}" target="_blank" rel="noopener">
-          View Deal
-        </a>
+        ${x.DISCOUNT?`<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>`:""}
+        <a class="btn" href="${x.LINK}" target="_blank">View Deal</a>
       </div>
-    </div>`;
-  });
-
-  grid.innerHTML = html || "No products found";
+    </div>`).join("");
 }
-</script>
-
-<div id="footer"></div>
-
-<script>
-fetch("footer.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("footer").innerHTML=d);
 </script>
 
 </body>
