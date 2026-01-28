@@ -5,24 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sainiwalaa – Trusted Online Shopping & Deals</title>
-
-<meta name="description" content="Sainiwalaa par Amazon deals, kurti, custom mug aur best offers.">
-<meta name="keywords" content="Sainiwalaa, Amazon Deals, Kurti, Online Shopping">
+<meta name="description" content="Kurti, T-Shirt, Mug & Best Amazon Deals by Sainiwalaa">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --primary:#131921;
-  --secondary:#232f3e;
-  --accent:#ff9900;
-  --bg:#f8fafc;
-  --card:#ffffff;
-  --text:#111;
-}
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:var(--bg);color:var(--text)}
+body{background:#f8fafc;color:#111}
 
 /* HEADER */
 header{
@@ -33,7 +22,7 @@ header{
   justify-content:space-between;
   align-items:center;
 }
-header h1{font-size:22px}
+header b{font-size:22px}
 nav a{
   color:#fff;
   margin-left:16px;
@@ -41,94 +30,77 @@ nav a{
   font-weight:600;
 }
 
-/* MARQUEE */
-.marquee{
-  background:var(--accent);
-  padding:10px;
-  font-weight:600;
-  overflow:hidden;
-}
-.marquee span{
-  white-space:nowrap;
-  display:inline-block;
-  animation:scroll 14s linear infinite;
-}
-@keyframes scroll{
-  from{transform:translateX(100%)}
-  to{transform:translateX(-100%)}
-}
-
-/* COUNTDOWN */
-.countdown{
-  text-align:center;
-  padding:12px;
-  margin:12px;
-  background:var(--card);
-  border-radius:12px;
-  font-weight:700;
-}
-
-/* HERO SLIDER */
-.slider{position:relative;height:260px;overflow:hidden}
-.slide{position:absolute;inset:0;display:none}
-.slide img{width:100%;height:100%;object-fit:cover}
-.slide-content{
-  position:absolute;
-  bottom:16px;
-  left:16px;
-  right:16px;
-  background:rgba(0,0,0,.55);
-  padding:14px;
-  border-radius:12px;
+/* HERO */
+#hero{
+  background:linear-gradient(135deg,#4b0f14,#7a1f26);
+  padding:60px 20px;
   color:#fff;
 }
-.slide-content a{
+.hero-wrap{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  gap:40px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.hero-left h1{
+  font-size:42px;
+  color:#f6d27c;
+  margin-bottom:10px;
+}
+.hero-left p{margin-bottom:20px}
+.hero-btns a{
   display:inline-block;
-  margin-top:8px;
-  background:var(--accent);
-  padding:8px 16px;
+  margin-right:10px;
+  padding:12px 22px;
+  border-radius:8px;
+  background:#ff9800;
   color:#000;
-  text-decoration:none;
   font-weight:700;
+  text-decoration:none;
+}
+.slider-box{
+  width:240px;
+  height:340px;
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+}
+.slider-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-/* HOME */
-.section{padding:20px}
-.section h2{margin-bottom:14px}
+/* HOME CONTENT */
+.section{padding:40px 20px}
+.section h2{margin-bottom:20px}
 .categories{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:16px;
 }
 .cat{
-  background:var(--card);
+  background:#fff;
   border-radius:14px;
   padding:12px;
   text-align:center;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  box-shadow:0 6px 18px rgba(0,0,0,.1);
 }
-.cat img{
-  width:100%;
-  height:130px;
-  object-fit:cover;
-  border-radius:10px;
-}
-.cat p{margin-top:10px;font-weight:600}
-
-/* BANNERS */
-.banner img{
-  width:100%;
-  border-radius:14px;
-  margin-top:14px;
-}
+.cat img{width:100%;height:140px;object-fit:cover;border-radius:10px}
 
 /* FOOTER */
 footer{
-  background:var(--secondary);
+  background:#0b1730;
   color:#fff;
-  padding:18px;
+  padding:40px 20px;
   text-align:center;
-  margin-top:30px;
+}
+footer p{opacity:.7;margin-top:10px}
+
+@media(max-width:768px){
+  .hero-wrap{flex-direction:column;text-align:center}
 }
 </style>
 </head>
@@ -137,110 +109,61 @@ footer{
 
 <!-- HEADER -->
 <header>
-  <h1>SAINIWALAA</h1>
+  <b>SAINIWALAA</b>
   <nav>
     <a href="#home">Home</a>
-    <a href="#">Deals</a>
-    <a href="#">Contact</a>
+    <a href="#shop">Shop</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <span id="marqueeText">Loading offers...</span>
-</div>
-
-<!-- COUNTDOWN -->
-<div class="countdown">
-  ⏳ Offer Ends In : <span id="timer">Loading...</span>
-</div>
-
 <!-- HERO -->
-<div class="slider" id="slider"></div>
+<section id="hero">
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <h1>SAINIWALAA</h1>
+      <p>Jaipur Handpicked Kurtis & Custom Gifts</p>
+      <div class="hero-btns">
+        <a href="https://www.meesho.com/SAINIWALAA">Meesho</a>
+        <a href="#">Amazon (Soon)</a>
+      </div>
+    </div>
+    <div class="slider-box">
+      <img id="heroImg" src="">
+    </div>
+  </div>
+</section>
 
 <!-- HOME -->
-<div class="section" id="home">
+<section class="section" id="shop">
   <h2>🛍️ Shop by Category</h2>
-  <div class="categories" id="categories"></div>
-</div>
-
-<div class="section banner" id="banners"></div>
+  <div class="categories">
+    <div class="cat"><img src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/stl_u1.png"><p>Kurtis</p></div>
+    <div class="cat"><img src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png"><p>Mugs</p></div>
+    <div class="cat"><img src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/BLAK_051.png"><p>T-Shirts</p></div>
+  </div>
+</section>
 
 <!-- FOOTER -->
-<footer>
-  © 2026 Sainiwalaa • Trusted • Secure • Fast Delivery
+<footer id="contact">
+  <h3>SAINIWALAA</h3>
+  <p>Trusted • Secure • Fast Delivery</p>
+  <p>© 2026 Sainiwalaa</p>
 </footer>
 
 <script>
-/* COUNTDOWN */
-const endDate=new Date("2026-01-26T23:59:59").getTime();
+const imgs=[
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/stl_u1.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/PURPAL_STYL_1_1.png",
+ "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/BLAK_051.png"
+];
+let i=0;
+const img=document.getElementById("heroImg");
+img.src=imgs[0];
 setInterval(()=>{
-  const d=endDate-new Date().getTime();
-  if(d<0)return;
-  const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-  const m=Math.floor((d%(1000*60*60))/(1000*60));
-  const s=Math.floor((d%(1000*60))/1000);
-  document.getElementById("timer").innerText=
-  `${h}h ${m}m ${s}s`;
-},1000);
-
-/* GOOGLE SHEET API */
-const API="https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
-
-fetch(API)
-.then(r=>r.json())
-.then(d=>{
-
-/* MARQUEE */
-document.getElementById("marqueeText").innerText =
-d.marquee.map(x=>x.TEXT).join(" | ");
-
-/* HERO */
-const slider=document.getElementById("slider");
-d.hero.forEach(x=>{
-  slider.innerHTML+=`
-  <div class="slide">
-    <img src="${x.IMAGE_URL}">
-    <div class="slide-content">
-      <h3>${x.TITLE||""}</h3>
-      <p>${x.SUB_TITLE||""}</p>
-      ${x.BUTTON_TEXT?`<a href="${x.BUTTON_LINK}">${x.BUTTON_TEXT}</a>`:""}
-    </div>
-  </div>`;
-});
-let slides=document.querySelectorAll(".slide"),i=0;
-if(slides.length){
-  slides[0].style.display="block";
-  setInterval(()=>{
-    slides[i].style.display="none";
-    i=(i+1)%slides.length;
-    slides[i].style.display="block";
-  },3500);
-}
-
-/* CATEGORIES */
-const cat=document.getElementById("categories");
-d.categories.forEach(x=>{
-  cat.innerHTML+=`
-  <div class="cat">
-    <img src="${x.IMAGE}">
-    <p>${x.NAME||x.TEXT}</p>
-  </div>`;
-});
-
-/* BANNERS */
-const ban=document.getElementById("banners");
-d.banners.forEach(x=>{
-  ban.innerHTML+=`
-  <a href="${x.LINK||"#"}">
-    <img src="${x.IMAGE_URL||x.IMAGE}">
-  </a>`;
-});
-
-})
-.catch(err=>{
-  console.error("API ERROR",err);
-});
+ i=(i+1)%imgs.length;
+ img.src=imgs[i];
+},3000);
 </script>
 
 </body>
