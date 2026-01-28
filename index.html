@@ -9,61 +9,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#f8fafc;
-  --card:#ffffff;
-  --accent:#ff9900;
-}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:var(--bg)}
 
-/* HOME CONTENT */
-.home-wrap{
+html,body{
+  height:100%;
+}
+
+body{
+  display:flex;
+  flex-direction:column;
+  background:#f8fafc;
+}
+
+/* HEADER PLACE */
+#header{
+  flex-shrink:0;
+}
+
+/* MAIN CONTENT */
+main{
+  flex:1;
   max-width:1200px;
   margin:auto;
-  padding:20px;
+  padding:30px 20px;
 }
 
-/* COUNTDOWN */
-.countdown{
-  text-align:center;
-  padding:14px;
-  font-weight:700;
-  background:var(--card);
-  margin:20px 0;
-  border-radius:14px;
+/* FOOTER PLACE */
+#footer{
+  flex-shrink:0;
 }
-.countdown span{color:var(--accent)}
-
-/* SECTIONS */
-.section{margin-top:30px}
-.section h2{margin-bottom:14px}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- HERO HEADER (TOP FIXED) -->
 <div id="header"></div>
 
-<div class="home-wrap">
+<!-- PAGE CONTENT -->
+<main>
+  <h2>Welcome to Sainiwalaa</h2>
+  <p>Trusted deals, genuine products and fast delivery.</p>
+</main>
 
-  <div class="countdown">
-    ⏳ Offer Ends In : <span id="timer">Loading...</span>
-  </div>
-
-  <div class="section">
-    <h2>🛍️ Welcome to Sainiwalaa</h2>
-    <p>Trusted deals, genuine products and fast delivery.</p>
-  </div>
-
-</div>
-
-<!-- FOOTER -->
+<!-- FOOTER (BOTTOM FIXED) -->
 <div id="footer"></div>
 
 <script>
-/* LOAD HEADER & FOOTER */
 fetch("header.html")
 .then(r=>r.text())
 .then(d=>document.getElementById("header").innerHTML=d);
@@ -71,18 +63,6 @@ fetch("header.html")
 fetch("footer.html")
 .then(r=>r.text())
 .then(d=>document.getElementById("footer").innerHTML=d);
-
-/* COUNTDOWN DEMO */
-const endDate=new Date("2026-01-26T23:59:59").getTime();
-setInterval(()=>{
- const now=new Date().getTime();
- const d=endDate-now;
- if(d<0){timer.innerText="Expired";return;}
- const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
- const m=Math.floor((d%(1000*60*60))/(1000*60));
- const s=Math.floor((d%(1000*60))/1000);
- timer.innerText=`${h}h ${m}m ${s}s`;
-},1000);
 </script>
 
 </body>
