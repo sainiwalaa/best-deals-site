@@ -1,15 +1,43 @@
-<footer style="background:#111;color:#fff;text-align:center;padding:20px;">
-  <p id="footer-text">Loading footer...</p>
+<style>
+#footer-main{
+  width:100%;
+  background:#0b1730;
+  padding:40px 20px;
+  color:#fff;
+  font-family:Poppins,Arial,sans-serif;
+  text-align:center;
+}
+#footer-main a{color:#ff9800;text-decoration:none;font-weight:600}
+</style>
 
-  <script>
-    fetch("https://script.google.com/macros/s/YOUR_SHEET_API/exec")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("footer-text").innerText = data.footerText;
-      })
-      .catch(() => {
-        document.getElementById("footer-text").innerText =
-          "© 2026 Best Deals Site";
-      });
-  </script>
-</footer>
+<div id="footer-main">
+  <div id="footer-left"></div>
+  <div id="footer-center"></div>
+  <div id="footer-right"></div>
+  <div id="footer-bottom"></div>
+</div>
+
+<script>
+const FOOTER_API="https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
+
+fetch(FOOTER_API)
+.then(r=>r.json())
+.then(d=>{
+  if(!d.footer) return;
+
+  d.footer.forEach(i=>{
+    let box=
+      i.POSITION==="LEFT"?document.getElementById("footer-left"):
+      i.POSITION==="CENTER"?document.getElementById("footer-center"):
+      i.POSITION==="RIGHT"?document.getElementById("footer-right"):
+      document.getElementById("footer-bottom");
+
+    if(i.TYPE==="TEXT"){
+      box.innerHTML+=`<p>${i.TEXT}</p>`;
+    }
+    if(i.TYPE==="LINK"){
+      box.innerHTML+=`<a href="${i.LINK}">${i.TEXT}</a><br>`;
+    }
+  });
+});
+</script>
