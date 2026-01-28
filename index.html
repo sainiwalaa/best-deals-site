@@ -5,87 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sainiwalaa – Trusted Online Shopping & Deals</title>
-<meta name="description" content="Sainiwalaa par mile Amazon deals, kurti collection, custom mug & t-shirt. Trusted, fast & secure shopping.">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --primary:#0f172a;
-  --secondary:#1e293b;
   --accent:#ff9900;
   --bg:#f8fafc;
   --card:#ffffff;
   --text:#111;
 }
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 body{background:var(--bg);color:var(--text)}
 
-/* ================= HEADER ================= */
-header{
-  background:linear-gradient(90deg,#131921,#232f3e);
-  color:#fff;
-  padding:18px 20px 26px;
-}
-.header-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:10px;
-}
-.logo{font-size:26px;font-weight:700}
-.menu{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.menu a{
-  background:var(--accent);
-  color:#000;
-  padding:8px 16px;
-  border-radius:20px;
-  text-decoration:none;
-  font-weight:600;
-  font-size:14px;
-}
-
-/* ================= HERO ================= */
-.hero{
-  margin-top:22px;
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:24px;
-  align-items:center;
-}
-.hero h1{font-size:32px;margin-bottom:8px}
-.platforms{font-weight:600;margin-bottom:12px}
-.hero-icons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-.hero-icons span{
-  background:#fff;
-  color:#000;
-  padding:6px 14px;
-  border-radius:18px;
-  font-size:14px;
-  font-weight:600;
-}
-
-/* HERO SLIDER */
-.hero-slider{
-  position:relative;
-  height:260px;
-  border-radius:16px;
-  overflow:hidden;
-}
-.hero-slide{position:absolute;inset:0;display:none}
-.hero-slide img{width:100%;height:100%;object-fit:cover}
-
-/* ================= HOME ================= */
 .marquee{
   background:var(--accent);
   color:#000;
@@ -94,133 +25,65 @@ header{
   white-space:nowrap;
   font-weight:600;
 }
-.marquee span{
-  display:inline-block;
-  animation:scroll 14s linear infinite;
-}
-@keyframes scroll{
-  from{transform:translateX(100%)}
-  to{transform:translateX(-100%)}
-}
+.marquee span{display:inline-block;animation:scroll 14s linear infinite}
+@keyframes scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
 
-.section{padding:30px 20px}
-.section h2{margin-bottom:14px}
-
-.grid{
+.section{padding:20px}
+.categories{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:16px;
 }
-.card{
+.cat{
   background:var(--card);
   border-radius:14px;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
   padding:12px;
   text-align:center;
   cursor:pointer;
-  transition:.25s;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
-.card:hover{transform:translateY(-6px)}
-.card img{
+.cat img{
   width:100%;
-  height:140px;
+  height:130px;
   object-fit:cover;
   border-radius:10px;
-}
-.card p{margin-top:10px;font-weight:600}
-
-/* MOBILE */
-@media(max-width:768px){
-  .hero{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER + HERO ================= -->
-<header>
-  <div class="header-top">
-    <div class="logo">SAINIWALAA</div>
-    <div class="menu">
-      <a href="index.html">🏠 Home</a>
-      <a href="amazon.html">🔥 Amazon Deals</a>
-      <a href="jaipurkurti.html">👗 Jaipur Kurtis</a>
-      <a href="prints.html">🖨 Custom Prints</a>
-    </div>
-  </div>
+<div id="header"></div>
 
-  <div class="hero">
-    <div>
-      <h1>Jaipur Handpicked Kurtis & Custom Printed Gifts</h1>
-      <div class="platforms">🛍 Meesho &nbsp; 🛒 Flipkart &nbsp; 🛒 Amazon</div>
-
-      <div class="hero-icons">
-        <span>👗 Kurtis</span>
-        <span>👕 T-Shirts</span>
-        <span>☕ Mugs</span>
-        <span>🎁 Gifts</span>
-        <span>🖨 Print Orders</span>
-      </div>
-    </div>
-
-    <div class="hero-slider" id="heroSlider"></div>
-  </div>
-</header>
-
-<!-- ================= HOME CONTENT ================= -->
 <div class="marquee">
-  <span id="marqueeText">Loading offers…</span>
+  <span id="marqueeText">Loading offers...</span>
 </div>
 
 <div class="section">
   <h2>🛍 Shop by Category</h2>
-  <div class="grid" id="categoryGrid"></div>
+  <div class="categories" id="categories"></div>
 </div>
 
-<!-- ================= FOOTER ================= -->
 <div id="footer"></div>
 
 <script>
-/* HERO SLIDER */
-const imgs=[
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/stl_u1.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/PURPAL_STYL_1_1.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/BLAK_051.png"
-];
-const hs=document.getElementById("heroSlider");
-imgs.forEach(src=>{
-  hs.innerHTML+=`<div class="hero-slide"><img src="${src}"></div>`;
-});
-let i=0,slides=document.querySelectorAll(".hero-slide");
-slides[0].style.display="block";
-setInterval(()=>{
-  slides[i].style.display="none";
-  i=(i+1)%slides.length;
-  slides[i].style.display="block";
-},3000);
+fetch("header.html").then(r=>r.text()).then(d=>header.innerHTML=d);
+fetch("footer.html").then(r=>r.text()).then(d=>footer.innerHTML=d);
 
-/* HOME API */
 fetch("https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec")
 .then(r=>r.json())
 .then(d=>{
-  document.getElementById("marqueeText").innerText =
-    d.marquee.map(x=>x.TEXT).join(" | ");
+ document.getElementById("marqueeText").innerText =
+   d.marquee.map(x=>x.TEXT).join(" | ");
 
-  const grid=document.getElementById("categoryGrid");
-  d.categories.forEach(x=>{
-    grid.innerHTML+=`
-      <div class="card" onclick="location.href='${x.PAGE_LINK||"#"}'">
-        <img src="${x.IMAGE}">
-        <p>${x.NAME||x.TEXT}</p>
-      </div>`;
-  });
+ d.categories.forEach(x=>{
+  categories.innerHTML+=`
+   <div class="cat" onclick="location.href='${x.PAGE_LINK||"#"}'">
+     <img src="${x.IMAGE}">
+     <p>${x.NAME||x.TEXT}</p>
+   </div>`;
+ });
 });
-
-/* FOOTER LOAD (SHEET CONTROLLED) */
-fetch("footer.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("footer").innerHTML=d);
 </script>
 
 </body>
