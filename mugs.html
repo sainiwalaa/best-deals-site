@@ -1,246 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Personalized Mug Order | Sainiwalaa</title>
+<title>Custom Mugs</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body{
-  font-family:Poppins,sans-serif;
-  margin:0;
-  background:#f4f6fb;
-}
-
-/* Layout */
-.wrapper{max-width:1100px;margin:auto;padding:20px}
-.main{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media(max-width:768px){.main{grid-template-columns:1fr}}
-
-/* Marquee */
-.marquee{
-  background:linear-gradient(90deg,#e91e63,#ff5722);
-  color:#fff;
-  padding:10px;
-  border-radius:10px;
-  font-weight:600;
-  overflow:hidden;
-  margin-bottom:16px;
-}
-.marquee span{
-  display:inline-block;
-  white-space:nowrap;
-  animation:scroll 22s linear infinite;
-}
-@keyframes scroll{
-  from{transform:translateX(100%)}
-  to{transform:translateX(-100%)}
-}
-
-/* Gallery */
-.gallery-main img{
-  width:100%;
-  border-radius:16px;
-  box-shadow:0 8px 25px rgba(0,0,0,.18);
-}
-.gallery-thumbs{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:10px;
-}
-.gallery-thumbs img{
-  width:100%;
-  border-radius:10px;
-  cursor:pointer;
-  opacity:.7;
-}
-.gallery-thumbs img:hover{opacity:1}
-
-/* Form */
-.form{
-  background:#fff;
-  padding:20px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.12);
-}
-.form h2{text-align:center;color:#e91e63;font-weight:700}
-.price{text-align:center;color:#2e7d32;font-weight:600;margin-bottom:10px}
-
-label{font-weight:500;margin-top:8px;display:block}
-input,textarea{
-  width:100%;
-  padding:8px;
-  border-radius:8px;
-  border:1px solid #ccc;
-  margin-top:4px;
-}
-
-button{
-  width:100%;
-  margin-top:14px;
-  padding:12px;
-  border:none;
-  border-radius:30px;
-  font-size:16px;
-  font-weight:600;
-  background:linear-gradient(90deg,#e91e63,#ff5722);
-  color:#fff;
-  cursor:pointer;
-}
-button:disabled{opacity:.6;cursor:not-allowed}
-
-#error{color:#d32f2f;margin-top:10px;font-weight:600}
-#success{color:#2e7d32;margin-top:10px;font-weight:600}
+html,body{margin:0;font-family:Poppins;background:#f4f6fb}
+header,footer{background:#0b1730;color:#fff}
+.header-inner{max-width:1200px;margin:auto;padding:15px;display:flex;justify-content:space-between}
+nav a{color:#fff;margin-left:16px;text-decoration:none}
+main{min-height:70vh;padding:40px;text-align:center}
+footer{background:#050b1a;text-align:center;padding:15px}
 </style>
 </head>
-
 <body>
 
-<!-- 🔹 COMMON HEADER -->
-<div id="header"></div>
-
-<!-- 🔹 PAGE CONTENT -->
-<div class="wrapper">
-
-  <div class="marquee">
-    <span>
-      ☕ Personalized Photo Mug • Upload 2 Photos • Fill Correct Details • Free Delivery 🚚
-    </span>
+<header>
+  <div class="header-inner">
+    <b>SAINIWALAA</b>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="print.html">Print</a>
+    </nav>
   </div>
+</header>
 
-  <div class="main">
+<main>
+  <h2>☕ Personalized Mugs</h2>
+</main>
 
-    <!-- IMAGE GALLERY -->
-    <div>
-      <div class="gallery-main">
-        <img id="bigImg" src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/71uTvmGg7zL._SY879_50bb0859-9870-4e16-8139-f6520c93f5a6.jpg">
-      </div>
-      <div class="gallery-thumbs">
-        <img onclick="changeImg(this)" src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/71uTvmGg7zL._SY879_50bb0859-9870-4e16-8139-f6520c93f5a6.jpg">
-        <img onclick="changeImg(this)" src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/61EmiUve-AL._SX522.jpg">
-        <img onclick="changeImg(this)" src="https://cdn.shopify.com/s/files/1/0959/2196/3380/files/51UBMMrStaL._SX522.jpg">
-      </div>
-    </div>
-
-    <!-- ORDER FORM -->
-    <div class="form">
-      <h2>Customize Your Mug ☕</h2>
-      <div class="price">Only ₹159 • Free Delivery</div>
-
-      <label>Name</label><input id="name">
-      <label>Mobile Number</label><input id="mobile" maxlength="10">
-      <label>Full Address</label><textarea id="address" rows="2"></textarea>
-      <label>PIN Code</label><input id="pin" maxlength="6">
-      <label>Mug Print Text / SUK ID</label><textarea id="mugText" rows="2"></textarea>
-
-      <label>Upload 2 Photos</label>
-      <input type="file" id="img1" accept="image/png,image/jpeg">
-      <input type="file" id="img2" accept="image/png,image/jpeg">
-
-      <button id="orderBtn" onclick="submitOrder()">Place Order</button>
-
-      <div id="error"></div>
-      <div id="success"></div>
-    </div>
-
-  </div>
-</div>
-
-<!-- 🔹 COMMON FOOTER -->
-<div id="footer"></div>
-
-<!-- 🔹 HEADER & FOOTER LOAD -->
-<script>
-fetch("header.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("header").innerHTML=d);
-
-fetch("footer.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("footer").innerHTML=d);
-</script>
-
-<!-- 🔹 MENU FROM SHEET -->
-<script src="menu.js"></script>
-
-<script>
-const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbwbRyMuIB2AnyJhV0f3OW7ZSSlGyT97Tper1N9bOFITFqMCdcoDRCNVuG7nBr28Fe2SJw/exec";
-
-let submitted=false;
-
-function changeImg(el){
-  document.getElementById("bigImg").src=el.src;
-}
-
-async function submitOrder(){
-  if(submitted) return;
-
-  const btn=document.getElementById("orderBtn");
-  const error=document.getElementById("error");
-  const success=document.getElementById("success");
-  error.innerText=""; success.innerText="";
-
-  const name=document.getElementById("name").value.trim();
-  const mobile=document.getElementById("mobile").value.trim();
-  const address=document.getElementById("address").value.trim();
-  const pin=document.getElementById("pin").value.trim();
-  const mugText=document.getElementById("mugText").value.trim();
-  const img1=document.getElementById("img1").files[0];
-  const img2=document.getElementById("img2").files[0];
-
-  if(!name||!mobile||!address||!pin||!mugText){
-    error.innerText="❌ Please fill all details";return;
-  }
-  if(!/^[6-9]\d{9}$/.test(mobile)){
-    error.innerText="❌ Invalid mobile number";return;
-  }
-  if(!/^\d{6}$/.test(pin)){
-    error.innerText="❌ Invalid PIN code";return;
-  }
-  if(!img1||!img2){
-    error.innerText="❌ Upload 2 images";return;
-  }
-
-  submitted=true;
-  btn.disabled=true;
-  btn.innerText="Submitting...";
-
-  const toBase64=f=>new Promise(r=>{
-    const fr=new FileReader();
-    fr.onload=()=>r(fr.result);
-    fr.readAsDataURL(f);
-  });
-
-  const payload={
-    name,mobile,address,pin,mugText,
-    image1:await toBase64(img1),
-    image2:await toBase64(img2)
-  };
-
-  try{
-    const res=await fetch(SCRIPT_URL,{method:"POST",body:JSON.stringify(payload)});
-    const data=await res.json();
-
-    if(data.status==="success"){
-      success.innerHTML=`✅ Order Placed<br>Order ID: <b>${data.orderId}</b>`;
-      btn.innerText="Order Placed";
-    }else{
-      error.innerText=data.message;
-      btn.disabled=false;
-      submitted=false;
-    }
-  }catch(e){
-    error.innerText="❌ Network error";
-    btn.disabled=false;
-    submitted=false;
-  }
-}
-</script>
+<footer>© Sainiwalaa</footer>
 
 </body>
 </html>
