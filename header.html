@@ -1,173 +1,163 @@
-<!-- ================= SAINIWALAA HEADER / HERO ================= -->
-<section id="sw-header">
-
-  <!-- TOP MENU -->
-  <div class="sw-top">
-    <div class="sw-logo">SAINIWALAA</div>
-    <div class="sw-menu">
-      <a href="index.html">Home</a>
-      <a href="amazon.html">Amazon Deals</a>
-      <a href="jaipurkurti.html">Jaipur Kurtis</a>
-    </div>
-  </div>
-
-  <!-- HERO CONTENT -->
-  <div class="sw-hero">
-
-    <!-- LEFT -->
-    <div class="sw-left">
-      <h1>SAINIWALAA</h1>
-
-      <p class="sw-tagline">
-        Jaipur Handpicked Kurtis & Custom Printed Gifts
-      </p>
-
-      <!-- STORE BUTTONS -->
-      <div class="sw-stores">
-        <a href="https://www.meesho.com/SAINIWALAA?ms=2" class="store meesho">🛍 Meesho</a>
-        <a href="https://www.flipkart.com/" class="store flipkart">🛒 Flipkart</a>
-        <a href="#" class="store amazon">🛒 Amazon</a>
-      </div>
-
-      <!-- CATEGORY BOXES -->
-      <div class="sw-cats">
-        <div class="cat-box">👗 Kurtis</div>
-        <div class="cat-box">👕 T-Shirts</div>
-      </div>
-    </div>
-
-    <!-- RIGHT SLIDER -->
-    <div class="sw-slider">
-      <img id="swSlide" alt="Kurti">
-    </div>
-
-  </div>
-</section>
-
+<!-- ================= SAINIWALAA GLOBAL HEADER ================= -->
 <style>
 #sw-header{
-  background:linear-gradient(135deg,#4b0f14,#7a1f26);
+  background:linear-gradient(90deg,#131921,#232f3e);
   color:#fff;
+  padding:18px 20px 26px;
   font-family:Poppins,Arial,sans-serif;
 }
 
-/* TOP MENU */
-.sw-top{
-  max-width:1200px;
-  margin:auto;
-  padding:18px 20px;
+/* TOP BRAND */
+#sw-top{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  flex-wrap:wrap;
 }
-.sw-logo{
-  font-size:24px;
-  font-weight:900;
-  color:#f6d27c;
+#sw-logo{
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:1px;
 }
-.sw-menu a{
-  margin-left:10px;
-  padding:8px 16px;
-  border-radius:20px;
-  background:rgba(255,255,255,.15);
-  color:#fff;
-  text-decoration:none;
+
+/* MARKET LINKS */
+#sw-market{
+  display:flex;
+  gap:14px;
   font-weight:600;
 }
-.sw-menu a:hover{
-  background:#f6d27c;
-  color:#000;
+#sw-market a{
+  color:#ff9900;
+  text-decoration:none;
 }
 
 /* HERO */
-.sw-hero{
-  max-width:1200px;
-  margin:auto;
-  padding:40px 20px 60px;
-  display:flex;
-  gap:40px;
-  flex-wrap:wrap;
+#sw-hero{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:24px;
   align-items:center;
 }
-.sw-left{flex:1;min-width:260px}
-.sw-left h1{
-  font-size:42px;
+
+/* HERO LEFT */
+#sw-hero-left h1{
+  font-size:30px;
   margin-bottom:10px;
-  color:#f6d27c;
 }
-.sw-tagline{
-  font-size:18px;
-  color:#ffe9b0;
-}
-
-/* STORES */
-.sw-stores{
+#sw-tags{
   display:flex;
-  gap:14px;
-  margin:24px 0;
   flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
 }
-.store{
-  padding:12px 22px;
-  border-radius:10px;
+.sw-tag{
+  background:#ff9900;
+  color:#000;
+  padding:6px 12px;
+  border-radius:20px;
   font-weight:700;
-  color:#fff;
-  text-decoration:none;
-}
-.meesho{background:#ff9800}
-.flipkart{background:#2874f0}
-.amazon{background:#111}
-
-/* CATEGORY BOXES */
-.sw-cats{
-  display:flex;
-  gap:14px;
-}
-.cat-box{
-  background:#fff6e1;
-  color:#5a1a1f;
-  border:2px solid #f6d27c;
-  padding:14px 22px;
-  border-radius:14px;
-  font-weight:700;
+  font-size:14px;
 }
 
-/* SLIDER */
-.sw-slider{
-  width:230px;
-  height:330px;
-  background:#fff6e1;
-  padding:6px;
-  border-radius:22px;
+/* HERO RIGHT SLIDER */
+#sw-slider{
+  position:relative;
+  height:220px;
+  border-radius:16px;
+  overflow:hidden;
 }
-.sw-slider img{
+.sw-slide{
+  position:absolute;
+  inset:0;
+  display:none;
+}
+.sw-slide img{
   width:100%;
   height:100%;
   object-fit:cover;
-  border-radius:16px;
 }
+
+/* MENU */
+#sw-menu{
+  margin-top:24px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+#sw-menu a{
+  background:#232f3e;
+  color:#fff;
+  padding:10px 18px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+}
+#sw-menu a:hover{background:#ff9900;color:#000}
 
 /* MOBILE */
 @media(max-width:768px){
-  .sw-hero{flex-direction:column}
-  .sw-menu{display:none}
+  #sw-hero{grid-template-columns:1fr}
+  #sw-hero-left h1{font-size:24px}
 }
 </style>
 
+<header id="sw-header">
+
+  <!-- TOP -->
+  <div id="sw-top">
+    <div id="sw-logo">SAINIWALAA</div>
+
+    <div id="sw-market">
+      <a href="https://www.meesho.com" target="_blank">🛍 Meesho</a>
+      <a href="https://www.flipkart.com" target="_blank">🛒 Flipkart</a>
+      <a href="amazon.html">🛒 Amazon</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div id="sw-hero">
+    <div id="sw-hero-left">
+      <h1>Jaipur Handpicked Kurtis & Custom Printed Gifts</h1>
+
+      <div id="sw-tags">
+        <div class="sw-tag">👗 Kurtis</div>
+        <div class="sw-tag">👕 T-Shirts</div>
+        <div class="sw-tag">☕ Mugs</div>
+        <div class="sw-tag">🎁 Gifts</div>
+        <div class="sw-tag">🖨 Print Orders</div>
+      </div>
+    </div>
+
+    <!-- IMAGE SLIDER -->
+    <div id="sw-slider">
+      <div class="sw-slide"><img src="https://images.unsplash.com/photo-1583394838336-acd977736f90"></div>
+      <div class="sw-slide"><img src="https://images.unsplash.com/photo-1618354691373-8c6b3db7a9d2"></div>
+      <div class="sw-slide"><img src="https://images.unsplash.com/photo-1602810318383-e386cc6cbdc9"></div>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <nav id="sw-menu">
+    <a href="index.html">🏠 Home</a>
+    <a href="amazon.html">🔥 Amazon Deals</a>
+    <a href="jaipurkurti.html">👗 Jaipur Kurtis</a>
+    <a href="custom-print.html">🖨 Custom Prints</a>
+  </nav>
+
+</header>
+
 <script>
-/* SLIDER IMAGES */
-const swImages=[
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/stl_u1.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/PURPAL_STYL_1_1.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/BLAK_051.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png"
-];
-let swI=0;
-const swImg=document.getElementById("swSlide");
-swImg.src=swImages[0];
-setInterval(()=>{
-  swI=(swI+1)%swImages.length;
-  swImg.src=swImages[swI];
-},3000);
+/* HEADER SLIDER */
+let hs=0;
+const slides=document.querySelectorAll(".sw-slide");
+if(slides.length){
+  slides[0].style.display="block";
+  setInterval(()=>{
+    slides[hs].style.display="none";
+    hs=(hs+1)%slides.length;
+    slides[hs].style.display="block";
+  },3000);
+}
 </script>
-<!-- ================= END HEADER ================= -->
+<!-- ================= HEADER END ================= -->
