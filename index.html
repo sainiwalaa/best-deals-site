@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Sainiwalaa – Best Deals & Jaipur Kurtis</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sainiwalaa – Best Deals</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --accent:#ff9800;
-  --bg:#f5f7fb;
-  --card:#fff;
-  --dark:#0f172a;
-}
-*{box-sizing:border-box;margin:0;font-family:Poppins}
-body{background:var(--bg);color:#111}
+*{margin:0;box-sizing:border-box;font-family:Poppins}
+body{background:#f6f7fb;color:#111}
 
 /* HEADER */
 header{
   background:linear-gradient(90deg,#131921,#232f3e);
   color:#fff;
-  padding:14px 20px;
+  padding:14px 18px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -33,25 +26,25 @@ header h1{font-size:22px}
 nav{
   background:#fff;
   display:flex;
-  gap:16px;
+  gap:14px;
   padding:12px;
   overflow-x:auto;
 }
 nav a{
-  white-space:nowrap;
   text-decoration:none;
   font-weight:600;
   color:#111;
+  white-space:nowrap;
 }
 
 /* HERO */
 #hero{
-  position:relative;
-  height:260px;
-  background:#ddd;
-  border-radius:16px;
   margin:16px;
+  height:260px;
+  border-radius:16px;
   overflow:hidden;
+  position:relative;
+  background:#ddd;
 }
 .hero-slide{
   position:absolute;
@@ -67,16 +60,16 @@ nav a{
 }
 .hero-text{
   position:absolute;
-  bottom:16px;
-  left:16px;
-  right:16px;
+  bottom:14px;
+  left:14px;
+  right:14px;
   background:rgba(0,0,0,.55);
   color:#fff;
   padding:12px;
   border-radius:12px;
 }
 
-/* SECTION */
+/* HOME */
 .section{padding:20px}
 .grid{
   display:grid;
@@ -84,11 +77,11 @@ nav a{
   gap:14px;
 }
 .card{
-  background:var(--card);
+  background:#fff;
   border-radius:14px;
   padding:10px;
   text-align:center;
-  box-shadow:0 6px 14px rgba(0,0,0,.1);
+  box-shadow:0 6px 16px rgba(0,0,0,.1);
 }
 .card img{
   width:100%;
@@ -106,7 +99,6 @@ footer{
   text-align:center;
   margin-top:30px;
 }
-footer a{color:#ff9800;text-decoration:none;font-weight:600}
 </style>
 </head>
 
@@ -114,12 +106,12 @@ footer a{color:#ff9800;text-decoration:none;font-weight:600}
 
 <header>
   <h1>SAINIWALAA</h1>
-  <div>🔥 Deals</div>
+  <span>🔥 Best Deals</span>
 </header>
 
 <nav id="menu">
-  <!-- menu fallback -->
-  <a href="index.html">🏠 Home</a>
+  <!-- fallback -->
+  <a href="index.html">Home</a>
 </nav>
 
 <div id="hero">
@@ -128,85 +120,82 @@ footer a{color:#ff9800;text-decoration:none;font-weight:600}
 
 <div class="section">
   <h2>🛍 Categories</h2>
-  <div class="grid" id="categories"></div>
+  <div class="grid" id="home"></div>
 </div>
 
 <footer id="footer">
-  © 2026 Sainiwalaa • Trusted Online Store
+  © 2026 Sainiwalaa
 </footer>
 
 <script>
 /* ========= SAFE FETCH ========= */
 function safeFetch(url, cb){
-  fetch(url).then(r=>r.json()).then(cb).catch(e=>{
-    console.warn("API error:",e);
-  });
+  fetch(url)
+    .then(r=>r.json())
+    .then(cb)
+    .catch(()=>console.warn("API failed:",url));
 }
 
-/* ========= MENU + HERO ========= */
+/* ========= MAIN API (MENU + HERO + HOME) ========= */
 safeFetch(
 "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
-d=>{
-  /* MENU */
-  if(d.menu){
-    const m=document.getElementById("menu");
-    m.innerHTML="";
-    d.menu.forEach(i=>{
-      if(i.SHOW==="YES")
-        m.innerHTML+=`<a href="${i.LINK}">${i.TEXT}</a>`;
-    });
-  }
+data=>{
+  if(!Array.isArray(data)) return;
 
-  /* HERO */
-  if(d.hero){
-    const h=document.getElementById("hero");
-    h.innerHTML="";
-    let i=0;
-    d.hero.forEach(x=>{
-      if(x.SHOW==="YES"){
-        h.innerHTML+=`
-        <div class="hero-slide ${i==0?'active':''}">
-          <img loading="lazy" src="${x.IMAGE}">
-          <div class="hero-text">${x.TITLE||""}</div>
-        </div>`;
-        i++;
-      }
-    });
-    let s=0,slides=document.querySelectorAll(".hero-slide");
-    if(slides.length>1){
-      setInterval(()=>{
-        slides[s].classList.remove("active");
-        s=(s+1)%slides.length;
-        slides[s].classList.add("active");
-      },3000);
+  const menu=document.getElementById("menu");
+  const hero=document.getElementById("hero");
+  const home=document.getElementById("home");
+
+  let slideIndex=0;
+
+  data.forEach(row=>{
+    if(row.SHOW!=="YES") return;
+
+    /* MENU */
+    if(row.LINK && row.TEXT){
+      menu.innerHTML+=`<a href="${row.LINK}">${row.TEXT}</a>`;
     }
+
+    /* HERO */
+    if(row.TYPE==="SLIDE" && row.IMAGE){
+      hero.innerHTML+=`
+        <div class="hero-slide ${slideIndex===0?'active':''}">
+          <img loading="lazy" src="${row.IMAGE}">
+          ${row.TEXT?`<div class="hero-text">${row.TEXT}</div>`:""}
+        </div>`;
+      slideIndex++;
+    }
+
+    /* HOME CARDS */
+    if(row.TYPE==="TAG" && row.TEXT){
+      home.innerHTML+=`
+        <div class="card">
+          <p style="font-weight:600">${row.TEXT}</p>
+        </div>`;
+    }
+  });
+
+  /* HERO AUTO SLIDE */
+  const slides=document.querySelectorAll(".hero-slide");
+  if(slides.length>1){
+    let i=0;
+    setInterval(()=>{
+      slides[i].classList.remove("active");
+      i=(i+1)%slides.length;
+      slides[i].classList.add("active");
+    },3000);
   }
 });
 
-/* ========= CATEGORIES ========= */
-safeFetch(
-"https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec",
-d=>{
-  if(!d.categories) return;
-  const c=document.getElementById("categories");
-  d.categories.forEach(x=>{
-    c.innerHTML+=`
-    <div class="card" onclick="location.href='${x.PAGE_LINK||"#"}'">
-      <img loading="lazy" src="${x.IMAGE}">
-      <p>${x.NAME||x.TEXT}</p>
-    </div>`;
-  });
-});
-
-/* ========= FOOTER (ALWAYS LOAD) ========= */
+/* ========= FOOTER API ========= */
 safeFetch(
 "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec",
 d=>{
   if(!d.footer) return;
   const f=document.getElementById("footer");
   f.innerHTML="";
-  d.footer.forEach(i=>{
-    f.innerHTML+=`<div>${i.TEXT}</div>`;
+  d.footer.forEach(x=>{
+    f.innerHTML+=`<div>${x.TEXT}</div>`;
   });
 });
 </script>
