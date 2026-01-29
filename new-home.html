@@ -3,144 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sainiwalaa - Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Sainiwalaa - Home v2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --amz-gold: #febd69; --amz-blue: #232f3e; --bg: #eaeded; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: #0f1111; }
+        :root { --amz-blue: #131921; --amz-orange: #ff9900; --light-bg: #eaeded; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--light-bg); overflow-x: hidden; }
 
         /* HEADER */
-        #main-header { background:#131921; color:#fff; display:flex; justify-content:space-between; align-items:center; padding:12px 15px; position:sticky; top:0; z-index:1000; }
-        #menu a { color:#fff; margin-left:10px; text-decoration:none; font-size:13px; font-weight:500; }
+        header { background: var(--amz-blue); color: white; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        #menu a { color: white; text-decoration: none; margin-left: 10px; font-size: 12px; font-weight: 600; }
 
-        /* AMAZON STYLE BANNER (Full Width & Responsive) */
-        .slider-container { 
-            width: 100%; 
-            height: 230px; /* Amazon mobile banner height */
+        /* FULL WIDTH AMAZON BANNER */
+        .slider-wrapper { 
+            width: 100% !important; 
+            height: 250px !important; /* Amazon standard mobile height */
             position: relative; 
             overflow: hidden; 
-            background: #fff;
-            /* Bottom fade effect jaisa Amazon pe hota hai */
-            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            background: #ccc;
         }
-        .slides { display: flex; transition: transform 0.5s ease-in-out; height: 100%; }
+        #banner-root { display: flex; transition: transform 0.5s ease-in-out; height: 100%; width: 100%; }
         .slide { min-width: 100%; height: 100%; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
-        
-        /* CATEGORY SECTION */
-        .cat-row { 
-            display: flex; overflow-x: auto; padding: 10px; gap: 12px; 
-            background: #fff; scrollbar-width: none; margin-top: -20px; /* Banners ke upar thoda chadhane ke liye */
-            position: relative; z-index: 10;
-        }
-        .cat-row::-webkit-scrollbar { display: none; }
-        .cat-item { text-align: center; min-width: 75px; }
-        .cat-img { 
-            width: 65px; height: 65px; border-radius: 50%; margin: 0 auto;
-            border: 2px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            background: #f8f8f8; padding: 2px;
-        }
-        .cat-img img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .cat-item p { font-size: 11px; font-weight: 600; margin-top: 6px; color: #333; }
+        .slide img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
 
-        /* PRODUCT GRID */
-        .section-header { padding: 15px 15px 5px; font-size: 17px; font-weight: 700; background: transparent; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-        .card { 
-            background: #fff; border-radius: 4px; padding: 10px; 
-            display: flex; flex-direction: column; justify-content: space-between;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        /* CATEGORIES OVERLAP */
+        .cat-container { 
+            display: flex; overflow-x: auto; padding: 10px; gap: 15px; 
+            background: white; margin-top: -30px; /* Overlap effect */
+            position: relative; z-index: 5; scrollbar-width: none;
+            box-shadow: 0 -5px 10px rgba(0,0,0,0.05);
         }
-        .card img { width: 100%; height: 140px; object-fit: contain; }
-        .card h4 { font-size: 13px; font-weight: 500; margin: 8px 0; height: 35px; overflow: hidden; }
-        .price { font-size: 18px; font-weight: 700; color: #b12704; }
-        .buy-btn { 
-            background: #ffd814; border: 1px solid #fcd200; border-radius: 4px;
-            color: #0f1111; text-align: center; padding: 7px; margin-top: 10px;
-            text-decoration: none; font-size: 12px; font-weight: 500;
-        }
+        .cat-container::-webkit-scrollbar { display: none; }
+        .cat-card { text-align: center; min-width: 80px; }
+        .cat-circle { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--amz-orange); padding: 2px; margin: 0 auto; background: #fff; }
+        .cat-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .cat-card p { font-size: 11px; margin-top: 5px; font-weight: 600; color: #333; }
+
+        /* PRODUCTS */
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
+        .p-card { background: white; border-radius: 5px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .p-card img { width: 100%; height: 130px; object-fit: contain; }
+        .p-price { color: #B12704; font-size: 18px; font-weight: 600; margin: 5px 0; }
+        .p-btn { background: #ffd814; border: 1px solid #fcd200; border-radius: 5px; padding: 8px; display: block; text-align: center; text-decoration: none; color: black; font-size: 12px; font-weight: 600; }
 
         /* FOOTER */
-        #sw-footer { background: #232f3e; color: #fff; padding: 30px 20px; text-align: center; margin-top: 20px; }
-        .sw-links a { color: #ccc; text-decoration: none; display: block; margin: 10px 0; font-size: 14px; }
-
-        /* LOADER */
-        #loader { position: fixed; inset: 0; background: #fff; z-index: 2000; display: flex; align-items: center; justify-content: center; }
-        .dot { width: 12px; height: 12px; background: var(--amz-orange); border-radius: 50%; margin: 5px; animation: bounce 0.5s infinite alternate; }
-        @keyframes bounce { to { transform: translateY(-10px); } }
+        footer { background: #232f3e; color: white; padding: 30px 20px; text-align: center; margin-top: 20px; }
+        
+        #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div id="loader"><div class="dot"></div><div class="dot" style="animation-delay:0.1s"></div><div class="dot" style="animation-delay:0.2s"></div></div>
+<div id="loader">Updating Look...</div>
 
-<header id="main-header">
-    <div style="font-weight:700; font-size:20px; color:var(--amz-gold);" onclick="location.href='index.html'">SAINIWALAA</div>
+<header>
+    <div style="font-size: 20px; font-weight: bold; color: #febd69;">SAINIWALAA</div>
     <div id="menu"></div>
 </header>
 
-<div id="main-content" style="display:none;">
-    <div class="slider-container">
-        <div class="slides" id="banner-root"></div>
-    </div>
-
-    <div class="cat-row" id="cat-root"></div>
-
-    <div class="section-header">Best Deals for You</div>
-    <div class="grid" id="prod-root"></div>
-
-    <footer id="sw-footer">
-        <div id="f-center"></div>
-        <div id="sw-bottom" style="opacity:0.6; font-size:12px; margin-top:20px; border-top:1px solid #444; padding-top:15px;"></div>
-    </footer>
+<div class="slider-wrapper">
+    <div id="banner-root"></div>
 </div>
+
+<div class="cat-container" id="cat-root"></div>
+
+<div class="product-grid" id="prod-root"></div>
+
+<footer id="sw-footer">
+    <div id="f-center"></div>
+    <div id="sw-bottom" style="margin-top:20px; font-size:11px; opacity:0.6;"></div>
+</footer>
 
 <script>
 const API_HOME = "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec";
 const API_HEADER = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
 const API_FOOTER = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-Promise.all([fetch(API_HEADER), fetch(API_HOME), fetch(API_FOOTER)])
-.then(async (res) => {
-    const [h, home, f] = await Promise.all(res.map(r => r.json()));
-    
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('main-content').style.display = 'block';
+async function loadData() {
+    const [hRes, homeRes, fRes] = await Promise.all([fetch(API_HEADER), fetch(API_HOME), fetch(API_FOOTER)]);
+    const h = await hRes.json();
+    const home = await homeRes.json();
+    const f = await fRes.json();
 
-    // Menu
+    document.getElementById('loader').style.display = 'none';
+
+    // Load Header
     h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
 
-    // Home Content
+    // Load Home Data
     let bCount = 0;
     home.forEach(item => {
         if(item.TYPE === "BANNER") {
-            document.getElementById('banner-root').innerHTML += `<div class="slide"><a href="${item.LINK}"><img src="${item.IMAGE_URL}"></a></div>`;
+            document.getElementById('banner-root').innerHTML += `<div class="slide"><img src="${item.IMAGE_URL}"></div>`;
             bCount++;
         } else if(item.TYPE === "CAT") {
-            document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-img"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
+            document.getElementById('cat-root').innerHTML += `<div class="cat-card"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
         } else if(item.TYPE === "PRODUCT") {
-            document.getElementById('prod-root').innerHTML += `<div class="card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="price">₹${item.PRICE}</div><a href="${item.LINK}" class="buy-btn">View Offer</a></div>`;
+            document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="p-btn">Buy Now</a></div>`;
         }
     });
 
-    // Auto Slide
+    // Slider Logic
     if(bCount > 1) {
         let cur = 0;
         setInterval(() => {
             cur = (cur + 1) % bCount;
             document.getElementById('banner-root').style.transform = `translateX(-${cur * 100}%)`;
-        }, 4000);
+        }, 3000);
     }
 
     // Footer
     f.footer.forEach(i => {
         let box = i.POSITION === "CENTER" ? document.getElementById("f-center") : document.getElementById("sw-bottom");
-        if(i.TYPE === "TITLE") box.innerHTML += `<h2 style="color:var(--amz-gold); font-size:18px;">${i.TEXT}</h2>`;
-        else if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
+        if(i.TYPE === "TITLE") box.innerHTML += `<h2 style="color:#ff9800; font-size:18px;">${i.TEXT}</h2>`;
+        else if(i.TYPE === "LINK") box.innerHTML += `<div style="margin:5px 0"><a href="${i.LINK}" style="color:white; text-decoration:none; font-size:14px;">${i.TEXT}</a></div>`;
         else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
     });
-});
+}
+loadData();
 </script>
 </body>
 </html>
