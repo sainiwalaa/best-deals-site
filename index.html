@@ -1,79 +1,107 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sainiwalaa – Trusted Online Shopping</title>
+<title>Sainiwalaa – Best Deals</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --accent:#ff9800;
-  --dark:#0b1220;
-  --card:#ffffff;
-  --bg:#f4f6fb;
-}
-body{margin:0;font-family:Poppins,sans-serif;background:var(--bg)}
-a{text-decoration:none;color:inherit}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:#f4f6fb;color:#111}
 
 /* HEADER */
 header{
   background:linear-gradient(90deg,#131921,#232f3e);
   color:#fff;
-  padding:16px 20px;
+  padding:16px 24px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
+header h1{font-size:22px}
 nav a{
-  margin:0 10px;
-  font-weight:600;
   color:#fff;
+  margin-left:16px;
+  text-decoration:none;
+  font-weight:600;
 }
 
 /* HERO */
-#hero{
-  position:relative;
-  height:260px;
-  overflow:hidden;
+.hero{
+  height:320px;
+  background:url("https://images.unsplash.com/photo-1523275335684-37898b6baf30") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-.hero-slide{
-  position:absolute;inset:0;display:none;
-}
-.hero-slide img{
-  width:100%;height:100%;object-fit:cover;
-}
-.hero-text{
-  position:absolute;
-  bottom:20px;left:20px;right:20px;
+.hero-box{
   background:rgba(0,0,0,.6);
   color:#fff;
-  padding:14px;border-radius:12px;
+  padding:30px;
+  border-radius:16px;
+  text-align:center;
+}
+.hero-box h2{font-size:28px}
+.hero-box a{
+  display:inline-block;
+  margin-top:12px;
+  background:#ff9900;
+  color:#000;
+  padding:10px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:700;
 }
 
 /* SECTION */
-.section{padding:20px}
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:30px 20px;
+}
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
 }
 .card{
   background:#fff;
   border-radius:14px;
-  box-shadow:0 6px 18px rgba(0,0,0,.12);
+  box-shadow:0 6px 18px rgba(0,0,0,.1);
   overflow:hidden;
+  transition:.3s;
+}
+.card:hover{transform:translateY(-6px)}
+.card img{width:100%;height:200px;object-fit:cover}
+.card p{
+  padding:14px;
+  font-weight:600;
   text-align:center;
 }
-.card img{width:100%;height:160px;object-fit:cover}
 
 /* FOOTER */
 footer{
-  background:#050b1a;
+  background:#0b1730;
   color:#fff;
   padding:30px 20px;
+  margin-top:40px;
+}
+.footer-inner{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+footer h3{margin-bottom:8px}
+footer a{color:#ff9800;text-decoration:none}
+.footer-bottom{
   text-align:center;
+  margin-top:20px;
+  font-size:14px;
+  opacity:.7;
 }
 </style>
 </head>
@@ -81,63 +109,63 @@ footer{
 <body>
 
 <header>
-  <div><b>SAINIWALAA</b></div>
-  <nav id="menu"></nav>
+  <h1>SAINIWALAA</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Amazon</a>
+    <a href="#">Kurtis</a>
+    <a href="#">Contact</a>
+  </nav>
 </header>
 
-<!-- HERO -->
-<div id="hero"></div>
+<section class="hero">
+  <div class="hero-box">
+    <h2>Best Deals • Trusted Products</h2>
+    <p>Amazon | Kurtis | Custom Print</p>
+    <a href="#">Shop Now</a>
+  </div>
+</section>
 
-<!-- HOME CONTENT -->
-<div class="section">
-  <h2>🛍️ Shop by Category</h2>
-  <div class="grid" id="homeCats"></div>
-</div>
+<section class="section">
+  <h2 style="margin-bottom:16px">Shop by Category</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1618354691229-88d47f285158">
+      <p>Amazon Deals</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1">
+      <p>Jaipur Kurtis</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f">
+      <p>Custom Mug Print</p>
+    </div>
+  </div>
+</section>
 
-<!-- FOOTER -->
-<footer id="footerBox">Loading…</footer>
-
-<script>
-/* HEADER + HERO API */
-const HEADER_API="https://script.google.com/macros/s/AKfycbzbtre2vlUi_moOGrVQ0dsNs3duKbY4B233Tp9KHmbXWffuG8nQ3MBRyvyCyr893NZpBA/exec";
-const FOOTER_API="https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
-
-/* HEADER + HERO */
-fetch(HEADER_API).then(r=>r.json()).then(d=>{
-  /* MENU */
-  document.getElementById("menu").innerHTML =
-    d.menu.filter(x=>x.SHOW==="YES")
-    .map(x=>`<a href="${x.LINK}">${x.TEXT}</a>`).join("");
-
-  /* HERO */
-  const hero=document.getElementById("hero");
-  let i=0;
-  d.hero.filter(x=>x.SHOW==="YES").forEach((h,idx)=>{
-    hero.innerHTML+=`
-      <div class="hero-slide">
-        <img src="${h.IMAGE}">
-        <div class="hero-text">
-          <h2>${h.TEXT||""}</h2>
-        </div>
-      </div>`;
-  });
-  const slides=document.querySelectorAll(".hero-slide");
-  if(slides.length){
-    slides[0].style.display="block";
-    setInterval(()=>{
-      slides[i].style.display="none";
-      i=(i+1)%slides.length;
-      slides[i].style.display="block";
-    },3500);
-  }
-});
-
-/* FOOTER */
-fetch(FOOTER_API).then(r=>r.json()).then(d=>{
-  document.getElementById("footerBox").innerHTML =
-    d.footer.map(x=>x.TEXT).join(" • ");
-});
-</script>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h3>Sainiwalaa</h3>
+      <p>Trusted • Secure • Fast Delivery</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <p><a href="#">Home</a></p>
+      <p><a href="#">Amazon</a></p>
+      <p><a href="#">Contact</a></p>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <p>Email: support@sainiwalaa.in</p>
+      <p>WhatsApp Available</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Sainiwalaa. All Rights Reserved.
+  </div>
+</footer>
 
 </body>
 </html>
