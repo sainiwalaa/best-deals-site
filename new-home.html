@@ -10,54 +10,44 @@
         body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: #0f1111; overflow-x: hidden; }
 
         /* HEADER */
-        #main-header{background:#131921;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;position:sticky;top:0;z-index:1000;box-shadow: 0 2px 10px rgba(0,0,0,0.2);}
+        #main-header{background:#131921;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;position:sticky;top:0;z-index:1000;}
         #menu a{color:#fff;margin-left:12px;text-decoration:none;font-weight:500;font-size:13px;}
 
-        /* PREMIUM SLIDER FRAME */
+        /* SLEEK BANNER (Thoda Chota aur Fit) */
         .slider-container { 
-            width: 95%; height: auto; aspect-ratio: 16/9; /* Sahi frame size */
+            width: 94%; height: 160px; /* Height fix kar di hai taaki bada na lage */
             margin: 10px auto; position: relative; 
-            overflow: hidden; border-radius: 12px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: #ddd;
+            overflow: hidden; border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); background: #eee;
         }
         .slides { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); height: 100%; }
         .slide { min-width: 100%; height: 100%; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
         
         /* CATEGORIES */
-        .cat-section { background: transparent; padding: 15px 0; }
-        .cat-scroll { display: flex; overflow-x: auto; gap: 15px; padding: 0 15px; scrollbar-width: none; }
-        .cat-item { text-align: center; min-width: 75px; transition: transform 0.2s; }
-        .cat-img-wrapper { 
-            width: 68px; height: 68px; border-radius: 50%; margin: 0 auto;
-            background: #fff; border: 2.5px solid var(--amazon-orange); 
-            padding: 2px; box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-        }
+        .cat-scroll { display: flex; overflow-x: auto; gap: 15px; padding: 10px 15px; scrollbar-width: none; background: #fff; margin-bottom: 5px; }
+        .cat-scroll::-webkit-scrollbar { display: none; }
+        .cat-item { text-align: center; min-width: 70px; }
+        .cat-img-wrapper { width: 62px; height: 62px; border-radius: 50%; border: 2px solid var(--amazon-orange); padding: 2px; margin: 0 auto; }
         .cat-img-wrapper img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .cat-item p { font-size: 11px; font-weight: 600; margin-top: 8px; color: #444; }
+        .cat-item p { font-size: 10px; font-weight: 600; margin-top: 5px; color: #333; }
 
         /* PRODUCT GRID */
-        .section-header { padding: 15px; font-size: 17px; font-weight: 700; color: #222; display: flex; align-items: center; gap: 8px; }
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 12px 20px; }
-        .p-card { 
-            background: #fff; border-radius: 10px; padding: 12px; 
-            display: flex; flex-direction: column; justify-content: space-between;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.3s;
-        }
-        .p-card img { width: 100%; height: 140px; object-fit: contain; }
-        .p-price { margin-top: 8px; font-size: 18px; font-weight: 700; color: #b12704; }
-        .buy-btn { 
-            background: linear-gradient(to bottom, #f7dfa1, #f0c14b); border: 1px solid #a88734; 
-            border-radius: 8px; color: #111; text-align: center; padding: 8px; 
-            text-decoration: none; font-size: 12px; font-weight: 500; margin-top: 10px;
-        }
+        .section-header { padding: 15px; font-size: 16px; font-weight: 700; background: #fff; }
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px; }
+        .p-card { background: #fff; border-radius: 8px; padding: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+        .p-card img { width: 100%; height: 130px; object-fit: contain; }
+        .p-price { font-size: 17px; font-weight: 700; color: #b12704; margin-top: 5px; }
+        .buy-btn { background: #ffd814; border: 1px solid #fcd200; border-radius: 5px; color: #111; text-align: center; padding: 6px; display: block; text-decoration: none; font-size: 12px; font-weight: 600; margin-top: 8px; }
 
-        /* LOADER ANIMATION */
-        #loader { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; 
-        }
-        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--amazon-orange); border-radius: 50%; animation: spin 1s linear infinite; }
+        /* FOOTER (Same as other pages) */
+        #sw-footer{ width:100%; background:#050b1a; padding:30px 15px; color:#fff; margin-top:20px; text-align:center; box-sizing: border-box;}
+        .sw-links a { color: #fff; text-decoration: none; display: block; margin: 8px 0; font-size: 13px; opacity: 0.8; }
+        #sw-bottom { margin-top: 20px; font-size: 11px; opacity: 0.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
+
+        /* LOADER */
+        #loader { position: fixed; top: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+        .spinner { width: 35px; height: 35px; border: 3px solid #f3f3f3; border-top: 3px solid var(--amazon-orange); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
@@ -66,51 +56,65 @@
     <div id="loader"><div class="spinner"></div></div>
 
     <header id="main-header">
-      <div style="letter-spacing:1px; font-weight:700; font-size:18px;" onclick="location.href='index.html'">SAINIWALAA</div>
+      <div style="font-weight:700; font-size:18px;" onclick="location.href='index.html'">SAINIWALAA</div>
       <div id="menu"></div>
     </header>
 
     <div id="main-content" style="display:none;">
         <div class="slider-container"><div class="slides" id="banner-root"></div></div>
-        <div class="cat-section"><div class="cat-scroll" id="cat-root"></div></div>
-        <div class="section-header">Best Offers For You Today 🔥</div>
+        <div class="cat-scroll" id="cat-root"></div>
+        <div class="section-header">Trending Deals 🔥</div>
         <div class="product-grid" id="prod-root"></div>
+        
+        <footer id="sw-footer">
+            <div id="f-center"></div>
+            <div id="sw-bottom"></div>
+        </footer>
     </div>
 
 <script>
 const API_HOME = "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec";
 const API_HEADER = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
+const API_FOOTER = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-// Optimized Data Fetching
-Promise.all([fetch(API_HEADER), fetch(API_HOME)])
+Promise.all([fetch(API_HEADER), fetch(API_HOME), fetch(API_FOOTER)])
 .then(responses => Promise.all(responses.map(r => r.json())))
-.then(([headerData, homeData]) => {
+.then(([headerData, homeData, footerData]) => {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('main-content').style.display = 'block';
 
     // Header
     headerData.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
 
-    // Home Content
+    // Home Body
     let bCount = 0;
     homeData.forEach(item => {
         if(item.TYPE === "BANNER") {
-            document.getElementById('banner-root').innerHTML += `<div class="slide"><a href="${item.LINK}"><img src="${item.IMAGE_URL}" loading="lazy"></a></div>`;
+            document.getElementById('banner-root').innerHTML += `<div class="slide"><a href="${item.LINK}"><img src="${item.IMAGE_URL}"></a></div>`;
             bCount++;
         } else if(item.TYPE === "CAT") {
-            document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-img-wrapper"><img src="${item.IMAGE_URL}" loading="lazy"></div><p>${item.TITLE}</p></div>`;
+            document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-img-wrapper"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
         } else if(item.TYPE === "PRODUCT") {
-            document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}" loading="lazy"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="buy-btn">View Offer</a></div>`;
+            document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="buy-btn">Get Deal</a></div>`;
         }
     });
 
+    // Auto Slider
     if(bCount > 1) {
         let current = 0;
         setInterval(() => {
             current = (current + 1) % bCount;
             document.getElementById('banner-root').style.transform = `translateX(-${current * 100}%)`;
-        }, 4500);
+        }, 4000);
     }
+
+    // Footer
+    footerData.footer.forEach(i => {
+        let box = i.POSITION === "CENTER" ? document.getElementById("f-center") : document.getElementById("sw-bottom");
+        if(i.TYPE === "TITLE") box.innerHTML += `<h2 style="color:#ff9800; font-size:18px; margin-bottom:15px;">${i.TEXT}</h2>`;
+        else if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
+        else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
+    });
 });
 </script>
 </body>
