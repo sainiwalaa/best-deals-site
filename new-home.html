@@ -2,124 +2,122 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sainiwalaa - Home v2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sainiwalaa - Home Fix</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --amz-blue: #131921; --amz-orange: #ff9900; --light-bg: #eaeded; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--light-bg); overflow-x: hidden; }
+        :root { --amz-blue: #131921; --amz-orange: #ff9900; --bg: #eaeded; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: #333; }
 
         /* HEADER */
-        header { background: var(--amz-blue); color: white; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        #menu a { color: white; text-decoration: none; margin-left: 10px; font-size: 12px; font-weight: 600; }
+        header { background: var(--amz-blue); padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        #menu a { color: white; text-decoration: none; margin-left: 12px; font-size: 13px; font-weight: 600; }
 
-        /* FULL WIDTH AMAZON BANNER */
-        .slider-wrapper { 
-            width: 100% !important; 
-            height: 250px !important; /* Amazon standard mobile height */
-            position: relative; 
-            overflow: hidden; 
-            background: #ccc;
+        /* BANNER WITH BORDER FRAME (Amazon Style) */
+        .banner-frame { 
+            width: 94%; height: 210px; margin: 12px auto; 
+            border: 3px solid white; border-radius: 12px; 
+            overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background: #fff; position: relative;
         }
-        #banner-root { display: flex; transition: transform 0.5s ease-in-out; height: 100%; width: 100%; }
+        #banner-root { display: flex; transition: transform 0.8s ease-in-out; height: 100%; }
         .slide { min-width: 100%; height: 100%; }
-        .slide img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+        .slide img { width: 100%; height: 100%; object-fit: contain; background: #fff; } /* 'contain' se image kategi nahi */
 
-        /* CATEGORIES OVERLAP */
-        .cat-container { 
-            display: flex; overflow-x: auto; padding: 10px; gap: 15px; 
-            background: white; margin-top: -30px; /* Overlap effect */
-            position: relative; z-index: 5; scrollbar-width: none;
-            box-shadow: 0 -5px 10px rgba(0,0,0,0.05);
-        }
-        .cat-container::-webkit-scrollbar { display: none; }
-        .cat-card { text-align: center; min-width: 80px; }
-        .cat-circle { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--amz-orange); padding: 2px; margin: 0 auto; background: #fff; }
+        /* CATEGORY SECTION */
+        .cat-row { display: flex; overflow-x: auto; padding: 10px; gap: 15px; scrollbar-width: none; background: transparent; }
+        .cat-row::-webkit-scrollbar { display: none; }
+        .cat-item { text-align: center; min-width: 75px; }
+        .cat-circle { width: 65px; height: 65px; border-radius: 50%; border: 2.5px solid var(--amz-orange); padding: 2px; background: #fff; margin: 0 auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .cat-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .cat-card p { font-size: 11px; margin-top: 5px; font-weight: 600; color: #333; }
+        .cat-item p { font-size: 11px; font-weight: 600; margin-top: 6px; }
 
-        /* PRODUCTS */
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; }
-        .p-card { background: white; border-radius: 5px; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        /* PRODUCT GRID */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; }
+        .p-card { background: white; border-radius: 8px; padding: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .p-card img { width: 100%; height: 130px; object-fit: contain; }
-        .p-price { color: #B12704; font-size: 18px; font-weight: 600; margin: 5px 0; }
-        .p-btn { background: #ffd814; border: 1px solid #fcd200; border-radius: 5px; padding: 8px; display: block; text-align: center; text-decoration: none; color: black; font-size: 12px; font-weight: 600; }
+        .p-price { color: #B12704; font-size: 19px; font-weight: 700; margin: 8px 0; }
+        .btn { background: #ffd814; border: 1px solid #fcd200; border-radius: 6px; padding: 9px; display: block; text-align: center; text-decoration: none; color: #111; font-size: 12px; font-weight: 600; }
 
         /* FOOTER */
-        footer { background: #232f3e; color: white; padding: 30px 20px; text-align: center; margin-top: 20px; }
-        
-        #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        footer { background: #232f3e; color: white; padding: 30px 20px; text-align: center; margin-top: 25px; border-top: 4px solid var(--amz-orange); }
+        .f-link { color: #febd69; text-decoration: none; display: block; margin: 8px 0; font-size: 14px; }
+
+        #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--amz-orange); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
-<div id="loader">Updating Look...</div>
+<div id="loader"><div class="spinner"></div><p>Loading Best Deals...</p></div>
 
 <header>
-    <div style="font-size: 20px; font-weight: bold; color: #febd69;">SAINIWALAA</div>
+    <div style="font-size: 22px; font-weight: bold; color: #febd69;">SAINIWALAA</div>
     <div id="menu"></div>
 </header>
 
-<div class="slider-wrapper">
+<div class="banner-frame">
     <div id="banner-root"></div>
 </div>
 
-<div class="cat-container" id="cat-root"></div>
+<div class="cat-row" id="cat-root"></div>
 
-<div class="product-grid" id="prod-root"></div>
+<div style="padding: 15px 15px 0; font-weight: bold; font-size: 18px;">Today's Hot Deals 🔥</div>
+<div class="grid" id="prod-root"></div>
 
 <footer id="sw-footer">
-    <div id="f-center"></div>
-    <div id="sw-bottom" style="margin-top:20px; font-size:11px; opacity:0.6;"></div>
+    <div id="f-data"></div>
+    <div id="f-bottom" style="margin-top:20px; font-size:11px; opacity:0.5;"></div>
 </footer>
 
 <script>
-const API_HOME = "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec";
-const API_HEADER = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
-const API_FOOTER = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
+const APIs = [
+    "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec", // Header
+    "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec", // Home
+    "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec"  // Footer
+];
 
-async function loadData() {
-    const [hRes, homeRes, fRes] = await Promise.all([fetch(API_HEADER), fetch(API_HOME), fetch(API_FOOTER)]);
-    const h = await hRes.json();
-    const home = await homeRes.json();
-    const f = await fRes.json();
+async function init() {
+    try {
+        const [h, home, f] = await Promise.all(APIs.map(url => fetch(url).then(r => r.json())));
+        document.getElementById('loader').style.display = 'none';
 
-    document.getElementById('loader').style.display = 'none';
+        // Header
+        h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
 
-    // Load Header
-    h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
+        // Content
+        let bCount = 0;
+        home.forEach(item => {
+            if(item.TYPE === "BANNER") {
+                document.getElementById('banner-root').innerHTML += `<div class="slide"><img src="${item.IMAGE_URL}"></div>`;
+                bCount++;
+            } else if(item.TYPE === "CAT") {
+                document.getElementById('cat-root').innerHTML += `<div class="cat-item"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
+            } else if(item.TYPE === "PRODUCT") {
+                document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Deal</a></div>`;
+            }
+        });
 
-    // Load Home Data
-    let bCount = 0;
-    home.forEach(item => {
-        if(item.TYPE === "BANNER") {
-            document.getElementById('banner-root').innerHTML += `<div class="slide"><img src="${item.IMAGE_URL}"></div>`;
-            bCount++;
-        } else if(item.TYPE === "CAT") {
-            document.getElementById('cat-root').innerHTML += `<div class="cat-card"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
-        } else if(item.TYPE === "PRODUCT") {
-            document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="p-btn">Buy Now</a></div>`;
+        // Slider (5 Seconds)
+        if(bCount > 1) {
+            let cur = 0;
+            setInterval(() => {
+                cur = (cur + 1) % bCount;
+                document.getElementById('banner-root').style.transform = `translateX(-${cur * 100}%)`;
+            }, 5000);
         }
-    });
 
-    // Slider Logic
-    if(bCount > 1) {
-        let cur = 0;
-        setInterval(() => {
-            cur = (cur + 1) % bCount;
-            document.getElementById('banner-root').style.transform = `translateX(-${cur * 100}%)`;
-        }, 3000);
-    }
+        // Footer Fix
+        f.footer.forEach(i => {
+            if(i.TYPE === "TITLE") document.getElementById("f-data").innerHTML += `<h3 style="color:#febd69">${i.TEXT}</h3>`;
+            else if(i.TYPE === "LINK") document.getElementById("f-data").innerHTML += `<a href="${i.LINK}" class="f-link">${i.TEXT}</a>`;
+            else if(i.TYPE === "BOTTOM") document.getElementById("f-bottom").innerText = i.TEXT;
+        });
 
-    // Footer
-    f.footer.forEach(i => {
-        let box = i.POSITION === "CENTER" ? document.getElementById("f-center") : document.getElementById("sw-bottom");
-        if(i.TYPE === "TITLE") box.innerHTML += `<h2 style="color:#ff9800; font-size:18px;">${i.TEXT}</h2>`;
-        else if(i.TYPE === "LINK") box.innerHTML += `<div style="margin:5px 0"><a href="${i.LINK}" style="color:white; text-decoration:none; font-size:14px;">${i.TEXT}</a></div>`;
-        else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
-    });
+    } catch (e) { console.error("Data Error", e); }
 }
-loadData();
+init();
 </script>
 </body>
 </html>
