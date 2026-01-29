@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="google-site-verification" content="T3of_a7SwHge6KHfW1kJ6CXFHrb24va0-HN67ove-WM" />
+
 <title>Sainiwalaa – Trusted Online Shopping & Deals</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -41,7 +44,7 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 .cat img{width:100%;height:130px;object-fit:cover;border-radius:10px}
 .banner img{width:100%;border-radius:14px;margin:14px 0}
 
-/* ================= NEW FOOTER CSS ================= */
+/* FOOTER CSS */
 #sw-footer{ width:100%; background:linear-gradient(180deg,#050b1a,#0b1730); padding:50px 20px 25px; color:#ffffff; margin-top:50px; }
 #sw-marquee{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px; }
 #sw-marquee span{ display:inline-block; animation:sw-scroll 28s linear infinite; font-weight:600; }
@@ -100,80 +103,57 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 </div>
 
 <script>
-/* API 1 & 2 (Header, Hero, Categories) */
 const API_HEAD = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
 const API_HOME = "https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
 const FOOTER_API = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
+// Header & Hero Logic
 fetch(API_HEAD).then(r=>r.json()).then(d=>{
   d.menu.forEach(m=> document.getElementById('menu').innerHTML+=`<a href="${m.link}">${m.text}</a>`);
   let slides=[];
   d.hero.forEach(h=>{
-    if(h.type==="TITLE") heroTitle.innerText=h.text;
-    if(h.type==="NOTICE") heroNotice.innerText=h.text;
-    if(h.type==="TAG") heroTags.innerHTML+=`<div class="catbox">${h.text}</div>`;
+    if(h.type==="TITLE") document.getElementById('heroTitle').innerText=h.text;
+    if(h.type==="NOTICE") document.getElementById('heroNotice').innerText=h.text;
+    if(h.type==="TAG") document.getElementById('heroTags').innerHTML+=`<div class="catbox">${h.text}</div>`;
     if(h.type==="SLIDE") slides.push(h.image);
   });
   if(slides.length){
-    let i=0; heroImg.src=slides[0];
-    setInterval(()=>{i=(i+1)%slides.length;heroImg.src=slides[i]},3000);
+    let i=0; document.getElementById('heroImg').src=slides[0];
+    setInterval(()=>{i=(i+1)%slides.length;document.getElementById('heroImg').src=slides[i]},3000);
   }
 });
 
+// Home Content Logic
 fetch(API_HOME).then(r=>r.json()).then(d=>{
-  marqueeText.innerText=d.marquee.map(x=>x.TEXT).join(" | ");
+  document.getElementById('marqueeText').innerText=d.marquee.map(x=>x.TEXT).join(" | ");
   d.hero.forEach(x=>{
-    slider.innerHTML+=`<div class="slide"><img src="${x.IMAGE_URL}"><div class="slide-content"><h3>${x.TITLE||""}</h3><p>${x.SUB_TITLE||""}</p>${x.BUTTON_TEXT?`<a href="${x.BUTTON_LINK}">${x.BUTTON_TEXT}</a>`:""}</div></div>`;
+    document.getElementById('slider').innerHTML+=`<div class="slide"><img src="${x.IMAGE_URL}"><div class="slide-content"><h3>${x.TITLE||""}</h3><p>${x.SUB_TITLE||""}</p>${x.BUTTON_TEXT?`<a href="${x.BUTTON_LINK}">${x.BUTTON_TEXT}</a>`:""}</div></div>`;
   });
   let s=document.querySelectorAll(".slide"),j=0;
   if(s.length){s[0].style.display="block"; setInterval(()=>{s[j].style.display="none";j=(j+1)%s.length;s[j].style.display="block"},3500);}
-  d.categories.forEach(x=> categories.innerHTML+=`<div class="cat" onclick="location.href='${x.PAGE_LINK}'"><img src="${x.IMAGE}"><p>${x.NAME}</p></div>`);
-  d.banners.forEach(x=> banners.innerHTML+=`<a href="${x.LINK}"><img src="${x.IMAGE_URL}"></a>`);
+  d.categories.forEach(x=> document.getElementById('categories').innerHTML+=`<div class="cat" onclick="location.href='${x.PAGE_LINK}'"><img src="${x.IMAGE}"><p>${x.NAME}</p></div>`);
+  d.banners.forEach(x=> document.getElementById('banners').innerHTML+=`<a href="${x.LINK}"><img src="${x.IMAGE_URL}"></a>`);
 });
 
-/* ================= FIXED FOOTER SCRIPT ================= */
+// Footer Logic
 fetch(FOOTER_API).then(r=>r.json()).then(d=>{
   if(!d.footer) return;
   d.footer.forEach(i=>{
-    let box = 
-      i.POSITION==="LEFT" ? document.getElementById("sw-left") :
-      i.POSITION==="CENTER" ? document.getElementById("sw-center") :
-      i.POSITION==="RIGHT" ? document.getElementById("sw-right") :
-      i.POSITION==="BOTTOM" ? document.getElementById("sw-bottom") :
-      document.getElementById("sw-marquee");
-
-    if(i.TYPE==="MARQUEE"){
-      box.innerHTML=`<span style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</span>`;
-    }
-    else if(i.TYPE==="TITLE"){
-      box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
-    }
-    else if(i.TYPE==="TEXT"){
-      box.innerHTML+=`<p style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</p>`;
-    }
-    else if(i.TYPE==="LINK"){
-      box.innerHTML+=`<div class="sw-links-container"><a href="${i.LINK}" style="font-size:${i.SIZE}px;color:${i.COLOR}">${i.TEXT}</a></div>`;
-    }
-    else if(i.TYPE==="BUTTON"){
-      box.innerHTML+=`<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
-    }
+    let box = i.POSITION==="LEFT" ? document.getElementById("sw-left") : i.POSITION==="CENTER" ? document.getElementById("sw-center") : i.POSITION==="RIGHT" ? document.getElementById("sw-right") : i.POSITION==="BOTTOM" ? document.getElementById("sw-bottom") : document.getElementById("sw-marquee");
+    if(i.TYPE==="MARQUEE") box.innerHTML=`<span style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</span>`;
+    else if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
+    else if(i.TYPE==="TEXT") box.innerHTML+=`<p style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</p>`;
+    else if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links-container"><a href="${i.LINK}" style="font-size:${i.SIZE}px;color:${i.COLOR}">${i.TEXT}</a></div>`;
+    else if(i.TYPE==="BUTTON") box.innerHTML+=`<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
     else if(i.TYPE==="SOCIAL"){
-      // Social ke liye container check karein ya banayein
-      let socialCont = box.querySelector('.sw-social-container');
-      if(!socialCont) {
-        box.innerHTML += `<div class="sw-social-container"></div>`;
-        socialCont = box.querySelector('.sw-social-container');
-      }
+      let socialCont = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
       socialCont.innerHTML+=`<a href="${i.LINK}" style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</a>`;
     }
-    else if(i.TYPE==="BOTTOM"){
-      box.innerText=i.TEXT;
-      box.style.color=i.COLOR;
-    }
+    else if(i.TYPE==="BOTTOM") { box.innerText=i.TEXT; box.style.color=i.COLOR; }
   });
 });
 
-/* Simple Timer */
+// Simple Timer
 let t=3600*3;
 setInterval(()=>{
   let h=Math.floor(t/3600), m=Math.floor((t%3600)/60), s=t%60;
