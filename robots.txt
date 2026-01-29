@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sainiwalaa.github.io/best-deals-site/sitemap.xml
