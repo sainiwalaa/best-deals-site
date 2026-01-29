@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print T-Shirt Store – Sainiwalaa</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* THEME VARIABLES */
+:root{ --primary:#0f172a; --accent:#e91e63; --bg:#f4f6fb; --card:#ffffff; --text:#222; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:var(--text);transition:.3s}
+
+/* HEADER */
+#main-header{background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;position:sticky;top:0;z-index:1000;}
+#menu a{color:#fff;margin-left:18px;text-decoration:none;font-weight:600;font-size:14px;}
+
+/* WRAPPER */
+.wrapper{max-width:1200px;margin:30px auto;padding:0 20px; min-height: 60vh;}
+
+/* CATEGORY BAR */
+#categoryBar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:25px;justify-content:center;}
+.cat-btn{ padding:10px 22px; border:none; border-radius:30px; background:#ddd; font-weight:600; cursor:pointer; transition:0.3s; }
+.cat-btn.active{background:var(--accent);color:#fff}
+
+/* PRODUCT GRID */
+#productGrid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:25px; }
+.card{ background:var(--card); border-radius:16px; box-shadow:0 8px 20px rgba(0,0,0,.08); overflow:hidden; text-align:center; transition: 0.3s; border:1px solid rgba(0,0,0,0.05); }
+.card:hover{ transform: translateY(-5px); }
+.card img{width:100%;height:250px;object-fit:cover; background:#f9f9f9;}
+.card h4{margin:15px 10px 5px;font-size:16px; height:45px; overflow:hidden;}
+.price{font-size:20px;font-weight:700;color:#2e7d32; margin-bottom:15px;}
+.order-now-btn{ 
+    margin:0 15px 20px; padding:12px; width:calc(100% - 30px); border:none; border-radius:25px; 
+    background:linear-gradient(135deg,#e91e63,#ff5722); color:#fff; font-size:15px; font-weight:700; cursor:pointer; 
+}
+
+/* ORDER PAGE */
+#orderPage{ display:none; background:#fff; padding:30px; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,.15); }
+.order-layout{ display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-top:20px;}
+.order-img img{width:100%; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.form-box h2{color:var(--accent); margin-bottom:15px;}
+input, textarea{ width:100%; padding:12px; border-radius:10px; border:1px solid #ddd; margin-bottom:15px; font-size:14px; }
+.note{ font-size:13px; background:#fff3cd; padding:15px; border-radius:10px; margin-bottom:15px; border-left:4px solid #ffc107; }
+
+/* BUTTONS */
+.btn{ width:100%; padding:14px; border:none; border-radius:30px; font-size:16px; font-weight:700; cursor:pointer; transition:0.3s; }
+.submit-btn{background:linear-gradient(135deg,#43a047,#2e7d32);color:#fff}
+.back-btn{background:#6c757d;color:#fff;margin-bottom:20px; width:auto; padding:8px 20px; font-size:14px;}
+
+/* SUCCESS BOX */
+#successBox{ display:none; text-align:center; background:#fff; padding:50px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,.1); }
+#successBox h2{color:#2e7d32; margin-bottom:15px;}
+
+/* FOOTER */
+#sw-footer{ width:100%; background:#050b1a; padding:50px 20px 25px; color:#ffffff; margin-top:60px; }
+#sw-marquee-footer{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px; }
+#sw-marquee-footer span{ display:inline-block; animation:sw-scroll 28s linear infinite; font-weight:600; color:#ff9800; }
+@keyframes sw-scroll{ from{transform:translateX(100%)} to{transform:translateX(-100%)} }
+#sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:40px; }
+.sw-col h2{ margin-bottom:15px; font-size:22px; color:#ff9800; }
+.sw-links a{ display:block; margin:8px 0; color:#fff; text-decoration:none; font-size:14px; opacity:0.9; }
+.sw-social{ display:flex; gap:12px; margin-top:15px; }
+.sw-social a{ padding: 5px 12px; border: 1px solid #ff9800; color:#ff9800; border-radius:5px; text-decoration:none; font-size:12px; font-weight:700; }
+
+@media(max-width:768px){ .order-layout{grid-template-columns:1fr} #sw-inner{text-align:center} .sw-social{justify-content:center} }
+</style>
+</head>
+
+<body>
+
+<header id="main-header">
+  <div style="font-weight:700; font-size:20px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
+  <div id="menu"></div>
+</header>
+
+<div class="wrapper">
+    <div id="categoryBar"></div>
+
+    <div id="productGrid">
+        <p style="text-align:center; grid-column:1/-1;">Loading T-Shirts...</p>
+    </div>
+
+    <div id="orderPage">
+      <button class="btn back-btn" onclick="backToProducts()">← Back to Store</button>
+      <div class="order-layout">
+        <div class="order-img">
+          <img id="oImg">
+          <h3 id="oName" style="margin-top:15px;"></h3>
+          <div class="price" id="oPrice" style="color:#2e7d32; font-size:24px;"></div>
+        </div>
+        <div class="form-box">
+          <h2>Place Your Order</h2>
+          <div class="note">
+            📌 Kripya <b>Mobile aur Address</b> sahi bharein taaki hum aapse sampark kar sakein.
+          </div>
+          <input id="cName" placeholder="Aapka Poora Naam">
+          <input id="cMobile" placeholder="Mobile Number (10 Digit)" maxlength="10">
+          <textarea id="cAddress" placeholder="Poora Pata (House No, Gali, City)" rows="3"></textarea>
+          <input id="cPin" placeholder="PIN Code" maxlength="6">
+          <div id="error" style="color:red; margin-bottom:10px; font-weight:600;"></div>
+          <button class="btn submit-btn" id="submitBtn" onclick="submitOrder()">CONFIRM ORDER</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="successBox">
+      <h2>🎉 Order Successful!</h2>
+      <p id="orderMsg" style="margin-bottom:20px; line-height:1.6;"></p>
+      <button class="btn submit-btn" style="width:auto; padding:12px 30px;" onclick="backToProducts()">🛍️ Continue Shopping</button>
+    </div>
+</div>
+
+<footer id="sw-footer">
+  <div id="sw-marquee-footer"></div>
+  <div id="sw-inner">
+    <div class="sw-col" id="f-left"></div>
+    <div class="sw-col" id="f-center"></div>
+    <div class="sw-col" id="f-right"></div>
+  </div>
+  <div id="sw-bottom" style="text-align:center; margin-top:30px; opacity:0.6; font-size:12px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px;"></div>
+</footer>
+
+<script>
+const API_URL="https://script.google.com/macros/s/AKfycbwnHCxxocmdkD0sr8SDu7VKDiQf7e2fukIwtLJazF9-kVwpTkoQ561nDYbCWyePvirM/exec";
+const API_HEADER = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
+const API_FOOTER = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
+
+let products=[], currentProduct=null, submitted=false;
+
+// Fetch Products
+fetch(API_URL).then(r=>r.json()).then(d=>{
+  products=d.products;
+  loadCategories();
+  renderProducts(products);
+});
+
+// Fetch Header
+fetch(API_HEADER).then(r=>r.json()).then(d=>{
+  d.menu.forEach(m=> document.getElementById('menu').innerHTML+=`<a href="${m.link}">${m.text}</a>`);
+});
+
+// Fetch Footer
+fetch(API_FOOTER).then(r=>r.json()).then(d=>{
+  if(!d.footer) return;
+  d.footer.forEach(i=>{
+    let box = i.POSITION==="LEFT"?document.getElementById("f-left"):i.POSITION==="CENTER"?document.getElementById("f-center"):i.POSITION==="RIGHT"?document.getElementById("f-right"):i.POSITION==="BOTTOM"?document.getElementById("sw-bottom"):document.getElementById("sw-marquee-footer");
+    if(i.TYPE==="MARQUEE") box.innerHTML = `<span>${i.TEXT}</span>`;
+    else if(i.TYPE==="TITLE") box.innerHTML += `<h2>${i.TEXT}</h2>`;
+    else if(i.TYPE==="TEXT") box.innerHTML += `<p style="font-size:14px; opacity:0.8;">${i.TEXT}</p>`;
+    else if(i.TYPE==="LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
+    else if(i.TYPE==="SOCIAL"){
+        let sc = box.querySelector('.sw-social') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social'}));
+        sc.innerHTML += `<a href="${i.LINK}">${i.TEXT}</a>`;
+    }
+    else if(i.TYPE==="BOTTOM") box.innerText = i.TEXT;
+  });
+});
+
+function loadCategories(){
+  const cats=[...new Set(products.map(p=>p.CATEGORY))];
+  document.getElementById("categoryBar").innerHTML=cats.map((c,i)=>`
+    <button class="cat-btn ${i==0?"active":""}" onclick="filterCat('${c}',this)">${c}</button>
+  `).join("");
+}
+
+function filterCat(cat,btn){
+  document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  renderProducts(products.filter(p=>p.CATEGORY===cat));
+}
+
+function renderProducts(list){
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML=list.map(p=>`
+    <div class="card">
+      <img src="${p.IMAGE}" alt="${p.NAME}">
+      <h4>${p.NAME}</h4>
+      <div class="price">₹ ${p.PRIZE}</div>
+      <button class="order-now-btn" onclick='openOrder(${JSON.stringify(p)})'>ORDER NOW</button>
+    </div>
+  `).join("");
+}
+
+function openOrder(p){
+  currentProduct=p;
+  document.getElementById("productGrid").style.display="none";
+  document.getElementById("categoryBar").style.display="none";
+  document.getElementById("orderPage").style.display="block";
+  document.getElementById("oImg").src=p.IMAGE;
+  document.getElementById("oName").innerText=p.NAME;
+  document.getElementById("oPrice").innerText="₹ "+p.PRIZE;
+  window.scrollTo(0,0);
+}
+
+function backToProducts(){
+  submitted=false;
+  document.getElementById("orderPage").style.display="none";
+  document.getElementById("successBox").style.display="none";
+  document.getElementById("productGrid").style.display="grid";
+  document.getElementById("categoryBar").style.display="flex";
+  window.scrollTo(0,0);
+}
+
+async function submitOrder(){
+  if(submitted) return;
+  const name=document.getElementById("cName").value;
+  const mobile=document.getElementById("cMobile").value;
+  const address=document.getElementById("cAddress").value;
+  const pin=document.getElementById("cPin").value;
+
+  if(!name || !/^[6-9]\d{9}$/.test(mobile) || !address || !/^\d{6}$/.test(pin)){
+    document.getElementById("error").innerText="❌ Kripya sabhi jankari sahi bharein.";
+    return;
+  }
+
+  submitted=true;
+  const btn = document.getElementById("submitBtn");
+  btn.disabled=true; btn.innerText="Processing...";
+
+  try {
+    const res=await fetch(API_URL,{
+      method:"POST",
+      body:JSON.stringify({name, mobile, address, pin, suk:currentProduct.SUK})
+    });
+    const data=await res.json();
+    if(data.status==="success"){
+      document.getElementById("orderPage").style.display="none";
+      document.getElementById("successBox").style.display="block";
+      document.getElementById("orderMsg").innerHTML=`🙏 Order ID: <b>${data.orderId}</b><br>Sainiwalaa par bharosa karne ke liye dhanyavaad!`;
+    }
+  } catch(e) {
+    document.getElementById("error").innerText="❌ Network Error. Please try again.";
+    submitted=false; btn.disabled=false; btn.innerText="CONFIRM ORDER";
+  }
+}
+</script>
+</body>
+</html>
