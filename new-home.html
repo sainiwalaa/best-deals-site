@@ -3,59 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sainiwalaa - Premium Home</title>
+    <title>Sainiwalaa - Final Fix</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --amz-blue: #131921; --amz-orange: #ff9900; --bg: #eaeded; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: #333; overflow-x: hidden; }
+        :root { --amz-blue: #131921; --amz-orange: #ff9900; --bg: #eaeded; --frame-color: #ff9900; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); overflow-x: hidden; }
 
-        /* HEADER */
         header { background: var(--amz-blue); padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
         #menu a { color: white; text-decoration: none; margin-left: 12px; font-size: 13px; font-weight: 600; }
 
-        /* BANNER FRAME (Amazon Style) */
+        /* BANNER FRAME - Image ab kategi nahi */
         .banner-frame { 
-            width: 94%; height: 230px; margin: 12px auto; 
-            border: 3px solid white; border-radius: 12px; 
-            overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            background: #fff; position: relative;
+            width: 92%; height: 200px; margin: 15px auto; 
+            border: 3px solid var(--frame-color); border-radius: 15px; 
+            overflow: hidden; background: #fff; position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        #banner-root { display: flex; height: 100%; transition: transform 0.8s cubic-bezier(0.45, 0, 0.55, 1); }
-        .slide { min-width: 100%; height: 100%; flex-shrink: 0; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        #banner-root { display: flex; height: 100%; transition: transform 0.8s ease-in-out; }
+        .slide { min-width: 100%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        
+        /* IMAGE FIT FIX */
+        .slide img { width: 100%; height: 100%; object-fit: contain; padding: 5px; box-sizing: border-box; }
 
-        /* CATEGORY SECTION */
-        .cat-row { display: flex; overflow-x: auto; padding: 10px; gap: 15px; scrollbar-width: none; background: transparent; }
+        .cat-row { display: flex; overflow-x: auto; padding: 10px; gap: 15px; scrollbar-width: none; }
         .cat-row::-webkit-scrollbar { display: none; }
         .cat-item { text-align: center; min-width: 75px; }
-        .cat-circle { width: 68px; height: 68px; border-radius: 50%; border: 2.5px solid var(--amz-orange); padding: 2px; background: #fff; margin: 0 auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .cat-circle { width: 65px; height: 65px; border-radius: 50%; border: 2.5px solid var(--amz-orange); padding: 2px; background: #fff; margin: 0 auto; }
         .cat-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
         .cat-item p { font-size: 11px; font-weight: 600; margin-top: 6px; }
 
-        /* PRODUCT GRID */
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; }
         .p-card { background: white; border-radius: 8px; padding: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .p-card img { width: 100%; height: 130px; object-fit: contain; }
-        .p-price { color: #B12704; font-size: 19px; font-weight: 700; margin: 8px 0; }
-        .btn { background: #ffd814; border: 1px solid #fcd200; border-radius: 6px; padding: 9px; display: block; text-align: center; text-decoration: none; color: #111; font-size: 12px; font-weight: 600; }
+        .p-card img { width: 100%; height: 120px; object-fit: contain; }
+        .p-price { color: #B12704; font-size: 18px; font-weight: 700; margin: 5px 0; }
+        .btn { background: #ffd814; border: 1px solid #fcd200; border-radius: 6px; padding: 8px; display: block; text-align: center; text-decoration: none; color: #111; font-size: 12px; font-weight: 600; }
 
-        /* FOOTER FIX (Professional Style) */
-        footer { background: #232f3e; color: white; padding: 40px 20px; text-align: center; margin-top: 25px; border-top: 4px solid var(--amz-orange); }
-        #f-data h3 { color: #febd69; font-size: 18px; margin-bottom: 20px; }
-        .f-link { color: #fff; text-decoration: none; display: block; margin: 12px 0; font-size: 14px; opacity: 0.8; }
-        #f-bottom { margin-top: 25px; font-size: 11px; opacity: 0.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        /* FOOTER FIX */
+        footer { background: #232f3e; color: white; padding: 30px 20px; text-align: center; margin-top: 25px; border-top: 4px solid var(--amz-orange); }
+        .f-link { color: #febd69; text-decoration: none; display: block; margin: 8px 0; font-size: 14px; }
+        #f-bottom { margin-top:20px; font-size:11px; opacity:0.5; border-top: 1px solid #444; padding-top:15px; }
 
-        #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--amz-orange); border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
 
-<div id="loader"><div class="spinner"></div><p>Sainiwalaa Loading...</p></div>
+<div id="loader">Loading...</div>
 
 <header>
-    <div style="font-size: 22px; font-weight: bold; color: #febd69; letter-spacing: 1px;">SAINIWALAA</div>
+    <div style="font-size: 22px; font-weight: bold; color: #febd69;">SAINIWALAA</div>
     <div id="menu"></div>
 </header>
 
@@ -65,7 +61,7 @@
 
 <div class="cat-row" id="cat-root"></div>
 
-<div style="padding: 15px 15px 0; font-weight: bold; font-size: 18px; color: #444;">Today's Hot Deals 🔥</div>
+<div style="padding: 10px 15px; font-weight: bold; font-size: 18px;">Today's Hot Deals 🔥</div>
 <div class="grid" id="prod-root"></div>
 
 <footer id="sw-footer">
@@ -88,37 +84,35 @@ async function init() {
         // Header
         h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
 
-        // Banner Data & Infinite Setup
+        // Infinite Slider Setup
         const bRoot = document.getElementById('banner-root');
         let banners = home.filter(i => i.TYPE === "BANNER");
         
-        // Loop ke liye pehli image ko clone karke aakhri mein lagana
         banners.forEach(item => {
             bRoot.innerHTML += `<div class="slide"><img src="${item.IMAGE_URL}"></div>`;
         });
-        if(banners.length > 0) {
-            bRoot.innerHTML += `<div class="slide"><img src="${banners[0].IMAGE_URL}"></div>`;
-        }
+        // Loop ke liye clone
+        if(banners.length > 0) bRoot.innerHTML += `<div class="slide"><img src="${banners[0].IMAGE_URL}"></div>`;
 
-        // Categories & Products
+        // Content
         home.forEach(item => {
             if(item.TYPE === "CAT") {
-                document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
+                document.getElementById('cat-root').innerHTML += `<div class="cat-item"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
             } else if(item.TYPE === "PRODUCT") {
                 document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Deal</a></div>`;
             }
         });
 
-        // Infinite Slider Logic
+        // Infinite Slide Animation
         let cur = 0;
-        let totalSlides = banners.length;
-        if(totalSlides > 0) {
+        let bCount = banners.length;
+        if(bCount > 0) {
             setInterval(() => {
                 cur++;
                 bRoot.style.transition = "transform 0.8s ease-in-out";
                 bRoot.style.transform = `translateX(-${cur * 100}%)`;
 
-                if(cur === totalSlides) {
+                if(cur === bCount) {
                     setTimeout(() => {
                         bRoot.style.transition = "none";
                         cur = 0;
@@ -128,14 +122,14 @@ async function init() {
             }, 5000);
         }
 
-        // Footer Fix
+        // Footer
         f.footer.forEach(i => {
-            if(i.TYPE === "TITLE") document.getElementById("f-data").innerHTML += `<h3>${i.TEXT}</h3>`;
+            if(i.TYPE === "TITLE") document.getElementById("f-data").innerHTML += `<h3 style="color:#febd69">${i.TEXT}</h3>`;
             else if(i.TYPE === "LINK") document.getElementById("f-data").innerHTML += `<a href="${i.LINK}" class="f-link">${i.TEXT}</a>`;
             else if(i.TYPE === "BOTTOM") document.getElementById("f-bottom").innerText = i.TEXT;
         });
 
-    } catch (e) { console.error("Data Error", e); }
+    } catch (e) { console.log(e); }
 }
 init();
 </script>
