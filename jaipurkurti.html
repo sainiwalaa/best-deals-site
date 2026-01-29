@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaipuri Kurtis – Sainiwalaa</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{ --primary:#0f172a; --accent:#ff9900; --bg:#f8fafc; --card:#ffffff; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg); color:#333;}
+
+/* HEADER */
+#main-header{background:#000; color:#fff; display:flex; justify-content:space-between; align-items:center; padding:15px 20px; position:sticky; top:0; z-index:1000;}
+#menu a{color:#fff; margin-left:15px; text-decoration:none; font-weight:600; font-size:14px;}
+
+/* BANNER */
+.hero-banner{ background:linear-gradient(45deg, #e65100, #ff9800); color:#fff; padding:40px 20px; text-align:center; }
+
+/* PRODUCTS */
+.products-grid{ max-width:1200px; margin:30px auto; padding:0 20px; display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:20px; }
+.card{ background:var(--card); border-radius:15px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.08); transition:0.3s; text-align:center; }
+.card:hover{ transform:translateY(-5px); }
+.card img{ width:100%; height:300px; object-fit:cover; }
+.card-info{ padding:15px; }
+.card-info h3{ font-size:15px; margin-bottom:10px; height:40px; overflow:hidden; }
+.price{ font-size:18px; font-weight:700; color:#2e7d32; margin-bottom:12px; }
+.buy-btn{ display:block; background:var(--accent); color:#000; text-decoration:none; padding:10px; border-radius:8px; font-weight:700; }
+
+/* FOOTER */
+#sw-footer{ background:#0b1730; color:#fff; padding:40px 20px; margin-top:50px; }
+#sw-marquee{ overflow:hidden; white-space:nowrap; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:20px; text-align:center; }
+#sw-marquee span{ display:inline-block; animation:scroll 20s linear infinite; color:var(--accent); font-weight:600; }
+@keyframes scroll{ from{transform:translateX(100%)} to{transform:translateX(-100%)} }
+#sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:30px; }
+.sw-links a{ display:block; color:#fff; text-decoration:none; margin-bottom:8px; font-size:14px; }
+.sw-social{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
+.sw-social a{ padding:5px 12px; border:1px solid var(--accent); color:var(--accent); text-decoration:none; border-radius:5px; font-size:12px; }
+#sw-bottom{ text-align:center; margin-top:30px; opacity:0.6; font-size:12px; }
+</style>
+</head>
+<body>
+
+<header id="main-header">
+  <div style="font-weight:700; font-size:18px;">SAINIWALAA</div>
+  <div id="menu"></div>
+</header>
+
+<div class="hero-banner">
+  <h1>🌸 Jaipuri Kurtis Collection</h1>
+  <p>Authentic Ethnic Wear from Jaipur</p>
+</div>
+
+<div class="products-grid" id="product-box">
+  <p style="grid-column: 1/-1; text-align:center;">Loading Kurtis...</p>
+</div>
+
+<footer id="sw-footer">
+  <div id="sw-marquee"></div>
+  <div id="sw-inner">
+    <div id="f-left"></div>
+    <div id="f-center"></div>
+    <div id="f-right"></div>
+  </div>
+  <div id="sw-bottom"></div>
+</footer>
+
+<script>
+const H_API = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
+const K_API = "https://script.google.com/macros/s/AKfycbzg-c_zIrSNqREI6wgjk54BkhpNrevz75kI8nJEQcg0n-nd9cBwCE0xWGUdioMiZ0ox/exec";
+const F_API = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
+
+// Header
+fetch(H_API).then(r=>r.json()).then(d=>{
+  d.menu.forEach(m=> document.getElementById('menu').innerHTML+=`<a href="${m.link}">${m.text}</a>`);
+});
+
+// Kurtis
+fetch(K_API).then(r=>r.json()).then(data=>{
+  const box = document.getElementById('product-box');
+  box.innerHTML = "";
+  data.forEach(p=>{
+    box.innerHTML += `
+      <div class="card">
+        <img src="${p.IMAGE}" alt="kurti">
+        <div class="card-info">
+          <h3>${p.NAME}</h3>
+          <div class="price">₹${p.PRICE}</div>
+          <a class="buy-btn" href="${p.LINK}" target="_blank">Buy Now</a>
+        </div>
+      </div>`;
+  });
+}).catch(e=> document.getElementById('product-box').innerHTML="Error loading products.");
+
+// Footer
+fetch(F_API).then(r=>r.json()).then(d=>{
+  if(!d.footer) return;
+  d.footer.forEach(i=>{
+    let box = i.POSITION==="LEFT"?document.getElementById("f-left"):i.POSITION==="CENTER"?document.getElementById("f-center"):i.POSITION==="RIGHT"?document.getElementById("f-right"):i.POSITION==="BOTTOM"?document.getElementById("sw-bottom"):document.getElementById("sw-marquee");
+    
+    if(i.TYPE==="MARQUEE") box.innerHTML = `<span>${i.TEXT}</span>`;
+    else if(i.TYPE==="TITLE") box.innerHTML += `<h3 style="color:var(--accent);margin-bottom:10px;">${i.TEXT}</h3>`;
+    else if(i.TYPE==="TEXT") box.innerHTML += `<p style="font-size:13px;margin-bottom:5px;">${i.TEXT}</p>`;
+    else if(i.TYPE==="LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
+    else if(i.TYPE==="SOCIAL") {
+      let sc = box.querySelector('.sw-social') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social'}));
+      sc.innerHTML += `<a href="${i.LINK}">${i.TEXT}</a>`;
+    }
+    else if(i.TYPE==="BOTTOM") box.innerText = i.TEXT;
+  });
+});
+</script>
+</body>
+</html>
