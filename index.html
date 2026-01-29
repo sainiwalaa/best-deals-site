@@ -1,213 +1,298 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
-<title>Sainiwalaa – Best Deals</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Sainiwalaa – Trusted Online Shopping & Deals</title>
+<meta name="description" content="Sainiwalaa par mile Amazon deals, kurti collection, custom mug & t-shirt. Trusted, fast & secure shopping.">
+<meta name="keywords" content="Sainiwalaa, Amazon Deals, Kurti, Custom Mug, Online Shopping India">
+<meta name="robots" content="index, follow">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:#f4f6fb;color:#111}
+:root{
+  --primary:#0f172a;
+  --secondary:#1e293b;
+  --accent:#ff9900;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#111;
+}
 
-/* HEADER */
-#sw-header{
-  background:linear-gradient(90deg,#131921,#232f3e);
+.dark{
+  --bg:#0b1220;
+  --card:#111827;
+  --text:#f9fafb;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:var(--text);transition:.3s}
+
+/* ================= HEADER ================= */
+#main-header{
+  background:#000;
   color:#fff;
-  padding:16px 24px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  padding:14px 22px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
-#sw-logo{font-size:22px;font-weight:700}
-#sw-menu a{
+#menu a{
   color:#fff;
   margin-left:18px;
   text-decoration:none;
   font-weight:600;
 }
 
-/* HERO */
-#sw-hero{
-  position:relative;
-  height:340px;
-  overflow:hidden;
+/* ================= HERO ================= */
+#hero-sainiwalaa{
+  background:linear-gradient(135deg,#4b0f14,#7a1f26);
+  padding:60px 20px;
 }
-.sw-slide{
-  position:absolute;
-  inset:0;
-  display:none;
+.hero-wrap{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:40px;
+  align-items:center;
 }
-.sw-slide img{
+.hero-left h1{color:#f6d27c;font-size:42px}
+.hero-left p{color:#ffe9b0;margin-top:10px}
+.cats{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.catbox{
+  background:#fff6e1;color:#5a1a1f;
+  padding:10px 16px;border-radius:20px;font-weight:700
+}
+.slider-frame{
+  max-width:260px;height:360px;margin-left:auto;
+  background:#fff6e1;padding:6px;border-radius:22px;
+}
+.slider-frame img{
+  width:100%;height:100%;object-fit:cover;border-radius:16px
+}
+
+/* ================= HOME PAGE ================= */
+.toggle{
+  position: fixed; bottom: 20px; right: 20px; z-index: 999;
+  background:var(--accent);color:#000;
+  padding:10px 15px;border-radius:50px;
+  cursor:pointer;font-size:18px;font-weight:600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.marquee{
+  background:var(--accent);color:#000;
+  padding:10px;overflow:hidden;white-space:nowrap;font-weight:600
+}
+.marquee span{display:inline-block;animation:scroll 14s linear infinite}
+@keyframes scroll{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+.countdown{
+  text-align:center;padding:12px;font-weight:700;
+  background:var(--card);margin:12px;border-radius:12px
+}
+.countdown span{color:var(--accent)}
+.slider{position:relative;height:260px;overflow:hidden}
+.slide{position:absolute;inset:0;display:none}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide-content{
+  position:absolute;bottom:16px;left:16px;right:16px;
+  background:rgba(0,0,0,.55);padding:14px;border-radius:12px;color:#fff
+}
+.slide-content a{
+  display:inline-block;margin-top:8px;background:var(--accent);
+  padding:8px 16px;color:#000;font-weight:700;text-decoration:none
+}
+.section{padding:20px; max-width: 1200px; margin: auto;}
+.categories{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:16px
+}
+.cat{
+  background:var(--card);border-radius:14px;padding:12px;
+  text-align:center;cursor:pointer; transition: 0.3s;
+}
+.cat:hover{transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
+.cat img{width:100%;height:130px;object-fit:cover;border-radius:10px}
+.banner img{width:100%;border-radius:14px;margin:14px 0}
+
+/* ================= FOOTER ================= */
+#footer-main {
   width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.sw-hero-box{
-  position:absolute;
-  bottom:30px;
-  left:30px;
-  background:rgba(0,0,0,.6);
-  color:#fff;
-  padding:22px;
-  border-radius:14px;
-}
-.sw-hero-box h2{margin:0 0 6px}
-.sw-hero-box a{
-  display:inline-block;
-  margin-top:10px;
-  background:#ff9900;
-  color:#000;
-  padding:10px 20px;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:700;
-}
-
-/* CONTENT */
-.section{
-  max-width:1200px;
-  margin:auto;
-  padding:30px 20px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-.card{
-  background:#fff;
-  border-radius:14px;
-  box-shadow:0 6px 18px rgba(0,0,0,.1);
-  overflow:hidden;
-}
-.card img{width:100%;height:200px;object-fit:cover}
-.card p{text-align:center;padding:14px;font-weight:600}
-
-/* FOOTER */
-#sw-footer{
   background:#0b1730;
-  color:#fff;
   padding:40px 20px;
-  margin-top:40px;
+  color:#fff;
+  margin-top: 50px;
 }
-#sw-footer-inner{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:30px;
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  text-align: left;
 }
-#sw-footer a{color:#ff9800;text-decoration:none}
-#sw-bottom{
-  text-align:center;
-  margin-top:20px;
-  opacity:.7;
-  font-size:14px;
+#footer-main a {
+  color: #ff9800; 
+  text-decoration: none; 
+  display: block; 
+  margin: 5px 0;
+  font-size: 14px;
+}
+#footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #1e293b;
+  font-size: 13px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero-wrap{grid-template-columns:1fr;text-align:center}
+  .slider-frame{margin:30px auto 0}
+  .footer-grid { text-align: center; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header id="sw-header">
-  <div id="sw-logo">SAINIWALAA</div>
-  <nav id="sw-menu"></nav>
-</header>
+<div id="main-header">
+  <div style="font-weight: 700; font-size: 20px;">SAINIWALAA</div>
+  <div id="menu"></div>
+</div>
 
-<!-- HERO -->
-<section id="sw-hero"></section>
-
-<!-- HOME CONTENT -->
-<section class="section">
-  <h2 style="margin-bottom:16px">Shop by Category</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="https://images.meesho.com/images/products/670916392/qsxhk.jpg">
-      <p>Amazon Deals</p>
+<section id="hero-sainiwalaa">
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <h1 id="heroTitle">Loading...</h1>
+      <p id="heroNotice"></p>
+      <div class="cats" id="heroTags"></div>
     </div>
-    <div class="card">
-      <img src="https://images.meesho.com/images/products/673609531/tyb6c.jpg">
-      <p>Jaipur Kurtis</p>
-    </div>
-    <div class="card">
-      <img src="https://images.meesho.com/images/products/646948595/xz1w4.jpg">
-      <p>Custom Prints</p>
+    <div class="slider-frame">
+      <img id="heroImg" src="https://via.placeholder.com/260x360?text=Sainiwalaa">
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer id="sw-footer">
-  <div id="sw-footer-inner">
-    <div id="sw-left"></div>
-    <div id="sw-center"></div>
-    <div id="sw-right"></div>
+<div class="toggle" onclick="document.body.classList.toggle('dark')">🌓</div>
+
+<div class="marquee"><span id="marqueeText">Sainiwalaa par aapka swagat hai...</span></div>
+
+<div class="countdown">⏳ Offer Ends In : <span id="timer">00:00:00</span></div>
+
+<div class="slider" id="slider"></div>
+
+<div class="section">
+  <h2>🛍️ Shop by Category</h2>
+  <div class="categories" id="categories"></div>
+</div>
+
+<div class="section banner" id="banners"></div>
+
+<footer id="footer-main">
+  <div class="footer-grid">
+    <div id="footer-left"></div>
+    <div id="footer-center"></div>
+    <div id="footer-right"></div>
   </div>
-  <div id="sw-bottom"></div>
+  <div id="footer-bottom"></div>
 </footer>
 
 <script>
-/* HEADER + HERO API */
-const HEADER_API="https://script.google.com/macros/s/AKfycbzbtre2vlUi_moOGrVQ0dsNs3duKbY4B233Tp9KHmbXWffuG8nQ3MBRyvyCyr893NZpBA/exec";
+/* Timer Logic (Optional but good to have) */
+function startTimer(duration, display) {
+    var timer = duration, hours, minutes, seconds;
+    setInterval(function () {
+        hours = parseInt(timer / 3600, 10);
+        minutes = parseInt((timer % 3600) / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        display.textContent = hours + "h " + minutes + "m " + seconds + "s";
+        if (--timer < 0) timer = duration;
+    }, 1000);
+}
+window.onload = function () { startTimer(3600 * 5, document.querySelector('#timer')); };
 
-fetch(HEADER_API)
-.then(r=>r.json())
-.then(d=>{
-  /* MENU */
+/* ===== API 1: HEADER + HERO ===== */
+fetch("https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec")
+.then(r=>r.json()).then(d=>{
+  const menu = document.getElementById('menu');
   d.menu.forEach(m=>{
-    if(m.SHOW==="YES"){
-      document.getElementById("sw-menu").innerHTML+=
-        `<a href="${m.LINK}">${m.TEXT}</a>`;
-    }
+    menu.innerHTML+=`<a href="${m.link}">${m.text}</a>`;
   });
-
-  /* HERO */
-  const hero=document.getElementById("sw-hero");
+  let slides=[];
   d.hero.forEach(h=>{
-    if(h.SHOW==="YES"){
-      hero.innerHTML+=`
-      <div class="sw-slide">
-        <img src="${h.IMAGE}">
-        <div class="sw-hero-box">
-          <h2>${h.TITLE||""}</h2>
-          <p>${h.TAG||""}</p>
-        </div>
-      </div>`;
-    }
+    if(h.type==="TITLE") document.getElementById('heroTitle').innerText=h.text;
+    if(h.type==="NOTICE") document.getElementById('heroNotice').innerText=h.text;
+    if(h.type==="TAG") document.getElementById('heroTags').innerHTML+=`<div class="catbox">${h.text}</div>`;
+    if(h.type==="SLIDE") slides.push(h.image);
   });
-
-  const slides=document.querySelectorAll(".sw-slide");
   let i=0;
   if(slides.length){
-    slides[0].style.display="block";
-    setInterval(()=>{
-      slides[i].style.display="none";
-      i=(i+1)%slides.length;
-      slides[i].style.display="block";
-    },3500);
+    document.getElementById('heroImg').src=slides[0];
+    setInterval(()=>{i=(i+1)%slides.length; document.getElementById('heroImg').src=slides[i]},3000);
   }
 });
 
-/* FOOTER API */
+/* ===== API 2: HOME CONTENT ===== */
+fetch("https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec")
+.then(r=>r.json()).then(d=>{
+  document.getElementById('marqueeText').innerText=d.marquee.map(x=>x.TEXT).join(" | ");
+  const slider = document.getElementById('slider');
+  d.hero.forEach(x=>{
+    slider.innerHTML+=`
+    <div class="slide">
+      <img src="${x.IMAGE_URL}">
+      <div class="slide-content">
+        <h3>${x.TITLE||""}</h3>
+        <p>${x.SUB_TITLE||""}</p>
+        ${x.BUTTON_TEXT?`<a href="${x.BUTTON_LINK}">${x.BUTTON_TEXT}</a>`:""}
+      </div>
+    </div>`;
+  });
+  let s=document.querySelectorAll(".slide"),j=0;
+  if(s.length){s[0].style.display="block";
+    setInterval(()=>{s[j].style.display="none";j=(j+1)%s.length;s[j].style.display="block"},3500);
+  }
+  d.categories.forEach(x=>{
+    document.getElementById('categories').innerHTML+=`
+    <div class="cat" onclick="location.href='${x.PAGE_LINK}'">
+      <img src="${x.IMAGE}"><p>${x.NAME}</p>
+    </div>`;
+  });
+  d.banners.forEach(x=>{
+    document.getElementById('banners').innerHTML+=`<a href="${x.LINK}"><img src="${x.IMAGE_URL}"></a>`;
+  });
+});
+
+/* ===== API 3: FOOTER (Now Integrated) ===== */
 const FOOTER_API="https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
 fetch(FOOTER_API)
 .then(r=>r.json())
 .then(d=>{
+  if(!d.footer) return;
   d.footer.forEach(i=>{
-    const box =
-      i.POSITION==="LEFT"?sw-left:
-      i.POSITION==="CENTER"?sw-center:
-      i.POSITION==="RIGHT"?sw-right:
-      sw-bottom;
+    let box=
+      i.POSITION==="LEFT"?document.getElementById("footer-left"):
+      i.POSITION==="CENTER"?document.getElementById("footer-center"):
+      i.POSITION==="RIGHT"?document.getElementById("footer-right"):
+      document.getElementById("footer-bottom");
 
-    if(i.TYPE==="TITLE") box.innerHTML+=`<h3>${i.TEXT}</h3>`;
-    if(i.TYPE==="TEXT") box.innerHTML+=`<p>${i.TEXT}</p>`;
-    if(i.TYPE==="LINK") box.innerHTML+=`<p><a href="${i.LINK}">${i.TEXT}</a></p>`;
-    if(i.TYPE==="BOTTOM") box.innerText=i.TEXT;
+    if(i.TYPE==="TEXT"){
+      box.innerHTML+=`<p>${i.TEXT}</p>`;
+    }
+    if(i.TYPE==="LINK"){
+      box.innerHTML+=`<a href="${i.LINK}">${i.TEXT}</a>`;
+    }
   });
 });
 </script>
