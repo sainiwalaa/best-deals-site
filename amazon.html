@@ -7,44 +7,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* CSS VARIABLES (Home Page Jaisi) */
-:root{ --primary:#0f172a; --secondary:#1e293b; --accent:#ff9900; --bg:#f4f6fb; --card:#ffffff; --text:#222; --btn:#2874f0; --btnText:#fff; }
-.dark{ --bg:#0b1220; --card:#111827; --text:#f9fafb; }
+:root{ --primary:#0f172a; --secondary:#1e293b; --accent:#ff9900; --bg:#f4f6fb; --card:#ffffff; --text:#222; }
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:var(--bg);color:var(--text);transition:.3s}
+body{background:var(--bg);color:var(--text);}
 
-/* HEADER (Home Page Wala) */
+/* HEADER */
 #main-header{background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;position:sticky;top:0;z-index:1000;}
 #menu a{color:#fff;margin-left:18px;text-decoration:none;font-weight:600;}
 
-/* AMAZON PAGE HEADER (Deals Title) */
-.deals-banner{
-  background:linear-gradient(135deg, var(--primary), var(--secondary));
-  color:#fff; padding:40px 20px; text-align:center; font-size:28px; font-weight:700;
-}
-
-/* CATEGORY BUTTONS */
+/* DEALS CONTENT */
+.deals-banner{background:linear-gradient(135deg, var(--primary), var(--secondary)); color:#fff; padding:40px 20px; text-align:center; font-size:28px; font-weight:700;}
 .categories-bar{ display:flex; flex-wrap:wrap; gap:10px; padding:20px; justify-content:center; background:#fff; margin-bottom:10px; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
-.cat-btn{ padding:8px 18px; border-radius:25px; border:1.5px solid var(--accent); background:#fff; color:var(--text); font-weight:600; cursor:pointer; transition:0.3s; }
-.cat-btn.active{ background:var(--accent); color:#000; border-color:var(--accent); }
-
-/* PRODUCT GRID */
+.cat-btn{ padding:8px 18px; border-radius:25px; border:1.5px solid var(--accent); background:#fff; cursor:pointer; font-weight:600; }
+.cat-btn.active{ background:var(--accent); color:#000; }
 .products-grid{ padding:20px; display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:20px; max-width:1200px; margin:auto; }
-.card{ background:var(--card); border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,.08); position:relative; transition:.3s; display:flex; flex-direction:column; }
-.card:hover{transform:translateY(-5px)}
+.card{ background:var(--card); border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,.08); position:relative; transition:.3s; }
 .card img{ width:100%; height:220px; object-fit:contain; background:#fff; padding:10px; }
-.info{padding:15px; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;}
-.title{ font-size:14px; font-weight:600; height:40px; overflow:hidden; margin-bottom:10px; }
-.discount{ color:#e91e63; font-weight:700; font-size:16px; margin-bottom:10px; }
+.info{padding:15px;}
+.title{ font-size:14px; font-weight:600; height:40px; overflow:hidden; }
+.discount{ color:#e91e63; font-weight:700; margin:10px 0; }
 .deal-btn{ display:block; background:var(--accent); color:#000; text-decoration:none; text-align:center; padding:10px; border-radius:8px; font-weight:700; }
-.top-tag{ position:absolute; top:10px; left:10px; background:red; color:#fff; padding:4px 10px; font-size:11px; border-radius:5px; font-weight:700; z-index:1; }
 
-/* FOOTER (Wahi wala jo fix kiya tha) */
+/* FOOTER (RE-FIXED) */
 #sw-footer{ width:100%; background:linear-gradient(180deg,#050b1a,#0b1730); padding:50px 20px 25px; color:#ffffff; margin-top:50px; }
+#sw-marquee{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px; }
+#sw-marquee span{ display:inline-block; animation:sw-scroll 28s linear infinite; font-weight:600; }
+@keyframes sw-scroll{ from{transform:translateX(100%)} to{transform:translateX(-100%)} }
 #sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; }
 .sw-col h2{ margin-bottom:15px; font-size:24px; color:var(--accent); }
 .sw-links-container a{ display:block; margin:8px 0; color:#fff; text-decoration:none; }
-.sw-social-container{ display:flex; gap:15px; margin-top:10px; }
+.sw-social-container{ display:flex; gap:15px; margin-top:15px; flex-wrap: wrap; }
+.sw-social-container a{ padding: 5px 12px; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; text-decoration: none; font-weight: bold; }
 #sw-bottom{ text-align:center; margin-top:30px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); font-size:13px; opacity:0.7; }
 
 @media(max-width:768px){ #sw-inner{ grid-template-columns:1fr; text-align:center; } .sw-social-container{ justify-content:center; } }
@@ -60,87 +53,74 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 <div class="deals-banner" id="siteTitle">Amazon Best Deals</div>
 <div class="categories-bar" id="categories-box"></div>
 
-<div class="products-grid" id="products-grid">
-  <p style="text-align:center; grid-column: 1/-1;">Loading deals...</p>
-</div>
+<div class="products-grid" id="products-grid"></div>
 
 <footer id="sw-footer">
-  <div id="sw-inner">
+  <div id="sw-marquee"></div> <div id="sw-inner">
     <div class="sw-col" id="sw-left"></div>
     <div class="sw-col" id="sw-center"></div>
-    <div class="sw-col sw-social" id="sw-right"></div>
+    <div class="sw-col" id="sw-right"></div>
   </div>
   <div id="sw-bottom"></div>
 </footer>
 
 <script>
-/* API URLs */
 const API_HEADER = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
 const API_DEALS = "https://script.google.com/macros/s/AKfycbzLaiWevyBr-34R2VZ7zTnwP4yfOJT7SHhA6XY8k85pfgzeyI9ad1RTzHnKM7qruuz_MA/exec";
 const API_FOOTER = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-let ALL_PRODUCTS = [];
-
-// --- LOAD HEADER ---
+// Header Load
 fetch(API_HEADER).then(r=>r.json()).then(d=>{
   d.menu.forEach(m=> document.getElementById('menu').innerHTML+=`<a href="${m.link}">${m.text}</a>`);
 });
 
-// --- LOAD AMAZON DEALS ---
+// Amazon Deals Load
 fetch(API_DEALS).then(r=>r.json()).then(data => {
   const s = data.settings;
-  ALL_PRODUCTS = data.products;
-
-  // Set Styles from Sheet
+  const ALL_PRODUCTS = data.products;
   if(s.SITE_TITLE) document.getElementById("siteTitle").innerText = s.SITE_TITLE;
-  document.documentElement.style.setProperty("--accent", s.PRIMARY_COLOR || '#ff9900');
-
-  buildCategories();
-});
-
-function buildCategories(){
+  
   const box = document.getElementById("categories-box");
   const cats = [...new Set(ALL_PRODUCTS.map(p=>p.CATEGORY))];
-  box.innerHTML = cats.map((c,i)=> `<button class="cat-btn ${i===0?'active':''}" onclick="filterCat('${c}',this)">${c}</button>`).join('');
-  if(cats.length) renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cats[0]));
-}
+  box.innerHTML = cats.map((c,i)=> `<button class="cat-btn ${i===0?'active':''}" onclick="filterCat('${c}', this)">${c}</button>`).join('');
 
-function filterCat(cat,btn){
-  document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-  renderProducts(ALL_PRODUCTS.filter(p=>p.CATEGORY===cat));
-}
+  window.filterCat = (cat, btn) => {
+    document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const filtered = ALL_PRODUCTS.filter(p=>p.CATEGORY===cat);
+    document.getElementById("products-grid").innerHTML = filtered.map(x=> `
+      <div class="card">
+        <img src="${x.IMAGE || 'https://via.placeholder.com/300'}">
+        <div class="info">
+          <div class="title">${x.NAME}</div>
+          <div class="discount">🔥 ${x.DISCOUNT}% OFF</div>
+          <a class="deal-btn" href="${x.LINK}" target="_blank">View Deal</a>
+        </div>
+      </div>`).join('');
+  };
+  // Default Load
+  if(cats.length) filterCat(cats[0], box.firstChild);
+});
 
-function renderProducts(list){
-  const grid = document.getElementById("products-grid");
-  grid.innerHTML = list.map(x=> `
-    <div class="card">
-      ${x.TOP==="TOP" ? `<div class="top-tag">TOP DEAL</div>` : ``}
-      <img src="${x.IMAGE || 'https://via.placeholder.com/300'}" alt="product">
-      <div class="info">
-        <div class="title">${x.NAME}</div>
-        ${x.DISCOUNT ? `<div class="discount">🔥 ${x.DISCOUNT}% OFF</div>` : ``}
-        <a class="deal-btn" href="${x.LINK}" target="_blank">View Deal</a>
-      </div>
-    </div>`).join('');
-}
-
-// --- LOAD FOOTER ---
+// Footer Load (With Note/Marquee Fix)
 fetch(API_FOOTER).then(r=>r.json()).then(d=>{
   if(!d.footer) return;
   d.footer.forEach(i=>{
-    let box = i.POSITION==="LEFT"?document.getElementById("sw-left"):i.POSITION==="CENTER"?document.getElementById("sw-center"):i.POSITION==="RIGHT"?document.getElementById("sw-right"):document.getElementById("sw-bottom");
-    if(i.TYPE==="TITLE") box.innerHTML+=`<h2>${i.TEXT}</h2>`;
-    else if(i.TYPE==="TEXT") box.innerHTML+=`<p>${i.TEXT}</p>`;
-    else if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links-container"><a href="${i.LINK}">${i.TEXT}</a></div>`;
+    let box = i.POSITION==="LEFT"?document.getElementById("sw-left"):i.POSITION==="CENTER"?document.getElementById("sw-center"):i.POSITION==="RIGHT"?document.getElementById("sw-right"):i.POSITION==="BOTTOM"?document.getElementById("sw-bottom"):document.getElementById("sw-marquee");
+
+    if(i.TYPE==="MARQUEE"){
+      box.innerHTML = `<span style="color:${i.COLOR}; font-size:${i.SIZE}px">${i.TEXT}</span>`;
+    }
+    else if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
+    else if(i.TYPE==="TEXT") box.innerHTML+=`<p style="color:${i.COLOR}">${i.TEXT}</p>`;
+    else if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links-container"><a href="${i.LINK}" style="color:${i.COLOR}">${i.TEXT}</a></div>`;
     else if(i.TYPE==="SOCIAL"){
       let sCont = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
-      sCont.innerHTML += `<a href="${i.LINK}" style="color:${i.COLOR}">${i.TEXT}</a>`;
+      sCont.innerHTML += `<a href="${i.LINK}" style="color:${i.COLOR}; border-color:${i.COLOR}">${i.TEXT}</a>`;
     }
     else if(i.TYPE==="BOTTOM") box.innerText = i.TEXT;
   });
 });
 </script>
-
 </body>
 </html>
