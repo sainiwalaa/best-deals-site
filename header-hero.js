@@ -2,68 +2,88 @@ const API =
 "https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
 
 fetch(API)
-.then(r=>r.json())
-.then(d=>{
+.then(r => r.json())
+.then(d => {
 
-let h = `
-<style>
-#main-header{
-  background:#131921;
-  color:#fff;
-  padding:15px;
-}
-#menu{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-}
-#menu a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-}
-#hero{
-  background:#232f3e;
-  color:#fff;
-  padding:25px;
-  text-align:center;
-}
-#hero img{
-  max-width:100%;
-  border-radius:12px;
-  margin-top:15px;
-}
-</style>
+  /* ===== HEADER + MARQUEE ===== */
+  document.body.insertAdjacentHTML("afterbegin", `
+  <style>
+  #sw-header{background:#131921;color:#fff}
+  #sw-top{display:flex;justify-content:space-between;align-items:center;padding:14px 20px}
+  #sw-logo{font-size:22px;font-weight:700}
+  #sw-menu a{color:#fff;margin:0 10px;text-decoration:none;font-weight:600}
+  #sw-marquee{background:#ff9900;color:#000;padding:8px;overflow:hidden}
+  #sw-marquee span{display:inline-block;white-space:nowrap;animation:mar 16s linear infinite}
+  @keyframes mar{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+  </style>
 
-<header id="main-header">
-  <div id="menu"></div>
-</header>
+  <header id="sw-header">
+    <div id="sw-top">
+      <div id="sw-logo">SAINIWALAA</div>
+      <nav id="sw-menu"></nav>
+    </div>
+    <div id="sw-marquee"><span></span></div>
+  </header>
 
-<section id="hero">
-  <div id="heroText"></div>
-  <div id="heroImg"></div>
-</section>
-`;
+  <section id="sw-hero"></section>
+  `);
 
-document.body.insertAdjacentHTML("afterbegin", h);
+  /* MENU (STATIC for now if needed later from sheet) */
+  const menu = document.getElementById("sw-menu");
+  menu.innerHTML = `
+    <a href="index.html">🏠 Home</a>
+    <a href="amazon.html">🔥 Amazon Deals</a>
+    <a href="jaipurkurti.html">👗 Jaipur Kurtis</a>
+  `;
 
-/* MENU */
-d.menu.forEach(m=>{
-  document.getElementById("menu").innerHTML +=
-  `<a href="${m.link}">${m.text}</a>`;
-});
-
-/* HERO */
-d.hero.forEach(x=>{
-  if(x.type==="TITLE"){
-    document.getElementById("heroText").innerHTML += `<h2>${x.text}</h2>`;
+  /* MARQUEE */
+  if(d.marquee){
+    document.querySelector("#sw-marquee span").innerText =
+      d.marquee.filter(x=>x.SHOW==="YES").map(x=>x.TEXT).join("  |  ");
   }
-  if(x.type==="NOTICE"){
-    document.getElementById("heroText").innerHTML += `<p>${x.text}</p>`;
+
+  /* ===== HERO SLIDER ===== */
+  const hero = document.getElementById("sw-hero");
+  hero.innerHTML = `
+  <style>
+  #sw-hero{position:relative;height:320px;overflow:hidden}
+  .slide{position:absolute;inset:0;display:none}
+  .slide img{width:100%;height:100%;object-fit:cover}
+  .cap{
+    position:absolute;bottom:20px;left:20px;
+    background:rgba(0,0,0,.6);color:#fff;
+    padding:14px;border-radius:10px
   }
-  if(x.type==="SLIDE"){
-    document.getElementById("heroImg").innerHTML +=
-    `<img src="${x.image}">`;
+  .cap a{
+    display:inline-block;margin-top:8px;
+    background:#ff9900;color:#000;
+    padding:6px 14px;border-radius:6px;
+    text-decoration:none;font-weight:700
   }
-});
-});
+  </style>
+  `;
+
+  d.hero.filter(x=>x.SHOW==="YES").forEach(x=>{
+    hero.innerHTML += `
+    <div class="slide">
+      <img src="${x.IMAGE_URL}">
+      <div class="cap">
+        <h3>${x.TITLE||""}</h3>
+        <p>${x.SUB_TITLE||""}</p>
+        ${x.BUTTON_TEXT ? `<a href="${x.BUTTON_LINK}">${x.BUTTON_TEXT}</a>` : ``}
+      </div>
+    </div>`;
+  });
+
+  let slides=document.querySelectorAll(".slide"),i=0;
+  if(slides.length){
+    slides[0].style.display="block";
+    setInterval(()=>{
+      slides[i].style.display="none";
+      i=(i+1)%slides.length;
+      slides[i].style.display="block";
+    },3500);
+  }
+
+})
+.catch(e=>console.error("API ERROR",e));
