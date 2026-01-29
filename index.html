@@ -1,349 +1,268 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>SAINIWALAA – Trusted Online Shopping</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- SEO -->
-<title>Sainiwalaa – Trusted Online Shopping & Deals</title>
-<meta name="description" content="Sainiwalaa par mile Amazon deals, kurti collection, custom mug & t-shirt. Trusted, fast & secure shopping.">
-<meta name="keywords" content="Sainiwalaa, Amazon Deals, Kurti, Custom Mug, Online Shopping India">
-<meta name="robots" content="index, follow">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --primary:#0f172a;
-  --secondary:#1e293b;
+  --dark:#131921;
+  --dark2:#232f3e;
   --accent:#ff9900;
-  --bg:#f8fafc;
+  --bg:#f4f6f8;
   --card:#ffffff;
-  --text:#111;
 }
-
-.dark{
-  --bg:#0b1220;
-  --card:#111827;
-  --text:#f9fafb;
-}
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:#111}
 
-/* BODY */
-body{
-  background:var(--bg);
-  color:var(--text);
-  transition:.3s;
-}
-
-/* HEADER */
+/* ================= HEADER ================= */
 header{
-  background:linear-gradient(90deg,#131921,#232f3e);
+  background:linear-gradient(90deg,var(--dark),var(--dark2));
   color:#fff;
-  padding:16px 20px;
+  padding:18px 20px 28px;
+}
+.header-top{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  position:sticky;
-  top:0;
-  z-index:999;
+  flex-wrap:wrap;
 }
-header span{
-  font-size:22px;
+.logo{
+  font-size:26px;
   font-weight:700;
 }
-.toggle{
+.menu{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.menu a{
   background:var(--accent);
   color:#000;
-  padding:6px 12px;
+  padding:8px 16px;
   border-radius:20px;
-  cursor:pointer;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+}
+
+/* ================= HERO ================= */
+.hero{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:24px;
+  align-items:center;
+}
+.hero h1{font-size:32px;margin-bottom:8px}
+.hero p{font-weight:500;margin-bottom:12px}
+.hero-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.hero-tags span{
+  background:#fff;
+  color:#000;
+  padding:6px 14px;
+  border-radius:18px;
   font-size:14px;
   font-weight:600;
 }
 
-/* HERO SECTION */
-#hero-sainiwalaa{
-  background:linear-gradient(135deg,#4b0f14,#7a1f26);
-  padding:60px 20px;
-  font-family:Arial,Helvetica,sans-serif;
-  overflow:hidden;
-  margin:0;
-  border:0;
-  color:#ffe9b0;
-}
-.hero-wrap{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  gap:40px;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-}
-.hero-left{
-  flex:1;
-  min-width:260px;
-}
-.hero-left h1{
-  font-size:42px;
-  font-weight:900;
-  letter-spacing:4px;
-  color:#f6d27c;
-  margin:0 0 10px;
-  text-shadow:2px 2px 6px rgba(0,0,0,.6);
-}
-.animated-text{
-  font-size:18px;
-  animation:fadeSlide 4s infinite alternate;
-}
-@keyframes fadeSlide{
-  from{opacity:.6;transform:translateY(4px)}
-  to{opacity:1;transform:translateY(-2px)}
-}
-.btn-wrap{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0}
-.btn{
-  padding:12px 22px;
-  border-radius:9px;
-  font-weight:700;
-  text-decoration:none;
-  color:#fff;
-  transition:.3s;
-}
-.btn:hover{transform:translateY(-3px)}
-.meesho{background:#ff9800}
-.flipkart{background:#2874f0}
-.amazon{background:#111}
-.cats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:14px;
-}
-.catbox{
-  background:#fff6e1;
-  border:2px solid #f6d27c;
-  border-radius:12px;
-  padding:16px;
-  text-align:center;
-  font-weight:700;
-  color:#5a1a1f;
-  transition:.3s;
-}
-.catbox:hover{background:#f6d27c;transform:translateY(-3px)}
-.slider-frame{
-  width:230px;
-  height:330px;
-  background:#fff6e1;
-  padding:6px;
-  border-radius:22px;
-  box-shadow:0 14px 30px rgba(0,0,0,.45);
+/* HERO SLIDER */
+.hero-slider{
+  position:relative;
+  height:260px;
+  border-radius:16px;
   overflow:hidden;
 }
-.slider-frame img{
+.hero-slide{
+  position:absolute;
+  inset:0;
+  display:none;
+}
+.hero-slide img{
   width:100%;
   height:100%;
   object-fit:cover;
-  border-radius:16px;
-  transition:opacity .7s ease;
 }
 
-/* HOME SECTIONS */
-.section{padding:20px}
-.section h2{margin-bottom:14px;font-size:20px}
-.categories{
+/* ================= HOME CONTENT ================= */
+.section{
+  padding:30px 20px;
+}
+.grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:16px;
 }
-.cat{
+.card{
   background:var(--card);
   border-radius:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
   padding:12px;
   text-align:center;
   cursor:pointer;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
-  transition:.25s;
 }
-.cat:hover{transform:translateY(-6px)}
-.cat img{
+.card img{
   width:100%;
-  height:130px;
+  height:140px;
   object-fit:cover;
   border-radius:10px;
 }
-.cat p{margin-top:10px;font-weight:600}
-.banner img{
-  width:100%;
-  border-radius:14px;
-  margin:14px 0;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
-}
+.card p{margin-top:10px;font-weight:600}
 
-/* COUNTDOWN */
-.countdown{
-  text-align:center;
-  padding:12px;
-  font-weight:700;
-  background:var(--card);
-  margin:12px;
-  border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,.1);
+/* ================= FOOTER ================= */
+#sw-footer{
+  width:100%;
+  background:linear-gradient(180deg,#050b1a,#0b1730);
+  padding:50px 20px 25px;
+  color:#fff;
 }
-.countdown span{color:var(--accent);}
+#sw-marquee{
+  overflow:hidden;
+  white-space:nowrap;
+  text-align:center;
+  margin-bottom:30px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  padding-bottom:12px;
+}
+#sw-marquee span{
+  display:inline-block;
+  animation:scroll 28s linear infinite;
+}
+@keyframes scroll{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+#sw-inner{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:40px;
+}
+.sw-links a{
+  display:block;
+  margin:6px 0;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+}
+#sw-bottom{
+  text-align:center;
+  margin-top:30px;
+  font-size:13px;
+  opacity:.7;
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:14px;
+}
 
 /* MOBILE */
 @media(max-width:768px){
-  .hero-wrap{flex-direction:column}
-  .slider-frame{width:100%;height:250px;margin-top:20px}
-}
-@media(max-width:600px){
-  .slider{height:220px}
+  .hero{grid-template-columns:1fr}
+  #sw-inner{grid-template-columns:1fr;text-align:center}
 }
 </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 <header>
-  <span>SAINIWALAA</span>
-  <div class="toggle" onclick="toggleMode()">🌙 / ☀️</div>
+  <div class="header-top">
+    <div class="logo" id="siteLogo">SAINIWALAA</div>
+    <div class="menu" id="menu"></div>
+  </div>
+
+  <div class="hero">
+    <div>
+      <h1 id="heroTitle"></h1>
+      <p id="heroSub"></p>
+      <div class="hero-tags" id="heroTags"></div>
+    </div>
+
+    <div class="hero-slider" id="heroSlider"></div>
+  </div>
 </header>
 
-<!-- HERO -->
-<section id="hero-sainiwalaa">
-  <div class="hero-wrap">
-    <div class="hero-left">
-      <h1>SAINIWALAA</h1>
-      <p class="animated-text">Jaipur Handpicked Kurtis & Custom Printed Gifts</p>
-      <div class="btn-wrap">
-        <a href="https://www.meesho.com/SAINIWALAA?ms=2" class="btn meesho">🛍 Meesho</a>
-        <a href="https://www.flipkart.com/" class="btn flipkart">🛒 Flipkart</a>
-        <a href="#" class="btn amazon">🛒 Amazon (Soon)</a>
-      </div>
-      <div class="cats">
-        <div class="catbox">👗 Kurtis</div>
-        <div class="catbox">👕 T-Shirts</div>
-        <div class="catbox">☕ Mugs</div>
-        <div class="catbox">🎁 Gifts</div>
-        <div class="catbox">🖨 Print Orders</div>
-      </div>
-    </div>
-    <div class="slider-frame">
-      <img id="sliderImg" src="">
-    </div>
-  </div>
-</section>
-
-<!-- HOME CONTENT -->
+<!-- ================= HOME ================= -->
 <div class="section">
-  <h2>🛍️ Shop by Category</h2>
-  <div class="categories" id="categories"></div>
+  <h2>🛍 Shop Categories</h2>
+  <div class="grid" id="categoryGrid"></div>
 </div>
 
-<div class="section banner" id="banners"></div>
-
-<!-- FOOTER -->
-<div id="sw-footer"></div>
+<!-- ================= FOOTER ================= -->
+<div id="sw-footer">
+  <div id="sw-marquee"></div>
+  <div id="sw-inner">
+    <div id="sw-left"></div>
+    <div id="sw-center"></div>
+    <div id="sw-right"></div>
+  </div>
+  <div id="sw-bottom"></div>
+</div>
 
 <script>
-/* DARK MODE */
-function toggleMode(){document.body.classList.toggle("dark");}
+const API="https://script.google.com/macros/s/AKfycbz483UZoX6TnzdCS_FmbYJBauJDRFO8byGhSuxVJ3DQ1mJjMg1NevyfysWRwMW2B4qitA/exec";
 
-/* COUNTDOWN */
-const endDate = new Date("2026-01-26T23:59:59").getTime();
-setInterval(()=>{
-  const now = new Date().getTime();
-  const d = endDate - now;
-  if(d<0){return;}
-  const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-  const m=Math.floor((d%(1000*60*60))/(1000*60));
-  const s=Math.floor((d%(1000*60))/1000);
-},1000);
-
-/* HERO SLIDER IMAGES */
-const images = [
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/stl_u1.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/PURPAL_STYL_1_1.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/BLAK_051.png",
- "https://cdn.shopify.com/s/files/1/0959/2196/3380/files/meerom2.png"
-];
-let i = 0;
-const img = document.getElementById("sliderImg");
-img.src = images[0];
-setInterval(()=>{
-  img.style.opacity=0;
-  setTimeout(()=>{
-    i=(i+1)%images.length;
-    img.src=images[i];
-    img.style.opacity=1;
-  },600);
-},3000);
-
-/* API FOR HOME CONTENT */
-const API="https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
+/* ================= FETCH DATA ================= */
 fetch(API).then(r=>r.json()).then(d=>{
-  /* CATEGORIES */
-  const cat=document.getElementById("categories");
-  d.categories.forEach(x=>{
-    cat.innerHTML+=`
-    <div class="cat" onclick="location.href='${x.PAGE_LINK||"#"}'">
-      <img src="${x.IMAGE}">
-      <p>${x.NAME||x.TEXT}</p>
-    </div>`;
-  });
-  /* BANNERS */
-  const ban=document.getElementById("banners");
-  d.banners.forEach(x=>{
-    ban.innerHTML+=`<a href="${x.LINK||"#"}"><img src="${x.IMAGE_URL||x.IMAGE}"></a>`;
-  });
+
+/* MENU */
+d.menu.forEach(m=>{
+  if(m.SHOW==="YES"){
+    menu.innerHTML+=`<a href="${m.LINK}">${m.TEXT}</a>`;
+  }
 });
 
-/* FOOTER SHEET CONTROLLED */
-const FOOTER_API="https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
-fetch(FOOTER_API)
-.then(r=>r.json())
-.then(d=>{
-  if(!d.footer) return;
-  const footer=document.getElementById("sw-footer");
-  footer.innerHTML=`
-    <style>
-      #sw-footer{width:100%;background:linear-gradient(180deg,#050b1a,#0b1730);padding:50px 20px 25px;box-sizing:border-box;font-family:Poppins,Arial,sans-serif;color:#ffffff;}
-      #sw-marquee{overflow:hidden;white-space:nowrap;text-align:center;margin-bottom:30px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:12px;}
-      #sw-marquee span{display:inline-block;animation:sw-scroll 28s linear infinite;font-weight:600;}
-      @keyframes sw-scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
-      #sw-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;}
-      .sw-col h2{margin:0 0 8px;font-size:26px}
-      .sw-col p{margin:6px 0;font-size:15px;opacity:.85}
-      .sw-links a{display:block;margin:6px 0;color:#fff;text-decoration:none;font-weight:600}
-      .sw-links a::before{content:"› ";color:#ff9800}
-      .sw-btn{display:inline-block;margin-top:12px;padding:12px 26px;background:linear-gradient(90deg,#ff9800,#ff5722);color:#000;border-radius:30px;text-decoration:none;font-weight:700}
-      .sw-social a{margin-right:14px;text-decoration:none;font-weight:700}
-      #sw-bottom{text-align:center;margin-top:30px;font-size:13px;opacity:.7;border-top:1px solid rgba(255,255,255,.1);padding-top:14px}
-      @media(max-width:768px){#sw-inner{grid-template-columns:1fr;text-align:center}}
-    </style>
-    <div id="sw-marquee"></div>
-    <div id="sw-inner">
-      <div class="sw-col" id="sw-left"></div>
-      <div class="sw-col" id="sw-center"></div>
-      <div class="sw-col sw-social" id="sw-right"></div>
-    </div>
-    <div id="sw-bottom"></div>`;
-  
-  d.footer.forEach(i=>{
-    let box = i.POSITION==="LEFT"?document.getElementById("sw-left"):
-              i.POSITION==="CENTER"?document.getElementById("sw-center"):
-              i.POSITION==="RIGHT"?document.getElementById("sw-right"):
-              i.POSITION==="BOTTOM"?document.getElementById("sw-bottom"):
-              document.getElementById("sw-marquee");
-    if(i.TYPE==="MARQUEE") box.innerHTML=`<span style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</span>`;
-    if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
-    if(i.TYPE==="TEXT") box.innerHTML+=`<p style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</p>`;
-    if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links"><a href="${i.LINK}" style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</a></div>`;
-    if(i.TYPE==="BUTTON") box.innerHTML+=`<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
-    if(i.TYPE==="SOCIAL") box.innerHTML+=`<a href="${i.LINK}" style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</a>`;
-    if(i.TYPE==="BOTTOM"){box.innerText=i.TEXT;box.style.color=i.COLOR;}
-  });
+/* HERO */
+heroTitle.innerText=d.hero[0].TITLE;
+heroSub.innerText=d.hero[0].SUBTITLE;
+
+/* HERO TAGS */
+d.tags.forEach(t=>{
+  heroTags.innerHTML+=`<span>${t.TEXT}</span>`;
+});
+
+/* HERO SLIDER */
+d.slider.forEach((s,i)=>{
+  heroSlider.innerHTML+=`
+  <div class="hero-slide">
+    <img src="${s.IMAGE}">
+  </div>`;
+});
+let slides=document.querySelectorAll(".hero-slide"),i=0;
+slides[0].style.display="block";
+setInterval(()=>{
+  slides[i].style.display="none";
+  i=(i+1)%slides.length;
+  slides[i].style.display="block";
+},3000);
+
+/* CATEGORIES */
+d.categories.forEach(c=>{
+  categoryGrid.innerHTML+=`
+  <div class="card" onclick="location.href='${c.LINK}'">
+    <img src="${c.IMAGE}">
+    <p>${c.TEXT}</p>
+  </div>`;
+});
+
+/* FOOTER */
+d.footer.forEach(f=>{
+  let box=f.POSITION==="LEFT"?sw-left:f.POSITION==="CENTER"?sw-center:f.POSITION==="RIGHT"?sw-right:f.POSITION==="BOTTOM"?sw-bottom:sw-marquee;
+  if(f.TYPE==="MARQUEE") box.innerHTML=`<span>${f.TEXT}</span>`;
+  if(f.TYPE==="TITLE") box.innerHTML+=`<h2>${f.TEXT}</h2>`;
+  if(f.TYPE==="TEXT") box.innerHTML+=`<p>${f.TEXT}</p>`;
+  if(f.TYPE==="LINK") box.innerHTML+=`<div class="sw-links"><a href="${f.LINK}">${f.TEXT}</a></div>`;
+  if(f.TYPE==="BOTTOM") box.innerText=f.TEXT;
+});
+
 });
 </script>
 
