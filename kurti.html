@@ -7,60 +7,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* CSS VARIABLES */
 :root{ --primary:#0f172a; --secondary:#1e293b; --accent:#ff9900; --bg:#f4f6fb; --card:#ffffff; --text:#222; }
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:var(--bg);color:var(--text);transition:.3s}
+body{background:var(--bg);color:var(--text);}
 
-/* HEADER (Sainiwalaa Main) */
+/* HEADER */
 #main-header{background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;position:sticky;top:0;z-index:1000;}
 #menu a{color:#fff;margin-left:18px;text-decoration:none;font-weight:600;}
 
 /* PAGE BANNER */
-.page-title{
-  background: linear-gradient(135deg, #e65100, #ff9800);
-  padding:40px 20px; text-align:center; font-size:32px; font-weight:900; color:#fff;
-}
+.page-title{ background: linear-gradient(135deg, #e65100, #ff9800); padding:40px 20px; text-align:center; font-size:28px; font-weight:900; color:#fff; }
 
 /* PRODUCT GRID */
-.products-container{
-  max-width:1200px; margin:30px auto; padding:0 20px;
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px;
-}
+.products-container{ max-width:1200px; margin:30px auto; padding:0 20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px; }
 
-/* KURTI CARD */
+/* CARD */
 .card{ background:var(--card); border-radius:18px; box-shadow:0 6px 18px rgba(0,0,0,.1); overflow:hidden; transition:.3s; border: 1px solid rgba(0,0,0,0.05); }
-.card:hover{ transform:translateY(-8px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
-.card img{ width:100%; height:320px; object-fit:cover; }
+.card img{ width:100%; height:320px; object-fit:cover; background:#eee; }
 .card-body{ padding:18px; text-align: center; }
-.card-body h3{ font-size:16px; margin-bottom:10px; color:#333; height:45px; overflow:hidden; }
-.price{ font-size:20px; font-weight:800; color:#2e7d32; margin-bottom:15px; }
+.price{ font-size:20px; font-weight:800; color:#2e7d32; margin:10px 0; }
+.buy-btn{ display:block; background:#ff9800; color:#fff; padding:12px; border-radius:10px; font-weight:700; text-decoration:none; }
 
-/* BUY BUTTON */
-.buy-btn{
-  display:block; text-align:center; background:linear-gradient(90deg, #ff9800, #f57c00);
-  color:#fff; padding:12px; border-radius:10px; font-weight:700; text-decoration:none; transition: 0.3s;
-}
-.buy-btn:hover{ filter: brightness(1.1); }
-
-/* FOOTER SYSTEM (Sainiwalaa Fixed) */
-#sw-footer{ width:100%; background:linear-gradient(180deg,#050b1a,#0b1730); padding:50px 20px 25px; color:#ffffff; margin-top:50px; }
-#sw-marquee{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px; }
-#sw-marquee span{ display:inline-block; animation:sw-scroll 28s linear infinite; font-weight:600; }
+/* FOOTER */
+#sw-footer{ width:100%; background:#050b1a; padding:50px 20px; color:#fff; margin-top:50px; }
+#sw-marquee{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:20px; }
+#sw-marquee span{ display:inline-block; animation:sw-scroll 20s linear infinite; font-weight:600; color:var(--accent); }
 @keyframes sw-scroll{ from{transform:translateX(100%)} to{transform:translateX(-100%)} }
-#sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; }
-.sw-col h2{ margin-bottom:15px; font-size:24px; color:var(--accent); }
-.sw-links-container a{ display:block; margin:8px 0; color:#fff; text-decoration:none; }
-.sw-links-container a::before{ content:"› "; color:var(--accent); }
-.sw-social-container{ display:flex; gap:15px; margin-top:15px; flex-wrap: wrap; }
-.sw-social-container a{ padding: 6px 15px; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; text-decoration: none; font-weight: bold; }
-#sw-bottom{ text-align:center; margin-top:30px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); font-size:13px; opacity:0.7; }
-
-@media(max-width:768px){ 
-  #sw-inner{ grid-template-columns:1fr; text-align:center; } 
-  .sw-social-container{ justify-content:center; }
-  .page-title{ font-size: 24px; }
-}
+#sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:30px; }
+.sw-social-container{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
+.sw-social-container a{ padding:5px 10px; border:1px solid #ff9800; color:#ff9800; text-decoration:none; border-radius:4px; font-size:12px; }
+#sw-bottom{ text-align:center; margin-top:30px; opacity:0.6; font-size:12px; }
 </style>
 </head>
 
@@ -74,71 +50,72 @@ body{background:var(--bg);color:var(--text);transition:.3s}
 <div class="page-title">🌸 Jaipuri Kurtis Collection</div>
 
 <div class="products-container" id="products">
-  <p style="text-align:center; grid-column:1/-1;">Loading latest collection...</p>
+  <p style="text-align:center; grid-column:1/-1;">Data load ho raha hai, kripya intezar karein...</p>
 </div>
 
 <footer id="sw-footer">
   <div id="sw-marquee"></div>
   <div id="sw-inner">
-    <div class="sw-col" id="sw-left"></div>
-    <div class="sw-col" id="sw-center"></div>
-    <div class="sw-col" id="sw-right"></div>
+    <div id="sw-left"></div>
+    <div id="sw-center"></div>
+    <div id="sw-right"></div>
   </div>
   <div id="sw-bottom"></div>
 </footer>
 
 <script>
-/* APIs */
 const API_HEADER = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
 const API_KURTI = "https://script.google.com/macros/s/AKfycbzg-c_zIrSNqREI6wgjk54BkhpNrevz75kI8nJEQcg0n-nd9cBwCE0xWGUdioMiZ0ox/exec";
 const API_FOOTER = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-// 1. Header Load
+// Header
 fetch(API_HEADER).then(r=>r.json()).then(d=>{
-  d.menu.forEach(m=> document.getElementById('menu').innerHTML+=`<a href="${m.link}">${m.text}</a>`);
-});
+  const menu = document.getElementById('menu');
+  d.menu.forEach(m=> menu.innerHTML+=`<a href="${m.link}">${m.text}</a>`);
+}).catch(e => console.error("Header Error:", e));
 
-// 2. Kurti Products Load
+// Products
 fetch(API_KURTI).then(r=>r.json()).then(data => {
   const box = document.getElementById("products");
+  if(!data || data.length === 0) {
+      box.innerHTML = "<p style='text-align:center; grid-column:1/-1;'>Koi product nahi mila.</p>";
+      return;
+  }
   box.innerHTML = "";
   data.forEach(p => {
     box.innerHTML += `
       <div class="card">
-        <img src="${p.IMAGE}" alt="${p.NAME}">
+        <img src="${p.IMAGE || 'https://via.placeholder.com/300'}" alt="kurti">
         <div class="card-body">
-          <h3>${p.NAME}</h3>
-          <div class="price">₹${p.PRICE}</div>
-          <a class="buy-btn" href="${p.LINK}" target="_blank">Buy Now</a>
+          <h3>${p.NAME || 'Jaipuri Kurti'}</h3>
+          <div class="price">₹${p.PRICE || '00'}</div>
+          <a class="buy-btn" href="${p.LINK || '#'}" target="_blank">Buy Now</a>
         </div>
       </div>`;
   });
-}).catch(() => document.getElementById("products").innerHTML = "❌ Failed to load kurtis.");
+}).catch(e => {
+    document.getElementById("products").innerHTML = "<p style='text-align:center; grid-column:1/-1;'>API Error: Products load nahi ho paye.</p>";
+    console.error("Product API Error:", e);
+});
 
-// 3. Footer Load (With Note/Marquee & Social)
+// Footer
 fetch(API_FOOTER).then(r=>r.json()).then(d=>{
   if(!d.footer) return;
   d.footer.forEach(i=>{
-    let box = 
-      i.POSITION==="LEFT"?document.getElementById("sw-left"):
-      i.POSITION==="CENTER"?document.getElementById("sw-center"):
-      i.POSITION==="RIGHT"?document.getElementById("sw-right"):
-      i.POSITION==="BOTTOM"?document.getElementById("sw-bottom"):
-      document.getElementById("sw-marquee");
+    let box = i.POSITION==="LEFT"?document.getElementById("sw-left"):i.POSITION==="CENTER"?document.getElementById("sw-center"):i.POSITION==="RIGHT"?document.getElementById("sw-right"):i.POSITION==="BOTTOM"?document.getElementById("sw-bottom"):document.getElementById("sw-marquee");
+    if(!box) return;
 
-    if(i.TYPE==="MARQUEE"){
-      box.innerHTML = `<span style="color:${i.COLOR}; font-size:${i.SIZE}px">${i.TEXT}</span>`;
-    }
-    else if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
-    else if(i.TYPE==="TEXT") box.innerHTML+=`<p style="color:${i.COLOR}">${i.TEXT}</p>`;
-    else if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links-container"><a href="${i.LINK}" style="color:${i.COLOR}">${i.TEXT}</a></div>`;
+    if(i.TYPE==="MARQUEE") box.innerHTML = `<span>${i.TEXT}</span>`;
+    else if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:orange; font-size:20px; margin-bottom:10px;">${i.TEXT}</h2>`;
+    else if(i.TYPE==="TEXT") box.innerHTML+=`<p style="font-size:14px; margin-bottom:5px;">${i.TEXT}</p>`;
+    else if(i.TYPE==="LINK") box.innerHTML+=`<a href="${i.LINK}" style="color:#fff; text-decoration:none; display:block; margin:5px 0; font-size:14px;">${i.TEXT}</a>`;
     else if(i.TYPE==="SOCIAL"){
-      let sCont = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
-      sCont.innerHTML += `<a href="${i.LINK}" style="color:${i.COLOR}; border-color:${i.COLOR}">${i.TEXT}</a>`;
+        let sc = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
+        sc.innerHTML += `<a href="${i.LINK}">${i.TEXT}</a>`;
     }
     else if(i.TYPE==="BOTTOM") box.innerText = i.TEXT;
   });
-});
+}).catch(e => console.error("Footer Error:", e));
 </script>
 
 </body>
