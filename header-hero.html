@@ -1,0 +1,127 @@
+<style>
+/* HEADER */
+#site-header{
+  background:linear-gradient(90deg,#131921,#232f3e);
+  color:#fff;
+  padding:14px 18px;
+}
+.header-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.logo{font-size:22px;font-weight:700}
+.menu a{
+  background:#ff9900;
+  color:#000;
+  padding:6px 14px;
+  border-radius:20px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+  margin:4px;
+  display:inline-block;
+}
+
+/* HERO */
+#hero{
+  background:linear-gradient(135deg,#4b0f14,#7a1f26);
+  color:#fff;
+  padding:40px 20px;
+}
+.hero-wrap{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  gap:30px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.hero-left{flex:1}
+.hero-left h1{color:#f6d27c;font-size:32px}
+.hero-tags span{
+  display:inline-block;
+  background:#fff6e1;
+  color:#5a1a1f;
+  padding:6px 12px;
+  border-radius:16px;
+  font-weight:700;
+  margin:4px;
+}
+.hero-slider{
+  width:220px;
+  height:300px;
+  background:#fff;
+  padding:6px;
+  border-radius:20px;
+}
+.hero-slider img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:14px;
+}
+.notice{
+  margin-top:10px;
+  font-weight:700;
+  color:#ffeb3b;
+}
+@media(max-width:768px){
+  .hero-wrap{flex-direction:column}
+}
+</style>
+
+<header id="site-header">
+  <div class="header-inner">
+    <div class="logo">SAINIWALAA</div>
+    <nav class="menu" id="menu"></nav>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <h1 id="heroTitle"></h1>
+      <div class="hero-tags" id="heroTags"></div>
+      <div class="notice" id="heroNotice"></div>
+    </div>
+    <div class="hero-slider">
+      <img id="heroImg">
+    </div>
+  </div>
+</section>
+
+<script>
+const API="https://script.google.com/macros/s/XXXX/exec";
+
+fetch(API).then(r=>r.json()).then(d=>{
+
+/* MENU */
+menu.innerHTML="";
+d.menu.forEach(m=>{
+  menu.innerHTML+=`<a href="${m.link}">${m.text}</a>`;
+});
+
+/* HERO */
+let slides=[];
+d.hero.forEach(h=>{
+  if(h.type==="TITLE") heroTitle.innerText=h.text;
+  if(h.type==="TAG") heroTags.innerHTML+=`<span>${h.text}</span>`;
+  if(h.type==="NOTICE") heroNotice.innerText=h.text;
+  if(h.type==="SLIDE") slides.push(h.image);
+});
+
+/* SLIDER */
+let i=0;
+if(slides.length){
+  heroImg.src=slides[0];
+  setInterval(()=>{
+    i=(i+1)%slides.length;
+    heroImg.src=slides[i];
+  },3000);
+}
+});
+</script>
