@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Sainiwalaa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
 
+<!-- HEADER + HERO -->
 <div id="headerHero"></div>
-
 <script>
 fetch("header-hero.html")
 .then(r=>r.text())
@@ -15,13 +17,17 @@ fetch("header-hero.html")
 </script>
 
 <!-- PAGE CONTENT -->
-<h2 style="padding:20px">🏠 Home Page Content</h2>
+<section style="padding:20px">
+  <h2>🏠 Home Page</h2>
+  <p>Welcome to our website</p>
+</section>
 
+<!-- FOOTER -->
 <div id="footer"></div>
 <script>
 fetch("footer.html")
 .then(r=>r.text())
-.then(d=>footer.innerHTML=d);
+.then(d=>document.getElementById("footer").innerHTML=d);
 </script>
 
 </body>
