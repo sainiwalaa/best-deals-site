@@ -1,103 +1,79 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sainiwalaa – Best Deals</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sainiwalaa – Trusted Online Shopping</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;box-sizing:border-box;font-family:Poppins}
-body{background:#f6f7fb;color:#111}
+:root{
+  --accent:#ff9800;
+  --dark:#0b1220;
+  --card:#ffffff;
+  --bg:#f4f6fb;
+}
+body{margin:0;font-family:Poppins,sans-serif;background:var(--bg)}
+a{text-decoration:none;color:inherit}
 
 /* HEADER */
 header{
   background:linear-gradient(90deg,#131921,#232f3e);
   color:#fff;
-  padding:14px 18px;
+  padding:16px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
-header h1{font-size:22px}
-
-/* MENU */
-nav{
-  background:#fff;
-  display:flex;
-  gap:14px;
-  padding:12px;
-  overflow-x:auto;
-}
 nav a{
-  text-decoration:none;
+  margin:0 10px;
   font-weight:600;
-  color:#111;
-  white-space:nowrap;
+  color:#fff;
 }
 
 /* HERO */
 #hero{
-  margin:16px;
-  height:260px;
-  border-radius:16px;
-  overflow:hidden;
   position:relative;
-  background:#ddd;
+  height:260px;
+  overflow:hidden;
 }
 .hero-slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transition:.5s;
+  position:absolute;inset:0;display:none;
 }
-.hero-slide.active{opacity:1}
 .hero-slide img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  width:100%;height:100%;object-fit:cover;
 }
 .hero-text{
   position:absolute;
-  bottom:14px;
-  left:14px;
-  right:14px;
-  background:rgba(0,0,0,.55);
+  bottom:20px;left:20px;right:20px;
+  background:rgba(0,0,0,.6);
   color:#fff;
-  padding:12px;
-  border-radius:12px;
+  padding:14px;border-radius:12px;
 }
 
-/* HOME */
+/* SECTION */
 .section{padding:20px}
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:14px;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:16px;
 }
 .card{
   background:#fff;
   border-radius:14px;
-  padding:10px;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
+  overflow:hidden;
   text-align:center;
-  box-shadow:0 6px 16px rgba(0,0,0,.1);
 }
-.card img{
-  width:100%;
-  height:140px;
-  object-fit:cover;
-  border-radius:10px;
-  background:#eee;
-}
+.card img{width:100%;height:160px;object-fit:cover}
 
 /* FOOTER */
 footer{
-  background:#0b1220;
+  background:#050b1a;
   color:#fff;
-  padding:30px 16px;
+  padding:30px 20px;
   text-align:center;
-  margin-top:30px;
 }
 </style>
 </head>
@@ -105,98 +81,61 @@ footer{
 <body>
 
 <header>
-  <h1>SAINIWALAA</h1>
-  <span>🔥 Best Deals</span>
+  <div><b>SAINIWALAA</b></div>
+  <nav id="menu"></nav>
 </header>
 
-<nav id="menu">
-  <!-- fallback -->
-  <a href="index.html">Home</a>
-</nav>
+<!-- HERO -->
+<div id="hero"></div>
 
-<div id="hero">
-  <!-- hero fallback -->
-</div>
-
+<!-- HOME CONTENT -->
 <div class="section">
-  <h2>🛍 Categories</h2>
-  <div class="grid" id="home"></div>
+  <h2>🛍️ Shop by Category</h2>
+  <div class="grid" id="homeCats"></div>
 </div>
 
-<footer id="footer">
-  © 2026 Sainiwalaa
-</footer>
+<!-- FOOTER -->
+<footer id="footerBox">Loading…</footer>
 
 <script>
-/* ========= SAFE FETCH ========= */
-function safeFetch(url, cb){
-  fetch(url)
-    .then(r=>r.json())
-    .then(cb)
-    .catch(()=>console.warn("API failed:",url));
-}
+/* HEADER + HERO API */
+const HEADER_API="https://script.google.com/macros/s/AKfycbzbtre2vlUi_moOGrVQ0dsNs3duKbY4B233Tp9KHmbXWffuG8nQ3MBRyvyCyr893NZpBA/exec";
+const FOOTER_API="https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-/* ========= MAIN API (MENU + HERO + HOME) ========= */
-safeFetch(
-"https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
-data=>{
-  if(!Array.isArray(data)) return;
+/* HEADER + HERO */
+fetch(HEADER_API).then(r=>r.json()).then(d=>{
+  /* MENU */
+  document.getElementById("menu").innerHTML =
+    d.menu.filter(x=>x.SHOW==="YES")
+    .map(x=>`<a href="${x.LINK}">${x.TEXT}</a>`).join("");
 
-  const menu=document.getElementById("menu");
+  /* HERO */
   const hero=document.getElementById("hero");
-  const home=document.getElementById("home");
-
-  let slideIndex=0;
-
-  data.forEach(row=>{
-    if(row.SHOW!=="YES") return;
-
-    /* MENU */
-    if(row.LINK && row.TEXT){
-      menu.innerHTML+=`<a href="${row.LINK}">${row.TEXT}</a>`;
-    }
-
-    /* HERO */
-    if(row.TYPE==="SLIDE" && row.IMAGE){
-      hero.innerHTML+=`
-        <div class="hero-slide ${slideIndex===0?'active':''}">
-          <img loading="lazy" src="${row.IMAGE}">
-          ${row.TEXT?`<div class="hero-text">${row.TEXT}</div>`:""}
-        </div>`;
-      slideIndex++;
-    }
-
-    /* HOME CARDS */
-    if(row.TYPE==="TAG" && row.TEXT){
-      home.innerHTML+=`
-        <div class="card">
-          <p style="font-weight:600">${row.TEXT}</p>
-        </div>`;
-    }
+  let i=0;
+  d.hero.filter(x=>x.SHOW==="YES").forEach((h,idx)=>{
+    hero.innerHTML+=`
+      <div class="hero-slide">
+        <img src="${h.IMAGE}">
+        <div class="hero-text">
+          <h2>${h.TEXT||""}</h2>
+        </div>
+      </div>`;
   });
-
-  /* HERO AUTO SLIDE */
   const slides=document.querySelectorAll(".hero-slide");
-  if(slides.length>1){
-    let i=0;
+  if(slides.length){
+    slides[0].style.display="block";
     setInterval(()=>{
-      slides[i].classList.remove("active");
+      slides[i].style.display="none";
       i=(i+1)%slides.length;
-      slides[i].classList.add("active");
-    },3000);
+      slides[i].style.display="block";
+    },3500);
   }
 });
 
-/* ========= FOOTER API ========= */
-safeFetch(
-"https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec",
-d=>{
-  if(!d.footer) return;
-  const f=document.getElementById("footer");
-  f.innerHTML="";
-  d.footer.forEach(x=>{
-    f.innerHTML+=`<div>${x.TEXT}</div>`;
-  });
+/* FOOTER */
+fetch(FOOTER_API).then(r=>r.json()).then(d=>{
+  document.getElementById("footerBox").innerHTML =
+    d.footer.map(x=>x.TEXT).join(" • ");
 });
 </script>
 
