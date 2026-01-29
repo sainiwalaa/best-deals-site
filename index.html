@@ -8,14 +8,26 @@
 
 <body>
 
-<!-- HEADER + HERO (AUTO LOAD FROM SHEET) -->
-<script src="header-hero.js"></script>
+<!-- HEADER + HERO -->
+<div id="headerHero"></div>
 
-<!-- HOME PAGE CONTENT -->
-<section style="padding:20px">
-  <h2>🏠 Welcome to Sainiwalaa</h2>
-  <p>Jaipur Handpicked Kurtis & Custom Gifts</p>
-</section>
+<script>
+fetch("header-hero.html")
+.then(r => r.text())
+.then(html => {
+  document.getElementById("headerHero").innerHTML = html;
+
+  const js = document.createElement("script");
+  js.src = "header-hero.js";
+  document.body.appendChild(js);
+});
+</script>
+
+<!-- PAGE CONTENT -->
+<div style="padding:40px;text-align:center">
+  <h2>Welcome to Sainiwalaa</h2>
+  <p>Trusted Shopping & Custom Prints</p>
+</div>
 
 <!-- FOOTER -->
 <div id="footer"></div>
