@@ -1,233 +1,126 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Best Deals – Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Sainiwalaa – Trusted Online Shopping & Deals</title>
-<meta name="description" content="Sainiwalaa par mile Amazon deals, kurti collection, custom mug & t-shirt.">
-<meta name="robots" content="index, follow">
+  <style>
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f5}
+    header{background:#111;color:#fff;padding:10px 20px}
+    nav a{color:#fff;text-decoration:none;margin-right:15px;font-weight:bold}
+    nav a:hover{color:#ffcc00}
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    .hero{background:#fff;padding:20px;text-align:center}
+    .hero h1{margin:10px 0}
+    .tags{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .tag{background:#222;color:#fff;padding:6px 12px;border-radius:20px;font-size:14px}
 
-<style>
-:root{
-  --accent:#ff9900;
-  --bg:#f8fafc;
-  --card:#ffffff;
-  --text:#111;
-}
-.dark{
-  --bg:#0b1220;
-  --card:#111827;
-  --text:#f9fafb;
-}
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:var(--bg);color:var(--text);transition:.3s}
+    .slider{display:flex;overflow-x:auto;gap:10px;padding:15px}
+    .slider img{height:220px;border-radius:10px}
 
-/* ===== HEADER ===== */
-#main-header{
-  background:#000;
-  color:#fff;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 22px;
-}
-#menu a{
-  color:#fff;
-  margin-left:18px;
-  text-decoration:none;
-  font-weight:600;
-}
+    .notice{background:#ffeb3b;padding:10px;font-weight:bold;margin:10px}
 
-/* ===== HERO ===== */
-#hero-sainiwalaa{
-  background:linear-gradient(135deg,#4b0f14,#7a1f26);
-  padding:60px 20px;
-}
-.hero-wrap{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:40px;
-  align-items:center;
-}
-.hero-left h1{color:#f6d27c;font-size:42px}
-.hero-left p{color:#ffe9b0;margin-top:10px}
-.cats{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
-.catbox{
-  background:#fff6e1;color:#5a1a1f;
-  padding:10px 16px;border-radius:20px;font-weight:700
-}
-
-/* IMAGE FRAME FIX */
-.slider-frame{
-  width:260px;height:360px;
-  margin-left:auto;
-  background:#fff6e1;
-  padding:6px;border-radius:22px;
-}
-.slider-frame img{
-  width:100%;height:100%;
-  object-fit:cover;
-  border-radius:16px;
-  opacity:0;
-  transition:opacity .3s;
-}
-.slider-frame img.loaded{opacity:1}
-
-/* ===== HOME ===== */
-.toggle{
-  background:var(--accent);
-  padding:6px 12px;border-radius:20px;
-  cursor:pointer;font-weight:600
-}
-.marquee{
-  background:var(--accent);padding:10px;
-  overflow:hidden;white-space:nowrap;font-weight:600
-}
-.marquee span{display:inline-block;animation:scroll 14s linear infinite}
-@keyframes scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
-
-.countdown{
-  text-align:center;padding:12px;
-  background:var(--card);margin:12px;border-radius:12px
-}
-.countdown span{color:var(--accent)}
-
-.slider{position:relative;height:260px;overflow:hidden}
-.slide{position:absolute;inset:0;display:none}
-.slide img{width:100%;height:100%;object-fit:cover}
-.slide-content{
-  position:absolute;bottom:16px;left:16px;right:16px;
-  background:rgba(0,0,0,.55);padding:14px;border-radius:12px;color:#fff
-}
-
-.section{padding:20px}
-.categories{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:16px
-}
-.cat{
-  background:var(--card);border-radius:14px;
-  padding:12px;text-align:center;cursor:pointer
-}
-.cat img{width:100%;height:130px;object-fit:cover;border-radius:10px}
-.banner img{width:100%;border-radius:14px;margin:14px 0}
-
-/* MOBILE */
-@media(max-width:768px){
-  .hero-wrap{grid-template-columns:1fr;text-align:center}
-  .slider-frame{margin:30px auto 0}
-}
-</style>
+    footer{background:#111;color:#fff;text-align:center;padding:15px;margin-top:30px}
+  </style>
 </head>
 
 <body>
 
-<!-- ===== HEADER ===== -->
-<div id="main-header">
-  <div>SAINIWALAA</div>
-  <div id="menu"></div>
-</div>
+<!-- HEADER -->
+<header>
+  <nav id="menu">
+    Loading menu...
+  </nav>
+</header>
 
-<!-- ===== HERO ===== -->
-<section id="hero-sainiwalaa">
-  <div class="hero-wrap">
-    <div class="hero-left">
-      <h1 id="hero-title"></h1>
-      <p id="hero-notice"></p>
-      <div class="cats" id="hero-tags"></div>
-    </div>
-    <div class="slider-frame">
-      <img id="heroImg">
-    </div>
-  </div>
+<!-- HERO -->
+<section class="hero">
+  <h1 id="hero-title">Loading...</h1>
+
+  <div class="tags" id="hero-tags"></div>
+
+  <div class="notice" id="hero-notice" style="display:none"></div>
+
+  <div class="slider" id="hero-slider"></div>
 </section>
 
-<!-- ===== HOME CONTENT ===== -->
-<div class="toggle" onclick="document.body.classList.toggle('dark')">🌙 / ☀️</div>
-<div class="marquee"><span id="marqueeText">Loading...</span></div>
-<div class="countdown">⏳ Offer Ends In : <span id="timer"></span></div>
-<div class="slider" id="slider"></div>
-<div class="section">
-  <h2>🛍️ Shop by Category</h2>
-  <div class="categories" id="categories"></div>
-</div>
-<div class="section banner" id="banners"></div>
-
-<!-- ===== FOOTER ===== -->
-<div id="sw-footer"></div>
+<!-- FOOTER -->
+<div id="footer"></div>
 
 <script>
-/* ===== HEADER + HERO ===== */
-const HEADER_API="https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
 
-fetch(HEADER_API).then(r=>r.json()).then(d=>{
-  d.menu.filter(m=>m.SHOW==="YES")
-    .forEach(m=>menu.innerHTML+=`<a href="${m.LINK}">${m.TEXT}</a>`);
+fetch(API_URL)
+.then(res => res.json())
+.then(data => {
 
-  let slides=[];
-  d.hero.filter(h=>h.SHOW==="YES").forEach(h=>{
-    if(h.TYPE==="TITLE") hero-title.innerText=h.TEXT;
-    if(h.TYPE==="NOTICE") hero-notice.innerText=h.TEXT;
-    if(h.TYPE==="TAG") hero-tags.innerHTML+=`<div class="catbox">${h.TEXT}</div>`;
-    if(h.TYPE==="SLIDE") slides.push(h.IMAGE);
+  /* ===== MENU ===== */
+  const menuBox = document.getElementById("menu");
+  menuBox.innerHTML = "";
+
+  data.menu.forEach(m=>{
+    if(m.SHOW === "YES"){
+      const a = document.createElement("a");
+      a.href = m.LINK;
+      a.innerText = m.TEXT;
+      menuBox.appendChild(a);
+    }
   });
 
-  let i=0,img=heroImg;
-  if(slides.length){
-    img.src=slides[0];
-    img.onload=()=>img.classList.add("loaded");
-    setInterval(()=>{
-      i=(i+1)%slides.length;
-      img.classList.remove("loaded");
-      img.src=slides[i];
-      img.onload=()=>img.classList.add("loaded");
-    },3000);
-  }
-});
+  /* ===== HERO ===== */
+  const titleEl  = document.getElementById("hero-title");
+  const tagsEl   = document.getElementById("hero-tags");
+  const sliderEl = document.getElementById("hero-slider");
+  const noticeEl = document.getElementById("hero-notice");
 
-/* ===== HOME API ===== */
-const HOME_API="https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
+  tagsEl.innerHTML = "";
+  sliderEl.innerHTML = "";
 
-fetch(HOME_API).then(r=>r.json()).then(d=>{
-  marqueeText.innerText=d.marquee.map(x=>x.TEXT).join(" | ");
+  data.hero.forEach(h=>{
+    if(h.SHOW !== "YES") return;
 
-  d.hero.forEach(x=>{
-    slider.innerHTML+=`
-    <div class="slide">
-      <img src="${x.IMAGE_URL}">
-      <div class="slide-content">
-        <h3>${x.TITLE||""}</h3>
-        <p>${x.SUB_TITLE||""}</p>
-      </div>
-    </div>`;
+    if(h.TYPE === "TITLE"){
+      titleEl.innerText = h.TEXT;
+    }
+
+    if(h.TYPE === "TAG"){
+      const d = document.createElement("div");
+      d.className = "tag";
+      d.innerText = h.TEXT;
+      tagsEl.appendChild(d);
+    }
+
+    if(h.TYPE === "SLIDE"){
+      const img = document.createElement("img");
+      img.src = h.IMAGE;
+      sliderEl.appendChild(img);
+    }
+
+    if(h.TYPE === "NOTICE"){
+      noticeEl.style.display = "block";
+      noticeEl.innerText = h.TEXT;
+    }
   });
 
-  let s=document.querySelectorAll(".slide"),j=0;
-  if(s.length){s[0].style.display="block";
-    setInterval(()=>{s[j].style.display="none";j=(j+1)%s.length;s[j].style.display="block"},3500);
-  }
-
-  d.categories.forEach(x=>{
-    categories.innerHTML+=`
-    <div class="cat" onclick="location.href='${x.PAGE_LINK}'">
-      <img src="${x.IMAGE}">
-      <p>${x.NAME}</p>
-    </div>`;
-  });
-
-  d.banners.forEach(x=>{
-    banners.innerHTML+=`<a href="${x.LINK}"><img src="${x.IMAGE_URL}"></a>`;
-  });
+})
+.catch(err=>{
+  console.error("API Error:", err);
 });
 </script>
 
-<!-- FOOTER SCRIPT SAME AS TUMHARA (UNCHANGED) -->
-<script src="footer.js"></script>
+<script>
+/* ===== FOOTER (DOM SAFE) ===== */
+document.addEventListener("DOMContentLoaded", ()=>{
+  const f = document.getElementById("footer");
+  f.innerHTML = `
+    <footer>
+      <p>© 2026 Best Deals Site</p>
+      <p>Powered by Google Sheets API</p>
+    </footer>
+  `;
+});
+</script>
 
 </body>
 </html>
