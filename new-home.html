@@ -12,22 +12,22 @@
         header { background: var(--amz-blue); padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
         #menu a { color: white; text-decoration: none; margin-left: 12px; font-size: 13px; font-weight: 600; }
 
-        /* BANNER FRAME */
+        /* BANNER FRAME - Enhanced for better visibility */
         .banner-frame { 
-            width: 94%; height: 220px; margin: 15px auto; 
+            width: 96%; height: 240px; margin: 15px auto; 
             border: 2px solid var(--amz-orange); border-radius: 12px; 
             overflow: hidden; background: var(--frame-bg); position: relative;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         #banner-root { display: flex; height: 100%; transition: transform 0.8s ease-in-out; }
         .slide { min-width: 100%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-        .slide img { width: 100%; height: 100%; object-fit: contain; }
+        .slide img { width: 100%; height: 100%; object-fit: contain; } /* Pure banner fitting */
 
         /* CATEGORIES */
         .cat-row { display: flex; overflow-x: auto; padding: 15px 10px; gap: 15px; scrollbar-width: none; }
         .cat-row::-webkit-scrollbar { display: none; }
         .cat-item { text-align: center; min-width: 75px; cursor: pointer; }
-        .cat-circle { width: 68px; height: 68px; border-radius: 50%; border: 2.5px solid var(--amz-orange); padding: 2px; background: #fff; margin: 0 auto; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+        .cat-circle { width: 68px; height: 68px; border-radius: 50%; border: 2px solid var(--amz-orange); padding: 2px; background: #fff; margin: 0 auto; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
         .cat-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
         .cat-item p { font-size: 11px; font-weight: 600; margin-top: 8px; color: #444; }
 
@@ -38,20 +38,17 @@
         .p-price { color: #B12704; font-size: 20px; font-weight: 700; margin: 10px 0; }
         .btn { background: linear-gradient(to bottom, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 7px; padding: 10px; display: block; text-align: center; text-decoration: none; color: #111; font-size: 13px; font-weight: 600; }
 
-        /* ADVANCED FOOTER (Kurti Page Style) */
+        /* ADVANCED FOOTER */
         #sw-footer { background: #050b1a; color: #fff; padding: 40px 15px; margin-top: 50px; border-top: 3px solid var(--amz-orange); text-align: center; }
-        
         #sw-marquee { overflow: hidden; white-space: nowrap; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 25px; }
-        #sw-marquee span { display: inline-block; animation: scroll 20s linear infinite; color: var(--amz-orange); font-weight: 600; }
+        #sw-marquee span { display: inline-block; animation: scroll 20s linear infinite; color: var(--amz-orange); font-weight: 600; font-size: 14px; }
         @keyframes scroll { from { transform: translateX(100%) } to { transform: translateX(-100%) } }
 
         #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 35px; }
         .sw-links a { display: block; color: #fff; text-decoration: none; margin-bottom: 10px; font-size: 14px; opacity: 0.8; }
         .sw-links a::before { content: "› "; color: var(--amz-orange); }
-        
         .sw-social { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; justify-content: center; }
         .sw-social a { padding: 6px 15px; border: 1px solid rgba(255,153,0,0.5); color: var(--amz-orange); text-decoration: none; border-radius: 6px; font-size: 12px; font-weight: 600; background: rgba(255,153,0,0.05); }
-        
         #sw-bottom { text-align: center; margin-top: 30px; opacity: 0.5; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
 
         #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--amz-blue); }
@@ -59,7 +56,7 @@
 </head>
 <body>
 
-<div id="loader">SAINIWALAA...</div>
+<div id="loader">Updating Content...</div>
 
 <header>
     <div style="font-size: 22px; font-weight: bold; color: #febd69; letter-spacing: 1px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
@@ -97,25 +94,25 @@ async function init() {
         const [h, home, f] = await Promise.all(APIs.map(url => fetch(url).then(r => r.json())));
         document.getElementById('loader').style.display = 'none';
 
-        // Header
+        // Header Sync
         h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
 
-        // Banner
+        // Banner Sync (Infinite Loop Support)
         const bRoot = document.getElementById('banner-root');
         let banners = home.filter(i => i.TYPE === "BANNER");
-        banners.forEach(item => { bRoot.innerHTML += `<div class="slide"><img src="${item.IMAGE_URL}"></div>`; });
+        banners.forEach(item => { bRoot.innerHTML += `<div class="slide"><img src="${item.IMAGE_URL}" loading="lazy"></div>`; });
         if(banners.length > 0) bRoot.innerHTML += `<div class="slide"><img src="${banners[0].IMAGE_URL}"></div>`;
 
-        // Categories & Products
+        // Categories & Products Sync
         home.forEach(item => {
             if(item.TYPE === "CAT") {
                 document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
             } else if(item.TYPE === "PRODUCT") {
-                document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div>`;
+                document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}" loading="lazy"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div>`;
             }
         });
 
-        // Infinite Slider
+        // Infinite Slider Script
         let cur = 0; let bLen = banners.length;
         if(bLen > 0) {
             setInterval(() => {
@@ -128,7 +125,7 @@ async function init() {
             }, 5000);
         }
 
-        // Advanced Footer Logic (Merged from Kurti Page)
+        // Integrated Advanced Footer Logic
         if(f.footer) {
             f.footer.forEach(i => {
                 let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : 
@@ -143,13 +140,12 @@ async function init() {
                 else if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
                 else if(i.TYPE === "SOCIAL") {
                     let sc = box.querySelector('.sw-social') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social'}));
-                    sc.innerHTML += `<a href="${i.LINK}">${i.TEXT}</a>`;
+                    sc.innerHTML += `<a href="${i.LINK}" target="_blank">${i.TEXT}</a>`;
                 }
                 else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
             });
         }
-
-    } catch (e) { console.error(e); }
+    } catch (e) { console.error("Data Sync Error:", e); }
 }
 init();
 </script>
