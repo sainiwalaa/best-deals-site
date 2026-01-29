@@ -3,100 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sainiwalaa - Home Test</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Sainiwalaa - Premium Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --amazon-blue: #232f3e; --amazon-orange: #ff9900; --bg: #e3e6e6; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: #0f1111; }
+        :root { --amazon-blue: #232f3e; --amazon-orange: #ff9900; --bg: #f1f3f6; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: #0f1111; overflow-x: hidden; }
 
-        /* HEADER (Old Style) */
-        #main-header{background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;position:sticky;top:0;z-index:1000;}
-        #menu a{color:#fff;margin-left:12px;text-decoration:none;font-weight:600;font-size:13px;}
+        /* HEADER */
+        #main-header{background:#131921;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;position:sticky;top:0;z-index:1000;box-shadow: 0 2px 10px rgba(0,0,0,0.2);}
+        #menu a{color:#fff;margin-left:12px;text-decoration:none;font-weight:500;font-size:13px;}
 
-        /* SLIDER */
-        .slider-container { width: 100%; position: relative; height: 210px; overflow: hidden; background: #fff; }
-        .slides { display: flex; transition: transform 0.6s ease-in-out; height: 100%; }
+        /* PREMIUM SLIDER FRAME */
+        .slider-container { 
+            width: 95%; height: auto; aspect-ratio: 16/9; /* Sahi frame size */
+            margin: 10px auto; position: relative; 
+            overflow: hidden; border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: #ddd;
+        }
+        .slides { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); height: 100%; }
         .slide { min-width: 100%; height: 100%; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        /* CATEGORIES (Amazon Style) */
-        .cat-section { background: #fff; padding: 15px 0; margin-bottom: 5px; }
+        /* CATEGORIES */
+        .cat-section { background: transparent; padding: 15px 0; }
         .cat-scroll { display: flex; overflow-x: auto; gap: 15px; padding: 0 15px; scrollbar-width: none; }
-        .cat-scroll::-webkit-scrollbar { display: none; }
-        .cat-item { text-align: center; min-width: 70px; }
-        .cat-img-wrapper { width: 65px; height: 65px; border-radius: 50%; border: 2px solid var(--amazon-orange); padding: 2px; }
+        .cat-item { text-align: center; min-width: 75px; transition: transform 0.2s; }
+        .cat-img-wrapper { 
+            width: 68px; height: 68px; border-radius: 50%; margin: 0 auto;
+            background: #fff; border: 2.5px solid var(--amazon-orange); 
+            padding: 2px; box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
         .cat-img-wrapper img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .cat-item p { font-size: 11px; font-weight: 600; margin-top: 8px; }
+        .cat-item p { font-size: 11px; font-weight: 600; margin-top: 8px; color: #444; }
 
         /* PRODUCT GRID */
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-        .p-card { background: #fff; border-radius: 8px; padding: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .section-header { padding: 15px; font-size: 17px; font-weight: 700; color: #222; display: flex; align-items: center; gap: 8px; }
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 12px 20px; }
+        .p-card { 
+            background: #fff; border-radius: 10px; padding: 12px; 
+            display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.3s;
+        }
         .p-card img { width: 100%; height: 140px; object-fit: contain; }
-        .buy-btn { background: #ffd814; border: 1px solid #fcd200; border-radius: 20px; color: #000; text-align: center; padding: 8px; display: block; text-decoration: none; font-size: 12px; font-weight: 600; margin-top: 10px; }
+        .p-price { margin-top: 8px; font-size: 18px; font-weight: 700; color: #b12704; }
+        .buy-btn { 
+            background: linear-gradient(to bottom, #f7dfa1, #f0c14b); border: 1px solid #a88734; 
+            border-radius: 8px; color: #111; text-align: center; padding: 8px; 
+            text-decoration: none; font-size: 12px; font-weight: 500; margin-top: 10px;
+        }
 
-        /* FOOTER */
-        #sw-footer{ width:100%; background:#050b1a; padding:40px 15px; color:#fff; margin-top:30px; border-top: 3px solid #ff9800; text-align:center; }
-        .sw-links a { color: #fff; text-decoration: none; display: block; margin: 10px 0; font-size: 14px; }
+        /* LOADER ANIMATION */
+        #loader { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; 
+        }
+        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--amazon-orange); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
-<header id="main-header">
-  <div style="font-weight:700; font-size:18px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
-  <div id="menu"></div>
-</header>
+    <div id="loader"><div class="spinner"></div></div>
 
-<div id="main-content">
-    <div class="slider-container"><div class="slides" id="banner-root"></div></div>
-    <div class="cat-section"><div class="cat-scroll" id="cat-root"></div></div>
-    <div class="product-grid" id="prod-root"></div>
-</div>
+    <header id="main-header">
+      <div style="letter-spacing:1px; font-weight:700; font-size:18px;" onclick="location.href='index.html'">SAINIWALAA</div>
+      <div id="menu"></div>
+    </header>
 
-<footer id="sw-footer">
-  <div id="f-center"></div>
-  <div id="sw-bottom" style="opacity: 0.5; font-size: 12px; margin-top: 20px;"></div>
-</footer>
+    <div id="main-content" style="display:none;">
+        <div class="slider-container"><div class="slides" id="banner-root"></div></div>
+        <div class="cat-section"><div class="cat-scroll" id="cat-root"></div></div>
+        <div class="section-header">Best Offers For You Today 🔥</div>
+        <div class="product-grid" id="prod-root"></div>
+    </div>
 
 <script>
 const API_HOME = "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec";
 const API_HEADER = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
-const API_FOOTER = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-// 1. Header Load karein
-fetch(API_HEADER).then(r=>r.json()).then(d=>{
-  d.menu.forEach(m=> document.getElementById('menu').innerHTML+=`<a href="${m.link}">${m.text}</a>`);
-});
+// Optimized Data Fetching
+Promise.all([fetch(API_HEADER), fetch(API_HOME)])
+.then(responses => Promise.all(responses.map(r => r.json())))
+.then(([headerData, homeData]) => {
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
 
-// 2. Home Sheet Data Load karein
-fetch(API_HOME).then(r=>r.json()).then(data => {
+    // Header
+    headerData.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
+
+    // Home Content
     let bCount = 0;
-    data.forEach(item => {
+    homeData.forEach(item => {
         if(item.TYPE === "BANNER") {
-            document.getElementById('banner-root').innerHTML += `<div class="slide"><a href="${item.LINK}"><img src="${item.IMAGE_URL}"></a></div>`;
+            document.getElementById('banner-root').innerHTML += `<div class="slide"><a href="${item.LINK}"><img src="${item.IMAGE_URL}" loading="lazy"></a></div>`;
             bCount++;
         } else if(item.TYPE === "CAT") {
-            document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-img-wrapper"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
+            document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-img-wrapper"><img src="${item.IMAGE_URL}" loading="lazy"></div><p>${item.TITLE}</p></div>`;
         } else if(item.TYPE === "PRODUCT") {
-            document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div style="font-weight:700; font-size:18px;">₹${item.PRICE}</div><a href="${item.LINK}" class="buy-btn">View Offer</a></div>`;
+            document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}" loading="lazy"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="buy-btn">View Offer</a></div>`;
         }
     });
+
     if(bCount > 1) {
         let current = 0;
         setInterval(() => {
             current = (current + 1) % bCount;
             document.getElementById('banner-root').style.transform = `translateX(-${current * 100}%)`;
-        }, 4000);
+        }, 4500);
     }
-});
-
-// 3. Footer Load karein
-fetch(API_FOOTER).then(r=>r.json()).then(d=>{
-  d.footer.forEach(i=>{
-    let box = i.POSITION==="CENTER"?document.getElementById("f-center"):document.getElementById("sw-bottom");
-    if(i.TYPE==="TITLE") box.innerHTML += `<h2 style="color:#ff9800; font-size:20px;">${i.TEXT}</h2>`;
-    else if(i.TYPE==="LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
-    else if(i.TYPE==="BOTTOM") box.innerText = i.TEXT;
-  });
 });
 </script>
 </body>
