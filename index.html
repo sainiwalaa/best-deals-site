@@ -12,7 +12,7 @@
 body{background:#f4f6fb;color:#111}
 
 /* HEADER */
-header{
+#sw-header{
   background:linear-gradient(90deg,#131921,#232f3e);
   color:#fff;
   padding:16px 24px;
@@ -20,33 +20,43 @@ header{
   justify-content:space-between;
   align-items:center;
 }
-header h1{font-size:22px}
-nav a{
+#sw-logo{font-size:22px;font-weight:700}
+#sw-menu a{
   color:#fff;
-  margin-left:16px;
+  margin-left:18px;
   text-decoration:none;
   font-weight:600;
 }
 
 /* HERO */
-.hero{
-  height:320px;
-  background:url("https://images.unsplash.com/photo-1523275335684-37898b6baf30") center/cover no-repeat;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+#sw-hero{
+  position:relative;
+  height:340px;
+  overflow:hidden;
 }
-.hero-box{
+.sw-slide{
+  position:absolute;
+  inset:0;
+  display:none;
+}
+.sw-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.sw-hero-box{
+  position:absolute;
+  bottom:30px;
+  left:30px;
   background:rgba(0,0,0,.6);
   color:#fff;
-  padding:30px;
-  border-radius:16px;
-  text-align:center;
+  padding:22px;
+  border-radius:14px;
 }
-.hero-box h2{font-size:28px}
-.hero-box a{
+.sw-hero-box h2{margin:0 0 6px}
+.sw-hero-box a{
   display:inline-block;
-  margin-top:12px;
+  margin-top:10px;
   background:#ff9900;
   color:#000;
   padding:10px 20px;
@@ -55,7 +65,7 @@ nav a{
   font-weight:700;
 }
 
-/* SECTION */
+/* CONTENT */
 .section{
   max-width:1200px;
   margin:auto;
@@ -71,101 +81,136 @@ nav a{
   border-radius:14px;
   box-shadow:0 6px 18px rgba(0,0,0,.1);
   overflow:hidden;
-  transition:.3s;
 }
-.card:hover{transform:translateY(-6px)}
 .card img{width:100%;height:200px;object-fit:cover}
-.card p{
-  padding:14px;
-  font-weight:600;
-  text-align:center;
-}
+.card p{text-align:center;padding:14px;font-weight:600}
 
 /* FOOTER */
-footer{
+#sw-footer{
   background:#0b1730;
   color:#fff;
-  padding:30px 20px;
+  padding:40px 20px;
   margin-top:40px;
 }
-.footer-inner{
+#sw-footer-inner{
   max-width:1200px;
   margin:auto;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  gap:30px;
 }
-footer h3{margin-bottom:8px}
-footer a{color:#ff9800;text-decoration:none}
-.footer-bottom{
+#sw-footer a{color:#ff9800;text-decoration:none}
+#sw-bottom{
   text-align:center;
   margin-top:20px;
-  font-size:14px;
   opacity:.7;
+  font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>SAINIWALAA</h1>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Amazon</a>
-    <a href="#">Kurtis</a>
-    <a href="#">Contact</a>
-  </nav>
+<!-- HEADER -->
+<header id="sw-header">
+  <div id="sw-logo">SAINIWALAA</div>
+  <nav id="sw-menu"></nav>
 </header>
 
-<section class="hero">
-  <div class="hero-box">
-    <h2>Best Deals • Trusted Products</h2>
-    <p>Amazon | Kurtis | Custom Print</p>
-    <a href="#">Shop Now</a>
-  </div>
-</section>
+<!-- HERO -->
+<section id="sw-hero"></section>
 
+<!-- HOME CONTENT -->
 <section class="section">
   <h2 style="margin-bottom:16px">Shop by Category</h2>
   <div class="grid">
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1618354691229-88d47f285158">
+      <img src="https://images.meesho.com/images/products/670916392/qsxhk.jpg">
       <p>Amazon Deals</p>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1">
+      <img src="https://images.meesho.com/images/products/673609531/tyb6c.jpg">
       <p>Jaipur Kurtis</p>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f">
-      <p>Custom Mug Print</p>
+      <img src="https://images.meesho.com/images/products/646948595/xz1w4.jpg">
+      <p>Custom Prints</p>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="footer-inner">
-    <div>
-      <h3>Sainiwalaa</h3>
-      <p>Trusted • Secure • Fast Delivery</p>
-    </div>
-    <div>
-      <h3>Quick Links</h3>
-      <p><a href="#">Home</a></p>
-      <p><a href="#">Amazon</a></p>
-      <p><a href="#">Contact</a></p>
-    </div>
-    <div>
-      <h3>Support</h3>
-      <p>Email: support@sainiwalaa.in</p>
-      <p>WhatsApp Available</p>
-    </div>
+<!-- FOOTER -->
+<footer id="sw-footer">
+  <div id="sw-footer-inner">
+    <div id="sw-left"></div>
+    <div id="sw-center"></div>
+    <div id="sw-right"></div>
   </div>
-  <div class="footer-bottom">
-    © 2026 Sainiwalaa. All Rights Reserved.
-  </div>
+  <div id="sw-bottom"></div>
 </footer>
+
+<script>
+/* HEADER + HERO API */
+const HEADER_API="https://script.google.com/macros/s/AKfycbzbtre2vlUi_moOGrVQ0dsNs3duKbY4B233Tp9KHmbXWffuG8nQ3MBRyvyCyr893NZpBA/exec";
+
+fetch(HEADER_API)
+.then(r=>r.json())
+.then(d=>{
+  /* MENU */
+  d.menu.forEach(m=>{
+    if(m.SHOW==="YES"){
+      document.getElementById("sw-menu").innerHTML+=
+        `<a href="${m.LINK}">${m.TEXT}</a>`;
+    }
+  });
+
+  /* HERO */
+  const hero=document.getElementById("sw-hero");
+  d.hero.forEach(h=>{
+    if(h.SHOW==="YES"){
+      hero.innerHTML+=`
+      <div class="sw-slide">
+        <img src="${h.IMAGE}">
+        <div class="sw-hero-box">
+          <h2>${h.TITLE||""}</h2>
+          <p>${h.TAG||""}</p>
+        </div>
+      </div>`;
+    }
+  });
+
+  const slides=document.querySelectorAll(".sw-slide");
+  let i=0;
+  if(slides.length){
+    slides[0].style.display="block";
+    setInterval(()=>{
+      slides[i].style.display="none";
+      i=(i+1)%slides.length;
+      slides[i].style.display="block";
+    },3500);
+  }
+});
+
+/* FOOTER API */
+const FOOTER_API="https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
+
+fetch(FOOTER_API)
+.then(r=>r.json())
+.then(d=>{
+  d.footer.forEach(i=>{
+    const box =
+      i.POSITION==="LEFT"?sw-left:
+      i.POSITION==="CENTER"?sw-center:
+      i.POSITION==="RIGHT"?sw-right:
+      sw-bottom;
+
+    if(i.TYPE==="TITLE") box.innerHTML+=`<h3>${i.TEXT}</h3>`;
+    if(i.TYPE==="TEXT") box.innerHTML+=`<p>${i.TEXT}</p>`;
+    if(i.TYPE==="LINK") box.innerHTML+=`<p><a href="${i.LINK}">${i.TEXT}</a></p>`;
+    if(i.TYPE==="BOTTOM") box.innerText=i.TEXT;
+  });
+});
+</script>
 
 </body>
 </html>
