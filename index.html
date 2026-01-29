@@ -26,7 +26,7 @@ body{background:var(--bg);color:var(--text);transition:.3s; overflow-x: hidden;}
 #main-header{background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 22px; position: sticky; top:0; z-index: 1000;}
 #menu a{color:#fff;margin-left:15px;text-decoration:none;font-weight:600; font-size: 14px;}
 
-/* HERO SECTION - RESPONSIVE GRID */
+/* HERO SECTION */
 #hero-sainiwalaa{background:linear-gradient(135deg,#4b0f14,#7a1f26);padding:40px 20px;}
 .hero-wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center;}
 .hero-left h1{color:#f6d27c;font-size:38px; line-height: 1.2;}
@@ -36,7 +36,7 @@ body{background:var(--bg);color:var(--text);transition:.3s; overflow-x: hidden;}
 .slider-frame{width:100%; max-width:280px; height:380px; margin:auto; background:#fff6e1; padding:6px; border-radius:22px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);}
 .slider-frame img{width:100%;height:100%;object-fit:cover;border-radius:16px}
 
-/* HOME CONTENT */
+/* CONTENT ELEMENTS */
 .toggle{background:var(--accent);color:#000;padding:10px;border-radius:50%;cursor:pointer;position:fixed;bottom:20px;right:20px;z-index:100; box-shadow: 0 4px 10px rgba(0,0,0,0.2);}
 .marquee{background:var(--accent);color:#000;padding:10px;overflow:hidden;white-space:nowrap;font-weight:600; font-size: 14px;}
 .marquee span{display:inline-block;animation:scroll 14s linear infinite}
@@ -53,7 +53,7 @@ body{background:var(--bg);color:var(--text);transition:.3s; overflow-x: hidden;}
 .section{padding:20px 15px}
 .section h2{ margin-bottom: 15px; font-size: 20px; }
 
-/* CATEGORIES GRID - MOBILE 2 COLUMNS */
+/* CATEGORIES GRID */
 .categories{display:grid;grid-template-columns:repeat(2, 1fr); gap:12px}
 .cat{background:var(--card);border-radius:14px;padding:10px;text-align:center;cursor:pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.05);}
 .cat img{width:100%;height:120px;object-fit:cover;border-radius:10px; margin-bottom: 8px;}
@@ -61,15 +61,25 @@ body{background:var(--bg);color:var(--text);transition:.3s; overflow-x: hidden;}
 
 .banner img{width:100%;border-radius:14px;margin-bottom:15px; display: block;}
 
-/* FOOTER RESPONSIVE */
-#sw-footer{ width:100%; background:#050b1a; padding:40px 15px 20px; color:#ffffff; margin-top:40px; }
-#sw-marquee{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:25px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px; }
-#sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:30px; }
-.sw-col h2{ margin-bottom:15px; font-size:22px; color: var(--accent); }
-.sw-links-container a{ display:block; margin:10px 0; color:#ffffff; text-decoration:none; font-size:14px; }
-#sw-bottom{ text-align:center; margin-top:30px; font-size:12px; opacity:.6; border-top:1px solid rgba(255,255,255,.1); padding-top:15px; }
+/* FOOTER CSS */
+#sw-footer{ width:100%; background:#050b1a; padding:50px 20px 30px; color:#ffffff; margin-top:50px; border-top: 3px solid var(--accent); }
+#sw-marquee{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px; }
+#sw-marquee span{ display:inline-block; animation:sw-scroll 28s linear infinite; font-weight:600; }
+@keyframes sw-scroll{ from{transform:translateX(100%)} to{transform:translateX(-100%)} }
 
-/* MOBILE ADJUSTMENTS */
+#sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:40px; }
+.sw-col h2{ margin-bottom:20px; font-size:24px; color: var(--accent); }
+.sw-col p{ margin:10px 0; font-size:14px; opacity:.8; line-height:1.6; }
+
+.sw-links-container a{ display:block; margin:10px 0; color:#ffffff; text-decoration:none; font-size:15px; }
+.sw-links-container a::before{ content:"› "; color:var(--accent); }
+
+.sw-social-container { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; }
+.sw-social-container a{ text-decoration:none; font-weight:600; padding: 8px 15px; border: 1px solid rgba(255,153,0, 0.5); border-radius: 8px; color: #ff9900 !important; background: rgba(255,153,0, 0.05); font-size: 13px; }
+
+#sw-bottom{ text-align:center; margin-top:40px; font-size:12px; opacity:.5; border-top:1px solid rgba(255,255,255,.1); padding-top:20px; }
+
+/* MOBILE RESPONSIVE FIXES */
 @media(max-width:768px){
   .hero-wrap{ grid-template-columns: 1fr; text-align: center; gap: 25px; }
   .hero-left h1{ font-size: 28px; }
@@ -77,7 +87,9 @@ body{background:var(--bg);color:var(--text);transition:.3s; overflow-x: hidden;}
   .slider-frame{ max-width: 220px; height: 300px; }
   #menu a{ margin-left: 10px; font-size: 12px; }
   .slider { height: 180px; }
-  .categories { grid-template-columns: repeat(2, 1fr); }
+  #sw-inner { text-align: center; gap: 50px; }
+  .sw-social-container { justify-content: center; }
+  .sw-col h2 { border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 5px; }
 }
 </style>
 </head>
@@ -85,15 +97,15 @@ body{background:var(--bg);color:var(--text);transition:.3s; overflow-x: hidden;}
 <body>
 
 <div id="main-header">
-  <div style="font-weight:bold; letter-spacing:1px;">SAINIWALAA</div>
+  <div style="font-weight:bold; letter-spacing:1px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
   <div id="menu"></div>
 </div>
 
 <section id="hero-sainiwalaa">
   <div class="hero-wrap">
     <div class="hero-left">
-      <h1 id="heroTitle">Loading...</h1>
-      <p id="heroNotice"></p>
+      <h1 id="heroTitle">Sainiwalaa</h1>
+      <p id="heroNotice">Loading Premium Deals...</p>
       <div class="cats" id="heroTags"></div>
     </div>
     <div class="slider-frame"><img id="heroImg"></div>
@@ -101,7 +113,7 @@ body{background:var(--bg);color:var(--text);transition:.3s; overflow-x: hidden;}
 </section>
 
 <div class="toggle" onclick="document.body.classList.toggle('dark')">🌙</div>
-<div class="marquee"><span id="marqueeText">Sainiwalaa - Shopping Hub</span></div>
+<div class="marquee"><span id="marqueeText">Loading...</span></div>
 <div class="countdown">⏳ Offer Ends In : <span id="timer"></span></div>
 <div class="slider" id="slider"></div>
 
@@ -123,11 +135,11 @@ body{background:var(--bg);color:var(--text);transition:.3s; overflow-x: hidden;}
 </div>
 
 <script>
-// Scripts wahi rahenge jo aapne diye the (Maine koi logic change nahi kiya)
 const API_HEAD = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
 const API_HOME = "https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
 const FOOTER_API = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
+// Header & Hero
 fetch(API_HEAD).then(r=>r.json()).then(d=>{
   d.menu.forEach(m=> document.getElementById('menu').innerHTML+=`<a href="${m.link}">${m.text}</a>`);
   let slides=[];
@@ -143,6 +155,7 @@ fetch(API_HEAD).then(r=>r.json()).then(d=>{
   }
 });
 
+// Home Content
 fetch(API_HOME).then(r=>r.json()).then(d=>{
   document.getElementById('marqueeText').innerText=d.marquee.map(x=>x.TEXT).join(" | ");
   d.hero.forEach(x=>{
@@ -154,6 +167,7 @@ fetch(API_HOME).then(r=>r.json()).then(d=>{
   d.banners.forEach(x=> document.getElementById('banners').innerHTML+=`<a href="${x.LINK}"><img src="${x.IMAGE_URL}"></a>`);
 });
 
+// Footer
 fetch(FOOTER_API).then(r=>r.json()).then(d=>{
   if(!d.footer) return;
   d.footer.forEach(i=>{
@@ -162,7 +176,7 @@ fetch(FOOTER_API).then(r=>r.json()).then(d=>{
     else if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
     else if(i.TYPE==="TEXT") box.innerHTML+=`<p style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</p>`;
     else if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links-container"><a href="${i.LINK}" style="font-size:${i.SIZE}px;color:${i.COLOR}">${i.TEXT}</a></div>`;
-    else if(i.TYPE==="BUTTON") box.innerHTML+=`<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
+    else if(i.TYPE==="BUTTON") box.innerHTML+=`<a class="sw-btn" style="background:${i.COLOR}; color:#000; padding:8px 16px; border-radius:20px; text-decoration:none; font-weight:700; display:inline-block; margin-top:10px;" href="${i.LINK}">${i.TEXT}</a>`;
     else if(i.TYPE==="SOCIAL"){
       let socialCont = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
       socialCont.innerHTML+=`<a href="${i.LINK}" style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</a>`;
@@ -171,6 +185,7 @@ fetch(FOOTER_API).then(r=>r.json()).then(d=>{
   });
 });
 
+// Timer Logic
 let t=3600*3;
 setInterval(()=>{
   let h=Math.floor(t/3600), m=Math.floor((t%3600)/60), s=t%60;
