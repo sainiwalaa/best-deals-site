@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sainiwalaa - New Home Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --amazon-blue: #232f3e; --amazon-orange: #ff9900; --bg: #e3e6e6; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: #0f1111; }
+
+        /* BANNER SLIDER */
+        .slider-container { width: 100%; position: relative; height: 210px; overflow: hidden; background: #fff; }
+        .slides { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); height: 100%; }
+        .slide { min-width: 100%; height: 100%; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* CIRCULAR CATEGORIES */
+        .cat-section { background: #fff; padding: 15px 0; margin-bottom: 10px; }
+        .cat-scroll { display: flex; overflow-x: auto; gap: 18px; padding: 0 15px; scrollbar-width: none; }
+        .cat-scroll::-webkit-scrollbar { display: none; }
+        .cat-item { text-align: center; min-width: 70px; cursor: pointer; }
+        .cat-img-wrapper { 
+            width: 65px; height: 65px; border-radius: 50%; margin: 0 auto;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            border: 2px solid var(--amazon-orange); padding: 2px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        .cat-img-wrapper img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .cat-item p { font-size: 11px; font-weight: 600; margin-top: 8px; color: #333; white-space: nowrap; }
+
+        /* PRODUCT GRID */
+        .section-title { padding: 15px; font-size: 18px; font-weight: 700; background: #fff; margin-top: 5px; }
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+        .p-card { 
+            background: #fff; border-radius: 8px; padding: 12px; 
+            display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+        .p-card img { width: 100%; height: 150px; object-fit: contain; margin-bottom: 10px; }
+        .p-card h4 { font-size: 13px; font-weight: 500; margin: 0; height: 38px; overflow: hidden; line-height: 1.4; }
+        .p-price { margin-top: 8px; font-size: 18px; font-weight: 700; color: #000; }
+        .p-price span { font-size: 12px; vertical-align: top; margin-right: 2px; }
+        .buy-btn { 
+            background: #ffd814; border: 1px solid #fcd200; border-radius: 20px;
+            color: #0f1111; text-align: center; padding: 8px; margin-top: 12px;
+            text-decoration: none; font-size: 12px; font-weight: 600; transition: 0.2s;
+        }
+        .buy-btn:active { background: #f7ca00; }
+
+        /* LOADING SPINNER */
+        #loader { text-align: center; padding: 50px; font-weight: 600; color: var(--amazon-blue); }
+    </style>
+</head>
+<body>
+
+    <div id="loader">Sainiwalaa Store Loading...</div>
+
+    <div id="main-content" style="display:none;">
+        <div class="slider-container">
+            <div class="slides" id="banner-root"></div>
+        </div>
+
+        <div class="cat-section">
+            <div class="cat-scroll" id="cat-root"></div>
+        </div>
+
+        <div class="section-title">Trending Deals 🔥</div>
+        <div class="product-grid" id="prod-root"></div>
+    </div>
+
+<script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec";
+
+    fetch(API_URL)
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+
+        let bCount = 0;
+        data.forEach(item => {
+            if(item.TYPE === "BANNER") {
+                document.getElementById('banner-root').innerHTML += `
+                    <div class="slide"><a href="${item.LINK}"><img src="${item.IMAGE_URL}"></a></div>`;
+                bCount++;
+            } 
+            else if(item.TYPE === "CAT") {
+                document.getElementById('cat-root').innerHTML += `
+                    <div class="cat-item" onclick="location.href='${item.LINK}'">
+                        <div class="cat-img-wrapper"><img src="${item.IMAGE_URL}"></div>
+                        <p>${item.TITLE}</p>
+                    </div>`;
+            }
+            else if(item.TYPE === "PRODUCT") {
+                document.getElementById('prod-root').innerHTML += `
+                    <div class="p-card">
+                        <img src="${item.IMAGE_URL}">
+                        <h4>${item.TITLE}</h4>
+                        <div class="p-price"><span>₹</span>${item.PRICE}</div>
+                        <a href="${item.LINK}" class="buy-btn">View Offer</a>
+                    </div>`;
+            }
+        });
+        startAutoSlider(bCount);
+    });
+
+    function startAutoSlider(total) {
+        let current = 0;
+        const slides = document.getElementById('banner-root');
+        if(total <= 1) return;
+        setInterval(() => {
+            current = (current + 1) % total;
+            slides.style.transform = `translateX(-${current * 100}%)`;
+        }, 4000);
+    }
+</script>
+</body>
+</html>
