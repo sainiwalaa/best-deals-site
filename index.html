@@ -1,124 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <title>Best Deals – Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f5}
-    header{background:#111;color:#fff;padding:10px 20px}
-    nav a{color:#fff;text-decoration:none;margin-right:15px;font-weight:bold}
-    nav a:hover{color:#ffcc00}
+<title>Sainiwalaa – Best Deals & Jaipur Kurtis</title>
 
-    .hero{background:#fff;padding:20px;text-align:center}
-    .hero h1{margin:10px 0}
-    .tags{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-    .tag{background:#222;color:#fff;padding:6px 12px;border-radius:20px;font-size:14px}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    .slider{display:flex;overflow-x:auto;gap:10px;padding:15px}
-    .slider img{height:220px;border-radius:10px}
+<style>
+:root{
+  --accent:#ff9800;
+  --bg:#f5f7fb;
+  --card:#fff;
+  --dark:#0f172a;
+}
+*{box-sizing:border-box;margin:0;font-family:Poppins}
+body{background:var(--bg);color:#111}
 
-    .notice{background:#ffeb3b;padding:10px;font-weight:bold;margin:10px}
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#131921,#232f3e);
+  color:#fff;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+header h1{font-size:22px}
 
-    footer{background:#111;color:#fff;text-align:center;padding:15px;margin-top:30px}
-  </style>
+/* MENU */
+nav{
+  background:#fff;
+  display:flex;
+  gap:16px;
+  padding:12px;
+  overflow-x:auto;
+}
+nav a{
+  white-space:nowrap;
+  text-decoration:none;
+  font-weight:600;
+  color:#111;
+}
+
+/* HERO */
+#hero{
+  position:relative;
+  height:260px;
+  background:#ddd;
+  border-radius:16px;
+  margin:16px;
+  overflow:hidden;
+}
+.hero-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:.5s;
+}
+.hero-slide.active{opacity:1}
+.hero-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.hero-text{
+  position:absolute;
+  bottom:16px;
+  left:16px;
+  right:16px;
+  background:rgba(0,0,0,.55);
+  color:#fff;
+  padding:12px;
+  border-radius:12px;
+}
+
+/* SECTION */
+.section{padding:20px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:14px;
+}
+.card{
+  background:var(--card);
+  border-radius:14px;
+  padding:10px;
+  text-align:center;
+  box-shadow:0 6px 14px rgba(0,0,0,.1);
+}
+.card img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#eee;
+}
+
+/* FOOTER */
+footer{
+  background:#0b1220;
+  color:#fff;
+  padding:30px 16px;
+  text-align:center;
+  margin-top:30px;
+}
+footer a{color:#ff9800;text-decoration:none;font-weight:600}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
-  <nav id="menu">
-    Loading menu...
-  </nav>
+  <h1>SAINIWALAA</h1>
+  <div>🔥 Deals</div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <h1 id="hero-title">Loading...</h1>
+<nav id="menu">
+  <!-- menu fallback -->
+  <a href="index.html">🏠 Home</a>
+</nav>
 
-  <div class="tags" id="hero-tags"></div>
+<div id="hero">
+  <!-- hero fallback -->
+</div>
 
-  <div class="notice" id="hero-notice" style="display:none"></div>
+<div class="section">
+  <h2>🛍 Categories</h2>
+  <div class="grid" id="categories"></div>
+</div>
 
-  <div class="slider" id="hero-slider"></div>
-</section>
-
-<!-- FOOTER -->
-<div id="footer"></div>
+<footer id="footer">
+  © 2026 Sainiwalaa • Trusted Online Store
+</footer>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
-
-fetch(API_URL)
-.then(res => res.json())
-.then(data => {
-
-  /* ===== MENU ===== */
-  const menuBox = document.getElementById("menu");
-  menuBox.innerHTML = "";
-
-  data.menu.forEach(m=>{
-    if(m.SHOW === "YES"){
-      const a = document.createElement("a");
-      a.href = m.LINK;
-      a.innerText = m.TEXT;
-      menuBox.appendChild(a);
-    }
+/* ========= SAFE FETCH ========= */
+function safeFetch(url, cb){
+  fetch(url).then(r=>r.json()).then(cb).catch(e=>{
+    console.warn("API error:",e);
   });
+}
 
-  /* ===== HERO ===== */
-  const titleEl  = document.getElementById("hero-title");
-  const tagsEl   = document.getElementById("hero-tags");
-  const sliderEl = document.getElementById("hero-slider");
-  const noticeEl = document.getElementById("hero-notice");
+/* ========= MENU + HERO ========= */
+safeFetch(
+"https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
+d=>{
+  /* MENU */
+  if(d.menu){
+    const m=document.getElementById("menu");
+    m.innerHTML="";
+    d.menu.forEach(i=>{
+      if(i.SHOW==="YES")
+        m.innerHTML+=`<a href="${i.LINK}">${i.TEXT}</a>`;
+    });
+  }
 
-  tagsEl.innerHTML = "";
-  sliderEl.innerHTML = "";
-
-  data.hero.forEach(h=>{
-    if(h.SHOW !== "YES") return;
-
-    if(h.TYPE === "TITLE"){
-      titleEl.innerText = h.TEXT;
+  /* HERO */
+  if(d.hero){
+    const h=document.getElementById("hero");
+    h.innerHTML="";
+    let i=0;
+    d.hero.forEach(x=>{
+      if(x.SHOW==="YES"){
+        h.innerHTML+=`
+        <div class="hero-slide ${i==0?'active':''}">
+          <img loading="lazy" src="${x.IMAGE}">
+          <div class="hero-text">${x.TITLE||""}</div>
+        </div>`;
+        i++;
+      }
+    });
+    let s=0,slides=document.querySelectorAll(".hero-slide");
+    if(slides.length>1){
+      setInterval(()=>{
+        slides[s].classList.remove("active");
+        s=(s+1)%slides.length;
+        slides[s].classList.add("active");
+      },3000);
     }
-
-    if(h.TYPE === "TAG"){
-      const d = document.createElement("div");
-      d.className = "tag";
-      d.innerText = h.TEXT;
-      tagsEl.appendChild(d);
-    }
-
-    if(h.TYPE === "SLIDE"){
-      const img = document.createElement("img");
-      img.src = h.IMAGE;
-      sliderEl.appendChild(img);
-    }
-
-    if(h.TYPE === "NOTICE"){
-      noticeEl.style.display = "block";
-      noticeEl.innerText = h.TEXT;
-    }
-  });
-
-})
-.catch(err=>{
-  console.error("API Error:", err);
+  }
 });
-</script>
 
-<script>
-/* ===== FOOTER (DOM SAFE) ===== */
-document.addEventListener("DOMContentLoaded", ()=>{
-  const f = document.getElementById("footer");
-  f.innerHTML = `
-    <footer>
-      <p>© 2026 Best Deals Site</p>
-      <p>Powered by Google Sheets API</p>
-    </footer>
-  `;
+/* ========= CATEGORIES ========= */
+safeFetch(
+"https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec",
+d=>{
+  if(!d.categories) return;
+  const c=document.getElementById("categories");
+  d.categories.forEach(x=>{
+    c.innerHTML+=`
+    <div class="card" onclick="location.href='${x.PAGE_LINK||"#"}'">
+      <img loading="lazy" src="${x.IMAGE}">
+      <p>${x.NAME||x.TEXT}</p>
+    </div>`;
+  });
+});
+
+/* ========= FOOTER (ALWAYS LOAD) ========= */
+safeFetch(
+"https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec",
+d=>{
+  if(!d.footer) return;
+  const f=document.getElementById("footer");
+  f.innerHTML="";
+  d.footer.forEach(i=>{
+    f.innerHTML+=`<div>${i.TEXT}</div>`;
+  });
 });
 </script>
 
