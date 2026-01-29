@@ -1,107 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
-<title>Jaipur Kurtis | Sainiwalaa</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaipur Kurtis Collection – Sainiwalaa</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f5f5;
-}
+/* CSS VARIABLES */
+:root{ --primary:#0f172a; --secondary:#1e293b; --accent:#ff9900; --bg:#f4f6fb; --card:#ffffff; --text:#222; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:var(--bg);color:var(--text);transition:.3s}
 
-/* PAGE TITLE */
+/* HEADER (Sainiwalaa Main) */
+#main-header{background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;position:sticky;top:0;z-index:1000;}
+#menu a{color:#fff;margin-left:18px;text-decoration:none;font-weight:600;}
+
+/* PAGE BANNER */
 .page-title{
-  padding:20px;
-  text-align:center;
-  font-size:28px;
-  font-weight:900;
-  color:#e65100;
+  background: linear-gradient(135deg, #e65100, #ff9800);
+  padding:40px 20px; text-align:center; font-size:32px; font-weight:900; color:#fff;
 }
 
 /* PRODUCT GRID */
-.products{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+.products-container{
+  max-width:1200px; margin:30px auto; padding:0 20px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px;
 }
 
-/* CARD */
-.card{
-  background:#fff;
-  border-radius:14px;
-  box-shadow:0 6px 18px rgba(0,0,0,.12);
-  overflow:hidden;
-  transition:.3s;
-}
-.card:hover{
-  transform:translateY(-6px);
-}
+/* KURTI CARD */
+.card{ background:var(--card); border-radius:18px; box-shadow:0 6px 18px rgba(0,0,0,.1); overflow:hidden; transition:.3s; border: 1px solid rgba(0,0,0,0.05); }
+.card:hover{ transform:translateY(-8px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
+.card img{ width:100%; height:320px; object-fit:cover; }
+.card-body{ padding:18px; text-align: center; }
+.card-body h3{ font-size:16px; margin-bottom:10px; color:#333; height:45px; overflow:hidden; }
+.price{ font-size:20px; font-weight:800; color:#2e7d32; margin-bottom:15px; }
 
-/* IMAGE */
-.card img{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-}
-
-/* CONTENT */
-.card-body{
-  padding:14px;
-}
-.card-body h3{
-  font-size:16px;
-  margin:0 0 8px;
-  color:#333;
-  min-height:42px;
-}
-.price{
-  font-size:18px;
-  font-weight:800;
-  color:#2e7d32;
-  margin-bottom:12px;
-}
-
-/* BUTTON */
+/* BUY BUTTON */
 .buy-btn{
-  display:block;
-  text-align:center;
-  background:#ff9800;
-  color:#fff;
-  padding:12px;
-  border-radius:8px;
-  font-weight:700;
-  text-decoration:none;
+  display:block; text-align:center; background:linear-gradient(90deg, #ff9800, #f57c00);
+  color:#fff; padding:12px; border-radius:10px; font-weight:700; text-decoration:none; transition: 0.3s;
 }
-.buy-btn:hover{
-  background:#fb8c00;
+.buy-btn:hover{ filter: brightness(1.1); }
+
+/* FOOTER SYSTEM (Sainiwalaa Fixed) */
+#sw-footer{ width:100%; background:linear-gradient(180deg,#050b1a,#0b1730); padding:50px 20px 25px; color:#ffffff; margin-top:50px; }
+#sw-marquee{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px; }
+#sw-marquee span{ display:inline-block; animation:sw-scroll 28s linear infinite; font-weight:600; }
+@keyframes sw-scroll{ from{transform:translateX(100%)} to{transform:translateX(-100%)} }
+#sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; }
+.sw-col h2{ margin-bottom:15px; font-size:24px; color:var(--accent); }
+.sw-links-container a{ display:block; margin:8px 0; color:#fff; text-decoration:none; }
+.sw-links-container a::before{ content:"› "; color:var(--accent); }
+.sw-social-container{ display:flex; gap:15px; margin-top:15px; flex-wrap: wrap; }
+.sw-social-container a{ padding: 6px 15px; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; text-decoration: none; font-weight: bold; }
+#sw-bottom{ text-align:center; margin-top:30px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); font-size:13px; opacity:0.7; }
+
+@media(max-width:768px){ 
+  #sw-inner{ grid-template-columns:1fr; text-align:center; } 
+  .sw-social-container{ justify-content:center; }
+  .page-title{ font-size: 24px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="page-title">Jaipur Kurtis Collection</div>
+<header id="main-header">
+  <div style="font-weight:700; font-size:20px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
+  <div id="menu"></div>
+</header>
 
-<div class="products" id="products">
-  Loading products...
+<div class="page-title">🌸 Jaipuri Kurtis Collection</div>
+
+<div class="products-container" id="products">
+  <p style="text-align:center; grid-column:1/-1;">Loading latest collection...</p>
 </div>
 
+<footer id="sw-footer">
+  <div id="sw-marquee"></div>
+  <div id="sw-inner">
+    <div class="sw-col" id="sw-left"></div>
+    <div class="sw-col" id="sw-center"></div>
+    <div class="sw-col" id="sw-right"></div>
+  </div>
+  <div id="sw-bottom"></div>
+</footer>
+
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbzg-c_zIrSNqREI6wgjk54BkhpNrevz75kI8nJEQcg0n-nd9cBwCE0xWGUdioMiZ0ox/exec";
+/* APIs */
+const API_HEADER = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
+const API_KURTI = "https://script.google.com/macros/s/AKfycbzg-c_zIrSNqREI6wgjk54BkhpNrevz75kI8nJEQcg0n-nd9cBwCE0xWGUdioMiZ0ox/exec";
+const API_FOOTER = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-fetch(API_URL)
-.then(res => res.json())
-.then(data => {
+// 1. Header Load
+fetch(API_HEADER).then(r=>r.json()).then(d=>{
+  d.menu.forEach(m=> document.getElementById('menu').innerHTML+=`<a href="${m.link}">${m.text}</a>`);
+});
 
+// 2. Kurti Products Load
+fetch(API_KURTI).then(r=>r.json()).then(data => {
   const box = document.getElementById("products");
   box.innerHTML = "";
-
   data.forEach(p => {
     box.innerHTML += `
       <div class="card">
@@ -109,18 +109,35 @@ fetch(API_URL)
         <div class="card-body">
           <h3>${p.NAME}</h3>
           <div class="price">₹${p.PRICE}</div>
-          <a class="buy-btn" href="${p.LINK}" target="_blank">
-            Buy Now
-          </a>
+          <a class="buy-btn" href="${p.LINK}" target="_blank">Buy Now</a>
         </div>
-      </div>
-    `;
+      </div>`;
   });
+}).catch(() => document.getElementById("products").innerHTML = "❌ Failed to load kurtis.");
 
-})
-.catch(err=>{
-  document.getElementById("products").innerHTML =
-    "❌ Failed to load products";
+// 3. Footer Load (With Note/Marquee & Social)
+fetch(API_FOOTER).then(r=>r.json()).then(d=>{
+  if(!d.footer) return;
+  d.footer.forEach(i=>{
+    let box = 
+      i.POSITION==="LEFT"?document.getElementById("sw-left"):
+      i.POSITION==="CENTER"?document.getElementById("sw-center"):
+      i.POSITION==="RIGHT"?document.getElementById("sw-right"):
+      i.POSITION==="BOTTOM"?document.getElementById("sw-bottom"):
+      document.getElementById("sw-marquee");
+
+    if(i.TYPE==="MARQUEE"){
+      box.innerHTML = `<span style="color:${i.COLOR}; font-size:${i.SIZE}px">${i.TEXT}</span>`;
+    }
+    else if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
+    else if(i.TYPE==="TEXT") box.innerHTML+=`<p style="color:${i.COLOR}">${i.TEXT}</p>`;
+    else if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links-container"><a href="${i.LINK}" style="color:${i.COLOR}">${i.TEXT}</a></div>`;
+    else if(i.TYPE==="SOCIAL"){
+      let sCont = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
+      sCont.innerHTML += `<a href="${i.LINK}" style="color:${i.COLOR}; border-color:${i.COLOR}">${i.TEXT}</a>`;
+    }
+    else if(i.TYPE==="BOTTOM") box.innerText = i.TEXT;
+  });
 });
 </script>
 
