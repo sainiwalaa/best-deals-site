@@ -4,77 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sainiwalaa | Official Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #000000; --accent: #febd69; --bg: #f3f3f3; --card: #ffffff; }
+        :root { --primary: #000000; --accent: #febd69; --bg: #f3f3f3; --dark-blue: #0b1730; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: var(--bg); color: #333; overflow-x: hidden; }
 
-        /* --- TICKER --- */
-        .ticker-wrap { background: #131921; color: var(--accent); padding: 10px 0; overflow: hidden; white-space: nowrap; font-size: 13px; font-weight: 700; }
-        .ticker { display: inline-block; animation: ticker 30s linear infinite; }
-        .ticker span { margin-right: 50px; }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
         /* --- HEADER (BLACK & WHITE) --- */
-        header { background: var(--primary); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.3); }
-        .logo { font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 1px; }
-        #nav-root a { color: #fff; margin-left: 20px; text-decoration: none; font-size: 14px; font-weight: 700; transition: 0.3s; }
+        header { 
+            background: #000; padding: 15px 5%; display: flex; justify-content: space-between; 
+            align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+        }
+        .logo { font-size: 26px; font-weight: 900; color: #fff; letter-spacing: 1px; }
+        #nav-root a { color: #fff; margin-left: 18px; text-decoration: none; font-size: 14px; font-weight: 700; transition: 0.3s; }
         #nav-root a:hover { color: var(--accent); }
 
-        /* --- HERO SLIDER (FIXED) --- */
+        /* --- FULL WIDTH HERO SLIDER --- */
         #hero-section {
-            padding: 40px 5%; background: linear-gradient(135deg, #232f3e 0%, #131921 100%);
-            display: flex; align-items: center; justify-content: space-between; gap: 30px;
-            min-height: 450px; color: #fff;
+            width: 100%; height: 500px; position: relative; overflow: hidden; background: #131921;
         }
-        .hero-info { flex: 1; }
-        .hero-info h1 { font-size: 45px; margin-bottom: 15px; color: var(--accent); }
-        .hero-info p { font-size: 18px; opacity: 0.8; margin-bottom: 25px; }
+        .slide-container { width: 100%; height: 100%; }
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 1.2s ease-in-out;
+        }
+        .slide.active { opacity: 1; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
         
-        .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tag-cloud span { background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 5px; font-size: 12px; border: 1px solid rgba(255,255,255,0.2); }
-
-        .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; height: 380px; }
-        .slider-frame { 
-            width: 300px; height: 380px; border-radius: 15px; border: 5px solid #fff; 
-            overflow: hidden; position: relative; background: #1a222d; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        .hero-overlay {
+            position: absolute; bottom: 50px; left: 5%; z-index: 10;
+            background: rgba(0,0,0,0.7); padding: 25px; border-radius: 12px;
+            color: #fff; max-width: 550px; border-left: 5px solid var(--accent);
         }
-        .slider-frame img { 
-            width: 100%; height: 100%; object-fit: cover; position: absolute; 
-            top: 0; left: 0; opacity: 0; transition: opacity 1s ease-in-out; 
-        }
-        .slider-frame img.active { opacity: 1; }
+        .hero-overlay h1 { color: var(--accent); font-size: 38px; margin-bottom: 10px; font-weight: 900; }
+        .tag-cloud { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        .tag-cloud span { background: var(--accent); color: #000; padding: 6px 14px; border-radius: 4px; font-size: 12px; font-weight: 800; text-transform: uppercase; }
 
-        /* --- CATEGORIES & PRODUCTS --- */
-        .section-title { padding: 30px 5% 10px; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; }
-        .cat-scroll { display: flex; overflow-x: auto; padding: 20px 5%; gap: 20px; scrollbar-width: none; }
-        .cat-box { min-width: 100px; text-align: center; cursor: pointer; }
-        .cat-box .img-w { width: 80px; height: 80px; border-radius: 50%; background: #fff; margin: 0 auto 10px; padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .cat-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        /* --- CATEGORIES --- */
+        .section-title { padding: 40px 5% 10px; font-size: 24px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; }
+        .section-title span { font-size: 14px; color: #666; cursor: pointer; }
+        .cat-scroll { display: flex; overflow-x: auto; padding: 20px 5%; gap: 25px; scrollbar-width: none; }
+        .cat-box { min-width: 100px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .cat-box:hover { transform: scale(1.05); }
+        .cat-box .img-w { width: 85px; height: 85px; border-radius: 50%; background: #fff; margin: 0 auto 12px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .cat-box img { width: 100%; height: 100%; object-fit: cover; }
 
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; padding: 20px 5%; }
-        .p-card { background: #fff; border-radius: 12px; padding: 20px; transition: 0.3s; border: 1px solid #eee; }
-        .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .p-card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
-        .price { font-size: 20px; font-weight: 800; color: #B12704; }
-        .buy-now { margin-top: 15px; display: block; background: var(--accent); color: #111; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 700; }
+        /* --- PRODUCTS --- */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; padding: 20px 5%; }
+        .p-card { background: #fff; border-radius: 15px; padding: 20px; transition: 0.3s; border: 1px solid #eee; text-align: center; position: relative; }
+        .p-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .p-card img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 15px; }
+        .price { font-size: 22px; font-weight: 900; color: #B12704; margin: 10px 0; }
+        .buy-now { display: block; background: var(--accent); color: #111; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: 0.3s; }
+        .buy-now:hover { background: #eeb05d; }
 
-        footer { background: #131921; color: #fff; padding: 50px 5%; margin-top: 50px; }
+        /* --- SYSTEM FOOTER STYLE --- */
+        #sw-footer { width:100%; background:linear-gradient(180deg,#050b1a,#0b1730); padding:60px 5% 30px; color:#ffffff; margin-top: 60px; }
+        #sw-marquee { overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:40px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:15px; }
+        #sw-marquee span { display:inline-block; animation:sw-scroll 25s linear infinite; font-weight:600; font-family: 'Poppins'; }
+        @keyframes sw-scroll { from{transform:translateX(100%)} to{transform:translateX(-100%)} }
+        #sw-inner { max-width:1200px; margin:auto; display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:50px; }
+        .sw-col h2 { margin:0 0 15px; font-size:28px; font-family: 'Poppins'; }
+        .sw-col p { line-height: 1.6; opacity:.8; font-size:15px; margin-bottom: 15px; }
+        .sw-links a { display:block; margin:8px 0; color:#fff; text-decoration:none; font-weight:500; font-size:15px; transition: 0.2s; }
+        .sw-links a:hover { color: var(--accent); padding-left: 5px; }
+        .sw-btn { display:inline-block; margin-top:15px; padding:12px 28px; background:linear-gradient(90deg,#ff9800,#ff5722); color:#000 !important; border-radius:30px; text-decoration:none; font-weight:700; }
+        .sw-social a { margin-right:15px; text-decoration:none; font-weight:700; display: inline-block; margin-top: 10px; }
+        #sw-bottom { text-align:center; margin-top:40px; font-size:13px; opacity:.5; border-top:1px solid rgba(255,255,255,.1); padding-top:20px; }
+
+        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            #hero-section { flex-direction: column; text-align: center; }
-            .slider-frame { width: 260px; height: 340px; }
-            .product-grid { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+            header { padding: 15px 20px; }
+            #hero-section { height: 350px; }
+            .hero-overlay { bottom: 20px; left: 5%; right: 5%; padding: 15px; }
+            .hero-overlay h1 { font-size: 24px; }
+            .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
+            #sw-inner { grid-template-columns: 1fr; text-align: center; }
+            .sw-col h2 { font-size: 24px; }
         }
     </style>
 </head>
 <body>
-
-<div class="ticker-wrap">
-    <div class="ticker" id="ticker-js">
-        <span>🔥 NEW ARRIVALS LIVE</span><span>✨ JAIPUR SPECIAL KURTIS</span><span>🚀 FREE SHIPPING ON ORDERS ABOVE ₹999</span>
-    </div>
-</div>
 
 <header>
     <div class="logo">SAINIWALAA</div>
@@ -82,30 +92,29 @@
 </header>
 
 <section id="hero-section">
-    <div class="hero-info">
-        <h1 id="hero-t">Loading...</h1>
-        <p id="hero-n">Fetching latest collection...</p>
+    <div class="slide-container" id="slider-root"></div>
+    <div class="hero-overlay">
+        <h1 id="hero-t">Loading Style...</h1>
+        <p id="hero-n">Just a moment...</p>
         <div class="tag-cloud" id="hero-tg"></div>
-    </div>
-    <div class="hero-visual">
-        <div class="slider-frame" id="hero-slider">
-            </div>
     </div>
 </section>
 
-<div class="section-title">Shop Categories</div>
+<div class="section-title">Shop by Category <span>View All ›</span></div>
 <div class="cat-scroll" id="cat-root"></div>
 
-<div class="section-title">Trending Now 🔥</div>
+<div class="section-title">Trending Collection 🔥</div>
 <div class="product-grid" id="prod-root"></div>
 
-<footer id="sw-footer">
-    <div id="f-marquee" style="margin-bottom: 30px; color: var(--accent); text-align: center;"></div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;" id="f-inner">
-        <div id="f-c1"></div><div id="f-c2"></div><div id="f-c3"></div>
+<div id="sw-footer">
+    <div id="sw-marquee"></div>
+    <div id="sw-inner">
+        <div class="sw-col" id="sw-left"></div>
+        <div class="sw-col" id="sw-center"></div>
+        <div class="sw-col" id="sw-right"></div>
     </div>
-    <div id="f-bot" style="text-align: center; margin-top: 40px; opacity: 0.4; font-size: 12px;"></div>
-</footer>
+    <div id="sw-bottom"></div>
+</div>
 
 <script>
 const HERO_API = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
@@ -125,34 +134,34 @@ async function init() {
             document.getElementById('nav-root').innerHTML += `<a href="${m.link}">${m.text}</a>`;
         });
 
-        // 2. Hero Section & Slider
-        let slideImages = [];
+        // 2. Full Width Slider Logic
+        let slideImgs = [];
         hData.hero.forEach(item => {
             if(item.type === "TITLE") document.getElementById('hero-t').innerText = item.text;
             if(item.type === "NOTICE") document.getElementById('hero-n').innerText = item.text;
             if(item.type === "TAG") document.getElementById('hero-tg').innerHTML += `<span>${item.text}</span>`;
-            if(item.type === "SLIDE") slideImages.push(item.image);
+            if(item.type === "SLIDE") slideImgs.push(item.image);
         });
 
-        const sliderContainer = document.getElementById('hero-slider');
-        slideImages.forEach((imgUrl, index) => {
-            const img = document.createElement('img');
-            img.src = imgUrl;
-            if(index === 0) img.classList.add('active');
-            sliderContainer.appendChild(img);
+        const sliderRoot = document.getElementById('slider-root');
+        slideImgs.forEach((url, i) => {
+            const div = document.createElement('div');
+            div.className = `slide ${i === 0 ? 'active' : ''}`;
+            div.innerHTML = `<img src="${url}" alt="Sainiwalaa Banner">`;
+            sliderRoot.appendChild(div);
         });
 
-        let currentSlide = 0;
-        const allSlides = sliderContainer.getElementsByTagName('img');
-        if(allSlides.length > 1) {
+        if(slideImgs.length > 1) {
+            let cur = 0;
+            const allS = document.querySelectorAll('.slide');
             setInterval(() => {
-                allSlides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % allSlides.length;
-                allSlides[currentSlide].classList.add('active');
-            }, 4000);
+                allS[cur].classList.remove('active');
+                cur = (cur + 1) % allS.length;
+                allS[cur].classList.add('active');
+            }, 4500);
         }
 
-        // 3. Categories & Products
+        // 3. Shop Content (Categories & Products)
         sData.forEach(item => {
             if(item.TYPE === "CAT") {
                 document.getElementById('cat-root').innerHTML += `
@@ -164,32 +173,33 @@ async function init() {
                 document.getElementById('prod-root').innerHTML += `
                     <div class="p-card">
                         <img src="${item.IMAGE_URL}">
-                        <h4 style="font-size:15px; margin-bottom:10px;">${item.TITLE}</h4>
+                        <h4 style="font-size:15px; font-weight:700;">${item.TITLE}</h4>
                         <div class="price">₹${item.PRICE}</div>
                         <a href="${item.LINK}" class="buy-now">View Detail</a>
                     </div>`;
             }
         });
 
-        // 4. Footer Sync
+        // 4. System Footer Integration
         if(fData.footer) {
             fData.footer.forEach(i => {
-                let box = i.POSITION === "LEFT" ? document.getElementById("f-c1") : 
-                          i.POSITION === "CENTER" ? document.getElementById("f-c2") : 
-                          i.POSITION === "RIGHT" ? document.getElementById("f-c3") : 
-                          i.POSITION === "BOTTOM" ? document.getElementById("f-bot") : 
-                          document.getElementById("f-marquee");
-                
-                if(i.TYPE === "MARQUEE") box.innerHTML = `<marquee style="font-weight:700;">${i.TEXT}</marquee>`;
-                else if(i.TYPE === "TITLE") box.innerHTML += `<h3 style="margin-bottom:15px; color:var(--accent); font-size:18px;">${i.TEXT}</h3>`;
-                else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}" style="color:#ccc; text-decoration:none; display:block; margin-bottom:10px; font-size:14px;">${i.TEXT}</a>`;
-                else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
+                let box = i.POSITION === "LEFT" ? document.getElementById("sw-left") : 
+                          i.POSITION === "CENTER" ? document.getElementById("sw-center") : 
+                          i.POSITION === "RIGHT" ? document.getElementById("sw-right") : 
+                          i.POSITION === "BOTTOM" ? document.getElementById("sw-bottom") : 
+                          document.getElementById("sw-marquee");
+
+                if(i.TYPE === "MARQUEE") box.innerHTML = `<span style="color:${i.COLOR}; font-size:${i.SIZE}px">${i.TEXT}</span>`;
+                if(i.TYPE === "TITLE") box.innerHTML += `<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
+                if(i.TYPE === "TEXT") box.innerHTML += `<p style="color:${i.COLOR}; font-size:${i.SIZE}px">${i.TEXT}</p>`;
+                if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}" style="font-size:${i.SIZE}px; color:${i.COLOR}">${i.TEXT}</a></div>`;
+                if(i.TYPE === "BUTTON") box.innerHTML += `<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
+                if(i.TYPE === "SOCIAL") box.innerHTML += `<a href="${i.LINK}" style="color:${i.COLOR}; font-size:${i.SIZE}px">${i.TEXT}</a>`;
+                if(i.TYPE === "BOTTOM") { box.innerText = i.TEXT; box.style.color = i.COLOR; }
             });
         }
 
-    } catch (error) {
-        console.error("Sheet Sync Error:", error);
-    }
+    } catch (e) { console.error("Sync Error:", e); }
 }
 
 init();
