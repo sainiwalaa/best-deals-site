@@ -10,11 +10,11 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: var(--bg); color: #333; overflow-x: hidden; }
 
-        /* --- TOP ANIMATED TICKER --- */
+        /* --- TICKER --- */
         .ticker-wrap {
             background: var(--primary); color: var(--accent);
             padding: 10px 0; overflow: hidden; white-space: nowrap;
-            font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            font-size: 13px; font-weight: 700; text-transform: uppercase;
         }
         .ticker { display: inline-block; animation: ticker 30s linear infinite; }
         .ticker span { margin-right: 50px; }
@@ -22,78 +22,64 @@
 
         header { background: #fff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: 900; color: var(--primary); }
+        #nav-root a { color: var(--primary); margin-left: 15px; text-decoration: none; font-size: 13px; font-weight: 700; transition: 0.3s; }
+        #nav-root a:hover { color: var(--accent); }
 
-        /* --- MODERN HERO SECTION --- */
+        /* --- HERO SECTION (FIXED LOADING) --- */
         #hero-section {
             padding: 40px 5%; background: linear-gradient(135deg, #232f3e 0%, #131921 100%);
             display: flex; align-items: center; justify-content: space-between; gap: 30px;
-            min-height: 400px; color: #fff;
+            min-height: 450px; color: #fff;
         }
-
         .hero-info { flex: 1; }
         .hero-info h1 { font-size: 45px; margin-bottom: 15px; color: var(--accent); }
         .hero-info p { font-size: 18px; opacity: 0.8; margin-bottom: 25px; }
-        
-        /* Interactive Tags */
         .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tag-cloud span { 
-            background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 5px; 
-            font-size: 12px; border: 1px solid rgba(255,255,255,0.2);
-            animation: pulse 2s infinite ease-in-out;
-        }
+        .tag-cloud span { background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 5px; font-size: 12px; border: 1px solid rgba(255,255,255,0.2); }
 
-        .hero-visual { flex: 1; position: relative; display: flex; justify-content: center; }
-        .hero-visual img { 
-            width: 300px; height: 380px; object-fit: cover; 
-            border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border: 5px solid #fff;
+        .hero-visual { flex: 1; display: flex; justify-content: center; }
+        .hero-visual-frame {
+            width: 300px; height: 380px; border-radius: 15px; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 5px solid #fff;
+            background: #1e293b; /* Fallback background while loading */
+            position: relative;
         }
+        #hero-i { 
+            width: 100%; height: 100%; object-fit: cover; 
+            opacity: 0; transition: opacity 0.8s ease-in-out; 
+        }
+        /* Class to show image after load */
+        .img-loaded { opacity: 1 !important; }
 
-        /* --- CATEGORIES & PRODUCTS --- */
+        /* --- SHOP GRID --- */
         .section-title { padding: 30px 5% 10px; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; }
-        
         .cat-scroll { display: flex; overflow-x: auto; padding: 20px 5%; gap: 20px; scrollbar-width: none; }
         .cat-box { min-width: 100px; text-align: center; cursor: pointer; }
         .cat-box .img-w { width: 80px; height: 80px; border-radius: 50%; background: #fff; margin: 0 auto 10px; padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .cat-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; padding: 20px 5%; }
-        .p-card { 
-            background: #fff; border-radius: 12px; padding: 20px; 
-            transition: 0.3s; position: relative; overflow: hidden;
-            border: 1px solid #eee;
-        }
-        .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .p-card { background: #fff; border-radius: 12px; padding: 20px; transition: 0.3s; border: 1px solid #eee; }
         .p-card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
-        .p-card h4 { font-size: 16px; margin-bottom: 8px; color: #444; }
         .price { font-size: 20px; font-weight: 800; color: #B12704; }
-        .buy-now { 
-            margin-top: 15px; display: block; background: var(--accent); 
-            color: #111; text-align: center; padding: 12px; border-radius: 8px; 
-            text-decoration: none; font-weight: 700; font-size: 14px;
-        }
+        .buy-now { margin-top: 15px; display: block; background: var(--accent); color: #111; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 700; }
 
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        footer { background: var(--primary); color: #fff; padding: 50px 5%; margin-top: 50px; }
+        footer a { color: #ccc; text-decoration: none; font-size: 14px; }
 
         @media (max-width: 768px) {
-            #hero-section { flex-direction: column; text-align: center; padding: 40px 20px; }
-            .hero-info h1 { font-size: 32px; }
-            .hero-visual img { width: 220px; height: 300px; }
+            #hero-section { flex-direction: column; text-align: center; }
+            .hero-visual-frame { width: 220px; height: 300px; }
             .product-grid { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-            .p-card { padding: 10px; }
-            .p-card img { height: 150px; }
         }
     </style>
 </head>
 <body>
 
 <div class="ticker-wrap">
-    <div class="ticker">
+    <div class="ticker" id="ticker-js">
         <span>🔥 FLASH SALE LIVE</span>
-        <span>✨ PREMIUM KURTI COLLECTION</span>
-        <span>💻 LATEST GADGETS</span>
-        <span>🏠 MODERN HOME DECOR</span>
-        <span>🎁 EXCLUSIVE GIFTING DEALS</span>
+        <span>✨ PREMIUM COLLECTION</span>
         <span>🚀 FAST DELIVERY</span>
     </div>
 </div>
@@ -105,27 +91,29 @@
 
 <section id="hero-section">
     <div class="hero-info">
-        <h1 id="hero-t">Artistic Selection</h1>
-        <p id="hero-n">Fetching the best deals for your lifestyle...</p>
+        <h1 id="hero-t">Loading...</h1>
+        <p id="hero-n">Please wait...</p>
         <div class="tag-cloud" id="hero-tg"></div>
     </div>
     <div class="hero-visual">
-        <img id="hero-i" src="" alt="Featured">
+        <div class="hero-visual-frame">
+            <img id="hero-i" src="" alt="" onload="this.classList.add('img-loaded')">
+        </div>
     </div>
 </section>
 
-<div class="section-title">Shop Categories <span>View All</span></div>
+<div class="section-title">Shop Categories</div>
 <div class="cat-scroll" id="cat-root"></div>
 
 <div class="section-title">Trending Now 🔥</div>
 <div class="product-grid" id="prod-root"></div>
 
-<footer style="background: var(--primary); color: #fff; padding: 50px 5%; margin-top: 50px;">
-    <div id="f-marquee" style="margin-bottom: 30px; color: var(--accent);"></div>
+<footer id="sw-footer">
+    <div id="f-marquee" style="margin-bottom: 30px; color: var(--accent); text-align: center;"></div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
         <div id="f-c1"></div><div id="f-c2"></div><div id="f-c3"></div>
     </div>
-    <div id="f-bot" style="text-align: center; margin-top: 40px; opacity: 0.3; font-size: 12px;"></div>
+    <div id="f-bot" style="text-align: center; margin-top: 40px; opacity: 0.5; font-size: 12px;"></div>
 </footer>
 
 <script>
@@ -139,48 +127,69 @@ async function init() {
     try {
         const [h, home, f] = await Promise.all(APIs.map(u => fetch(u).then(r => r.json())));
         
-        // Navigation
-        h.menu.forEach(m => document.getElementById('nav-root').innerHTML += `<a href="${m.link}" style="color:var(--primary); margin-left:15px; text-decoration:none; font-size:13px; font-weight:700;">${m.text}</a>`);
+        // 1. Navigation
+        h.menu.forEach(m => document.getElementById('nav-root').innerHTML += `<a href="${m.link}">${m.text}</a>`);
         
-        // Hero Content
-        let imgs = [];
+        // 2. Hero Content Slider
+        let sliderImgs = [];
         h.hero.forEach(i => {
             if(i.type === "TITLE") document.getElementById('hero-t').innerText = i.text;
             if(i.type === "NOTICE") document.getElementById('hero-n').innerText = i.text;
             if(i.type === "TAG") document.getElementById('hero-tg').innerHTML += `<span>${i.text}</span>`;
-            if(i.type === "SLIDE") imgs.push(i.image);
+            if(i.type === "SLIDE") sliderImgs.push(i.image);
         });
-        if(imgs.length) {
-            let n = 0; document.getElementById('hero-i').src = imgs[0];
-            setInterval(() => { n = (n+1)%imgs.length; document.getElementById('hero-i').src = imgs[n]; }, 3500);
+
+        if(sliderImgs.length) {
+            const heroImg = document.getElementById('hero-i');
+            let idx = 0;
+            // Set first image
+            heroImg.src = sliderImgs[0];
+            
+            // Auto Slider logic
+            setInterval(() => {
+                idx = (idx + 1) % sliderImgs.length;
+                heroImg.classList.remove('img-loaded'); // Fade out
+                setTimeout(() => {
+                    heroImg.src = sliderImgs[idx];
+                }, 800); // Change src when transparent
+            }, 4500);
         }
 
-        // Shop Content
+        // 3. Categories & Products
         home.forEach(i => {
             if(i.TYPE === "CAT") {
-                document.getElementById('cat-root').innerHTML += `<div class="cat-box" onclick="location.href='${i.LINK}'"><div class="img-w"><img src="${i.IMAGE_URL}"></div><p style="font-size:12px; font-weight:700;">${i.TITLE}</p></div>`;
+                document.getElementById('cat-root').innerHTML += `
+                <div class="cat-box" onclick="location.href='${i.LINK}'">
+                    <div class="img-w"><img src="${i.IMAGE_URL}"></div>
+                    <p style="font-size:12px; font-weight:700;">${i.TITLE}</p>
+                </div>`;
             } else if(i.TYPE === "PRODUCT") {
                 document.getElementById('prod-root').innerHTML += `
-                    <div class="p-card">
-                        <img src="${i.IMAGE_URL}">
-                        <h4>${i.TITLE}</h4>
-                        <div class="price">₹${i.PRICE}</div>
-                        <a href="${i.LINK}" class="buy-now">View Detail</a>
-                    </div>`;
+                <div class="p-card">
+                    <img src="${i.IMAGE_URL}" onload="this.style.opacity=1" style="opacity:0; transition:0.5s;">
+                    <h4>${i.TITLE}</h4>
+                    <div class="price">₹${i.PRICE}</div>
+                    <a href="${i.LINK}" class="buy-now">View Detail</a>
+                </div>`;
             }
         });
 
-        // Footer
+        // 4. Footer Sync
         if(f.footer) {
             f.footer.forEach(i => {
-                let box = i.POSITION === "LEFT" ? document.getElementById("f-c1") : i.POSITION === "CENTER" ? document.getElementById("f-c2") : i.POSITION === "RIGHT" ? document.getElementById("f-c3") : i.POSITION === "BOTTOM" ? document.getElementById("f-bot") : document.getElementById("f-marquee");
-                if(i.TYPE === "MARQUEE") box.innerHTML = `<marquee>${i.TEXT}</marquee>`;
+                let box = i.POSITION === "LEFT" ? document.getElementById("f-c1") : 
+                          i.POSITION === "CENTER" ? document.getElementById("f-c2") : 
+                          i.POSITION === "RIGHT" ? document.getElementById("f-c3") : 
+                          i.POSITION === "BOTTOM" ? document.getElementById("f-bot") : 
+                          document.getElementById("f-marquee");
+                
+                if(i.TYPE === "MARQUEE") box.innerHTML = `<marquee scrollamount="5">${i.TEXT}</marquee>`;
                 else if(i.TYPE === "TITLE") box.innerHTML += `<h3 style="margin-bottom:15px; color:var(--accent);">${i.TEXT}</h3>`;
-                else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}" style="color:#ccc; display:block; margin-bottom:10px; text-decoration:none; font-size:14px;">${i.TEXT}</a>`;
+                else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}" style="display:block; margin-bottom:10px;">${i.TEXT}</a>`;
                 else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
             });
         }
-    } catch(e) { console.log(e); }
+    } catch(e) { console.error("Sync Error:", e); }
 }
 init();
 </script>
