@@ -3,136 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sainiwalaa | Smart Artistic Wheel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <title>Sainiwalaa | Modern E-com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --amz-blue: #131921; --gold: #f6d27c; --maroon: #4b0f14; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #fff; overflow-x: hidden; }
+        :root { --primary: #131921; --accent: #febd69; --bg: #f3f3f3; --card: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: #333; overflow-x: hidden; }
 
-        header { background: var(--amz-blue); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 24px; font-weight: 900; color: #ff9900; }
+        /* --- TOP ANIMATED TICKER --- */
+        .ticker-wrap {
+            background: var(--primary); color: var(--accent);
+            padding: 10px 0; overflow: hidden; white-space: nowrap;
+            font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .ticker { display: inline-block; animation: ticker 30s linear infinite; }
+        .ticker span { margin-right: 50px; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* --- HERO SECTION --- */
-        #hero-sainiwalaa {
-            position: relative; height: 600px;
-            background: radial-gradient(circle at center, #5d0f16 0%, #1a0507 100%);
-            display: flex; align-items: center; overflow: hidden; color: #fff;
+        header { background: #fff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 900; color: var(--primary); }
+
+        /* --- MODERN HERO SECTION --- */
+        #hero-section {
+            padding: 40px 5%; background: linear-gradient(135deg, #232f3e 0%, #131921 100%);
+            display: flex; align-items: center; justify-content: space-between; gap: 30px;
+            min-height: 400px; color: #fff;
         }
 
-        .hero-container {
-            max-width: 1200px; margin: auto; width: 100%; padding: 0 40px;
-            display: grid; grid-template-columns: 1fr 1fr; z-index: 10; position: relative;
-            align-items: center;
+        .hero-info { flex: 1; }
+        .hero-info h1 { font-size: 45px; margin-bottom: 15px; color: var(--accent); }
+        .hero-info p { font-size: 18px; opacity: 0.8; margin-bottom: 25px; }
+        
+        /* Interactive Tags */
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag-cloud span { 
+            background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 5px; 
+            font-size: 12px; border: 1px solid rgba(255,255,255,0.2);
+            animation: pulse 2s infinite ease-in-out;
         }
 
-        /* --- SMART DYNAMIC WHEEL --- */
-        .display-box {
-            position: relative; width: 100%; height: 550px;
-            display: flex; align-items: center; justify-content: center;
+        .hero-visual { flex: 1; position: relative; display: flex; justify-content: center; }
+        .hero-visual img { 
+            width: 300px; height: 380px; object-fit: cover; 
+            border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 5px solid #fff;
         }
 
-        .back-wheel {
-            position: absolute;
-            width: 620px; height: 620px; /* Thoda bada size taaki zyada text fit ho */
-            z-index: 1;
+        /* --- CATEGORIES & PRODUCTS --- */
+        .section-title { padding: 30px 5% 10px; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; }
+        
+        .cat-scroll { display: flex; overflow-x: auto; padding: 20px 5%; gap: 20px; scrollbar-width: none; }
+        .cat-box { min-width: 100px; text-align: center; cursor: pointer; }
+        .cat-box .img-w { width: 80px; height: 80px; border-radius: 50%; background: #fff; margin: 0 auto 10px; padding: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .cat-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; padding: 20px 5%; }
+        .p-card { 
+            background: #fff; border-radius: 12px; padding: 20px; 
+            transition: 0.3s; position: relative; overflow: hidden;
+            border: 1px solid #eee;
+        }
+        .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .p-card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
+        .p-card h4 { font-size: 16px; margin-bottom: 8px; color: #444; }
+        .price { font-size: 20px; font-weight: 800; color: #B12704; }
+        .buy-now { 
+            margin-top: 15px; display: block; background: var(--accent); 
+            color: #111; text-align: center; padding: 12px; border-radius: 8px; 
+            text-decoration: none; font-weight: 700; font-size: 14px;
         }
 
-        .rotating-svg {
-            width: 100%; height: 100%;
-            animation: spin-reverse 40s linear infinite; /* Slow speed for better readability */
-        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-        /* Font style for long text */
-        .rotating-svg text { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 16px; /* Optimized size */
-            font-weight: 800;
-            text-transform: uppercase;
-            fill: var(--gold);
-            letter-spacing: 4px; /* Dynamic spacing */
-        }
-
-        @keyframes spin-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-
-        /* Stable Front Image */
-        .front-image {
-            position: relative; z-index: 5;
-            width: 280px; height: 380px;
-            background: #fff; padding: 10px; border-radius: 20px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
-        }
-        .front-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
-
-        /* Grid & Other Styles */
-        .cat-row { display: flex; overflow-x: auto; padding: 30px 20px; gap: 20px; scrollbar-width: none; }
-        .cat-img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #ff9900; padding: 3px; background: #fff; margin: auto; }
-        .cat-img img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .prod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 30px; max-width: 1200px; margin: auto; }
-        .p-card { background: #fff; border: 1px solid #f0f0f0; padding: 20px; border-radius: 20px; text-align: center; }
-        .buy-btn { background: var(--amz-blue); color: #fff; padding: 12px; display: block; text-decoration: none; border-radius: 10px; font-weight: 700; margin-top: 10px; }
-
-        @media(max-width: 768px) {
-            #hero-sainiwalaa { height: auto; padding: 50px 0; }
-            .hero-container { grid-template-columns: 1fr; text-align: center; }
-            .back-wheel { width: 450px; height: 450px; }
-            .display-box { height: 450px; }
-            .front-image { width: 200px; height: 280px; }
+        @media (max-width: 768px) {
+            #hero-section { flex-direction: column; text-align: center; padding: 40px 20px; }
+            .hero-info h1 { font-size: 32px; }
+            .hero-visual img { width: 220px; height: 300px; }
+            .product-grid { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+            .p-card { padding: 10px; }
+            .p-card img { height: 150px; }
         }
     </style>
 </head>
 <body>
+
+<div class="ticker-wrap">
+    <div class="ticker">
+        <span>🔥 FLASH SALE LIVE</span>
+        <span>✨ PREMIUM KURTI COLLECTION</span>
+        <span>💻 LATEST GADGETS</span>
+        <span>🏠 MODERN HOME DECOR</span>
+        <span>🎁 EXCLUSIVE GIFTING DEALS</span>
+        <span>🚀 FAST DELIVERY</span>
+    </div>
+</div>
 
 <header>
     <div class="logo">SAINIWALAA</div>
     <div id="nav-root"></div>
 </header>
 
-<section id="hero-sainiwalaa">
-    <div class="hero-container">
-        <div class="hero-text">
-            <h1 id="hero-t">Sainiwalaa</h1>
-            <p id="hero-n">Fetching latest collection...</p>
-            <div id="hero-tg" style="margin-top:20px;"></div>
-        </div>
-
-        <div class="display-box">
-            <div class="back-wheel">
-                <svg class="rotating-svg" viewBox="0 0 500 500">
-                    <defs>
-                        <path id="longTextPath" d="M 250, 250 m -225, 0 a 225,225 0 1,1 450,0 a 225,225 0 1,1 -450,0"></path>
-                    </defs>
-                    <text>
-                        <textPath href="#longTextPath" startOffset="0%" textLength="1410">
-                            <tspan fill="#00f2fe">Premium Kurti Collection •</tspan> 
-                            <tspan fill="#f6d27c">Trending Smart Gadgets •</tspan> 
-                            <tspan fill="#7cf68c">Home Decor Items •</tspan> 
-                            <tspan fill="#ff0080">Exclusive Creator Zone •</tspan>
-                            <tspan fill="#ffffff">Best Gifting Deals •</tspan>
-                        </textPath>
-                    </text>
-                </svg>
-            </div>
-            <div class="front-image">
-                <img id="hero-i" src="">
-            </div>
-        </div>
+<section id="hero-section">
+    <div class="hero-info">
+        <h1 id="hero-t">Artistic Selection</h1>
+        <p id="hero-n">Fetching the best deals for your lifestyle...</p>
+        <div class="tag-cloud" id="hero-tg"></div>
+    </div>
+    <div class="hero-visual">
+        <img id="hero-i" src="" alt="Featured">
     </div>
 </section>
 
-<div class="cat-row" id="cat-root"></div>
-<div class="prod-grid" id="prod-root"></div>
+<div class="section-title">Shop Categories <span>View All</span></div>
+<div class="cat-scroll" id="cat-root"></div>
 
-<footer style="background:#050b1a; color:#fff; padding:60px 20px; border-top:5px solid #ff9900;">
-    <div id="f-marquee" style="margin-bottom:30px;"></div>
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: auto;">
+<div class="section-title">Trending Now 🔥</div>
+<div class="product-grid" id="prod-root"></div>
+
+<footer style="background: var(--primary); color: #fff; padding: 50px 5%; margin-top: 50px;">
+    <div id="f-marquee" style="margin-bottom: 30px; color: var(--accent);"></div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
         <div id="f-c1"></div><div id="f-c2"></div><div id="f-c3"></div>
     </div>
-    <div id="f-bot" style="text-align:center; margin-top:40px; opacity:0.3; font-size:11px;"></div>
+    <div id="f-bot" style="text-align: center; margin-top: 40px; opacity: 0.3; font-size: 12px;"></div>
 </footer>
 
 <script>
-// APIs aur Data Load karne ka logic wahi rahega jo pehle tha
 const APIs = [
     "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
     "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec",
@@ -142,31 +138,45 @@ const APIs = [
 async function init() {
     try {
         const [h, home, f] = await Promise.all(APIs.map(u => fetch(u).then(r => r.json())));
-        h.menu.forEach(m => document.getElementById('nav-root').innerHTML += `<a href="${m.link}" style="color:#fff; margin-left:15px; text-decoration:none; font-size:13px; font-weight:700;">${m.text}</a>`);
+        
+        // Navigation
+        h.menu.forEach(m => document.getElementById('nav-root').innerHTML += `<a href="${m.link}" style="color:var(--primary); margin-left:15px; text-decoration:none; font-size:13px; font-weight:700;">${m.text}</a>`);
+        
+        // Hero Content
         let imgs = [];
         h.hero.forEach(i => {
             if(i.type === "TITLE") document.getElementById('hero-t').innerText = i.text;
             if(i.type === "NOTICE") document.getElementById('hero-n').innerText = i.text;
-            if(i.type === "TAG") document.getElementById('hero-tg').innerHTML += `<span style="border:1px solid #f6d27c; padding:4px 12px; border-radius:20px; margin-right:8px; font-size:11px; color:#f6d27c;">${i.text}</span>`;
+            if(i.type === "TAG") document.getElementById('hero-tg').innerHTML += `<span>${i.text}</span>`;
             if(i.type === "SLIDE") imgs.push(i.image);
         });
         if(imgs.length) {
-            let count = 0; document.getElementById('hero-i').src = imgs[0];
-            setInterval(() => { count = (count+1)%imgs.length; document.getElementById('hero-i').src = imgs[count]; }, 3500);
+            let n = 0; document.getElementById('hero-i').src = imgs[0];
+            setInterval(() => { n = (n+1)%imgs.length; document.getElementById('hero-i').src = imgs[n]; }, 3500);
         }
+
+        // Shop Content
         home.forEach(i => {
             if(i.TYPE === "CAT") {
-                document.getElementById('cat-root').innerHTML += `<div onclick="location.href='${i.LINK}'"><div class="cat-img"><img src="${i.IMAGE_URL}"></div><p style="font-weight:700; font-size:12px; text-align:center; margin-top:8px;">${i.TITLE}</p></div>`;
+                document.getElementById('cat-root').innerHTML += `<div class="cat-box" onclick="location.href='${i.LINK}'"><div class="img-w"><img src="${i.IMAGE_URL}"></div><p style="font-size:12px; font-weight:700;">${i.TITLE}</p></div>`;
             } else if(i.TYPE === "PRODUCT") {
-                document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${i.IMAGE_URL}"><h4 style="font-size:15px; margin-bottom:10px;">${i.TITLE}</h4><div style="color:#B12704; font-size:20px; font-weight:900;">₹${i.PRICE}</div><a href="${i.LINK}" class="buy-btn">View Offer</a></div>`;
+                document.getElementById('prod-root').innerHTML += `
+                    <div class="p-card">
+                        <img src="${i.IMAGE_URL}">
+                        <h4>${i.TITLE}</h4>
+                        <div class="price">₹${i.PRICE}</div>
+                        <a href="${i.LINK}" class="buy-now">View Detail</a>
+                    </div>`;
             }
         });
+
+        // Footer
         if(f.footer) {
             f.footer.forEach(i => {
                 let box = i.POSITION === "LEFT" ? document.getElementById("f-c1") : i.POSITION === "CENTER" ? document.getElementById("f-c2") : i.POSITION === "RIGHT" ? document.getElementById("f-c3") : i.POSITION === "BOTTOM" ? document.getElementById("f-bot") : document.getElementById("f-marquee");
-                if(i.TYPE === "MARQUEE") box.innerHTML = `<marquee style="color:#ff9900; font-weight:700;">${i.TEXT}</marquee>`;
-                else if(i.TYPE === "TITLE") box.innerHTML += `<h3 style="color:#ff9900; margin-bottom:12px;">${i.TEXT}</h3>`;
-                else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}" style="color:#ccc; display:block; margin-bottom:10px; text-decoration:none; font-size:13px;">${i.TEXT}</a>`;
+                if(i.TYPE === "MARQUEE") box.innerHTML = `<marquee>${i.TEXT}</marquee>`;
+                else if(i.TYPE === "TITLE") box.innerHTML += `<h3 style="margin-bottom:15px; color:var(--accent);">${i.TEXT}</h3>`;
+                else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}" style="color:#ccc; display:block; margin-bottom:10px; text-decoration:none; font-size:14px;">${i.TEXT}</a>`;
                 else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
             });
         }
