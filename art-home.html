@@ -2,172 +2,162 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sainiwalaa - Artistic Hero Test</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sainiwalaa - Premium Artistic Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --amz-blue: #131921; --amz-orange: #ff9900; --bg: #eaeded; --frame-bg: #1a1a1a; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); overflow-x: hidden; }
+        :root { --amz-blue: #131921; --amz-orange: #ff9900; --bg: #f0f2f5; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); overflow-x: hidden; }
 
-        /* HEADER (As per your code) */
-        header { background: var(--amz-blue); padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        #menu a { color: white; text-decoration: none; margin-left: 12px; font-size: 13px; font-weight: 600; }
+        /* HEADER */
+        header { background: var(--amz-blue); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        #menu a { color: white; text-decoration: none; margin-left: 15px; font-size: 13px; font-weight: 600; }
 
-        /* ARTISTIC HERO SECTION - NEW ANIMATED LOOK */
-        .hero-container {
-            position: relative;
-            padding: 30px 0;
-            background: #000; /* Dark premium base */
-            overflow: hidden;
+        /* --- ARTISTIC HERO SECTION --- */
+        #hero-sainiwalaa {
+            position: relative; padding: 40px 20px; background: #4b0f14; 
+            overflow: hidden; color: #fff; min-height: 420px; display: flex; align-items: center;
         }
+        /* Animated Background Art */
+        .hero-art-bg { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.5; animation: moveArt 18s infinite alternate ease-in-out; }
+        .b1 { width: 350px; height: 350px; background: #ff9900; top: -10%; left: -5%; }
+        .b2 { width: 400px; height: 400px; background: #6366f1; bottom: -10%; right: -5%; animation-delay: -4s; }
+        @keyframes moveArt { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(60px, 80px) scale(1.1); } }
 
-        /* Animated Background Art for Hero */
-        .hero-art-bg {
-            position: absolute; inset: 0;
-            z-index: 1;
-        }
-        .art-circle {
-            position: absolute; border-radius: 50%;
-            filter: blur(60px); opacity: 0.6;
-            animation: floatArt 15s infinite alternate;
-        }
-        .c1 { width: 250px; height: 250px; background: #ff9900; top: -50px; left: -50px; }
-        .c2 { width: 300px; height: 300px; background: #6366f1; bottom: -50px; right: -50px; animation-delay: -5s; }
-        
-        @keyframes floatArt {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 50px) scale(1.2); }
-        }
+        .hero-wrap { position: relative; z-index: 2; max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center; }
+        .hero-left h1 { color: #f6d27c; font-size: 42px; font-weight: 800; line-height: 1.1; }
+        .hero-left p { color: #ffe9b0; margin-top: 12px; font-size: 16px; opacity: 0.9; }
+        .cats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+        .catbox { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 25px; font-weight: 700; font-size: 12px; border: 1px solid rgba(255,255,255,0.2); }
 
-        /* BANNER FRAME - Artistic Style */
-        .banner-frame { 
-            width: 92%; height: 260px; margin: 0 auto; 
-            border: 3px solid rgba(255,255,255,0.9); border-radius: 20px; 
-            overflow: hidden; background: var(--frame-bg); position: relative;
-            z-index: 2; /* Above art bg */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,153,0,0.3);
-            transform: perspective(1000px) rotateX(2deg);
+        /* Kurti Slider */
+        .slider-frame { 
+            width: 100%; max-width: 280px; height: 380px; margin: auto; 
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(12px);
+            padding: 8px; border-radius: 25px; border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
-        #banner-root { display: flex; height: 100%; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
-        .slide { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .slide img { width: 100%; height: 100%; object-fit: contain; }
+        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
 
-        /* CATEGORIES */
-        .cat-row { display: flex; overflow-x: auto; padding: 20px 10px; gap: 15px; scrollbar-width: none; position: relative; z-index: 2; }
-        .cat-item { text-align: center; min-width: 75px; }
-        .cat-circle { width: 68px; height: 68px; border-radius: 50%; border: 2px solid var(--amz-orange); padding: 2px; background: #fff; margin: 0 auto; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+        /* --- HOME CONTENT SECTION --- */
+        .cat-row { display: flex; overflow-x: auto; padding: 25px 15px; gap: 20px; scrollbar-width: none; }
+        .cat-item { text-align: center; min-width: 85px; cursor: pointer; }
+        .cat-circle { width: 75px; height: 75px; border-radius: 50%; border: 3px solid var(--amz-orange); padding: 3px; background: #fff; margin: 0 auto; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .cat-circle:active { transform: scale(0.9); }
         .cat-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .cat-item p { font-size: 11px; font-weight: 700; margin-top: 8px; color: #333; }
+        .cat-item p { font-size: 12px; font-weight: 700; margin-top: 10px; color: #333; }
 
-        /* PRODUCT GRID */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
-        .p-card { background: white; border-radius: 15px; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; }
-        .p-card img { width: 100%; height: 130px; object-fit: contain; }
-        .p-price { color: #B12704; font-size: 20px; font-weight: 800; margin: 10px 0; }
-        .btn { background: linear-gradient(135deg, #ff9900, #ffb84d); color: #fff; border-radius: 8px; padding: 11px; display: block; text-decoration: none; font-size: 13px; font-weight: 700; border: none; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 15px 30px; }
+        .p-card { background: white; border-radius: 18px; padding: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; }
+        .p-card img { width: 100%; height: 150px; object-fit: contain; margin-bottom: 10px; }
+        .p-price { color: #B12704; font-size: 22px; font-weight: 800; margin: 8px 0; }
+        .btn { background: linear-gradient(135deg, #ff9900, #ffb347); color: #fff; text-decoration: none; padding: 12px; border-radius: 12px; display: block; font-weight: 800; font-size: 14px; box-shadow: 0 4px 12px rgba(255,153,0,0.3); }
 
-        /* FOOTER (As per your code) */
-        #sw-footer { background: #050b1a; color: #fff; padding: 40px 15px; margin-top: 50px; border-top: 3px solid var(--amz-orange); text-align: center; }
-        #sw-marquee { overflow: hidden; white-space: nowrap; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 25px; }
-        #sw-marquee span { display: inline-block; animation: scroll 20s linear infinite; color: var(--amz-orange); font-weight: 600; font-size: 14px; }
-        @keyframes scroll { from { transform: translateX(100%) } to { transform: translateX(-100%) } }
-        #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 35px; }
-        .sw-links a { display: block; color: #fff; text-decoration: none; margin-bottom: 10px; font-size: 14px; opacity: 0.8; }
-        .sw-social { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; justify-content: center; }
-        .sw-social a { padding: 6px 15px; border: 1px solid rgba(255,153,0,0.5); color: var(--amz-orange); text-decoration: none; border-radius: 6px; font-size: 12px; font-weight: 600; background: rgba(255,153,0,0.05); }
+        /* --- FOOTER (Sheet Controlled) --- */
+        footer { background: #050b1a; color: #fff; padding: 50px 20px 30px; margin-top: 50px; border-top: 4px solid var(--amz-orange); border-radius: 35px 35px 0 0; }
+        #sw-marquee { overflow: hidden; white-space: nowrap; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 30px; text-align: center; }
+        #sw-marquee span { display: inline-block; animation: scrollText 20s linear infinite; color: var(--amz-orange); font-weight: 700; font-size: 15px; }
+        @keyframes scrollText { from { transform: translateX(100%) } to { transform: translateX(-100%) } }
+        
+        .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .footer-col h3 { color: var(--amz-orange); margin-bottom: 20px; font-size: 18px; }
+        .footer-col a { display: block; color: #ccc; text-decoration: none; margin-bottom: 12px; font-size: 14px; transition: 0.3s; }
+        .footer-col a:hover { color: #fff; padding-left: 5px; }
+        #sw-bottom { text-align: center; margin-top: 40px; opacity: 0.4; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; }
 
-        #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        @media(max-width: 768px) {
+            .hero-wrap { grid-template-columns: 1fr; text-align: center; }
+            .hero-left h1 { font-size: 32px; }
+            .cats { justify-content: center; }
+            .slider-frame { max-width: 240px; height: 320px; }
+        }
     </style>
 </head>
 <body>
 
-<div id="loader">🎨 Loading Artistic Experience...</div>
-
 <header>
-    <div style="font-size: 22px; font-weight: bold; color: #febd69; letter-spacing: 1px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
+    <div style="font-size: 22px; font-weight: 800; color: #febd69; letter-spacing: 1px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
     <div id="menu"></div>
 </header>
 
-<div class="hero-container">
-    <div class="hero-art-bg">
-        <div class="art-circle c1"></div>
-        <div class="art-circle c2"></div>
+<section id="hero-sainiwalaa">
+    <div class="hero-art-bg"><div class="blob b1"></div><div class="blob b2"></div></div>
+    <div class="hero-wrap">
+        <div class="hero-left">
+            <h1 id="heroTitle">Sainiwalaa</h1>
+            <p id="heroNotice">Loading Premium Deals...</p>
+            <div class="cats" id="heroTags"></div>
+        </div>
+        <div class="slider-frame"><img id="heroImg" src=""></div>
     </div>
-    <div class="banner-frame">
-        <div id="banner-root"></div>
-    </div>
-</div>
+</section>
 
 <div class="cat-row" id="cat-root"></div>
-
-<div style="padding: 15px 15px 5px; font-weight: 800; font-size: 20px; color: #222;">Premium Deals ✨</div>
+<div style="padding: 10px 18px 20px; font-weight: 800; font-size: 22px; color: #222;">Todays Hot Deals 🔥</div>
 <div class="grid" id="prod-root"></div>
 
 <footer id="sw-footer">
     <div id="sw-marquee"></div>
-    <div id="sw-inner">
-        <div id="f-left"></div>
-        <div id="f-center"></div>
-        <div id="f-right"></div>
+    <div class="footer-grid">
+        <div class="footer-col" id="f-left"></div>
+        <div class="footer-col" id="f-center"></div>
+        <div class="footer-col" id="f-right"></div>
     </div>
-    <div id="sw-bottom" style="text-align: center; margin-top: 30px; opacity: 0.5; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;"></div>
+    <div id="sw-bottom"></div>
 </footer>
 
 <script>
-const APIs = [
-    "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec", 
-    "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec", 
-    "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec"
-];
+const API_HEAD = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
+const API_HOME = "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec";
+const API_FOOT = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-async function init() {
+async function loadPage() {
     try {
-        const [h, home, f] = await Promise.all(APIs.map(url => fetch(url).then(r => r.json())));
-        document.getElementById('loader').style.display = 'none';
+        const [h, home, f] = await Promise.all([
+            fetch(API_HEAD).then(r => r.json()),
+            fetch(API_HOME).then(r => r.json()),
+            fetch(API_FOOT).then(r => r.json())
+        ]);
 
+        // 1. Header & Hero Sync
         h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
+        let slides = [];
+        h.hero.forEach(item => {
+            if(item.type === "TITLE") document.getElementById('heroTitle').innerText = item.text;
+            if(item.type === "NOTICE") document.getElementById('heroNotice').innerText = item.text;
+            if(item.type === "TAG") document.getElementById('heroTags').innerHTML += `<div class="catbox">${item.text}</div>`;
+            if(item.type === "SLIDE") slides.push(item.image);
+        });
+        if(slides.length) {
+            let i = 0; document.getElementById('heroImg').src = slides[0];
+            setInterval(() => { i = (i + 1) % slides.length; document.getElementById('heroImg').src = slides[i]; }, 3500);
+        }
 
-        const bRoot = document.getElementById('banner-root');
-        let banners = home.filter(i => i.TYPE === "BANNER");
-        banners.forEach(item => { bRoot.innerHTML += `<div class="slide"><img src="${item.IMAGE_URL}"></div>`; });
-        if(banners.length > 0) bRoot.innerHTML += `<div class="slide"><img src="${banners[0].IMAGE_URL}"></div>`;
-
+        // 2. Home Categories & Products
         home.forEach(item => {
             if(item.TYPE === "CAT") {
                 document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
             } else if(item.TYPE === "PRODUCT") {
-                document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div>`;
+                document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">Grab Deal</a></div>`;
             }
         });
 
-        let cur = 0; let bLen = banners.length;
-        if(bLen > 0) {
-            setInterval(() => {
-                cur++;
-                bRoot.style.transition = "transform 0.8s cubic-bezier(0.65, 0, 0.35, 1)";
-                bRoot.style.transform = `translateX(-${cur * 100}%)`;
-                if(cur === bLen) {
-                    setTimeout(() => { bRoot.style.transition = "none"; cur = 0; bRoot.style.transform = `translateX(0)`; }, 800);
-                }
-            }, 5000);
-        }
-
+        // 3. Footer Sync (Full Control)
         if(f.footer) {
             f.footer.forEach(i => {
                 let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : i.POSITION === "RIGHT" ? document.getElementById("f-right") : i.POSITION === "BOTTOM" ? document.getElementById("sw-bottom") : document.getElementById("sw-marquee");
                 if(i.TYPE === "MARQUEE") box.innerHTML = `<span>${i.TEXT}</span>`;
-                else if(i.TYPE === "TITLE") box.innerHTML += `<h3 style="color:var(--amz-orange);margin-bottom:15px;">${i.TEXT}</h3>`;
-                else if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
-                else if(i.TYPE === "SOCIAL") {
-                    let sc = box.querySelector('.sw-social') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social'}));
-                    sc.innerHTML += `<a href="${i.LINK}" target="_blank">${i.TEXT}</a>`;
-                }
+                else if(i.TYPE === "TITLE") box.innerHTML += `<h3>${i.TEXT}</h3>`;
+                else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}">› ${i.TEXT}</a>`;
                 else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
             });
         }
-    } catch (e) { console.error(e); }
+
+    } catch (e) { console.error("Sync Error:", e); }
 }
-init();
+loadPage();
 </script>
 </body>
 </html>
