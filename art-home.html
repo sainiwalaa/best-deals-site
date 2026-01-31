@@ -3,120 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sainiwalaa | Animated E-com</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>Sainiwalaa | Luxury Artistic Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --p: #0f172a; --gold: #f59e0b; --bg: #f8fafc; }
+        :root { --gold: #f59e0b; --dark: #020617; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: var(--bg); overflow-x: hidden; }
+        body { background: #f8fafc; overflow-x: hidden; }
 
-        /* --- TICKER --- */
-        .ticker { background: #000; color: #fff; padding: 10px 0; overflow: hidden; white-space: nowrap; z-index: 1001; position: relative; }
-        .ticker-track { display: inline-block; animation: slide 30s linear infinite; font-size: 13px; font-weight: 700; }
-        .ticker-track span { margin-right: 50px; color: var(--gold); }
-        @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        /* --- HERO WITH BACKGROUND SCROLL --- */
-        #hero-container {
+        /* --- 1. PREMIUM ANIMATED BACKGROUND --- */
+        #hero-viewport {
             position: relative;
-            min-height: 500px;
+            height: 600px;
+            background: var(--dark);
+            overflow: hidden;
             display: flex;
             align-items: center;
-            overflow: hidden;
-            color: #fff;
+            justify-content: center;
         }
 
-        /* Background Slider Logic */
-        .hero-bg-slider {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        /* Floating background shapes for e-com feel */
+        .bg-animate {
+            position: absolute; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 30%, #1e293b 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, #0f172a 0%, transparent 40%);
             z-index: 1;
         }
-        .bg-slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            opacity: 0; transition: opacity 1.5s ease-in-out;
-        }
-        .bg-slide.active { opacity: 1; }
-        /* Overlay for text readability */
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, rgba(2, 6, 23, 0.9) 30%, rgba(2, 6, 23, 0.3) 100%);
+
+        /* Moving Background Images (Subtle) */
+        .floating-bg-img {
+            position: absolute; width: 200px; height: 200px;
+            opacity: 0.15; filter: blur(2px);
+            animation: float 15s infinite ease-in-out;
             z-index: 2;
         }
-
-        .hero-content {
-            position: relative; z-index: 10;
-            max-width: 1200px; margin: auto; width: 100%;
-            display: grid; grid-template-columns: 1.2fr 0.8fr;
-            padding: 0 5%; gap: 40px; align-items: center;
+        @keyframes float { 
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(10deg); }
         }
 
-        /* GLOWING TEXT EFFECT */
+        /* --- 2. TEXT ANIMATION (GLOWING COLOR) --- */
+        .hero-card {
+            position: relative; z-index: 10;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 50px; border-radius: 40px;
+            max-width: 1100px; width: 90%;
+            display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px;
+            align-items: center;
+        }
+
         .hero-text h1 {
-            font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px;
-            background: linear-gradient(90deg, #fff, var(--gold), #fff);
-            background-size: 200% auto;
+            font-size: 50px; font-weight: 800; line-height: 1.2;
+            margin-bottom: 20px;
+            /* Animated Color Effect */
+            background: linear-gradient(90deg, #ffffff, #f59e0b, #ffffff, #f59e0b);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
+            animation: colorFlow 6s linear infinite;
         }
-        @keyframes shine { to { background-position: 200% center; } }
+        @keyframes colorFlow { to { background-position: 300% center; } }
 
-        .hero-text p { font-size: 18px; color: #cbd5e1; margin-bottom: 25px; }
+        .hero-text p { color: #94a3b8; font-size: 18px; margin-bottom: 30px; }
 
-        .hero-img-frame {
-            width: 100%; max-width: 320px; height: 450px;
-            border-radius: 25px; border: 8px solid rgba(255,255,255,0.1);
-            overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        /* Frame remains same as you liked */
+        .hero-frame {
+            position: relative; width: 100%; max-width: 300px; height: 420px;
+            border-radius: 20px; border: 10px solid rgba(255,255,255,0.05);
+            overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.6);
         }
-        .hero-img-frame img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- PRODUCT GRID (Same as requested) --- */
-        .product-section { padding: 60px 5%; max-width: 1200px; margin: auto; }
-        .p-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
-        .p-card { background: #fff; padding: 15px; border-radius: 20px; border: 1px solid #edf2f7; transition: 0.4s; }
-        .p-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
-        .p-img-w { width: 100%; height: 220px; border-radius: 12px; background: #f1f5f9; overflow: hidden; }
-        .p-img-w img { width: 100%; height: 100%; object-fit: contain; }
-        .p-btn { display: block; background: #000; color: #fff; text-align: center; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 15px; }
+        /* --- 3. PRODUCT GRID --- */
+        .product-section { padding: 80px 5%; max-width: 1300px; margin: auto; }
+        .p-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .p-card { background: #fff; padding: 20px; border-radius: 24px; border: 1px solid #f1f5f9; transition: 0.4s ease; }
+        .p-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
+        .p-img-box { width: 100%; height: 250px; background: #f8fafc; border-radius: 15px; overflow: hidden; }
+        .p-img-box img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .p-btn { 
+            display: block; background: var(--dark); color: #fff; text-align: center; 
+            padding: 14px; border-radius: 12px; text-decoration: none; font-weight: 700; margin-top: 20px;
+        }
 
         @media (max-width: 768px) {
-            .hero-content { grid-template-columns: 1fr; text-align: center; }
-            .hero-text h1 { font-size: 34px; }
-            .hero-img-frame { margin: auto; width: 250px; height: 350px; }
+            #hero-viewport { height: auto; padding: 60px 0; }
+            .hero-card { grid-template-columns: 1fr; text-align: center; padding: 30px; }
+            .hero-text h1 { font-size: 32px; }
             .p-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
         }
     </style>
 </head>
 <body>
 
-<div class="ticker">
-    <div class="ticker-track">
-        <span>✨ JAIPUR HANDPICKED KURTIS</span>
-        <span>🔥 FREE DELIVERY ON SELECTED ITEMS</span>
-        <span>🎁 ARTISTIC GIFTING SOLUTIONS</span>
-        <span>✨ JAIPUR HANDPICKED KURTIS</span>
-    </div>
-</div>
+<section id="hero-viewport">
+    <div class="bg-animate"></div>
+    <div class="floating-bg-img" style="top:10%; left:5%; animation-delay: 0s;" id="bg-f1"></div>
+    <div class="floating-bg-img" style="bottom:10%; right:10%; animation-delay: 2s;" id="bg-f2"></div>
 
-<div id="hero-container">
-    <div class="hero-bg-slider" id="bg-slider"></div>
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
+    <div class="hero-card">
         <div class="hero-text">
             <h1 id="h-title">Jaipur Handpicked Kurtis & Custom Gifts</h1>
-            <p id="h-notice">Premium Quality. Artistic Design. Fast Delivery.</p>
-            <div id="h-tags"></div>
+            <p id="h-notice">Experience the art of gifting with our exclusive collection.</p>
+            <div id="h-tags" style="display:flex; gap:10px; margin-bottom:20px;"></div>
         </div>
-        <div class="hero-img-frame">
+        <div class="hero-frame">
             <img id="h-img" src="">
         </div>
     </div>
-</div>
+</section>
 
 <div class="product-section">
-    <h2 style="margin-bottom:30px;">Featured Collection 🔥</h2>
+    <h2 style="font-size: 30px; margin-bottom: 40px; font-weight: 800;">Featured Arrivals</h2>
     <div class="p-grid" id="prod-root"></div>
 </div>
 
@@ -131,7 +131,6 @@ async function init() {
     try {
         const [h, home, f] = await Promise.all(APIs.map(u => fetch(u).then(r => r.json())));
         
-        // Setup Hero Background Slides & Main Image
         let sliderImgs = [];
         h.hero.forEach(i => {
             if(i.type === "SLIDE") sliderImgs.push(i.image);
@@ -139,41 +138,36 @@ async function init() {
             if(i.type === "NOTICE") document.getElementById('h-notice').innerText = i.text;
         });
 
-        const bgContainer = document.getElementById('bg-slider');
-        sliderImgs.forEach((url, index) => {
-            const div = document.createElement('div');
-            div.className = `bg-slide ${index === 0 ? 'active' : ''}`;
-            div.style.backgroundImage = `url('${url}')`;
-            bgContainer.appendChild(div);
-        });
+        // Hero Image Slider
+        if(sliderImgs.length) {
+            let n = 0;
+            const updateHero = () => {
+                document.getElementById('h-img').src = sliderImgs[n];
+                // Background floating images sync
+                document.getElementById('bg-f1').style.backgroundImage = `url('${sliderImgs[(n+1)%sliderImgs.length]}')`;
+                document.getElementById('bg-f1').style.backgroundSize = 'cover';
+                document.getElementById('bg-f2').style.backgroundImage = `url('${sliderImgs[(n+2)%sliderImgs.length]}')`;
+                document.getElementById('bg-f2').style.backgroundSize = 'cover';
+                n = (n + 1) % sliderImgs.length;
+            };
+            updateHero();
+            setInterval(updateHero, 4000);
+        }
 
-        // Background Rotation Logic
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.bg-slide');
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-            // Sync current frame image with background
-            document.getElementById('h-img').src = sliderImgs[currentSlide];
-        }, 4000);
-
-        document.getElementById('h-img').src = sliderImgs[0];
-
-        // Products
+        // Product Rendering
         home.forEach(i => {
             if(i.TYPE === "PRODUCT") {
                 document.getElementById('prod-root').innerHTML += `
                     <div class="p-card">
-                        <div class="p-img-w"><img src="${i.IMAGE_URL}"></div>
-                        <div class="p-title" style="font-weight:700; margin-top:10px;">${i.TITLE}</div>
-                        <div class="p-price" style="color:#10b981; font-weight:800; font-size:18px;">₹${i.PRICE}</div>
-                        <a href="${i.LINK}" class="p-btn">Buy Now</a>
+                        <div class="p-img-box"><img src="${i.IMAGE_URL}"></div>
+                        <h3 style="font-size:16px; margin:15px 0 10px;">${i.TITLE}</h3>
+                        <div style="font-size:20px; font-weight:800; color:#10b981;">₹${i.PRICE}</div>
+                        <a href="${i.LINK}" class="p-btn">View Offer</a>
                     </div>`;
             }
         });
 
-    } catch(e) { console.error(e); }
+    } catch(e) { console.log(e); }
 }
 init();
 </script>
