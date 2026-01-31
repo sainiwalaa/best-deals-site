@@ -3,67 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sainiwalaa | Modern E-com</title>
+    <title>Sainiwalaa | Official Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #131921; --accent: #febd69; --bg: #f3f3f3; --card: #ffffff; }
+        :root { --primary: #000000; --accent: #febd69; --bg: #f3f3f3; --card: #ffffff; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: var(--bg); color: #333; overflow-x: hidden; }
 
-        /* --- TOP TICKER --- */
-        .ticker-wrap {
-            background: var(--primary); color: var(--accent);
-            padding: 10px 0; overflow: hidden; white-space: nowrap;
-            font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-        }
+        /* --- TICKER --- */
+        .ticker-wrap { background: #131921; color: var(--accent); padding: 10px 0; overflow: hidden; white-space: nowrap; font-size: 13px; font-weight: 700; }
         .ticker { display: inline-block; animation: ticker 30s linear infinite; }
         .ticker span { margin-right: 50px; }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* --- HEADER: BLACK BG, WHITE TEXT --- */
-        header { 
-            background: #000; /* Header Black kar diya */
-            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; 
-        }
-        .logo { font-size: 24px; font-weight: 900; color: #fff; } /* Logo White */
-        
-        #nav-root a { 
-            color: #fff !important; /* Menu Text White */
-            margin-left: 15px; text-decoration: none; font-size: 13px; font-weight: 700; 
-        }
+        /* --- HEADER (BLACK & WHITE) --- */
+        header { background: var(--primary); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.3); }
+        .logo { font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 1px; }
+        #nav-root a { color: #fff; margin-left: 20px; text-decoration: none; font-size: 14px; font-weight: 700; transition: 0.3s; }
+        #nav-root a:hover { color: var(--accent); }
 
-        /* --- MODERN HERO SECTION --- */
+        /* --- HERO SLIDER (FIXED) --- */
         #hero-section {
             padding: 40px 5%; background: linear-gradient(135deg, #232f3e 0%, #131921 100%);
             display: flex; align-items: center; justify-content: space-between; gap: 30px;
             min-height: 450px; color: #fff;
         }
-
         .hero-info { flex: 1; }
         .hero-info h1 { font-size: 45px; margin-bottom: 15px; color: var(--accent); }
         .hero-info p { font-size: 18px; opacity: 0.8; margin-bottom: 25px; }
         
         .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tag-cloud span { 
-            background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 5px; 
-            font-size: 12px; border: 1px solid rgba(255,255,255,0.2);
-            animation: pulse 2s infinite ease-in-out;
-        }
+        .tag-cloud span { background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 5px; font-size: 12px; border: 1px solid rgba(255,255,255,0.2); }
 
-        /* HERO SLIDER FIXED */
-        .hero-visual { flex: 1; position: relative; display: flex; justify-content: center; height: 380px; }
-        .hero-visual-frame {
-            width: 300px; height: 380px; position: relative;
-            border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border: 5px solid #fff; overflow: hidden; background: #1a222d;
+        .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; height: 380px; }
+        .slider-frame { 
+            width: 300px; height: 380px; border-radius: 15px; border: 5px solid #fff; 
+            overflow: hidden; position: relative; background: #1a222d; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
-        .hero-visual img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            position: absolute; top: 0; left: 0; opacity: 0;
-            transition: opacity 1s ease-in-out;
+        .slider-frame img { 
+            width: 100%; height: 100%; object-fit: cover; position: absolute; 
+            top: 0; left: 0; opacity: 0; transition: opacity 1s ease-in-out; 
         }
-        .hero-visual img.active { opacity: 1; }
+        .slider-frame img.active { opacity: 1; }
 
         /* --- CATEGORIES & PRODUCTS --- */
         .section-title { padding: 30px 5% 10px; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; }
@@ -73,17 +54,16 @@
         .cat-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; padding: 20px 5%; }
-        .p-card { background: #fff; border-radius: 12px; padding: 20px; transition: 0.3s; position: relative; overflow: hidden; border: 1px solid #eee; }
+        .p-card { background: #fff; border-radius: 12px; padding: 20px; transition: 0.3s; border: 1px solid #eee; }
         .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .p-card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
         .price { font-size: 20px; font-weight: 800; color: #B12704; }
-        .buy-now { margin-top: 15px; display: block; background: var(--accent); color: #111; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; }
+        .buy-now { margin-top: 15px; display: block; background: var(--accent); color: #111; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 700; }
 
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
+        footer { background: #131921; color: #fff; padding: 50px 5%; margin-top: 50px; }
         @media (max-width: 768px) {
-            #hero-section { flex-direction: column; text-align: center; padding: 40px 20px; }
-            .hero-visual-frame { width: 220px; height: 300px; }
+            #hero-section { flex-direction: column; text-align: center; }
+            .slider-frame { width: 260px; height: 340px; }
             .product-grid { grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
         }
     </style>
@@ -91,113 +71,127 @@
 <body>
 
 <div class="ticker-wrap">
-    <div class="ticker">
-        <span>🔥 FLASH SALE LIVE</span>
-        <span>✨ PREMIUM KURTI COLLECTION</span>
-        <span>🎁 EXCLUSIVE GIFTING DEALS</span>
-        <span>🚀 FAST DELIVERY</span>
+    <div class="ticker" id="ticker-js">
+        <span>🔥 NEW ARRIVALS LIVE</span><span>✨ JAIPUR SPECIAL KURTIS</span><span>🚀 FREE SHIPPING ON ORDERS ABOVE ₹999</span>
     </div>
 </div>
 
 <header>
     <div class="logo">SAINIWALAA</div>
-    <div id="nav-root"></div>
+    <nav id="nav-root"></nav>
 </header>
 
 <section id="hero-section">
     <div class="hero-info">
-        <h1 id="hero-t">Artistic Selection</h1>
-        <p id="hero-n">Fetching the best deals...</p>
+        <h1 id="hero-t">Loading...</h1>
+        <p id="hero-n">Fetching latest collection...</p>
         <div class="tag-cloud" id="hero-tg"></div>
     </div>
     <div class="hero-visual">
-        <div class="hero-visual-frame" id="slider-container">
+        <div class="slider-frame" id="hero-slider">
             </div>
     </div>
 </section>
 
-<div class="section-title">Shop Categories <span>View All</span></div>
+<div class="section-title">Shop Categories</div>
 <div class="cat-scroll" id="cat-root"></div>
 
 <div class="section-title">Trending Now 🔥</div>
 <div class="product-grid" id="prod-root"></div>
 
-<footer style="background: var(--primary); color: #fff; padding: 50px 5%; margin-top: 50px;">
+<footer id="sw-footer">
     <div id="f-marquee" style="margin-bottom: 30px; color: var(--accent); text-align: center;"></div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;" id="f-inner">
         <div id="f-c1"></div><div id="f-c2"></div><div id="f-c3"></div>
     </div>
-    <div id="f-bot" style="text-align: center; margin-top: 40px; opacity: 0.3; font-size: 12px;"></div>
+    <div id="f-bot" style="text-align: center; margin-top: 40px; opacity: 0.4; font-size: 12px;"></div>
 </footer>
 
 <script>
-const APIs = [
-    "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
-    "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec",
-    "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec"
-];
+const HERO_API = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
+const SHOP_API = "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec";
+const FOOTER_API = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
 async function init() {
     try {
-        const [h, home, f] = await Promise.all(APIs.map(u => fetch(u).then(r => r.json())));
-        
-        // 1. Navigation (White Text)
-        h.menu.forEach(m => document.getElementById('nav-root').innerHTML += `<a href="${m.link}">${m.text}</a>`);
-        
-        // 2. Hero Content & Slider
-        let slides = [];
-        h.hero.forEach(i => {
-            if(i.type === "TITLE") document.getElementById('hero-t').innerText = i.text;
-            if(i.type === "NOTICE") document.getElementById('hero-n').innerText = i.text;
-            if(i.type === "TAG") document.getElementById('hero-tg').innerHTML += `<span>${i.text}</span>`;
-            if(i.type === "SLIDE") slides.push(i.image);
+        const [hData, sData, fData] = await Promise.all([
+            fetch(HERO_API).then(r => r.json()),
+            fetch(SHOP_API).then(r => r.json()),
+            fetch(FOOTER_API).then(r => r.json())
+        ]);
+
+        // 1. Header Navigation
+        hData.menu.forEach(m => {
+            document.getElementById('nav-root').innerHTML += `<a href="${m.link}">${m.text}</a>`;
         });
 
-        const sliderBox = document.getElementById('slider-container');
-        slides.forEach((imgUrl, index) => {
+        // 2. Hero Section & Slider
+        let slideImages = [];
+        hData.hero.forEach(item => {
+            if(item.type === "TITLE") document.getElementById('hero-t').innerText = item.text;
+            if(item.type === "NOTICE") document.getElementById('hero-n').innerText = item.text;
+            if(item.type === "TAG") document.getElementById('hero-tg').innerHTML += `<span>${item.text}</span>`;
+            if(item.type === "SLIDE") slideImages.push(item.image);
+        });
+
+        const sliderContainer = document.getElementById('hero-slider');
+        slideImages.forEach((imgUrl, index) => {
             const img = document.createElement('img');
             img.src = imgUrl;
             if(index === 0) img.classList.add('active');
-            sliderBox.appendChild(img);
+            sliderContainer.appendChild(img);
         });
 
-        if(slides.length > 1) {
-            let current = 0;
-            const images = sliderBox.getElementsByTagName('img');
+        let currentSlide = 0;
+        const allSlides = sliderContainer.getElementsByTagName('img');
+        if(allSlides.length > 1) {
             setInterval(() => {
-                images[current].classList.remove('active');
-                current = (current + 1) % images.length;
-                images[current].classList.add('active');
+                allSlides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % allSlides.length;
+                allSlides[currentSlide].classList.add('active');
             }, 4000);
         }
 
-        // 3. Shop Content
-        home.forEach(i => {
-            if(i.TYPE === "CAT") {
-                document.getElementById('cat-root').innerHTML += `<div class="cat-box" onclick="location.href='${i.LINK}'"><div class="img-w"><img src="${i.IMAGE_URL}"></div><p style="font-size:12px; font-weight:700;">${i.TITLE}</p></div>`;
-            } else if(i.TYPE === "PRODUCT") {
+        // 3. Categories & Products
+        sData.forEach(item => {
+            if(item.TYPE === "CAT") {
+                document.getElementById('cat-root').innerHTML += `
+                    <div class="cat-box" onclick="location.href='${item.LINK}'">
+                        <div class="img-w"><img src="${item.IMAGE_URL}"></div>
+                        <p style="font-size:12px; font-weight:700;">${item.TITLE}</p>
+                    </div>`;
+            } else if(item.TYPE === "PRODUCT") {
                 document.getElementById('prod-root').innerHTML += `
                     <div class="p-card">
-                        <img src="${i.IMAGE_URL}">
-                        <h4>${i.TITLE}</h4>
-                        <div class="price">₹${i.PRICE}</div>
-                        <a href="${i.LINK}" class="buy-now">View Detail</a>
+                        <img src="${item.IMAGE_URL}">
+                        <h4 style="font-size:15px; margin-bottom:10px;">${item.TITLE}</h4>
+                        <div class="price">₹${item.PRICE}</div>
+                        <a href="${item.LINK}" class="buy-now">View Detail</a>
                     </div>`;
             }
         });
 
-        // 4. Footer
-        if(f.footer) {
-            f.footer.forEach(i => {
-                let box = i.POSITION === "LEFT" ? document.getElementById("f-c1") : i.POSITION === "CENTER" ? document.getElementById("f-c2") : i.POSITION === "RIGHT" ? document.getElementById("f-c3") : i.POSITION === "BOTTOM" ? document.getElementById("f-bot") : document.getElementById("f-marquee");
-                if(i.TYPE === "MARQUEE") box.innerHTML = `<marquee scrollamount="5">${i.TEXT}</marquee>`;
-                else if(i.TYPE === "TITLE") box.innerHTML += `<h3 style="margin-bottom:15px; color:var(--accent);">${i.TEXT}</h3>`;
-                else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}" style="color:#ccc; display:block; margin-bottom:10px; text-decoration:none; font-size:14px;">${i.TEXT}</a>`;
+        // 4. Footer Sync
+        if(fData.footer) {
+            fData.footer.forEach(i => {
+                let box = i.POSITION === "LEFT" ? document.getElementById("f-c1") : 
+                          i.POSITION === "CENTER" ? document.getElementById("f-c2") : 
+                          i.POSITION === "RIGHT" ? document.getElementById("f-c3") : 
+                          i.POSITION === "BOTTOM" ? document.getElementById("f-bot") : 
+                          document.getElementById("f-marquee");
+                
+                if(i.TYPE === "MARQUEE") box.innerHTML = `<marquee style="font-weight:700;">${i.TEXT}</marquee>`;
+                else if(i.TYPE === "TITLE") box.innerHTML += `<h3 style="margin-bottom:15px; color:var(--accent); font-size:18px;">${i.TEXT}</h3>`;
+                else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}" style="color:#ccc; text-decoration:none; display:block; margin-bottom:10px; font-size:14px;">${i.TEXT}</a>`;
                 else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
             });
         }
-    } catch(e) { console.log(e); }
+
+    } catch (error) {
+        console.error("Sheet Sync Error:", error);
+    }
 }
+
 init();
 </script>
 </body>
