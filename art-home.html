@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sainiwalaa - Premium Gifting Wheel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <title>Sainiwalaa - Artistic Gifting Wheel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { --amz-blue: #131921; --amz-orange: #ff9900; --bg: #f4f7f9; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -13,96 +13,106 @@
         header { background: var(--amz-blue); padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
         #menu a { color: white; text-decoration: none; margin-left: 12px; font-size: 12px; font-weight: 600; }
 
-        /* --- ARTISTIC HERO SECTION --- */
+        /* --- HERO SECTION --- */
         #hero-sainiwalaa {
-            position: relative; padding: 50px 20px;
-            background: linear-gradient(135deg, #4b0f14, #1a0507);
-            overflow: hidden; color: #fff; min-height: 480px;
+            position: relative; padding: 60px 20px;
+            background: #4b0f14; /* Original Maroon Base */
+            overflow: hidden; color: #fff; min-height: 500px;
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* THE GIFTING WHEEL (Behind Slider) */
-        .wheel-container {
-            position: absolute; width: 500px; height: 500px;
-            right: -50px; top: 50%; transform: translateY(-50%);
-            z-index: 1; animation: rotateWheel 40s linear infinite;
+        /* --- DYNAMIC GIFTING WHEEL (Piche wala) --- */
+        .wheel-wrap {
+            position: absolute; width: 650px; height: 650px;
+            right: -100px; top: 50%; transform: translateY(-50%);
+            z-index: 1; animation: rotateWheel 30s linear infinite;
         }
+
+        /* Wheel Design (Colorful Segments) */
+        .main-wheel {
+            position: absolute; inset: 0; border-radius: 50%;
+            background: conic-gradient(
+                #ff5f6d 0deg 45deg, #ffc371 45deg 90deg, 
+                #48c6ef 90deg 135deg, #6f86d6 135deg 180deg,
+                #f093fb 180deg 225deg, #f5576c 225deg 270deg,
+                #4facfe 270deg 315deg, #00f2fe 315deg 360deg
+            );
+            filter: blur(40px); opacity: 0.3; /* Soft background glow */
+        }
+
+        /* Text Circular Path */
+        .wheel-text-svg {
+            position: absolute; width: 100%; height: 100%;
+            z-index: 2; animation: rotateWheel 40s linear infinite reverse;
+        }
+
+        .wheel-text-svg text {
+            fill: #fff; font-size: 18px; font-weight: 800;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            letter-spacing: 5px; text-transform: uppercase;
+        }
+
         @keyframes rotateWheel { from { transform: translateY(-50%) rotate(0deg); } to { transform: translateY(-50%) rotate(360deg); } }
 
-        .main-wheel-circle {
-            position: absolute; inset: 0;
-            border: 2px dashed rgba(255, 153, 0, 0.4);
-            border-radius: 50%;
-        }
-
-        /* Circular Text on Wheel */
-        .wheel-text {
-            position: absolute; width: 100%; height: 100%;
-            fill: var(--amz-orange); font-size: 14px; font-weight: 800;
-            letter-spacing: 4px; text-transform: uppercase;
-            opacity: 0.8;
-        }
-
+        /* --- CONTENT WRAP --- */
         .hero-wrap { 
             position: relative; z-index: 10; max-width: 1200px; width: 100%;
             margin: auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; align-items: center; 
         }
         
-        .hero-left h1 { font-size: 38px; font-weight: 800; color: #f6d27c; line-height: 1.2; }
-        .hero-left p { color: #ffe9b0; margin-top: 10px; font-size: 14px; }
+        .hero-left h1 { font-size: 42px; font-weight: 800; color: #f6d27c; line-height: 1.1; }
+        .hero-left p { color: #ffe9b0; margin-top: 10px; font-size: 16px; }
         
-        .catbox { background: rgba(255,153,0,0.2); backdrop-filter: blur(10px); padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 11px; border: 1px solid var(--amz-orange); display: inline-block; margin: 5px; }
+        .catbox { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; border: 1px solid rgba(255,255,255,0.3); display: inline-block; margin: 5px; }
 
         .slider-frame { 
-            width: 100%; max-width: 260px; height: 350px; margin: auto; 
-            background: rgba(255,255,255,0.08); backdrop-filter: blur(15px);
-            padding: 8px; border-radius: 25px; border: 2px solid rgba(255,255,255,0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            width: 100%; max-width: 280px; height: 380px; margin: auto; 
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
+            padding: 10px; border-radius: 30px; border: 2px solid rgba(255,255,255,0.4);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
             animation: float 4s ease-in-out infinite;
         }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
         .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
 
-        /* HOME CONTENT */
-        .cat-row { display: flex; overflow-x: auto; padding: 20px 10px; gap: 15px; scrollbar-width: none; }
-        .cat-circle { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--amz-orange); padding: 2px; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        /* --- PRODUCT GRID (New Look) --- */
+        .cat-row { display: flex; overflow-x: auto; padding: 25px 15px; gap: 15px; scrollbar-width: none; }
+        .cat-circle { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--amz-orange); padding: 3px; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
         .cat-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; }
-        .p-card { background: white; border-radius: 15px; padding: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .p-card img { width: 100%; height: 140px; object-fit: contain; }
-        .btn { background: #131921; color: #fff; text-decoration: none; padding: 10px; border-radius: 8px; display: block; font-weight: 700; margin-top: 10px; font-size: 13px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
+        .p-card { background: white; border-radius: 20px; padding: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .p-card img { width: 100%; height: 150px; object-fit: contain; }
+        .btn { background: var(--amz-blue); color: #fff; text-decoration: none; padding: 12px; border-radius: 10px; display: block; font-weight: 700; margin-top: 10px; }
 
-        /* FOOTER */
-        footer { background: #050b1a; color: #fff; padding: 50px 20px; margin-top: 40px; border-radius: 30px 30px 0 0; text-align: center; border-top: 4px solid var(--amz-orange); }
-        .sw-social { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
-        .sw-social a { border: 1px solid var(--amz-orange); color: var(--amz-orange); padding: 5px 12px; border-radius: 8px; text-decoration: none; font-size: 12px; }
+        /* --- FOOTER --- */
+        footer { background: #050b1a; color: #fff; padding: 60px 20px; margin-top: 50px; border-radius: 40px 40px 0 0; border-top: 5px solid var(--amz-orange); }
 
-        /* MOBILE OPTIMIZATION */
+        /* MOBILE FIX */
         @media(max-width: 768px) {
-            #hero-sainiwalaa { min-height: 550px; padding: 40px 10px; }
+            #hero-sainiwalaa { min-height: 600px; }
             .hero-wrap { grid-template-columns: 1fr; text-align: center; }
-            .wheel-container { width: 350px; height: 350px; right: -50px; top: 60%; }
-            .hero-left h1 { font-size: 28px; }
-            .slider-frame { max-width: 200px; height: 280px; }
+            .wheel-wrap { width: 450px; height: 450px; right: -80px; top: 65%; }
+            .hero-left h1 { font-size: 32px; }
+            .slider-frame { max-width: 220px; height: 300px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="font-size: 20px; font-weight: 800; color: #febd69; letter-spacing: 1px;">SAINIWALAA</div>
+    <div style="font-size: 22px; font-weight: 800; color: #febd69; letter-spacing: 1px;">SAINIWALAA</div>
     <div id="menu"></div>
 </header>
 
 <section id="hero-sainiwalaa">
-    <div class="wheel-container">
-        <div class="main-wheel-circle"></div>
-        <svg class="wheel-text" viewBox="0 0 500 500">
-            <path id="textPath" d="M 250, 250 m -180, 0 a 180,180 0 1,1 360,0 a 180,180 0 1,1 -360,0" fill="none"></path>
+    <div class="wheel-wrap">
+        <div class="main-wheel"></div>
+        <svg class="wheel-text-svg" viewBox="0 0 500 500">
+            <path id="circlePath" d="M 250, 250 m -200, 0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0" fill="none"></path>
             <text>
-                <textPath href="#textPath">
-                    WOMEN FASHION • GADGETS • HOME DECOR • CREATOR ZONE • BEST DEALS • 
+                <textPath href="#circlePath">
+                    <tspan fill="#ff9900">WOMEN DRESS •</tspan> <tspan fill="#00f2fe">GADGETS •</tspan> <tspan fill="#f093fb">HOME DECOR •</tspan> <tspan fill="#f6d27c">CREATOR ZONE •</tspan>
                 </textPath>
             </text>
         </svg>
@@ -111,28 +121,31 @@
     <div class="hero-wrap">
         <div class="hero-left">
             <h1 id="heroTitle">Sainiwalaa</h1>
-            <p id="heroNotice">Loading...</p>
+            <p id="heroNotice">Premium Gifting Experience...</p>
             <div id="heroTags"></div>
         </div>
-        <div class="slider-frame"><img id="heroImg" src=""></div>
+        <div class="slider-frame">
+            <img id="heroImg" src="">
+        </div>
     </div>
 </section>
 
 <div class="cat-row" id="cat-root"></div>
-<div style="padding: 10px 20px; font-weight: 800; font-size: 20px;">Hot Deals ✨</div>
+<div style="padding: 10px 20px; font-weight: 800; font-size: 22px;">Special Selection 🔥</div>
 <div class="grid" id="prod-root"></div>
 
 <footer id="sw-footer">
     <div id="sw-marquee"></div>
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left; max-width: 1000px; margin: auto;">
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left; max-width: 1200px; margin: auto;">
         <div id="f-left"></div>
         <div id="f-center"></div>
         <div id="f-right"></div>
     </div>
-    <div id="sw-bottom" style="margin-top:30px; opacity:0.5; font-size:11px;"></div>
+    <div id="sw-bottom" style="text-align:center; margin-top:40px; opacity:0.3; font-size:11px;"></div>
 </footer>
 
 <script>
+// Same APIs from your previous code
 const APIs = [
     "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
     "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec",
@@ -143,7 +156,7 @@ async function init() {
     try {
         const [h, home, f] = await Promise.all(APIs.map(u => fetch(u).then(r => r.json())));
 
-        // Header & Hero
+        // 1. Header & Hero Sync
         h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
         let s = [];
         h.hero.forEach(i => {
@@ -157,30 +170,26 @@ async function init() {
             setInterval(() => { idx = (idx+1)%s.length; document.getElementById('heroImg').src = s[idx]; }, 3000);
         }
 
-        // Content
+        // 2. Home Products & Categories
         home.forEach(i => {
             if(i.TYPE === "CAT") {
-                document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${i.LINK}'"><div class="cat-circle"><img src="${i.IMAGE_URL}"></div><p style="font-size:10px; font-weight:700; margin-top:5px;">${i.TITLE}</p></div>`;
+                document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${i.LINK}'"><div class="cat-circle"><img src="${i.IMAGE_URL}"></div><p style="font-size:11px; font-weight:700; margin-top:8px;">${i.TITLE}</p></div>`;
             } else if(i.TYPE === "PRODUCT") {
-                document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${i.IMAGE_URL}"><h5>${i.TITLE}</h5><div style="color:#B12704; font-weight:800; margin:5px 0;">₹${i.PRICE}</div><a href="${i.LINK}" class="btn">Grab Deal</a></div>`;
+                document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${i.IMAGE_URL}"><h5>${i.TITLE}</h5><div style="color:#B12704; font-weight:800; margin:8px 0;">₹${i.PRICE}</div><a href="${i.LINK}" class="btn">View Offer</a></div>`;
             }
         });
 
-        // Footer
+        // 3. Footer Control
         if(f.footer) {
             f.footer.forEach(i => {
                 let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : i.POSITION === "RIGHT" ? document.getElementById("f-right") : i.POSITION === "BOTTOM" ? document.getElementById("sw-bottom") : document.getElementById("sw-marquee");
                 if(i.TYPE === "MARQUEE") box.innerHTML = `<div style="overflow:hidden; white-space:nowrap; margin-bottom:20px; color:orange; font-weight:bold;">${i.TEXT}</div>`;
-                else if(i.TYPE === "TITLE") box.innerHTML += `<h4 style="color:orange; margin-bottom:10px;">${i.TEXT}</h4>`;
-                else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}" style="color:#ccc; text-decoration:none; display:block; font-size:13px; margin-bottom:8px;">${i.TEXT}</a>`;
-                else if(i.TYPE === "SOCIAL") {
-                    let sc = box.querySelector('.sw-social') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social'}));
-                    sc.innerHTML += `<a href="${i.LINK}">${i.TEXT}</a>`;
-                }
+                else if(i.TYPE === "TITLE") box.innerHTML += `<h4 style="color:orange; margin-bottom:12px;">${i.TEXT}</h4>`;
+                else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}" style="color:#ccc; text-decoration:none; display:block; font-size:13px; margin-bottom:10px;">› ${i.TEXT}</a>`;
                 else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
             });
         }
-    } catch (e) { console.log(e); }
+    } catch (e) { console.log("Error loading data:", e); }
 }
 init();
 </script>
