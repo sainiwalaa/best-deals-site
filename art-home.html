@@ -3,74 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sainiwalaa | Premium Banner Store</title>
+    <title>Sainiwalaa | Luxury Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #f59e0b; --dark: #020617; --bg: #f8fafc; }
+        :root { --gold: #f59e0b; --dark: #0f172a; --bg: #f8fafc; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background: var(--bg); overflow-x: hidden; }
 
         /* --- TICKER --- */
-        .top-ticker { background: #000; color: #fff; padding: 10px 0; overflow: hidden; white-space: nowrap; }
-        .ticker-track { display: inline-block; animation: scrollT 30s linear infinite; font-size: 13px; font-weight: 700; }
+        .top-ticker { background: #000; color: #fff; padding: 10px 0; overflow: hidden; white-space: nowrap; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .ticker-track { display: inline-block; animation: scrollT 30s linear infinite; font-size: 12px; font-weight: 700; text-transform: uppercase; }
         .ticker-track span { margin-right: 50px; color: var(--gold); }
         @keyframes scrollT { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        header { background: #fff; padding: 15px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo-text { font-size: 24px; font-weight: 800; color: var(--dark); letter-spacing: -1px; }
+        /* --- MODERN HEADER --- */
+        header { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            padding: 15px 6%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 1000; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .logo-text { font-size: 28px; font-weight: 800; color: var(--dark); letter-spacing: -1.5px; cursor: pointer; }
+        .logo-text span { color: var(--gold); }
 
-        /* --- HERO BANNER SLIDER --- */
-        #hero { 
-            background: #020617; 
-            color: #fff; min-height: 550px; display: grid; grid-template-columns: 1fr 1fr; 
-            gap: 40px; align-items: center; padding: 40px 6%; position: relative; overflow: hidden;
+        #nav-root { display: flex; gap: 30px; }
+        #nav-root a { 
+            text-decoration: none; color: var(--dark); font-weight: 700; 
+            font-size: 14px; position: relative; padding: 5px 0;
+            transition: 0.3s;
         }
-        
-        /* Background Glow */
-        .hero-glow { position: absolute; top: 0; right: 0; width: 40%; height: 100%; background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%); z-index: 1; }
+        #nav-root a::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background: var(--gold); transition: 0.3s;
+        }
+        #nav-root a:hover::after { width: 100%; }
+        #nav-root a:hover { color: var(--gold); }
 
-        .hero-content { position: relative; z-index: 10; }
-        .hero-content h1 { 
-            font-size: 52px; line-height: 1.1; margin-bottom: 20px;
-            background: linear-gradient(90deg, #fff, var(--gold), #fff);
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
+        /* --- FULL WIDTH HERO SLIDER --- */
+        #hero-slider-section {
+            position: relative; width: 100%; height: 500px;
+            background: #000; overflow: hidden;
         }
-        @keyframes shine { to { background-position: 200% center; } }
+        .slide-container { width: 100%; height: 100%; position: relative; }
+        .hero-slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 1.2s ease-in-out;
+            background-size: cover; background-position: center;
+        }
+        .hero-slide.active { opacity: 1; }
         
-        /* Banner Frame Fix */
-        .hero-banner-frame { 
-            position: relative; z-index: 5; width: 100%; max-width: 450px; height: 450px; 
-            border-radius: 20px; overflow: hidden; border: 5px solid rgba(255,255,255,0.1);
-            background: #111; margin-left: auto;
+        /* Slide Overlay */
+        .slide-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.8) 20%, transparent 80%);
+            display: flex; align-items: center; padding: 0 8%;
         }
-        .hero-banner-frame img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            position: absolute; top: 0; left: 0; opacity: 0; 
-            transition: opacity 1s ease-in-out; 
-        }
-        .hero-banner-frame img.active { opacity: 1; }
+        .slide-text { max-width: 600px; color: #fff; z-index: 10; }
+        .slide-text h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .slide-text p { font-size: 18px; color: #cbd5e1; margin-bottom: 30px; }
 
         /* --- PRODUCT GRID --- */
-        .section-title { padding: 60px 6% 30px; font-size: 28px; font-weight: 800; }
-        .p-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 0 6% 80px; }
-        .p-card { background: #fff; padding: 15px; border-radius: 20px; border: 1px solid #edf2f7; transition: 0.4s; }
-        .p-img-w { width: 100%; height: 280px; border-radius: 15px; overflow: hidden; background: #eee; }
+        .main-container { padding: 80px 6% 40px; }
+        .section-title { font-size: 32px; font-weight: 800; margin-bottom: 40px; text-align: center; }
+        .p-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .p-card { background: #fff; padding: 20px; border-radius: 20px; transition: 0.4s; border: 1px solid #f1f5f9; }
+        .p-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .p-img-w { width: 100%; height: 300px; border-radius: 15px; overflow: hidden; background: #f8fafc; }
         .p-img-w img { width: 100%; height: 100%; object-fit: contain; }
-        .p-btn { display: block; text-align: center; padding: 12px; background: var(--dark); color: #fff; text-decoration: none; border-radius: 10px; font-weight: 700; margin-top: 15px; }
+        .p-btn { display: block; text-align: center; padding: 14px; background: var(--dark); color: #fff; text-decoration: none; border-radius: 12px; font-weight: 700; margin-top: 20px; transition: 0.3s; }
+        .p-btn:hover { background: var(--gold); color: #000; }
 
-        /* NEXT SYSTEM FOOTER CSS */
-        #sw-footer{ width:100%; background:linear-gradient(180deg,#050b1a,#0b1730); padding:50px 20px 25px; box-sizing:border-box; font-family:'Poppins',Arial,sans-serif; color:#ffffff; }
-        #sw-marquee{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px; }
-        #sw-marquee span{ display:inline-block; animation:sw-scroll 28s linear infinite; font-weight:600; }
-        @keyframes sw-scroll{ from{transform:translateX(100%)} to{transform:translateX(-100%)} }
-        #sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; }
-        .sw-links a{ display:block; margin:6px 0; color:#ffffff; text-decoration:none; font-weight:600; }
-        #sw-bottom{ text-align:center; margin-top:30px; font-size:13px; opacity:.7; border-top:1px solid rgba(255,255,255,.1); padding-top:14px; }
+        /* --- FOOTER CSS (Same as Next System) --- */
+        #sw-footer { width:100%; background:#050b1a; padding:60px 20px 30px; color:#ffffff; }
+        #sw-inner { max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(3, 1fr); gap:40px; }
+        .sw-links a { display:block; margin:8px 0; color:#cbd5e1; text-decoration:none; font-size: 14px; }
+        .sw-links a:hover { color:var(--gold); }
+        #sw-bottom { text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); font-size:13px; opacity:0.6; }
 
         @media(max-width:768px){
-            #hero { grid-template-columns: 1fr; text-align: center; min-height: auto; padding: 40px 20px; }
-            .hero-banner-frame { margin: 20px auto 0; width: 100%; height: 300px; }
+            header { padding: 15px 4%; }
+            #nav-root { display: none; } /* Mobile menu can be added later */
+            .slide-text h1 { font-size: 36px; }
+            #hero-slider-section { height: 400px; }
+            #sw-inner { grid-template-columns: 1fr; text-align: center; }
             .p-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
         }
     </style>
@@ -82,26 +99,29 @@
 </div>
 
 <header>
-    <div class="logo-text">SAINIWALAA</div>
+    <div class="logo-text">SAINI<span>WALAA</span></div>
     <nav id="nav-root"></nav>
 </header>
 
-<section id="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-content">
-        <h1 id="h-title">Artistic Collection</h1>
-        <p id="h-notice">Please wait...</p>
-        <div id="h-tags" style="display:flex; gap:10px; margin-top:20px; flex-wrap:wrap;"></div>
-    </div>
-    <div class="hero-banner-frame" id="hero-slider">
+<section id="hero-slider-section">
+    <div class="slide-container" id="hero-slides-target">
         </div>
+    <div class="slide-overlay">
+        <div class="slide-text">
+            <h1 id="h-title">Luxury Artistic Wear</h1>
+            <p id="h-notice">Discover the finest Jaipur collection.</p>
+            <div id="h-tags"></div>
+        </div>
+    </div>
 </section>
 
-<h2 class="section-title">Trending Now 🔥</h2>
-<div class="p-grid" id="prod-root"></div>
+<div class="main-container">
+    <h2 class="section-title">Exclusive Collection</h2>
+    <div class="p-grid" id="prod-root"></div>
+</div>
 
 <div id="sw-footer">
-  <div id="sw-marquee"></div>
+  <div id="sw-marquee" style="text-align: center; margin-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;"></div>
   <div id="sw-inner">
     <div class="sw-col" id="sw-left"></div>
     <div class="sw-col" id="sw-center"></div>
@@ -115,84 +135,79 @@ const HERO_API = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oo
 const PROD_API = "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec";
 const FOOTER_API = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-async function loadStore() {
+async function init() {
     try {
-        const [hData, pData, fData] = await Promise.all([
+        const [h, p, f] = await Promise.all([
             fetch(HERO_API).then(r => r.json()),
             fetch(PROD_API).then(r => r.json()),
             fetch(FOOTER_API).then(r => r.json())
         ]);
 
-        // 1. Navigation
-        hData.menu.forEach(m => document.getElementById('nav-root').innerHTML += `<a href="${m.link}">${m.text}</a>`);
-        
-        // 2. Hero & Slider
-        let bannerImgs = [];
-        hData.hero.forEach(i => {
+        // Header Menu
+        h.menu.forEach(m => document.getElementById('nav-root').innerHTML += `<a href="${m.link}">${m.text}</a>`);
+
+        // Hero Banners
+        let slides = [];
+        h.hero.forEach(i => {
             if(i.type === "TITLE") document.getElementById('h-title').innerText = i.text;
             if(i.type === "NOTICE") document.getElementById('h-notice').innerText = i.text;
-            if(i.type === "TAG") {
-                document.getElementById('h-tags').innerHTML += `<span style="border:1px solid var(--gold); color:var(--gold); padding:5px 15px; border-radius:20px; font-size:12px;">${i.text}</span>`;
-                document.getElementById('ticker-target').innerHTML += `<span>✨ ${i.text}</span>`;
-            }
-            if(i.type === "SLIDE") bannerImgs.push(i.image);
+            if(i.type === "SLIDE") slides.push(i.image);
+            if(i.type === "TAG") document.getElementById('ticker-target').innerHTML += `<span>✨ ${i.text}</span>`;
         });
         document.getElementById('ticker-target').innerHTML += document.getElementById('ticker-target').innerHTML;
 
-        // Create Slider Images
-        const sliderContainer = document.getElementById('hero-slider');
-        bannerImgs.forEach((imgUrl, index) => {
-            const img = document.createElement('img');
-            img.src = imgUrl;
-            if(index === 0) img.className = 'active';
-            sliderContainer.appendChild(img);
+        const slideTarget = document.getElementById('hero-slides-target');
+        slides.forEach((url, index) => {
+            const div = document.createElement('div');
+            div.className = `hero-slide ${index === 0 ? 'active' : ''}`;
+            div.style.backgroundImage = `url('${url}')`;
+            slideTarget.appendChild(div);
         });
 
-        // Slider Animation Logic
-        let currentIdx = 0;
-        const imgs = sliderContainer.getElementsByTagName('img');
-        if(imgs.length > 1) {
+        let currentSlide = 0;
+        const allSlides = document.querySelectorAll('.hero-slide');
+        if(allSlides.length > 1) {
             setInterval(() => {
-                imgs[currentIdx].classList.remove('active');
-                currentIdx = (currentIdx + 1) % imgs.length;
-                imgs[currentIdx].classList.add('active');
-            }, 4000);
+                allSlides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % allSlides.length;
+                allSlides[currentSlide].classList.add('active');
+            }, 5000);
         }
 
-        // 3. Products
-        pData.forEach(p => {
-            if(p.TYPE === "PRODUCT") {
+        // Products
+        p.forEach(item => {
+            if(item.TYPE === "PRODUCT") {
                 document.getElementById('prod-root').innerHTML += `
                     <div class="p-card">
-                        <div class="p-img-w"><img src="${p.IMAGE_URL}"></div>
-                        <div style="font-weight:700; margin-top:15px; height:40px; overflow:hidden;">${p.TITLE}</div>
-                        <div style="font-size:20px; font-weight:800; color:#10b981; margin:10px 0;">₹${p.PRICE}</div>
-                        <a href="${p.LINK}" class="p-btn">Shop Now</a>
+                        <div class="p-img-w"><img src="${item.IMAGE_URL}"></div>
+                        <div style="font-weight:800; margin-top:15px; font-size:16px;">${item.TITLE}</div>
+                        <div style="font-size:22px; font-weight:800; color:#10b981; margin:10px 0;">₹${item.PRICE}</div>
+                        <a href="${item.LINK}" class="p-btn">Shop Now</a>
                     </div>`;
             }
         });
 
-        // 4. Next System Footer
-        if(fData.footer) {
-            fData.footer.forEach(i => {
+        // Footer Sync
+        if(f.footer) {
+            f.footer.forEach(i => {
                 let box = i.POSITION==="LEFT" ? document.getElementById("sw-left") :
                           i.POSITION==="CENTER" ? document.getElementById("sw-center") :
                           i.POSITION==="RIGHT" ? document.getElementById("sw-right") :
                           i.POSITION==="BOTTOM" ? document.getElementById("sw-bottom") :
                           document.getElementById("sw-marquee");
 
-                if(i.TYPE==="MARQUEE") box.innerHTML=`<span style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</span>`;
-                if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
-                if(i.TYPE==="TEXT") box.innerHTML+=`<p style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</p>`;
-                if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links"><a href="${i.LINK}" style="font-size:${i.SIZE}px;color:${i.COLOR}">${i.TEXT}</a></div>`;
-                if(i.TYPE==="BUTTON") box.innerHTML+=`<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
-                if(i.TYPE==="SOCIAL") box.innerHTML+=`<a href="${i.LINK}" style="color:${i.COLOR};font-size:${i.SIZE}px; margin-right:15px;">${i.TEXT}</a>`;
+                if(i.TYPE==="MARQUEE") box.innerHTML=`<span style="color:${i.COLOR};font-size:${i.SIZE}px;font-weight:600;">${i.TEXT}</span>`;
+                if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:${i.COLOR};margin-bottom:15px;">${i.TEXT}</h2>`;
+                if(i.TYPE==="TEXT") box.innerHTML+=`<p style="color:${i.COLOR};font-size:14px;opacity:0.8;">${i.TEXT}</p>`;
+                if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links"><a href="${i.LINK}" style="color:${i.COLOR}">${i.TEXT}</a></div>`;
+                if(i.TYPE==="BUTTON") box.innerHTML+=`<a class="sw-btn" href="${i.LINK}" style="background:var(--gold);padding:10px 20px;border-radius:20px;color:#000;text-decoration:none;display:inline-block;margin-top:15px;font-weight:700;">${i.TEXT}</a>`;
+                if(i.TYPE==="SOCIAL") box.innerHTML+=`<a href="${i.LINK}" style="color:${i.COLOR};margin-right:15px;text-decoration:none;font-weight:700;">${i.TEXT}</a>`;
                 if(i.TYPE==="BOTTOM") { box.innerText=i.TEXT; box.style.color=i.COLOR; }
             });
         }
-    } catch(e) { console.error(e); }
+    } catch(e) { console.log(e); }
 }
-loadStore();
+init();
 </script>
 </body>
 </html>
