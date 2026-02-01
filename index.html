@@ -4,109 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sainiwalaa – Premium Shopping & Deals</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
-        :root { 
-            --amz-blue: #131921; 
-            --amz-orange: #ff9900; 
-            --bg: #eaeded; 
-            --accent: #febd69;
-        }
-        
+        :root { --amz-orange: #ff9900; --bg: #eaeded; --accent: #febd69; }
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg); color: #111; overflow-x: hidden; width: 100%; }
-        
-        /* Automatic Image Handling */
-        img { max-width: 100%; height: auto; display: block; }
 
-        /* --- HEADER (Responsive) --- */
-        #main-header { 
-            background: #000; color: #fff; 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 20px; position: sticky; top: 0; z-index: 1000;
-        }
+        /* --- HEADER --- */
+        #main-header { background: #000; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; position: sticky; top: 0; z-index: 1000; }
         #logo { font-weight: 900; font-size: 22px; color: var(--accent); text-decoration: none; }
-        #menu { display: flex; gap: 10px; }
-        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 13px; white-space: nowrap; }
+        #menu { display: flex; gap: 12px; }
+        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 13px; }
 
-        /* --- HERO SECTION (Auto-adjusting) --- */
-        #hero-sainiwalaa { 
-            position: relative; background: #080d17; 
-            padding: 50px 20px; overflow: hidden; 
-            display: flex; align-items: center; min-height: 400px;
-        }
-        .hero-wrap { 
-            max-width: 1200px; margin: auto; 
-            display: flex; flex-wrap: wrap; /* Yeh mobile par niche bhej dega image ko */
-            gap: 30px; align-items: center; justify-content: center;
-            position: relative; z-index: 10; width: 100%;
-        }
+        /* --- HERO (Original Animated Look) --- */
+        #hero-sainiwalaa { position: relative; background: #080d17; padding: 60px 20px; overflow: hidden; display: flex; align-items: center; min-height: 450px; }
+        
+        /* Floating Text Animation (Wahi Purana Wala) */
+        .float-text { position: absolute; font-weight: 900; font-size: 6vw; opacity: 0.05; white-space: nowrap; animation: floatingText 25s linear infinite; color: #fff; z-index: 1; }
+        @keyframes floatingText { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+
+        .hero-wrap { max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center; position: relative; z-index: 10; width: 100%; }
         .hero-left { flex: 1; min-width: 300px; }
-        .hero-left h1 { font-size: clamp(30px, 5vw, 55px); color: #fff; margin-bottom: 20px; font-weight: 900; }
-        .hero-left p { color: #ffe9b0; border-left: 4px solid var(--amz-orange); padding-left: 15px; margin-bottom: 20px; }
+        .hero-left h1 { font-size: clamp(32px, 5vw, 55px); color: #fff; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+        .hero-left p { color: #ffe9b0; font-size: 17px; border-left: 4px solid var(--amz-orange); padding-left: 15px; margin-bottom: 25px; }
 
-        .slider-frame { 
-            width: 100%; max-width: 280px; height: 380px; 
-            background: rgba(255,255,255,0.05); padding: 10px; border-radius: 25px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
-        }
-        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+        .slider-frame { width: 100%; max-width: 280px; height: 380px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
+        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
 
-        /* --- BANNER (Flexible) --- */
-        .banner-frame { 
-            width: 95%; max-width: 1200px; 
-            margin: 25px auto; border-radius: 15px; overflow: hidden; 
-            background: #000; position: relative;
-        }
-        #banner-root { display: flex; transition: transform 0.6s ease-in-out; }
+        /* --- BANNER (Original Big Look but Responsive) --- */
+        .banner-frame { width: 96%; max-width: 1200px; height: auto; min-height: 200px; margin: 30px auto; border-radius: 20px; overflow: hidden; background: #000; position: relative; border: 2px solid var(--amz-orange); }
+        #banner-root { display: flex; transition: transform 0.7s ease-in-out; }
         .banner-slide { min-width: 100%; }
-        .banner-slide img { width: 100%; display: block; }
+        .banner-slide img { width: 100%; display: block; object-fit: cover; }
 
-        /* --- CATEGORIES (Scrollable on Mobile) --- */
-        .cat-row { display: flex; overflow-x: auto; padding: 20px 15px; gap: 20px; scrollbar-width: none; }
+        /* --- CATEGORIES --- */
+        .cat-row { display: flex; overflow-x: auto; padding: 20px; gap: 20px; scrollbar-width: none; }
         .cat-row::-webkit-scrollbar { display: none; }
-        .cat-item { text-align: center; min-width: 85px; cursor: pointer; }
-        .cat-circle { width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--amz-orange); background: #fff; margin: 0 auto; overflow: hidden; }
+        .cat-item { text-align: center; min-width: 90px; }
+        .cat-circle { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--amz-orange); background: #fff; margin: 0 auto; overflow: hidden; }
         .cat-circle img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- PRODUCTS GRID (2 Columns on Mobile, more on Desktop) --- */
-        .section-head { padding: 20px; font-weight: 800; font-size: 22px; }
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
-            gap: 15px; padding: 15px; max-width: 1200px; margin: auto; 
-        }
-        .p-card { background: white; border-radius: 15px; padding: 15px; text-align: center; border: 1px solid #eee; }
-        .p-card img { width: 100%; height: 150px; object-fit: contain; margin-bottom: 12px; }
-        .p-price { color: #B12704; font-size: 20px; font-weight: 800; margin: 10px 0; }
-        .btn { background: linear-gradient(to bottom, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 8px; padding: 10px; display: block; text-decoration: none; color: #111; font-weight: 700; font-size: 14px; }
+        /* --- PRODUCT GRID --- */
+        .section-head { padding: 20px; font-weight: 800; font-size: 24px; color: #333; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; padding: 0 20px 40px; max-width: 1200px; margin: auto; }
+        .p-card { background: white; border-radius: 18px; padding: 20px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
+        .p-card img { width: 100%; height: 170px; object-fit: contain; margin-bottom: 15px; }
+        .p-price { color: #B12704; font-size: 22px; font-weight: 800; margin: 12px 0; }
+        .btn { background: linear-gradient(180deg, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 10px; padding: 12px; display: block; text-decoration: none; color: #111; font-weight: 700; }
 
-        /* --- FOOTER (Professional Columns) --- */
-        #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px; margin-top: 50px; border-top: 5px solid var(--amz-orange); }
-        #sw-inner { 
-            max-width: 1200px; margin: auto; 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 40px; 
-        }
-        .sw-col h2 { color: var(--amz-orange); font-size: 20px; margin-bottom: 20px; }
+        /* --- FOOTER (Original Look + Note) --- */
+        #sw-footer { background: #050b1a; color: #fff; padding: 60px 20px 30px; margin-top: 60px; border-top: 5px solid var(--amz-orange); }
+        #sw-marquee { overflow: hidden; white-space: nowrap; padding-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 40px; }
+        #sw-marquee span { display: inline-block; animation: scroll-text 20s linear infinite; color: var(--amz-orange); font-weight: 700; font-size: 16px; }
+        @keyframes scroll-text { from { transform: translateX(100%) } to { transform: translateX(-100%) } }
+
+        #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .sw-col h2 { color: var(--amz-orange); font-size: 22px; margin-bottom: 20px; }
         .sw-links-container a { display: block; margin: 10px 0; color: #bbb; text-decoration: none; }
-        .sw-social-container { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
-        .sw-social-container a { border: 1px solid var(--amz-orange); padding: 5px 15px; border-radius: 8px; color: var(--amz-orange) !important; text-decoration: none; font-size: 13px; }
-        #sw-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.5; font-size: 12px; }
+        .sw-social-container { display: flex; gap: 12px; margin-top: 20px; }
+        .sw-social-container a { border: 1px solid var(--amz-orange); padding: 8px 18px; border-radius: 10px; color: var(--amz-orange) !important; text-decoration: none; font-weight: 600; }
+        #sw-bottom { text-align: center; margin-top: 50px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.6; font-size: 13px; }
 
-        /* --- LOADER --- */
-        #loader { position: fixed; inset: 0; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-
-        /* --- RESPONSIVE FIX --- */
-        @media (max-width: 600px) {
+        /* --- MOBILE AUTO-FIX --- */
+        @media (max-width: 768px) {
             .hero-left { text-align: center; }
-            .hero-left p { border-left: none; border-top: 3px solid var(--amz-orange); padding: 10px 0; }
-            .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; }
-            .p-card { padding: 10px; }
-            .p-card img { height: 120px; }
+            .hero-left p { border-left: none; border-top: 3px solid var(--amz-orange); padding: 15px 0 0; }
+            .grid { grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
+            .p-card { padding: 15px; }
+            .p-card img { height: 140px; }
             #sw-inner { text-align: center; }
             .sw-social-container { justify-content: center; }
         }
@@ -114,19 +80,19 @@
 </head>
 <body>
 
-<div id="loader">Sainiwalaa Loading...</div>
-
 <header id="main-header">
     <a href="index.html" id="logo">SAINIWALAA</a>
     <div id="menu"></div>
 </header>
 
 <section id="hero-sainiwalaa">
+    <div class="float-text" style="top:20%;">JAIPURI KURTIS • DESIGNER SUITS • ETHNIC WEAR</div>
+    <div class="float-text" style="top:50%; animation-delay:5s;">NEW ARRIVALS • BEST SELLERS • 2026 DEALS</div>
     <div class="hero-wrap">
         <div class="hero-left">
             <h1 id="heroTitle">Sainiwalaa</h1>
-            <p id="heroNotice">Best Deals Await You...</p>
-            <div id="heroTags" style="display:flex; gap:10px; flex-wrap:wrap;"></div>
+            <p id="heroNotice">Connecting you to premium deals...</p>
+            <div id="heroTags"></div>
         </div>
         <div class="slider-frame"><img id="heroImg"></div>
     </div>
@@ -134,10 +100,11 @@
 
 <div class="banner-frame"><div id="banner-root"></div></div>
 <div class="cat-row" id="cat-root"></div>
-<div class="section-head">🔥 Top Deals Today</div>
+<div class="section-head">🔥 Today's Best Offers</div>
 <div class="grid" id="prod-root"></div>
 
 <footer id="sw-footer">
+    <div id="sw-marquee"></div>
     <div id="sw-inner">
         <div class="sw-col" id="f-left"></div>
         <div class="sw-col" id="f-center"></div>
@@ -147,7 +114,6 @@
 </footer>
 
 <script>
-// Same APIs as before
 const APIs = {
     HEAD: "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
     HOME: "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec",
@@ -161,13 +127,9 @@ async function init() {
             fetch(APIs.HOME).then(r => r.json()),
             fetch(APIs.FOOTER).then(r => r.json())
         ]);
-        
-        document.getElementById('loader').style.display = 'none';
 
-        // Header
         h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
         
-        // Hero
         let hSlides = [];
         h.hero.forEach(i => {
             if(i.type === "TITLE") document.getElementById('heroTitle').innerText = i.text;
@@ -179,32 +141,23 @@ async function init() {
             setInterval(() => { hi = (hi + 1) % hSlides.length; document.getElementById('heroImg').src = hSlides[hi]; }, 3000);
         }
 
-        // Banners
         const bRoot = document.getElementById('banner-root');
         let banners = home.filter(i => i.TYPE === "BANNER");
         banners.forEach(b => { bRoot.innerHTML += `<div class="banner-slide"><img src="${b.IMAGE_URL}"></div>`; });
         if(banners.length > 1) {
-            let cb = 0; setInterval(() => {
-                cb = (cb + 1) % banners.length;
-                bRoot.style.transform = `translateX(-${cb * 100}%)`;
-            }, 4000);
+            let cb = 0; setInterval(() => { cb = (cb + 1) % banners.length; bRoot.style.transform = `translateX(-${cb * 100}%)`; }, 4000);
         }
 
-        // Categories & Products
         home.forEach(item => {
-            if(item.TYPE === "CAT") {
-                document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
-            }
-            if(item.TYPE === "PRODUCT") {
-                document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Deal</a></div>`;
-            }
+            if(item.TYPE === "CAT") document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
+            if(item.TYPE === "PRODUCT") document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Deal</a></div>`;
         });
 
-        // Footer
         f.footer.forEach(i => {
-            let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : i.POSITION === "RIGHT" ? document.getElementById("f-right") : document.getElementById("sw-bottom");
-            if(i.TYPE === "TITLE") box.innerHTML += `<h2>${i.TEXT}</h2>`;
-            else if(i.TYPE === "TEXT") box.innerHTML += `<p style="font-size:14px; color:#bbb;">${i.TEXT}</p>`;
+            let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : i.POSITION === "RIGHT" ? document.getElementById("f-right") : i.POSITION === "BOTTOM" ? document.getElementById("sw-bottom") : document.getElementById("sw-marquee");
+            if(i.TYPE === "MARQUEE") box.innerHTML = `<span>${i.TEXT}</span>`;
+            else if(i.TYPE === "TITLE") box.innerHTML += `<h2>${i.TEXT}</h2>`;
+            else if(i.TYPE === "TEXT") box.innerHTML += `<p>${i.TEXT}</p>`;
             else if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links-container"><a href="${i.LINK}">${i.TEXT}</a></div>`;
             else if(i.TYPE === "SOCIAL") {
                 let sc = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
