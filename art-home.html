@@ -3,84 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sainiwalaa | Official Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+    <title>Sainiwalaa | Official System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #000000; --accent: #febd69; --bg: #f3f3f3; --dark-blue: #0b1730; }
+        :root { --primary: #000000; --accent: #febd69; --bg: #f4f4f4; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: var(--bg); color: #333; overflow-x: hidden; }
 
-        /* --- HEADER (BLACK & WHITE) --- */
-        header { 
-            background: #000; padding: 15px 5%; display: flex; justify-content: space-between; 
-            align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.3);
-        }
-        .logo { font-size: 26px; font-weight: 900; color: #fff; letter-spacing: 1px; }
-        #nav-root a { color: #fff; margin-left: 18px; text-decoration: none; font-size: 14px; font-weight: 700; transition: 0.3s; }
+        /* --- HEADER --- */
+        header { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 1px; }
+        #nav-root { display: flex; gap: 15px; flex-wrap: wrap; }
+        #nav-root a { color: #fff; text-decoration: none; font-size: 13px; font-weight: 700; transition: 0.3s; }
         #nav-root a:hover { color: var(--accent); }
 
-        /* --- FULL WIDTH HERO SLIDER --- */
-        #hero-section {
-            width: 100%; height: 500px; position: relative; overflow: hidden; background: #131921;
-        }
-        .slide-container { width: 100%; height: 100%; }
-        .slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0; transition: opacity 1.2s ease-in-out;
-        }
+        /* --- HERO SLIDER (FULL WIDTH) --- */
+        #hero-section { width: 100%; height: 480px; position: relative; overflow: hidden; background: #131921; }
+        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease-in-out; }
         .slide.active { opacity: 1; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
         
         .hero-overlay {
-            position: absolute; bottom: 50px; left: 5%; z-index: 10;
-            background: rgba(0,0,0,0.7); padding: 25px; border-radius: 12px;
-            color: #fff; max-width: 550px; border-left: 5px solid var(--accent);
+            position: absolute; bottom: 40px; left: 5%; z-index: 10;
+            background: rgba(0,0,0,0.75); padding: 25px; border-radius: 10px;
+            color: #fff; max-width: 500px; border-left: 4px solid var(--accent);
         }
-        .hero-overlay h1 { color: var(--accent); font-size: 38px; margin-bottom: 10px; font-weight: 900; }
-        .tag-cloud { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .tag-cloud span { background: var(--accent); color: #000; padding: 6px 14px; border-radius: 4px; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+        .hero-overlay h1 { color: var(--accent); font-size: 30px; margin-bottom: 8px; }
+        .hero-tags { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+        .hero-tags span { background: var(--accent); color: #000; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 800; }
 
-        /* --- CATEGORIES --- */
-        .section-title { padding: 40px 5% 10px; font-size: 24px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; }
-        .section-title span { font-size: 14px; color: #666; cursor: pointer; }
-        .cat-scroll { display: flex; overflow-x: auto; padding: 20px 5%; gap: 25px; scrollbar-width: none; }
-        .cat-box { min-width: 100px; text-align: center; cursor: pointer; transition: 0.3s; }
-        .cat-box:hover { transform: scale(1.05); }
-        .cat-box .img-w { width: 85px; height: 85px; border-radius: 50%; background: #fff; margin: 0 auto 12px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .cat-box img { width: 100%; height: 100%; object-fit: cover; }
+        /* --- HOME SECTIONS (CAT & PRODUCT) --- */
+        .section-container { padding: 30px 5%; }
+        .section-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; border-left: 5px solid #000; padding-left: 15px; }
+        
+        /* Categories Scroll */
+        .cat-row { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 10px; scrollbar-width: none; }
+        .cat-card { min-width: 100px; text-align: center; cursor: pointer; }
+        .cat-img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 8px; object-fit: cover; }
 
-        /* --- PRODUCTS --- */
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; padding: 20px 5%; }
-        .p-card { background: #fff; border-radius: 15px; padding: 20px; transition: 0.3s; border: 1px solid #eee; text-align: center; position: relative; }
-        .p-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .p-card img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 15px; }
-        .price { font-size: 22px; font-weight: 900; color: #B12704; margin: 10px 0; }
-        .buy-now { display: block; background: var(--accent); color: #111; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: 0.3s; }
-        .buy-now:hover { background: #eeb05d; }
+        /* Product Grid */
+        .prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+        .p-card { background: #fff; border-radius: 12px; padding: 15px; transition: 0.3s; border: 1px solid #ddd; text-align: center; }
+        .p-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .p-card img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 12px; }
+        .price { font-size: 20px; font-weight: 800; color: #B12704; margin: 8px 0; }
+        .buy-btn { display: block; background: var(--accent); color: #000; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: 700; }
 
-        /* --- SYSTEM FOOTER STYLE --- */
-        #sw-footer { width:100%; background:linear-gradient(180deg,#050b1a,#0b1730); padding:60px 5% 30px; color:#ffffff; margin-top: 60px; }
-        #sw-marquee { overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:40px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:15px; }
-        #sw-marquee span { display:inline-block; animation:sw-scroll 25s linear infinite; font-weight:600; font-family: 'Poppins'; }
-        @keyframes sw-scroll { from{transform:translateX(100%)} to{transform:translateX(-100%)} }
-        #sw-inner { max-width:1200px; margin:auto; display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:50px; }
-        .sw-col h2 { margin:0 0 15px; font-size:28px; font-family: 'Poppins'; }
-        .sw-col p { line-height: 1.6; opacity:.8; font-size:15px; margin-bottom: 15px; }
-        .sw-links a { display:block; margin:8px 0; color:#fff; text-decoration:none; font-weight:500; font-size:15px; transition: 0.2s; }
-        .sw-links a:hover { color: var(--accent); padding-left: 5px; }
-        .sw-btn { display:inline-block; margin-top:15px; padding:12px 28px; background:linear-gradient(90deg,#ff9800,#ff5722); color:#000 !important; border-radius:30px; text-decoration:none; font-weight:700; }
-        .sw-social a { margin-right:15px; text-decoration:none; font-weight:700; display: inline-block; margin-top: 10px; }
-        #sw-bottom { text-align:center; margin-top:40px; font-size:13px; opacity:.5; border-top:1px solid rgba(255,255,255,.1); padding-top:20px; }
+        /* --- SYSTEM FOOTER --- */
+        #sw-footer{ width:100%; background:linear-gradient(180deg,#050b1a,#0b1730); padding:50px 20px 25px; box-sizing:border-box; color:#ffffff; margin-top:50px; }
+        #sw-marquee{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px; }
+        #sw-marquee span{ display:inline-block; animation:sw-scroll 28s linear infinite; font-weight:600; font-family:'Poppins'; }
+        @keyframes sw-scroll{ from{transform:translateX(100%)} to{transform:translateX(-100%)} }
+        #sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; }
+        .sw-col h2{ margin:0 0 8px; font-size:32px; font-family:'Poppins'; }
+        .sw-col p{ margin:6px 0; font-size:15px; opacity:.85; }
+        .sw-links a{ display:block; margin:6px 0; color:#ffffff; text-decoration:none; font-weight:600; }
+        .sw-links a::before{ content:"› "; color:#ff9800; }
+        .sw-btn{ display:inline-block; margin-top:12px; padding:12px 26px; background:linear-gradient(90deg,#ff9800,#ff5722); color:#000 !important; border-radius:30px; text-decoration:none; font-weight:700; }
+        #sw-bottom{ text-align:center; margin-top:30px; font-size:13px; opacity:.7; border-top:1px solid rgba(255,255,255,.1); padding-top:14px; }
 
-        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            header { padding: 15px 20px; }
             #hero-section { height: 350px; }
-            .hero-overlay { bottom: 20px; left: 5%; right: 5%; padding: 15px; }
-            .hero-overlay h1 { font-size: 24px; }
-            .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
+            .hero-overlay h1 { font-size: 22px; }
+            .prod-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
             #sw-inner { grid-template-columns: 1fr; text-align: center; }
-            .sw-col h2 { font-size: 24px; }
         }
     </style>
 </head>
@@ -88,101 +74,112 @@
 
 <header>
     <div class="logo">SAINIWALAA</div>
-    <nav id="nav-root"></nav>
+    <div id="nav-root"></div>
 </header>
 
 <section id="hero-section">
-    <div class="slide-container" id="slider-root"></div>
+    <div id="slider-container"></div>
     <div class="hero-overlay">
-        <h1 id="hero-t">Loading Style...</h1>
-        <p id="hero-n">Just a moment...</p>
-        <div class="tag-cloud" id="hero-tg"></div>
+        <h1 id="hero-title">Welcome</h1>
+        <p id="hero-notice"></p>
+        <div class="hero-tags" id="hero-tags"></div>
     </div>
 </section>
 
-<div class="section-title">Shop by Category <span>View All ›</span></div>
-<div class="cat-scroll" id="cat-root"></div>
+<div class="section-container">
+    <div class="section-title">Top Categories</div>
+    <div class="cat-row" id="cat-root"></div>
+</div>
 
-<div class="section-title">Trending Collection 🔥</div>
-<div class="product-grid" id="prod-root"></div>
+<div class="section-container">
+    <div class="section-title">Trending Products 🔥</div>
+    <div class="prod-grid" id="prod-root"></div>
+</div>
 
 <div id="sw-footer">
     <div id="sw-marquee"></div>
     <div id="sw-inner">
         <div class="sw-col" id="sw-left"></div>
         <div class="sw-col" id="sw-center"></div>
-        <div class="sw-col" id="sw-right"></div>
+        <div class="sw-col sw-social" id="sw-right"></div>
     </div>
     <div id="sw-bottom"></div>
 </div>
 
 <script>
+// APIs from your Sheets
 const HERO_API = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
-const SHOP_API = "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec";
+const HOME_DATA_API = "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec";
 const FOOTER_API = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-async function init() {
+async function loadSystem() {
     try {
-        const [hData, sData, fData] = await Promise.all([
+        const [heroRes, homeRes, footerRes] = await Promise.all([
             fetch(HERO_API).then(r => r.json()),
-            fetch(SHOP_API).then(r => r.json()),
+            fetch(HOME_DATA_API).then(r => r.json()),
             fetch(FOOTER_API).then(r => r.json())
         ]);
 
-        // 1. Header Navigation
-        hData.menu.forEach(m => {
-            document.getElementById('nav-root').innerHTML += `<a href="${m.link}">${m.text}</a>`;
+        // 1. Header Logic (TEXT, LINK, SHOW)
+        heroRes.menu.forEach(m => {
+            if(m.SHOW === "YES") {
+                document.getElementById('nav-root').innerHTML += `<a href="${m.LINK}">${m.TEXT}</a>`;
+            }
         });
 
-        // 2. Full Width Slider Logic
+        // 2. Hero Slider (TYPE, TEXT, IMAGE, SHOW)
         let slideImgs = [];
-        hData.hero.forEach(item => {
-            if(item.type === "TITLE") document.getElementById('hero-t').innerText = item.text;
-            if(item.type === "NOTICE") document.getElementById('hero-n').innerText = item.text;
-            if(item.type === "TAG") document.getElementById('hero-tg').innerHTML += `<span>${item.text}</span>`;
-            if(item.type === "SLIDE") slideImgs.push(item.image);
+        heroRes.hero.forEach(i => {
+            if(i.SHOW === "YES") {
+                if(i.TYPE === "TITLE") document.getElementById('hero-title').innerText = i.TEXT;
+                if(i.TYPE === "NOTICE") document.getElementById('hero-notice').innerText = i.TEXT;
+                if(i.TYPE === "TAG") document.getElementById('hero-tags').innerHTML += `<span>${i.TEXT}</span>`;
+                if(i.TYPE === "SLIDE") slideImgs.push(i.IMAGE);
+            }
         });
 
-        const sliderRoot = document.getElementById('slider-root');
-        slideImgs.forEach((url, i) => {
+        const sliderBox = document.getElementById('slider-container');
+        slideImgs.forEach((url, idx) => {
             const div = document.createElement('div');
-            div.className = `slide ${i === 0 ? 'active' : ''}`;
-            div.innerHTML = `<img src="${url}" alt="Sainiwalaa Banner">`;
-            sliderRoot.appendChild(div);
+            div.className = `slide ${idx === 0 ? 'active' : ''}`;
+            div.innerHTML = `<img src="${url}">`;
+            sliderBox.appendChild(div);
         });
 
         if(slideImgs.length > 1) {
             let cur = 0;
-            const allS = document.querySelectorAll('.slide');
             setInterval(() => {
-                allS[cur].classList.remove('active');
-                cur = (cur + 1) % allS.length;
-                allS[cur].classList.add('active');
-            }, 4500);
+                const slides = document.querySelectorAll('.slide');
+                slides[cur].classList.remove('active');
+                cur = (cur + 1) % slides.length;
+                slides[cur].classList.add('active');
+            }, 4000);
         }
 
-        // 3. Shop Content (Categories & Products)
-        sData.forEach(item => {
-            if(item.TYPE === "CAT") {
-                document.getElementById('cat-root').innerHTML += `
-                    <div class="cat-box" onclick="location.href='${item.LINK}'">
-                        <div class="img-w"><img src="${item.IMAGE_URL}"></div>
-                        <p style="font-size:12px; font-weight:700;">${item.TITLE}</p>
-                    </div>`;
-            } else if(item.TYPE === "PRODUCT") {
-                document.getElementById('prod-root').innerHTML += `
-                    <div class="p-card">
-                        <img src="${item.IMAGE_URL}">
-                        <h4 style="font-size:15px; font-weight:700;">${item.TITLE}</h4>
-                        <div class="price">₹${item.PRICE}</div>
-                        <a href="${item.LINK}" class="buy-now">View Detail</a>
-                    </div>`;
+        // 3. Home Sections Logic (CAT & PRODUCT)
+        homeRes.forEach(item => {
+            if(item.STATUS === "YES") {
+                if(item.TYPE === "CAT") {
+                    document.getElementById('cat-root').innerHTML += `
+                        <div class="cat-card" onclick="location.href='${item.LINK}'">
+                            <img src="${item.IMAGE_URL}" class="cat-img">
+                            <p style="font-size:12px; font-weight:700;">${item.TITLE}</p>
+                        </div>`;
+                } else if(item.TYPE === "PRODUCT") {
+                    document.getElementById('prod-root').innerHTML += `
+                        <div class="p-card">
+                            <img src="${item.IMAGE_URL}">
+                            <h4 style="font-size:14px; color:#444;">${item.TITLE}</h4>
+                            <div class="price">₹${item.PRICE}</div>
+                            <a href="${item.LINK}" class="buy-btn">View Offer</a>
+                        </div>`;
+                }
             }
         });
 
-        // 4. System Footer Integration
-        if(fData.footer) {
-            fData.footer.forEach(i => {
+        // 4. Footer System (POSITION, TYPE, COLOR, SIZE)
+        if(footerRes.footer) {
+            footerRes.footer.forEach(i => {
                 let box = i.POSITION === "LEFT" ? document.getElementById("sw-left") : 
                           i.POSITION === "CENTER" ? document.getElementById("sw-center") : 
                           i.POSITION === "RIGHT" ? document.getElementById("sw-right") : 
@@ -192,17 +189,17 @@ async function init() {
                 if(i.TYPE === "MARQUEE") box.innerHTML = `<span style="color:${i.COLOR}; font-size:${i.SIZE}px">${i.TEXT}</span>`;
                 if(i.TYPE === "TITLE") box.innerHTML += `<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
                 if(i.TYPE === "TEXT") box.innerHTML += `<p style="color:${i.COLOR}; font-size:${i.SIZE}px">${i.TEXT}</p>`;
-                if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}" style="font-size:${i.SIZE}px; color:${i.COLOR}">${i.TEXT}</a></div>`;
+                if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}" style="color:${i.COLOR}; font-size:${i.SIZE}px">${i.TEXT}</a></div>`;
                 if(i.TYPE === "BUTTON") box.innerHTML += `<a class="sw-btn" href="${i.LINK}">${i.TEXT}</a>`;
                 if(i.TYPE === "SOCIAL") box.innerHTML += `<a href="${i.LINK}" style="color:${i.COLOR}; font-size:${i.SIZE}px">${i.TEXT}</a>`;
                 if(i.TYPE === "BOTTOM") { box.innerText = i.TEXT; box.style.color = i.COLOR; }
             });
         }
 
-    } catch (e) { console.error("Sync Error:", e); }
+    } catch (err) { console.log("System Error:", err); }
 }
 
-init();
+loadSystem();
 </script>
 </body>
 </html>
