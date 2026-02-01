@@ -21,107 +21,110 @@
         #main-header { background: #000; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 14px 22px; position: sticky; top: 0; z-index: 1000; }
         #menu a { color: #fff; margin-left: 15px; text-decoration: none; font-weight: 600; font-size: 14px; }
 
-        /* --- 2026 ANIMATED HERO SECTION --- */
+        /* --- 2026 MULTI-COLOR ANIMATED HERO --- */
         #hero-sainiwalaa { 
             position: relative;
-            background: #0f172a; 
-            padding: 60px 20px;
+            background: #080d17; 
+            padding: 80px 20px;
             overflow: hidden;
             display: flex;
             align-items: center;
         }
 
-        /* Floating Background Text Animation */
-        .bg-text-move {
+        /* Animated Multi-Color Product Background */
+        .bg-animated-text {
             position: absolute;
-            font-size: 10vw;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.03);
-            white-space: nowrap;
-            top: 10%;
-            left: 0;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
             pointer-events: none;
-            animation: textMove 30s linear infinite;
-            z-index: 0;
-        }
-        @keyframes textMove {
-            from { transform: translateX(100%); }
-            to { transform: translateX(-100%); }
         }
 
-        /* Animated Glow Orbs */
+        .float-text {
+            position: absolute;
+            font-weight: 900;
+            font-size: 5vw;
+            opacity: 0.05;
+            white-space: nowrap;
+            animation: floatingText 20s linear infinite;
+        }
+
+        @keyframes floatingText {
+            0% { transform: translateX(110%); }
+            100% { transform: translateX(-110%); }
+        }
+
+        /* Orb Glows */
         .orb {
             position: absolute;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(255, 153, 0, 0.12) 0%, transparent 70%);
-            filter: blur(60px);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 153, 0, 0.15) 0%, transparent 70%);
+            filter: blur(80px);
             border-radius: 50%;
-            z-index: 1;
-            animation: orbFloat 12s infinite alternate;
+            z-index: 2;
+            animation: orbFloat 15s infinite alternate;
         }
-        .orb-1 { top: -100px; right: -50px; }
-        .orb-2 { bottom: -100px; left: -50px; animation-delay: 6s; }
+        .orb-1 { top: -150px; right: -50px; }
+        .orb-2 { bottom: -150px; left: -50px; background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%); }
+
         @keyframes orbFloat {
             from { transform: translate(0, 0); }
-            to { transform: translate(60px, 40px); }
+            to { transform: translate(100px, 50px); }
         }
 
         .hero-wrap { 
             max-width: 1200px; margin: auto; display: grid; 
             grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center; 
-            position: relative; z-index: 5;
+            position: relative; z-index: 10;
         }
         
         .hero-left h1 { 
-            font-size: 45px; font-weight: 900; line-height: 1.1;
-            background: linear-gradient(to right, #fff, var(--amz-orange));
+            font-size: 52px; font-weight: 900; line-height: 1.1;
+            background: linear-gradient(to right, #ffffff, #febd69);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
-        .hero-left p { color: #ffe9b0; font-size: 16px; margin-bottom: 20px; border-left: 4px solid var(--amz-orange); padding-left: 15px; }
+        .hero-left p { color: #ffe9b0; font-size: 17px; border-left: 4px solid var(--amz-orange); padding-left: 15px; }
 
-        .cats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+        .cats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
         .catbox { 
-            background: rgba(255, 255, 255, 0.08); 
-            backdrop-filter: blur(10px);
-            color: #fff; padding: 10px 16px; border-radius: 12px; 
-            font-weight: 600; font-size: 12px; border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px);
+            color: #fff; padding: 12px 20px; border-radius: 15px; 
+            font-weight: 600; font-size: 13px; border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s; cursor: pointer;
         }
-        .catbox:hover { background: var(--amz-orange); color: #000; transform: translateY(-3px); }
+        .catbox:hover { background: var(--amz-orange); color: #000; transform: scale(1.05); }
 
         .slider-frame { 
-            width: 100%; max-width: 290px; height: 390px; margin: auto; 
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px);
-            padding: 8px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            width: 100%; max-width: 300px; height: 420px; margin: auto; 
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px);
+            padding: 10px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
-        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; }
 
         /* --- BANNER SLIDER --- */
-        .banner-frame { 
-            width: 96%; height: 240px; margin: 25px auto; 
-            border: 2px solid var(--amz-orange); border-radius: 12px; 
-            overflow: hidden; background: var(--frame-bg); position: relative;
-        }
+        .banner-frame { width: 96%; height: 240px; margin: 30px auto; border: 2px solid var(--amz-orange); border-radius: 12px; overflow: hidden; background: var(--frame-bg); position: relative; }
         #banner-root { display: flex; height: 100%; transition: transform 0.8s ease-in-out; }
         .banner-slide { min-width: 100%; height: 100%; flex-shrink: 0; }
         .banner-slide img { width: 100%; height: 100%; object-fit: contain; }
 
         /* --- CATEGORIES & PRODUCTS --- */
         .cat-row { display: flex; overflow-x: auto; padding: 15px 10px; gap: 15px; scrollbar-width: none; }
-        .cat-item { text-align: center; min-width: 80px; cursor: pointer; }
-        .cat-circle { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--amz-orange); padding: 2px; background: #fff; margin: 0 auto; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+        .cat-item { text-align: center; min-width: 85px; cursor: pointer; }
+        .cat-circle { width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--amz-orange); padding: 2px; background: #fff; margin: 0 auto; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
         .cat-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .cat-item p { font-size: 11px; font-weight: 700; margin-top: 8px; }
+        .cat-item p { font-size: 12px; font-weight: 700; margin-top: 10px; }
 
-        .section-head { padding: 15px 20px 5px; font-weight: 800; font-size: 20px; }
+        .section-head { padding: 20px 20px 5px; font-weight: 800; font-size: 22px; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; max-width: 1200px; margin: auto; }
         .p-card { background: white; border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #eee; }
-        .p-card img { width: 100%; height: 140px; object-fit: contain; }
-        .p-price { color: #B12704; font-size: 22px; font-weight: 800; margin: 8px 0; }
-        .btn { background: linear-gradient(to bottom, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 8px; padding: 10px; display: block; text-decoration: none; color: #111; font-size: 13px; font-weight: 700; }
+        .p-card img { width: 100%; height: 150px; object-fit: contain; }
+        .p-price { color: #B12704; font-size: 24px; font-weight: 800; margin: 10px 0; }
+        .btn { background: linear-gradient(to bottom, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 8px; padding: 12px; display: block; text-decoration: none; color: #111; font-weight: 700; }
 
         /* --- SYSTEM FOOTER --- */
         #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px 30px; margin-top: 60px; border-top: 4px solid var(--amz-orange); }
@@ -139,7 +142,7 @@
 
         @media(max-width:768px){
             .hero-wrap { grid-template-columns: 1fr; text-align: center; }
-            .hero-left h1 { font-size: 32px; }
+            .hero-left h1 { font-size: 34px; }
             .cats { justify-content: center; }
             .banner-frame { height: 160px; }
             .grid { grid-template-columns: 1fr 1fr; }
@@ -148,7 +151,7 @@
 </head>
 <body>
 
-<div id="loader">Updating Sainiwalaa 2026...</div>
+<div id="loader">Updating Sainiwalaa...</div>
 
 <header id="main-header">
     <div style="font-weight:900; font-size: 22px; color:#febd69; letter-spacing:1.5px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
@@ -156,7 +159,13 @@
 </header>
 
 <section id="hero-sainiwalaa">
-    <div class="bg-text-move">KURTIS • T-SHIRTS • MUGS • GIFTS • TRENDS • </div>
+    <div class="bg-animated-text">
+        <div class="float-text" style="top:10%; color:#ff9900; animation-duration:25s;">JAIPURI KURTIS • DESIGNER SUITS • ETHNIC WEAR</div>
+        <div class="float-text" style="top:30%; color:#00f2fe; animation-duration:18s; animation-delay:2s;">CUSTOM T-SHIRTS • PRINTED MUGS • PHOTO GIFTS</div>
+        <div class="float-text" style="top:50%; color:#f6d27c; animation-duration:30s; animation-delay:5s;">WESTERN DRESSES • TRENDY TOPS • SAREES</div>
+        <div class="float-text" style="top:75%; color:#ff0080; animation-duration:22s;">NEW ARRIVALS • BEST SELLERS • LIMITED OFFERS</div>
+    </div>
+    
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     
@@ -165,11 +174,6 @@
             <h1 id="heroTitle">Sainiwalaa</h1>
             <p id="heroNotice">Loading Premium Deals...</p>
             <div class="cats" id="heroTags"></div>
-            
-            <div style="margin-top: 30px; display: flex; gap: 20px; justify-content: inherit;">
-                <div style="color: #fff;"><span style="display:block; font-size:22px; font-weight:900; color:var(--amz-orange);">10k+</span><span style="font-size:11px; opacity:0.6;">Sales</span></div>
-                <div style="color: #fff;"><span style="display:block; font-size:22px; font-weight:900; color:var(--amz-orange);">4.9★</span><span style="font-size:11px; opacity:0.6;">Rating</span></div>
-            </div>
         </div>
         <div class="slider-frame"><img id="heroImg"></div>
     </div>
@@ -206,7 +210,6 @@ async function init() {
         ]);
         document.getElementById('loader').style.display = 'none';
 
-        // Header & Hero
         h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
         let hSlides = [];
         h.hero.forEach(i => {
@@ -220,7 +223,6 @@ async function init() {
             setInterval(() => { hi = (hi + 1) % hSlides.length; document.getElementById('heroImg').src = hSlides[hi]; }, 3000);
         }
 
-        // Banners
         const bRoot = document.getElementById('banner-root');
         let banners = home.filter(i => i.TYPE === "BANNER");
         banners.forEach(b => { bRoot.innerHTML += `<div class="banner-slide"><img src="${b.IMAGE_URL}"></div>`; });
@@ -232,13 +234,11 @@ async function init() {
             }, 5000);
         }
 
-        // Home Logic
         home.forEach(item => {
             if(item.TYPE === "CAT") document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
             if(item.TYPE === "PRODUCT") document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div>`;
         });
 
-        // Footer
         f.footer.forEach(i => {
             let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : i.POSITION === "RIGHT" ? document.getElementById("f-right") : i.POSITION === "BOTTOM" ? document.getElementById("sw-bottom") : document.getElementById("sw-marquee");
             if(i.TYPE === "MARQUEE") box.innerHTML = `<span>${i.TEXT}</span>`;
