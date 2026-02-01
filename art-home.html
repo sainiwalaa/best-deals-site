@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sainiwalaa – Premium Shopping & Deals</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Sainiwalaa – Premium Shopping & Deals 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root { 
@@ -17,110 +17,166 @@
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg); color: #111; overflow-x: hidden; }
 
-        /* --- HEADER (INDEX STYLE) --- */
+        /* --- HEADER --- */
         #main-header { background: #000; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 14px 22px; position: sticky; top: 0; z-index: 1000; }
         #menu a { color: #fff; margin-left: 15px; text-decoration: none; font-weight: 600; font-size: 14px; }
 
-        /* --- HERO SECTION (INDEX STYLE) --- */
-        #hero-sainiwalaa { background: linear-gradient(135deg,#4b0f14,#7a1f26); padding: 40px 20px; }
-        .hero-wrap { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center; }
-        .hero-left h1 { color: #f6d27c; font-size: 38px; line-height: 1.2; }
-        .hero-left p { color: #ffe9b0; margin-top: 10px; font-size: 15px; }
-        .cats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-        .catbox { background: #fff6e1; color: #5a1a1f; padding: 8px 14px; border-radius: 20px; font-weight: 700; font-size: 12px; }
-        .slider-frame { width: 100%; max-width: 280px; height: 380px; margin: auto; background: #fff6e1; padding: 6px; border-radius: 22px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+        /* --- 2026 ANIMATED HERO SECTION --- */
+        #hero-sainiwalaa { 
+            position: relative;
+            background: #0f172a; 
+            padding: 60px 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
 
-        /* --- BANNER SLIDER (HOME STYLE) --- */
+        /* Floating Background Text Animation */
+        .bg-text-move {
+            position: absolute;
+            font-size: 10vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            top: 10%;
+            left: 0;
+            pointer-events: none;
+            animation: textMove 30s linear infinite;
+            z-index: 0;
+        }
+        @keyframes textMove {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* Animated Glow Orbs */
+        .orb {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255, 153, 0, 0.12) 0%, transparent 70%);
+            filter: blur(60px);
+            border-radius: 50%;
+            z-index: 1;
+            animation: orbFloat 12s infinite alternate;
+        }
+        .orb-1 { top: -100px; right: -50px; }
+        .orb-2 { bottom: -100px; left: -50px; animation-delay: 6s; }
+        @keyframes orbFloat {
+            from { transform: translate(0, 0); }
+            to { transform: translate(60px, 40px); }
+        }
+
+        .hero-wrap { 
+            max-width: 1200px; margin: auto; display: grid; 
+            grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center; 
+            position: relative; z-index: 5;
+        }
+        
+        .hero-left h1 { 
+            font-size: 45px; font-weight: 900; line-height: 1.1;
+            background: linear-gradient(to right, #fff, var(--amz-orange));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        .hero-left p { color: #ffe9b0; font-size: 16px; margin-bottom: 20px; border-left: 4px solid var(--amz-orange); padding-left: 15px; }
+
+        .cats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+        .catbox { 
+            background: rgba(255, 255, 255, 0.08); 
+            backdrop-filter: blur(10px);
+            color: #fff; padding: 10px 16px; border-radius: 12px; 
+            font-weight: 600; font-size: 12px; border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+        .catbox:hover { background: var(--amz-orange); color: #000; transform: translateY(-3px); }
+
+        .slider-frame { 
+            width: 100%; max-width: 290px; height: 390px; margin: auto; 
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px);
+            padding: 8px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+
+        /* --- BANNER SLIDER --- */
         .banner-frame { 
             width: 96%; height: 240px; margin: 25px auto; 
             border: 2px solid var(--amz-orange); border-radius: 12px; 
             overflow: hidden; background: var(--frame-bg); position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         #banner-root { display: flex; height: 100%; transition: transform 0.8s ease-in-out; }
         .banner-slide { min-width: 100%; height: 100%; flex-shrink: 0; }
         .banner-slide img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* --- CATEGORIES (CIRCLE STYLE) --- */
+        /* --- CATEGORIES & PRODUCTS --- */
         .cat-row { display: flex; overflow-x: auto; padding: 15px 10px; gap: 15px; scrollbar-width: none; }
-        .cat-row::-webkit-scrollbar { display: none; }
         .cat-item { text-align: center; min-width: 80px; cursor: pointer; }
-        .cat-circle { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--amz-orange); padding: 2px; background: #fff; margin: 0 auto; box-shadow: 0 3px 6px rgba(0,0,0,0.1); transition: .3s; }
-        .cat-circle:hover { transform: scale(1.1); }
+        .cat-circle { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--amz-orange); padding: 2px; background: #fff; margin: 0 auto; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
         .cat-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .cat-item p { font-size: 11px; font-weight: 700; margin-top: 8px; color: #333; }
+        .cat-item p { font-size: 11px; font-weight: 700; margin-top: 8px; }
 
-        /* --- PRODUCT GRID --- */
-        .section-head { padding: 15px 20px 5px; font-weight: 800; font-size: 20px; color: #222; display: flex; align-items: center; gap: 8px; }
+        .section-head { padding: 15px 20px 5px; font-weight: 800; font-size: 20px; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; max-width: 1200px; margin: auto; }
-        .p-card { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; }
+        .p-card { background: white; border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #eee; }
         .p-card img { width: 100%; height: 140px; object-fit: contain; }
-        .p-card h4 { font-size: 13px; margin-top: 10px; height: 40px; overflow: hidden; color: #444; }
         .p-price { color: #B12704; font-size: 22px; font-weight: 800; margin: 8px 0; }
-        .btn { background: linear-gradient(to bottom, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 8px; padding: 10px; display: block; text-align: center; text-decoration: none; color: #111; font-size: 13px; font-weight: 700; }
+        .btn { background: linear-gradient(to bottom, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 8px; padding: 10px; display: block; text-decoration: none; color: #111; font-size: 13px; font-weight: 700; }
 
-        /* --- FOOTER (INDEX FULL STYLE) --- */
+        /* --- SYSTEM FOOTER --- */
         #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px 30px; margin-top: 60px; border-top: 4px solid var(--amz-orange); }
         #sw-marquee { overflow: hidden; white-space: nowrap; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 30px; }
-        #sw-marquee span { display: inline-block; animation: scroll-text 20s linear infinite; color: var(--amz-orange); font-weight: 700; font-size: 15px; }
+        #sw-marquee span { display: inline-block; animation: scroll-text 20s linear infinite; color: var(--amz-orange); font-weight: 700; }
         @keyframes scroll-text { from { transform: translateX(100%) } to { transform: translateX(-100%) } }
-
         #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .sw-col h2 { margin-bottom: 20px; font-size: 24px; color: var(--amz-orange); border-bottom: 2px solid rgba(255,153,0,0.3); display: inline-block; padding-bottom: 5px; }
-        .sw-col p { margin: 10px 0; font-size: 14px; opacity: .8; line-height: 1.6; }
-        .sw-links-container a { display: block; margin: 10px 0; color: #ffffff; text-decoration: none; font-size: 15px; transition: .3s; }
-        .sw-links-container a:hover { color: var(--amz-orange); padding-left: 5px; }
-        .sw-links-container a::before { content: "› "; color: var(--amz-orange); }
-
+        .sw-col h2 { margin-bottom: 20px; font-size: 24px; color: var(--amz-orange); }
+        .sw-links-container a { display: block; margin: 10px 0; color: #ffffff; text-decoration: none; }
         .sw-social-container { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; }
-        .sw-social-container a { text-decoration: none; font-weight: 600; padding: 8px 18px; border: 1px solid rgba(255,153,0, 0.5); border-radius: 8px; color: #ff9900 !important; background: rgba(255,153,0, 0.05); font-size: 13px; transition: .3s; }
-        .sw-social-container a:hover { background: var(--amz-orange); color: #000 !important; }
+        .sw-social-container a { text-decoration: none; padding: 8px 18px; border: 1px solid rgba(255,153,0, 0.5); border-radius: 8px; color: #ff9900 !important; font-size: 13px; }
+        #sw-bottom { text-align: center; margin-top: 40px; font-size: 12px; opacity: .5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
 
-        #sw-bottom { text-align: center; margin-top: 40px; font-size: 12px; opacity: .5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; letter-spacing: 1px; }
+        #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-        /* LOADER */
-        #loader { position: fixed; inset: 0; background: white; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; color: var(--amz-blue); }
-
-        /* RESPONSIVE */
         @media(max-width:768px){
             .hero-wrap { grid-template-columns: 1fr; text-align: center; }
-            .hero-left h1 { font-size: 28px; }
+            .hero-left h1 { font-size: 32px; }
             .cats { justify-content: center; }
-            .slider-frame { max-width: 220px; height: 300px; }
-            .banner-frame { height: 160px; width: 96%; }
-            #sw-inner { text-align: center; }
-            .sw-social-container { justify-content: center; }
-            .grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .banner-frame { height: 160px; }
+            .grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
 <body>
 
-<div id="loader">Syncing Sainiwalaa System...</div>
+<div id="loader">Updating Sainiwalaa 2026...</div>
 
 <header id="main-header">
-    <div style="font-weight:bold; font-size: 22px; color:#febd69; letter-spacing:1.5px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
+    <div style="font-weight:900; font-size: 22px; color:#febd69; letter-spacing:1.5px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
     <div id="menu"></div>
 </header>
 
 <section id="hero-sainiwalaa">
+    <div class="bg-text-move">KURTIS • T-SHIRTS • MUGS • GIFTS • TRENDS • </div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    
     <div class="hero-wrap">
         <div class="hero-left">
             <h1 id="heroTitle">Sainiwalaa</h1>
-            <p id="heroNotice">Loading...</p>
+            <p id="heroNotice">Loading Premium Deals...</p>
             <div class="cats" id="heroTags"></div>
+            
+            <div style="margin-top: 30px; display: flex; gap: 20px; justify-content: inherit;">
+                <div style="color: #fff;"><span style="display:block; font-size:22px; font-weight:900; color:var(--amz-orange);">10k+</span><span style="font-size:11px; opacity:0.6;">Sales</span></div>
+                <div style="color: #fff;"><span style="display:block; font-size:22px; font-weight:900; color:var(--amz-orange);">4.9★</span><span style="font-size:11px; opacity:0.6;">Rating</span></div>
+            </div>
         </div>
         <div class="slider-frame"><img id="heroImg"></div>
     </div>
 </section>
 
-<div class="banner-frame">
-    <div id="banner-root"></div>
-</div>
-
+<div class="banner-frame"><div id="banner-root"></div></div>
 <div class="cat-row" id="cat-root"></div>
-
 <div class="section-head">Special Offers Today 🔥</div>
 <div class="grid" id="prod-root"></div>
 
@@ -141,94 +197,63 @@ const APIs = {
     FOOTER: "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec"
 };
 
-async function initSystem() {
+async function init() {
     try {
         const [h, home, f] = await Promise.all([
             fetch(APIs.HEAD).then(r => r.json()),
             fetch(APIs.HOME).then(r => r.json()),
             fetch(APIs.FOOTER).then(r => r.json())
         ]);
-        
         document.getElementById('loader').style.display = 'none';
 
-        // 1. Header & Hero Logic
+        // Header & Hero
         h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
-        
-        let heroSlides = [];
-        h.hero.forEach(item => {
-            if(item.type === "TITLE") document.getElementById('heroTitle').innerText = item.text;
-            if(item.type === "NOTICE") document.getElementById('heroNotice').innerText = item.text;
-            if(item.type === "TAG") document.getElementById('heroTags').innerHTML += `<div class="catbox">${item.text}</div>`;
-            if(item.type === "SLIDE") heroSlides.push(item.image);
+        let hSlides = [];
+        h.hero.forEach(i => {
+            if(i.type === "TITLE") document.getElementById('heroTitle').innerText = i.text;
+            if(i.type === "NOTICE") document.getElementById('heroNotice').innerText = i.text;
+            if(i.type === "TAG") document.getElementById('heroTags').innerHTML += `<div class="catbox">${i.text}</div>`;
+            if(i.type === "SLIDE") hSlides.push(i.image);
         });
-
-        if(heroSlides.length) {
-            let hi = 0; document.getElementById('heroImg').src = heroSlides[0];
-            setInterval(() => { hi = (hi + 1) % heroSlides.length; document.getElementById('heroImg').src = heroSlides[hi]; }, 3000);
+        if(hSlides.length) {
+            let hi = 0; document.getElementById('heroImg').src = hSlides[0];
+            setInterval(() => { hi = (hi + 1) % hSlides.length; document.getElementById('heroImg').src = hSlides[hi]; }, 3000);
         }
 
-        // 2. Banner Slider (Infinite)
+        // Banners
         const bRoot = document.getElementById('banner-root');
         let banners = home.filter(i => i.TYPE === "BANNER");
-        banners.forEach(b => { bRoot.innerHTML += `<div class="banner-slide"><img src="${b.IMAGE_URL}" loading="lazy"></div>`; });
-        if(banners.length > 0) bRoot.innerHTML += `<div class="banner-slide"><img src="${banners[0].IMAGE_URL}"></div>`;
-
-        let curB = 0;
-        if(banners.length > 0) {
-            setInterval(() => {
-                curB++;
-                bRoot.style.transition = "transform 0.8s ease-in-out";
-                bRoot.style.transform = `translateX(-${curB * 100}%)`;
-                if(curB === banners.length) {
-                    setTimeout(() => { bRoot.style.transition = "none"; curB = 0; bRoot.style.transform = `translateX(0)`; }, 800);
-                }
+        banners.forEach(b => { bRoot.innerHTML += `<div class="banner-slide"><img src="${b.IMAGE_URL}"></div>`; });
+        if(banners.length) {
+            bRoot.innerHTML += `<div class="banner-slide"><img src="${banners[0].IMAGE_URL}"></div>`;
+            let cb = 0; setInterval(() => {
+                cb++; bRoot.style.transition = "0.8s"; bRoot.style.transform = `translateX(-${cb * 100}%)`;
+                if(cb === banners.length) setTimeout(() => { bRoot.style.transition = "none"; cb = 0; bRoot.style.transform = `translateX(0)`; }, 800);
             }, 5000);
         }
 
-        // 3. Categories & Products
+        // Home Logic
         home.forEach(item => {
-            if(item.TYPE === "CAT") {
-                document.getElementById('cat-root').innerHTML += `
-                    <div class="cat-item" onclick="location.href='${item.LINK}'">
-                        <div class="cat-circle"><img src="${item.IMAGE_URL}"></div>
-                        <p>${item.TITLE}</p>
-                    </div>`;
-            } else if(item.TYPE === "PRODUCT") {
-                document.getElementById('prod-root').innerHTML += `
-                    <div class="p-card">
-                        <img src="${item.IMAGE_URL}" loading="lazy">
-                        <h4>${item.TITLE}</h4>
-                        <div class="p-price">₹${item.PRICE}</div>
-                        <a href="${item.LINK}" class="btn">View Offer</a>
-                    </div>`;
-            }
+            if(item.TYPE === "CAT") document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
+            if(item.TYPE === "PRODUCT") document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div>`;
         });
 
-        // 4. Integrated System Footer
-        if(f.footer) {
-            f.footer.forEach(i => {
-                let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : 
-                          i.POSITION === "CENTER" ? document.getElementById("f-center") : 
-                          i.POSITION === "RIGHT" ? document.getElementById("f-right") : 
-                          i.POSITION === "BOTTOM" ? document.getElementById("sw-bottom") : 
-                          document.getElementById("sw-marquee");
-
-                if(i.TYPE === "MARQUEE") box.innerHTML = `<span>${i.TEXT}</span>`;
-                else if(i.TYPE === "TITLE") box.innerHTML += `<h2>${i.TEXT}</h2>`;
-                else if(i.TYPE === "TEXT") box.innerHTML += `<p>${i.TEXT}</p>`;
-                else if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links-container"><a href="${i.LINK}">${i.TEXT}</a></div>`;
-                else if(i.TYPE === "SOCIAL") {
-                    let sc = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
-                    sc.innerHTML += `<a href="${i.LINK}">${i.TEXT}</a>`;
-                }
-                else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
-            });
-        }
-
-    } catch (e) { console.error("Sync Error:", e); }
+        // Footer
+        f.footer.forEach(i => {
+            let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : i.POSITION === "RIGHT" ? document.getElementById("f-right") : i.POSITION === "BOTTOM" ? document.getElementById("sw-bottom") : document.getElementById("sw-marquee");
+            if(i.TYPE === "MARQUEE") box.innerHTML = `<span>${i.TEXT}</span>`;
+            else if(i.TYPE === "TITLE") box.innerHTML += `<h2>${i.TEXT}</h2>`;
+            else if(i.TYPE === "TEXT") box.innerHTML += `<p>${i.TEXT}</p>`;
+            else if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links-container"><a href="${i.LINK}">${i.TEXT}</a></div>`;
+            else if(i.TYPE === "SOCIAL") {
+                let sc = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
+                sc.innerHTML += `<a href="${i.LINK}">${i.TEXT}</a>`;
+            }
+            else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
+        });
+    } catch (e) { console.log(e); }
 }
-
-initSystem();
+init();
 </script>
 </body>
 </html>
