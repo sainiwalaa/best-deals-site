@@ -3,77 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sainiwalaa – Premium Shopping 2026</title>
+    <title>Sainiwalaa – Premium Shopping & Deals</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root { 
-            --amz-orange: #ff9900; --bg: #eaeded; --accent: #febd69; --dark: #131921;
+            --amz-blue: #131921; 
+            --amz-orange: #ff9900; 
+            --bg: #eaeded; 
+            --accent: #febd69;
         }
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: #111; overflow-x: hidden; }
-
-        /* --- HEADER --- */
-        #main-header { background: #000; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        #logo { font-weight: 900; font-size: 22px; color: var(--accent); text-decoration: none; letter-spacing: 1px; }
-        #menu { display: flex; gap: 12px; }
-        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 13px; }
-
-        /* --- HERO SECTION --- */
-        #hero-sainiwalaa { position: relative; background: #080d17; padding: 40px 20px; overflow: hidden; display: flex; align-items: center; min-height: 400px; }
-        .hero-wrap { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; align-items: center; position: relative; z-index: 10; width: 100%; }
-        .hero-left h1 { font-size: clamp(28px, 6vw, 50px); font-weight: 900; line-height: 1.1; color: #fff; margin-bottom: 15px; }
-        .hero-left p { color: #ffe9b0; font-size: 15px; border-left: 4px solid var(--amz-orange); padding-left: 15px; margin-bottom: 20px; }
         
-        .slider-frame { width: 100%; max-width: 260px; height: 350px; margin: auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.1); }
-        .slider-frame img { width: 100%; height: 100%; object-fit: cover; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); color: #111; overflow-x: hidden; width: 100%; }
+        
+        /* Automatic Image Handling */
+        img { max-width: 100%; height: auto; display: block; }
 
-        /* --- BANNER SLIDER (FULL WIDTH & RESPONSIVE) --- */
-        .banner-container { width: 100%; padding: 10px 0; background: var(--bg); }
-        .banner-frame { width: 95%; max-width: 1200px; height: auto; aspect-ratio: 16/7; margin: auto; border-radius: 15px; overflow: hidden; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        #banner-root { display: flex; height: 100%; transition: transform 0.6s ease-in-out; }
-        .banner-slide { min-width: 100%; height: 100%; }
-        .banner-slide img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* --- CATEGORIES --- */
-        .cat-row { display: flex; overflow-x: auto; padding: 20px 10px; gap: 15px; scrollbar-width: none; }
-        .cat-row::-webkit-scrollbar { display: none; }
-        .cat-item { text-align: center; min-width: 85px; }
-        .cat-circle { width: 70px; height: 70px; border-radius: 50%; border: 2.5px solid var(--amz-orange); background: #fff; margin: 0 auto; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .cat-circle img { width: 100%; height: 100%; object-fit: cover; }
-        .cat-item p { font-size: 11px; font-weight: 700; margin-top: 8px; color: #333; }
-
-        /* --- PRODUCT GRID --- */
-        .section-head { padding: 20px 15px 10px; font-weight: 800; font-size: 20px; color: var(--dark); border-bottom: 2px solid #ddd; margin: 0 15px 15px; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 15px 20px; max-width: 1200px; margin: auto; }
-        .p-card { background: #fff; border-radius: 12px; padding: 12px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
-        .p-card img { width: 100%; height: 140px; object-fit: contain; margin-bottom: 10px; }
-        .p-card h4 { font-size: 13px; font-weight: 600; color: #444; height: 38px; overflow: hidden; line-height: 1.3; }
-        .p-price { color: #B12704; font-size: 18px; font-weight: 800; margin: 8px 0; }
-        .btn { background: linear-gradient(180deg, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 7px; padding: 8px; display: block; text-decoration: none; color: #111; font-weight: 700; font-size: 13px; }
-
-        /* --- FOOTER --- */
-        #sw-footer { background: #050b1a; color: #fff; padding: 40px 20px; margin-top: 30px; border-top: 4px solid var(--amz-orange); }
-        #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr; gap: 30px; }
-        .sw-col h2 { color: var(--amz-orange); font-size: 18px; margin-bottom: 15px; }
-        .sw-links-container a { display: block; margin: 8px 0; color: #bbb; text-decoration: none; font-size: 14px; }
-        .sw-social-container { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .sw-social-container a { padding: 8px 15px; border: 1px solid var(--amz-orange); border-radius: 8px; color: var(--amz-orange) !important; font-size: 12px; text-decoration: none; }
-        #sw-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; opacity: 0.6; }
-
-        /* --- MOBILE OPTIMIZATION --- */
-        @media(max-width:768px){
-            .hero-wrap { grid-template-columns: 1fr; text-align: center; }
-            .hero-left p { border-left: none; border-top: 3px solid var(--amz-orange); padding: 10px 0 0; }
-            .slider-frame { max-width: 200px; height: 280px; }
-            .banner-frame { aspect-ratio: 16/9; }
+        /* --- HEADER (Responsive) --- */
+        #main-header { 
+            background: #000; color: #fff; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 20px; position: sticky; top: 0; z-index: 1000;
         }
-        #loader { position: fixed; inset: 0; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+        #logo { font-weight: 900; font-size: 22px; color: var(--accent); text-decoration: none; }
+        #menu { display: flex; gap: 10px; }
+        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 13px; white-space: nowrap; }
+
+        /* --- HERO SECTION (Auto-adjusting) --- */
+        #hero-sainiwalaa { 
+            position: relative; background: #080d17; 
+            padding: 50px 20px; overflow: hidden; 
+            display: flex; align-items: center; min-height: 400px;
+        }
+        .hero-wrap { 
+            max-width: 1200px; margin: auto; 
+            display: flex; flex-wrap: wrap; /* Yeh mobile par niche bhej dega image ko */
+            gap: 30px; align-items: center; justify-content: center;
+            position: relative; z-index: 10; width: 100%;
+        }
+        .hero-left { flex: 1; min-width: 300px; }
+        .hero-left h1 { font-size: clamp(30px, 5vw, 55px); color: #fff; margin-bottom: 20px; font-weight: 900; }
+        .hero-left p { color: #ffe9b0; border-left: 4px solid var(--amz-orange); padding-left: 15px; margin-bottom: 20px; }
+
+        .slider-frame { 
+            width: 100%; max-width: 280px; height: 380px; 
+            background: rgba(255,255,255,0.05); padding: 10px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+
+        /* --- BANNER (Flexible) --- */
+        .banner-frame { 
+            width: 95%; max-width: 1200px; 
+            margin: 25px auto; border-radius: 15px; overflow: hidden; 
+            background: #000; position: relative;
+        }
+        #banner-root { display: flex; transition: transform 0.6s ease-in-out; }
+        .banner-slide { min-width: 100%; }
+        .banner-slide img { width: 100%; display: block; }
+
+        /* --- CATEGORIES (Scrollable on Mobile) --- */
+        .cat-row { display: flex; overflow-x: auto; padding: 20px 15px; gap: 20px; scrollbar-width: none; }
+        .cat-row::-webkit-scrollbar { display: none; }
+        .cat-item { text-align: center; min-width: 85px; cursor: pointer; }
+        .cat-circle { width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--amz-orange); background: #fff; margin: 0 auto; overflow: hidden; }
+        .cat-circle img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- PRODUCTS GRID (2 Columns on Mobile, more on Desktop) --- */
+        .section-head { padding: 20px; font-weight: 800; font-size: 22px; }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+            gap: 15px; padding: 15px; max-width: 1200px; margin: auto; 
+        }
+        .p-card { background: white; border-radius: 15px; padding: 15px; text-align: center; border: 1px solid #eee; }
+        .p-card img { width: 100%; height: 150px; object-fit: contain; margin-bottom: 12px; }
+        .p-price { color: #B12704; font-size: 20px; font-weight: 800; margin: 10px 0; }
+        .btn { background: linear-gradient(to bottom, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 8px; padding: 10px; display: block; text-decoration: none; color: #111; font-weight: 700; font-size: 14px; }
+
+        /* --- FOOTER (Professional Columns) --- */
+        #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px; margin-top: 50px; border-top: 5px solid var(--amz-orange); }
+        #sw-inner { 
+            max-width: 1200px; margin: auto; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 40px; 
+        }
+        .sw-col h2 { color: var(--amz-orange); font-size: 20px; margin-bottom: 20px; }
+        .sw-links-container a { display: block; margin: 10px 0; color: #bbb; text-decoration: none; }
+        .sw-social-container { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+        .sw-social-container a { border: 1px solid var(--amz-orange); padding: 5px 15px; border-radius: 8px; color: var(--amz-orange) !important; text-decoration: none; font-size: 13px; }
+        #sw-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.5; font-size: 12px; }
+
+        /* --- LOADER --- */
+        #loader { position: fixed; inset: 0; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+        /* --- RESPONSIVE FIX --- */
+        @media (max-width: 600px) {
+            .hero-left { text-align: center; }
+            .hero-left p { border-left: none; border-top: 3px solid var(--amz-orange); padding: 10px 0; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; }
+            .p-card { padding: 10px; }
+            .p-card img { height: 120px; }
+            #sw-inner { text-align: center; }
+            .sw-social-container { justify-content: center; }
+        }
     </style>
 </head>
 <body>
 
-<div id="loader">SAINIWALAA...</div>
+<div id="loader">Sainiwalaa Loading...</div>
 
 <header id="main-header">
     <a href="index.html" id="logo">SAINIWALAA</a>
@@ -84,20 +125,16 @@
     <div class="hero-wrap">
         <div class="hero-left">
             <h1 id="heroTitle">Sainiwalaa</h1>
-            <p id="heroNotice">Loading Premium Deals...</p>
+            <p id="heroNotice">Best Deals Await You...</p>
             <div id="heroTags" style="display:flex; gap:10px; flex-wrap:wrap;"></div>
         </div>
-        <div class="slider-frame"><img id="heroImg" alt="Offer"></div>
+        <div class="slider-frame"><img id="heroImg"></div>
     </div>
 </section>
 
-<div class="banner-container">
-    <div class="banner-frame"><div id="banner-root"></div></div>
-</div>
-
+<div class="banner-frame"><div id="banner-root"></div></div>
 <div class="cat-row" id="cat-root"></div>
-
-<div class="section-head">🔥 Best Deals for You</div>
+<div class="section-head">🔥 Top Deals Today</div>
 <div class="grid" id="prod-root"></div>
 
 <footer id="sw-footer">
@@ -110,6 +147,7 @@
 </footer>
 
 <script>
+// Same APIs as before
 const APIs = {
     HEAD: "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
     HOME: "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec",
@@ -166,7 +204,7 @@ async function init() {
         f.footer.forEach(i => {
             let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : i.POSITION === "RIGHT" ? document.getElementById("f-right") : document.getElementById("sw-bottom");
             if(i.TYPE === "TITLE") box.innerHTML += `<h2>${i.TEXT}</h2>`;
-            else if(i.TYPE === "TEXT") box.innerHTML += `<p style="font-size:13px; color:#bbb; line-height:1.5;">${i.TEXT}</p>`;
+            else if(i.TYPE === "TEXT") box.innerHTML += `<p style="font-size:14px; color:#bbb;">${i.TEXT}</p>`;
             else if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links-container"><a href="${i.LINK}">${i.TEXT}</a></div>`;
             else if(i.TYPE === "SOCIAL") {
                 let sc = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
@@ -174,7 +212,6 @@ async function init() {
             }
             else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
         });
-
     } catch (e) { console.log(e); }
 }
 init();
