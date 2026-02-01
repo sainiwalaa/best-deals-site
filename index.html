@@ -1,197 +1,271 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-44P15THF26"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-44P15THF26');
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sainiwalaa – Premium Shopping & Deals 2026</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="google-site-verification" content="T3of_a7SwHge6KHfW1kJ6CXFHrb24va0-HN67ove-WM" />
+    <style>
+        :root { 
+            --amz-blue: #131921; 
+            --amz-orange: #ff9900; 
+            --bg: #eaeded; 
+            --card: #ffffff; 
+            --accent: #febd69;
+        }
+        
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); color: #111; overflow-x: hidden; width: 100%; -webkit-font-smoothing: antialiased; }
+        
+        /* Automatic Responsive Images */
+        img { max-width: 100%; height: auto; display: block; }
 
-<title>Sainiwalaa – Trusted Online Shopping & Deals</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        /* --- HEADER --- */
+        #main-header { 
+            background: #000; color: #fff; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 12px 20px; position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        #logo { font-weight: 900; font-size: 20px; color: var(--accent); letter-spacing: 1px; cursor: pointer; text-decoration: none; }
+        #menu { display: flex; gap: 12px; }
+        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 13px; white-space: nowrap; }
 
-<style>
-:root{ --primary:#0f172a; --secondary:#1e293b; --accent:#ff9900; --bg:#f8fafc; --card:#ffffff; --text:#111; }
-.dark{ --bg:#0b1220; --card:#111827; --text:#f9fafb; }
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:var(--bg);color:var(--text);transition:.3s; overflow-x: hidden;}
+        /* --- HERO SECTION --- */
+        #hero-sainiwalaa { 
+            position: relative; background: #080d17; 
+            padding: 60px 20px; overflow: hidden; 
+            display: flex; align-items: center; min-height: 450px;
+        }
+        .bg-animated-text { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+        .float-text { 
+            position: absolute; font-weight: 900; font-size: 7vw; 
+            opacity: 0.04; white-space: nowrap; animation: floatingText 25s linear infinite; color: #fff;
+        }
+        @keyframes floatingText { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-/* HEADER */
-#main-header{background:#000;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 22px; position: sticky; top:0; z-index: 1000;}
-#menu a{color:#fff;margin-left:15px;text-decoration:none;font-weight:600; font-size: 14px;}
+        .hero-wrap { 
+            max-width: 1200px; margin: auto; display: grid; 
+            grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center; 
+            position: relative; z-index: 10; width: 100%;
+        }
+        .hero-left h1 { 
+            font-size: clamp(30px, 6vw, 55px); font-weight: 900; line-height: 1.1;
+            background: linear-gradient(to right, #ffffff, var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .hero-left p { color: #ffe9b0; font-size: 16px; border-left: 4px solid var(--amz-orange); padding-left: 15px; margin-bottom: 20px; }
 
-/* HERO SECTION */
-#hero-sainiwalaa{background:linear-gradient(135deg,#4b0f14,#7a1f26);padding:40px 20px;}
-.hero-wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:30px;align-items:center;}
-.hero-left h1{color:#f6d27c;font-size:38px; line-height: 1.2;}
-.hero-left p{color:#ffe9b0;margin-top:10px; font-size: 15px;}
-.cats{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.catbox{background:#fff6e1;color:#5a1a1f;padding:8px 14px;border-radius:20px;font-weight:700; font-size: 12px;}
-.slider-frame{width:100%; max-width:280px; height:380px; margin:auto; background:#fff6e1; padding:6px; border-radius:22px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);}
-.slider-frame img{width:100%;height:100%;object-fit:cover;border-radius:16px}
+        .cats { display: flex; flex-wrap: wrap; gap: 10px; }
+        .catbox { 
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);
+            padding: 8px 15px; border-radius: 12px; color: #fff; 
+            font-weight: 600; font-size: 12px; border: 1px solid rgba(255,255,255,0.1);
+        }
 
-/* CONTENT ELEMENTS */
-.toggle{background:var(--accent);color:#000;padding:10px;border-radius:50%;cursor:pointer;position:fixed;bottom:20px;right:20px;z-index:100; box-shadow: 0 4px 10px rgba(0,0,0,0.2);}
-.marquee{background:var(--accent);color:#000;padding:10px;overflow:hidden;white-space:nowrap;font-weight:600; font-size: 14px;}
-.marquee span{display:inline-block;animation:scroll 14s linear infinite}
-@keyframes scroll{ from{transform:translateX(100%)} to{transform:translateX(-100%)} }
+        .slider-frame { 
+            width: 100%; max-width: 280px; height: 380px; margin: auto; 
+            background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
 
-.countdown{text-align:center;padding:12px;font-weight:700;background:var(--card);margin:15px;border-radius:12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);}
-.slider{position:relative;height:220px;overflow:hidden; margin: 15px; border-radius: 15px;}
-.slide{position:absolute;inset:0;display:none}
-.slide img{width:100%;height:100%;object-fit:cover}
-.slide-content{position:absolute;bottom:10px;left:10px;right:10px;background:rgba(0,0,0,.65);padding:12px;border-radius:10px;color:#fff}
-.slide-content h3{ font-size: 16px; }
-.slide-content a{display:inline-block;margin-top:5px;background:var(--accent);padding:6px 12px;color:#000;font-weight:700;text-decoration:none; border-radius: 5px; font-size: 13px;}
+        /* --- BANNER SLIDER --- */
+        .banner-frame { width: 95%; max-width: 1200px; height: auto; aspect-ratio: 16/6; margin: 25px auto; border-radius: 15px; overflow: hidden; background: #000; position: relative; }
+        #banner-root { display: flex; height: 100%; transition: transform 0.6s ease-in-out; }
+        .banner-slide { min-width: 100%; height: 100%; }
+        .banner-slide img { width: 100%; height: 100%; object-fit: cover; }
 
-.section{padding:20px 15px}
-.section h2{ margin-bottom: 15px; font-size: 20px; }
+        /* --- CATEGORIES (Horizontal Scroll) --- */
+        .cat-row { display: flex; overflow-x: auto; padding: 20px 15px; gap: 20px; scrollbar-width: none; }
+        .cat-row::-webkit-scrollbar { display: none; }
+        .cat-item { text-align: center; min-width: 90px; cursor: pointer; transition: 0.3s; }
+        .cat-item:active { transform: scale(0.9); }
+        .cat-circle { width: 75px; height: 75px; border-radius: 50%; border: 2.5px solid var(--amz-orange); background: #fff; margin: 0 auto; overflow: hidden; padding: 2px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .cat-circle img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .cat-item p { font-size: 12px; font-weight: 700; margin-top: 10px; color: #333; }
 
-/* CATEGORIES GRID */
-.categories{display:grid;grid-template-columns:repeat(2, 1fr); gap:12px}
-.cat{background:var(--card);border-radius:14px;padding:10px;text-align:center;cursor:pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.05);}
-.cat img{width:100%;height:120px;object-fit:cover;border-radius:10px; margin-bottom: 8px;}
-.cat p{ font-size: 13px; font-weight: 600; }
+        /* --- PRODUCTS GRID --- */
+        .section-head { padding: 20px 20px 10px; font-weight: 800; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-head::after { content: ""; height: 2px; flex: 1; background: #ddd; }
+        
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); 
+            gap: 15px; padding: 15px; max-width: 1200px; margin: auto; 
+        }
+        .p-card { background: white; border-radius: 15px; padding: 15px; text-align: center; border: 1px solid #eee; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .p-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        .p-card img { width: 100%; height: 160px; object-fit: contain; margin-bottom: 12px; }
+        .p-card h4 { font-size: 14px; font-weight: 600; color: #444; height: 40px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .p-price { color: #B12704; font-size: 22px; font-weight: 800; margin: 10px 0; }
+        .btn { background: linear-gradient(to bottom, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 8px; padding: 10px; display: block; text-decoration: none; color: #111; font-weight: 700; font-size: 14px; }
 
-.banner img{width:100%;border-radius:14px;margin-bottom:15px; display: block;}
+        /* --- FOOTER --- */
+        #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px 30px; margin-top: 60px; border-top: 5px solid var(--amz-orange); }
+        #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .sw-col h2 { color: var(--amz-orange); font-size: 22px; margin-bottom: 20px; font-weight: 700; }
+        .sw-links-container a { display: block; margin: 12px 0; color: #bbb; text-decoration: none; font-size: 15px; transition: 0.3s; }
+        .sw-links-container a:hover { color: #fff; padding-left: 5px; }
+        .sw-social-container { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+        .sw-social-container a { border: 1px solid rgba(255,153,0,0.4); padding: 8px 15px; border-radius: 10px; color: var(--amz-orange); font-size: 13px; text-decoration: none; font-weight: 600; }
+        #sw-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; opacity: 0.6; }
 
-/* FOOTER CSS */
-#sw-footer{ width:100%; background:#050b1a; padding:50px 20px 30px; color:#ffffff; margin-top:50px; border-top: 3px solid var(--accent); }
-#sw-marquee{ overflow:hidden; white-space:nowrap; text-align:center; margin-bottom:30px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:12px; }
-#sw-marquee span{ display:inline-block; animation:sw-scroll 28s linear infinite; font-weight:600; }
-@keyframes sw-scroll{ from{transform:translateX(100%)} to{transform:translateX(-100%)} }
+        /* --- MOBILE OPTIMIZATION --- */
+        @media(max-width:768px){
+            .hero-wrap { grid-template-columns: 1fr; text-align: center; }
+            .hero-left h1 { font-size: 36px; }
+            .hero-left p { border-left: none; border-top: 3px solid var(--amz-orange); padding: 15px 0 0; }
+            .cats { justify-content: center; }
+            .slider-frame { max-width: 220px; height: 320px; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; }
+            .p-card { padding: 10px; }
+            .p-card img { height: 130px; }
+            .p-price { font-size: 18px; }
+            .section-head { font-size: 18px; }
+        }
 
-#sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:40px; }
-.sw-col h2{ margin-bottom:20px; font-size:24px; color: var(--accent); }
-.sw-col p{ margin:10px 0; font-size:14px; opacity:.8; line-height:1.6; }
-
-.sw-links-container a{ display:block; margin:10px 0; color:#ffffff; text-decoration:none; font-size:15px; }
-.sw-links-container a::before{ content:"› "; color:var(--accent); }
-
-.sw-social-container { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; }
-.sw-social-container a{ text-decoration:none; font-weight:600; padding: 8px 15px; border: 1px solid rgba(255,153,0, 0.5); border-radius: 8px; color: #ff9900 !important; background: rgba(255,153,0, 0.05); font-size: 13px; }
-
-#sw-bottom{ text-align:center; margin-top:40px; font-size:12px; opacity:.5; border-top:1px solid rgba(255,255,255,.1); padding-top:20px; }
-
-/* MOBILE RESPONSIVE FIXES */
-@media(max-width:768px){
-  .hero-wrap{ grid-template-columns: 1fr; text-align: center; gap: 25px; }
-  .hero-left h1{ font-size: 28px; }
-  .cats{ justify-content: center; }
-  .slider-frame{ max-width: 220px; height: 300px; }
-  #menu a{ margin-left: 10px; font-size: 12px; }
-  .slider { height: 180px; }
-  #sw-inner { text-align: center; gap: 50px; }
-  .sw-social-container { justify-content: center; }
-  .sw-col h2 { border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 5px; }
-}
-</style>
+        #loader { position: fixed; inset: 0; background: #fff; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--amz-orange); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
-
 <body>
 
-<div id="main-header">
-  <div style="font-weight:bold; letter-spacing:1px; cursor:pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
-  <div id="menu"></div>
+<div id="loader">
+    <div class="spinner"></div>
+    Updating Sainiwalaa 2026...
 </div>
+
+<header id="main-header">
+    <a href="index.html" id="logo">SAINIWALAA</a>
+    <div id="menu"></div>
+</header>
 
 <section id="hero-sainiwalaa">
-  <div class="hero-wrap">
-    <div class="hero-left">
-      <h1 id="heroTitle">Sainiwalaa</h1>
-      <p id="heroNotice">Loading Premium Deals...</p>
-      <div class="cats" id="heroTags"></div>
+    <div class="bg-animated-text">
+        <div class="float-text" style="top:15%; animation-duration:20s;">NEW ARRIVALS • BEST DEALS • 2026 COLLECTION</div>
+        <div class="float-text" style="top:50%; animation-duration:30s; animation-delay:2s;">JAIPURI KURTIS • CUSTOM GIFTS • TRENDY WEAR</div>
+        <div class="float-text" style="top:80%; animation-duration:25s;">LATEST OFFERS • BIG SAVINGS • SHOP NOW</div>
     </div>
-    <div class="slider-frame"><img id="heroImg"></div>
-  </div>
+    <div class="hero-wrap">
+        <div class="hero-left">
+            <h1 id="heroTitle">Sainiwalaa</h1>
+            <p id="heroNotice">Connecting you to premium deals...</p>
+            <div class="cats" id="heroTags"></div>
+        </div>
+        <div class="slider-frame"><img id="heroImg" alt="Sainiwalaa Deals"></div>
+    </div>
 </section>
 
-<div class="toggle" onclick="document.body.classList.toggle('dark')">🌙</div>
-<div class="marquee"><span id="marqueeText">Loading...</span></div>
-<div class="countdown">⏳ Offer Ends In : <span id="timer"></span></div>
-<div class="slider" id="slider"></div>
+<div class="banner-frame"><div id="banner-root"></div></div>
+<div class="cat-row" id="cat-root"></div>
+<div class="section-head">🔥 Today's Best Offers</div>
+<div class="grid" id="prod-root"></div>
 
-<div class="section">
-  <h2>🛍️ Shop by Category</h2>
-  <div class="categories" id="categories"></div>
-</div>
-
-<div class="section banner" id="banners"></div>
-
-<div id="sw-footer">
-  <div id="sw-marquee"></div>
-  <div id="sw-inner">
-    <div class="sw-col" id="sw-left"></div>
-    <div class="sw-col" id="sw-center"></div>
-    <div class="sw-col" id="sw-right"></div>
-  </div>
-  <div id="sw-bottom"></div>
-</div>
+<footer id="sw-footer">
+    <div id="sw-inner">
+        <div class="sw-col" id="f-left"></div>
+        <div class="sw-col" id="f-center"></div>
+        <div class="sw-col" id="f-right"></div>
+    </div>
+    <div id="sw-bottom"></div>
+</footer>
 
 <script>
-const API_HEAD = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
-const API_HOME = "https://script.google.com/macros/s/AKfycbw36GYkYHmCWmCooX04kIBbXYoAvyFC-3WkP8zLGCa96ArhalMssxPgd6svBvqy3NFA/exec";
-const FOOTER_API = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
+const APIs = {
+    HEAD: "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
+    HOME: "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec",
+    FOOTER: "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec"
+};
 
-// Header & Hero
-fetch(API_HEAD).then(r=>r.json()).then(d=>{
-  d.menu.forEach(m=> document.getElementById('menu').innerHTML+=`<a href="${m.link}">${m.text}</a>`);
-  let slides=[];
-  d.hero.forEach(h=>{
-    if(h.type==="TITLE") document.getElementById('heroTitle').innerText=h.text;
-    if(h.type==="NOTICE") document.getElementById('heroNotice').innerText=h.text;
-    if(h.type==="TAG") document.getElementById('heroTags').innerHTML+=`<div class="catbox">${h.text}</div>`;
-    if(h.type==="SLIDE") slides.push(h.image);
-  });
-  if(slides.length){
-    let i=0; document.getElementById('heroImg').src=slides[0];
-    setInterval(()=>{i=(i+1)%slides.length;document.getElementById('heroImg').src=slides[i]},3000);
-  }
-});
+async function init() {
+    try {
+        const [h, home, f] = await Promise.all([
+            fetch(APIs.HEAD).then(r => r.json()),
+            fetch(APIs.HOME).then(r => r.json()),
+            fetch(APIs.FOOTER).then(r => r.json())
+        ]);
+        
+        document.getElementById('loader').style.display = 'none';
 
-// Home Content
-fetch(API_HOME).then(r=>r.json()).then(d=>{
-  document.getElementById('marqueeText').innerText=d.marquee.map(x=>x.TEXT).join(" | ");
-  d.hero.forEach(x=>{
-    document.getElementById('slider').innerHTML+=`<div class="slide"><img src="${x.IMAGE_URL}"><div class="slide-content"><h3>${x.TITLE||""}</h3><p>${x.SUB_TITLE||""}</p>${x.BUTTON_TEXT?`<a href="${x.BUTTON_LINK}">${x.BUTTON_TEXT}</a>`:""}</div></div>`;
-  });
-  let s=document.querySelectorAll(".slide"),j=0;
-  if(s.length){s[0].style.display="block"; setInterval(()=>{s[j].style.display="none";j=(j+1)%s.length;s[j].style.display="block"},3500);}
-  d.categories.forEach(x=> document.getElementById('categories').innerHTML+=`<div class="cat" onclick="location.href='${x.PAGE_LINK}'"><img src="${x.IMAGE}"><p>${x.NAME}</p></div>`);
-  d.banners.forEach(x=> document.getElementById('banners').innerHTML+=`<a href="${x.LINK}"><img src="${x.IMAGE_URL}"></a>`);
-});
+        // 1. Header & Hero Logic
+        h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
+        let hSlides = [];
+        h.hero.forEach(i => {
+            if(i.type === "TITLE") document.getElementById('heroTitle').innerText = i.text;
+            if(i.type === "NOTICE") document.getElementById('heroNotice').innerText = i.text;
+            if(i.type === "TAG") document.getElementById('heroTags').innerHTML += `<div class="catbox">${i.text}</div>`;
+            if(i.type === "SLIDE") hSlides.push(i.image);
+        });
+        if(hSlides.length) {
+            let hi = 0; document.getElementById('heroImg').src = hSlides[0];
+            setInterval(() => { hi = (hi + 1) % hSlides.length; document.getElementById('heroImg').src = hSlides[hi]; }, 3500);
+        }
 
-// Footer
-fetch(FOOTER_API).then(r=>r.json()).then(d=>{
-  if(!d.footer) return;
-  d.footer.forEach(i=>{
-    let box = i.POSITION==="LEFT" ? document.getElementById("sw-left") : i.POSITION==="CENTER" ? document.getElementById("sw-center") : i.POSITION==="RIGHT" ? document.getElementById("sw-right") : i.POSITION==="BOTTOM" ? document.getElementById("sw-bottom") : document.getElementById("sw-marquee");
-    if(i.TYPE==="MARQUEE") box.innerHTML=`<span style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</span>`;
-    else if(i.TYPE==="TITLE") box.innerHTML+=`<h2 style="color:${i.COLOR}">${i.TEXT}</h2>`;
-    else if(i.TYPE==="TEXT") box.innerHTML+=`<p style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</p>`;
-    else if(i.TYPE==="LINK") box.innerHTML+=`<div class="sw-links-container"><a href="${i.LINK}" style="font-size:${i.SIZE}px;color:${i.COLOR}">${i.TEXT}</a></div>`;
-    else if(i.TYPE==="BUTTON") box.innerHTML+=`<a class="sw-btn" style="background:${i.COLOR}; color:#000; padding:8px 16px; border-radius:20px; text-decoration:none; font-weight:700; display:inline-block; margin-top:10px;" href="${i.LINK}">${i.TEXT}</a>`;
-    else if(i.TYPE==="SOCIAL"){
-      let socialCont = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
-      socialCont.innerHTML+=`<a href="${i.LINK}" style="color:${i.COLOR};font-size:${i.SIZE}px">${i.TEXT}</a>`;
+        // 2. Banner Slider Logic
+        const bRoot = document.getElementById('banner-root');
+        let banners = home.filter(i => i.TYPE === "BANNER");
+        banners.forEach(b => { bRoot.innerHTML += `<div class="banner-slide"><img src="${b.IMAGE_URL}"></div>`; });
+        if(banners.length > 1) {
+            let cb = 0; setInterval(() => {
+                cb = (cb + 1) % banners.length;
+                bRoot.style.transform = `translateX(-${cb * 100}%)`;
+            }, 5000);
+        }
+
+        // 3. Categories & Products
+        home.forEach(item => {
+            if(item.TYPE === "CAT") {
+                document.getElementById('cat-root').innerHTML += `
+                    <div class="cat-item" onclick="location.href='${item.LINK}'">
+                        <div class="cat-circle"><img src="${item.IMAGE_URL}"></div>
+                        <p>${item.TITLE}</p>
+                    </div>`;
+            }
+            if(item.TYPE === "PRODUCT") {
+                document.getElementById('prod-root').innerHTML += `
+                    <div class="p-card">
+                        <img src="${item.IMAGE_URL}" loading="lazy">
+                        <h4>${item.TITLE}</h4>
+                        <div class="p-price">₹${item.PRICE}</div>
+                        <a href="${item.LINK}" class="btn">View Deal</a>
+                    </div>`;
+            }
+        });
+
+        // 4. Footer Logic
+        f.footer.forEach(i => {
+            let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : 
+                      i.POSITION === "CENTER" ? document.getElementById("f-center") : 
+                      i.POSITION === "RIGHT" ? document.getElementById("f-right") : 
+                      i.POSITION === "BOTTOM" ? document.getElementById("sw-bottom") : null;
+            
+            if(!box) return;
+
+            if(i.TYPE === "TITLE") box.innerHTML += `<h2>${i.TEXT}</h2>`;
+            else if(i.TYPE === "TEXT") box.innerHTML += `<p style="color:#bbb; font-size:14px; line-height:1.6; margin-bottom:10px;">${i.TEXT}</p>`;
+            else if(i.TYPE === "LINK") {
+                let linkCont = box.querySelector('.sw-links-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-links-container'}));
+                linkCont.innerHTML += `<a href="${i.LINK}">${i.TEXT}</a>`;
+            }
+            else if(i.TYPE === "SOCIAL") {
+                let sc = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
+                sc.innerHTML += `<a href="${i.LINK}">${i.TEXT}</a>`;
+            }
+            else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
+        });
+
+    } catch (e) { 
+        console.error("API Error:", e);
+        document.getElementById('loader').innerText = "Failed to load content. Please refresh.";
     }
-    else if(i.TYPE==="BOTTOM") { box.innerText=i.TEXT; box.style.color=i.COLOR; }
-  });
-});
+}
 
-// Timer Logic
-let t=3600*3;
-setInterval(()=>{
-  let h=Math.floor(t/3600), m=Math.floor((t%3600)/60), s=t%60;
-  document.getElementById('timer').innerText=`${h}h ${m}m ${s}s`;
-  t--;
-},1000);
+init();
 </script>
 </body>
 </html>
