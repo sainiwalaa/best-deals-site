@@ -17,10 +17,39 @@
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg); color: #111; overflow-x: hidden; width: 100%; }
 
-        /* --- HEADER --- */
-        #main-header { background: #000; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 14px 22px; position: sticky; top: 0; z-index: 1000; }
-        #menu { display: flex; gap: 10px; flex-wrap: nowrap; }
-        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 13px; white-space: nowrap; }
+        /* --- UPDATED HEADER & MOBILE MENU --- */
+        #main-header { 
+            background: #000; 
+            color: #fff; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 14px 22px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1001; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Hamburger Icon */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1002;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #febd69;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        #menu { display: flex; gap: 20px; }
+        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap; transition: 0.3s; }
+        #menu a:hover { color: var(--amz-orange); }
 
         /* --- HERO & ANIMATION --- */
         #hero-sainiwalaa { 
@@ -59,11 +88,10 @@
         }
         .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
 
-        /* --- SMALL BANNER FRAME (As per your Screenshot) --- */
         .banner-frame { 
-            width: 95%; max-width: 1100px; /* Isko chota rakha hai screen se */
+            width: 95%; max-width: 1100px; 
             height: 250px; margin: 30px auto; 
-            border: 4px solid #333; /* Dark border jaisa photo mein hai */
+            border: 4px solid #333; 
             border-radius: 15px; overflow: hidden; background: #000; position: relative; 
         }
         #banner-root { display: flex; height: 100%; transition: transform 0.8s ease-in-out; }
@@ -72,19 +100,23 @@
 
         /* --- CATEGORIES & PRODUCTS --- */
         .cat-row { display: flex; overflow-x: auto; padding: 20px 10px; gap: 20px; scrollbar-width: none; }
-        .cat-item { text-align: center; min-width: 90px; }
-        .cat-circle { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--amz-orange); background: #fff; margin: 0 auto; overflow: hidden; }
+        .cat-row::-webkit-scrollbar { display: none; }
+        .cat-item { text-align: center; min-width: 90px; cursor: pointer; }
+        .cat-circle { width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--amz-orange); background: #fff; margin: 0 auto 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .cat-circle img { width: 100%; height: 100%; object-fit: cover; }
+        .cat-item p { font-size: 12px; font-weight: 600; color: #444; }
 
-        .section-head { padding: 20px; font-weight: 800; font-size: 22px; }
+        .section-head { padding: 20px; font-weight: 800; font-size: 20px; letter-spacing: -0.5px; }
         .grid { 
             display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); 
             gap: 15px; padding: 0 15px 40px; max-width: 1200px; margin: auto; 
         }
-        .p-card { background: white; border-radius: 15px; padding: 15px; text-align: center; border: 1px solid #eee; }
-        .p-card img { width: 100%; height: 150px; object-fit: contain; }
-        .p-price { color: #B12704; font-size: 22px; font-weight: 800; margin: 10px 0; }
-        .btn { background: linear-gradient(180deg, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 8px; padding: 10px; display: block; text-decoration: none; color: #111; font-weight: 700; }
+        .p-card { background: white; border-radius: 15px; padding: 15px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
+        .p-card:active { transform: scale(0.98); }
+        .p-card img { width: 100%; height: 150px; object-fit: contain; margin-bottom: 10px; }
+        .p-card h4 { font-size: 14px; height: 40px; overflow: hidden; color: #333; }
+        .p-price { color: #B12704; font-size: 20px; font-weight: 800; margin: 8px 0; }
+        .btn { background: linear-gradient(180deg, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 8px; padding: 10px; display: block; text-decoration: none; color: #111; font-weight: 700; font-size: 14px; }
 
         /* --- FOOTER --- */
         #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px 30px; margin-top: 50px; border-top: 4px solid var(--amz-orange); }
@@ -101,14 +133,33 @@
 
         #loader { position: fixed; inset: 0; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-        /* --- MOBILE ADJUSTMENTS --- */
+        /* --- MOBILE MENU ANIMATION & LOOK --- */
         @media (max-width: 768px) {
-            #main-header { flex-direction: column; gap: 10px; }
+            .menu-toggle { display: flex; }
+            
+            #menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background: #131921;
+                flex-direction: column;
+                padding: 80px 30px;
+                transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+                gap: 25px;
+            }
+
+            #menu.active { right: 0; }
+            #menu a { font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+
             .hero-wrap { grid-template-columns: 1fr; text-align: center; }
             .hero-left p { border-left: none; border-top: 3px solid var(--amz-orange); padding-top: 15px; }
             .cats { justify-content: center; }
-            .banner-frame { height: 180px; width: 95%; }
-            .grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .banner-frame { height: 160px; width: 92%; margin: 20px auto; }
+            .grid { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; }
+            .section-head { font-size: 18px; padding: 15px 10px; }
             #sw-inner { text-align: center; }
             .sw-social-container { justify-content: center; }
         }
@@ -119,8 +170,15 @@
 <div id="loader">Sainiwalaa Loading...</div>
 
 <header id="main-header">
-    <div style="font-weight:900; font-size: 22px; color:#febd69; letter-spacing:1px;">SAINIWALAA</div>
-    <div id="menu"></div>
+    <div style="font-weight:900; font-size: 22px; color:#febd69; letter-spacing:1px; cursor: pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
+    
+    <div class="menu-toggle" id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav id="menu"></nav>
 </header>
 
 <section id="hero-sainiwalaa">
@@ -154,6 +212,26 @@
 </footer>
 
 <script>
+// Hamburger Logic
+const menuBtn = document.getElementById('mobile-menu-btn');
+const navMenu = document.getElementById('menu');
+
+menuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    // Animation for hamburger
+    const spans = menuBtn.querySelectorAll('span');
+    spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+    spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+    spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -7px)' : 'none';
+});
+
+// Close menu when clicking a link
+document.addEventListener('click', (e) => {
+    if(!menuBtn.contains(e.target) && !navMenu.contains(e.target)) {
+        navMenu.classList.remove('active');
+    }
+});
+
 const APIs = {
     HEAD: "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
     HOME: "https://script.google.com/macros/s/AKfycbwxPgyRuXZPAUgnLBC0vkNx-bCgbOUS2hkrPbQfadwk6pFabK0OOAts_X9fnF9z-z5wLQ/exec",
