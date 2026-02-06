@@ -19,31 +19,33 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 body{background:var(--bg); color:#333; overflow-x: hidden;}
 
+/* --- HEADER --- */
 #main-header { 
     background: #000; color: #fff; display: flex; 
     justify-content: space-between; align-items: center; 
     padding: 14px 22px; position: sticky; top: 0; 
     z-index: 1001; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
-
 .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1002; }
 .menu-toggle span { width: 25px; height: 3px; background: var(--accent); border-radius: 2px; transition: 0.3s; }
-
 #menu { display: flex; gap: 20px; }
 #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap; transition: 0.3s; }
 
+/* --- HERO --- */
 .hero-banner{ background:linear-gradient(45deg, #4b0f14, #7a1f26); color:#fff; padding:35px 15px; text-align:center; }
 .hero-banner h1{ font-size: 26px; color: #f6d27c; }
 .hero-banner p{ font-size: 14px; opacity: 0.9; }
 
+/* --- GRID --- */
 .products-grid{ max-width:1200px; margin:20px auto; padding:0 10px; display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:15px; }
 .card{ background:var(--card); border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.06); transition:0.3s; text-align:center; display: flex; flex-direction: column; }
-.card img{ width:100%; height:280px; object-fit:cover; background: #eee; }
+.card img{ width:100%; height:280px; object-fit:cover; background:#eee;}
 .card-info{ padding:12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
 .card-info h3{ font-size:13px; margin-bottom:8px; height:36px; overflow:hidden; line-height: 1.4; color: #111; }
 .price{ font-size:16px; font-weight:700; color:#2e7d32; margin-bottom:10px; }
 .buy-btn{ display:block; background:var(--accent); color:#000; text-decoration:none; padding:8px; border-radius:6px; font-weight:700; font-size: 13px; }
 
+/* --- FOOTER (Updated Socials) --- */
 #sw-footer{ background:#050b1a; color:#fff; padding:40px 15px; margin-top:50px; border-top: 3px solid var(--accent); }
 #sw-marquee{ overflow:hidden; white-space:nowrap; padding-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:25px; text-align:center; }
 #sw-marquee span{ display:inline-block; animation:scroll 20s linear infinite; color:var(--accent); font-weight:600; }
@@ -52,6 +54,10 @@ body{background:var(--bg); color:#333; overflow-x: hidden;}
 #sw-inner{ max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:35px; }
 .sw-links a{ display:block; color:#fff; text-decoration:none; margin-bottom:10px; font-size:14px; }
 .sw-links a::before{ content: "› "; color: var(--accent); }
+
+.sw-social{ display:flex; gap:10px; margin-top:15px; flex-wrap:wrap; }
+.sw-social a{ padding:6px 15px; border:1px solid rgba(255,153,0,0.5); color:var(--accent); text-decoration:none; border-radius:6px; font-size:12px; font-weight: 600; background: rgba(255,153,0,0.1); transition: 0.3s; }
+.sw-social a:hover { background: var(--accent); color: #000; }
 
 #sw-bottom{ text-align:center; margin-top:30px; opacity:0.5; font-size:12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
 
@@ -116,22 +122,21 @@ fetch(H_API).then(r=>r.json()).then(d=>{
   d.menu.forEach(m=> menuBox.innerHTML+=`<a href="${m.link}">${m.text}</a>`);
 });
 
-// Products Logic (FIXED IMAGE LOADING)
+// Products Logic
 fetch(K_API).then(r=>r.json()).then(data=>{
   const box = document.getElementById('product-box');
   box.innerHTML = ""; 
   data.forEach(p=>{
-    // Sheet columns cleanup (Case-insensitive check)
-    const name = p.NAME || p.name || "";
-    const imgUrl = p.IMAGELINK || p.imagelink || p.IMAGE || ""; 
-    const price = p.PRICE || p.price || "0";
-    const link = p.LINK || p.link || "#";
-    const desc = p.DESCRIPTION || p.description || "";
-    const keys = p.KEYWORDS || p.keywords || "";
+    const name = p.NAME || "";
+    const imgUrl = p.IMAGELINK || p.IMAGE || ""; 
+    const price = p.PRICE || "0";
+    const link = p.LINK || "#";
+    const desc = p.DESCRIPTION || "";
+    const keys = p.KEYWORDS || "";
 
     box.innerHTML += `
       <div class="card">
-        <img src="${imgUrl}" alt="${name}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400?text=No+Image'">
+        <img src="${imgUrl}" alt="${name} ${keys}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400?text=Sainiwalaa'">
         <div class="card-info">
           <h3>${name}</h3>
           <div style="display:none !important;">${desc} ${keys}</div>
@@ -144,16 +149,21 @@ fetch(K_API).then(r=>r.json()).then(data=>{
   });
 }).catch(e=> document.getElementById('product-box').innerHTML="Error loading products.");
 
-// Footer Logic
+// Footer Logic (With Social Links Support)
 fetch(F_API).then(r=>r.json()).then(d=>{
   if(!d.footer) return;
   d.footer.forEach(i=>{
     let box = i.POSITION==="LEFT"?document.getElementById("f-left"):i.POSITION==="CENTER"?document.getElementById("f-center"):i.POSITION==="RIGHT"?document.getElementById("f-right"):i.POSITION==="BOTTOM"?document.getElementById("sw-bottom"):document.getElementById("sw-marquee");
     if(!box) return;
+
     if(i.TYPE==="MARQUEE") box.innerHTML = `<span>${i.TEXT}</span>`;
     else if(i.TYPE==="TITLE") box.innerHTML += `<h3 style="color:var(--accent);margin-bottom:15px;font-size:20px;">${i.TEXT}</h3>`;
     else if(i.TYPE==="TEXT") box.innerHTML += `<p style="font-size:14px;margin-bottom:8px;opacity:0.8;">${i.TEXT}</p>`;
     else if(i.TYPE==="LINK") box.innerHTML += `<div class="sw-links"><a href="${i.LINK}">${i.TEXT}</a></div>`;
+    else if(i.TYPE==="SOCIAL") {
+      let sc = box.querySelector('.sw-social') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social'}));
+      sc.innerHTML += `<a href="${i.LINK}" target="_blank">${i.TEXT}</a>`;
+    }
   });
 });
 </script>
