@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sainiwalaa.github.io/best-deals-site/index.html</loc>
-    <lastmod>2024-05-20</lastmod>
-    <priority>1.00</priority>
+    <loc>https://sainiwalaa.github.io/best-deals-site/</loc>
+    <lastmod>2026-02-06</lastmod>
+    <priority>1.0</priority>
   </url>
-  
+  <url>
+    <loc>https://sainiwalaa.github.io/best-deals-site/amazon.html</loc>
+    <lastmod>2026-02-06</lastmod>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://sainiwalaa.github.io/best-deals-site/jaipurkurti.html</loc>
-    <lastmod>2024-05-20</lastmod>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://sainiwalaa.github.io/best-deals-site/mug.html</loc>
-    <lastmod>2024-05-20</lastmod>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://sainiwalaa.github.io/best-deals-site/tshirt.html</loc>
-    <lastmod>2024-05-20</lastmod>
-    <priority>0.80</priority>
+    <lastmod>2026-02-06</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>
