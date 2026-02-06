@@ -1,24 +1,34 @@
-// Sirf Products Logic wala hissa badal raha hoon, baaki website waisi hi rahegi.
+// Products Logic (Updated for SEO and Data Display)
+fetch(K_API)
+  .then(r => r.json())
+  .then(data => {
+    const box = document.getElementById('product-box');
+    box.innerHTML = ""; // Purana loading text hatane ke liye
 
-fetch(K_API).then(r=>r.json()).then(data=>{
-  const box = document.getElementById('product-box');
-  box.innerHTML = "";
-  data.forEach(p=>{
-    // DESCRIPTION aur KEYWORDS ko variables mein liya
-    const desc = p.DESCRIPTION || "";
-    const keys = p.KEYWORDS || "";
+    data.forEach(p => {
+      // Sheet ke columns ke hisaab se variables
+      const imgUrl = p.IMAGELINK || ""; 
+      const name = p.NAME || "Jaipuri Kurti";
+      const price = p.PRICE || "N/A";
+      const link = p.LINK || "#";
+      const desc = p.DESCRIPTION || "";
+      const keys = p.KEYWORDS || "";
 
-    box.innerHTML += `
-      <div class="card" title="${desc}">
-        <img src="${p.IMAGELINK}" alt="${p.NAME} - ${keys}" loading="lazy">
-        <div class="card-info">
-          <h3>${p.NAME}</h3>
-          <div style="display:none;">${desc} ${keys}</div>
-          <div>
-            <div class="price">₹${p.PRICE}</div>
-            <a class="buy-btn" href="${p.LINK}" target="_blank">Buy Now</a>
+      box.innerHTML += `
+        <div class="card" title="${desc}">
+          <img src="${imgUrl}" alt="${name} - ${keys}" loading="lazy">
+          <div class="card-info">
+            <h3>${name}</h3>
+            <div style="display:none;">${desc} ${keys}</div>
+            <div>
+              <div class="price">₹${price}</div>
+              <a class="buy-btn" href="${link}" target="_blank">Buy Now</a>
+            </div>
           </div>
-        </div>
-      </div>`;
+        </div>`;
+    });
+  })
+  .catch(e => {
+    console.error("Error:", e);
+    document.getElementById('product-box').innerHTML = "Error loading products. Please check API.";
   });
-}).catch(e=> document.getElementById('product-box').innerHTML="Error loading products.");
