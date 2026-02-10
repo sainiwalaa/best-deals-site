@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Trending Deals - Sainiwalaa</title>
+    <title>Sainiwalaa – Premium Deals</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
@@ -16,32 +16,60 @@
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg); color: #111; overflow-x: hidden; width: 100%; }
 
-        /* --- HEADER & MENU --- */
-        #main-header { background: #000; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 14px 22px; position: sticky; top: 0; z-index: 1001; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-        .menu-toggle span { width: 25px; height: 3px; background: #febd69; border-radius: 2px; }
-        #menu { display: flex; gap: 20px; }
-        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.3s; }
-        #menu a:hover { color: var(--amz-orange); }
+        /* --- HEADER & NAVIGATION (Same as Main Site) --- */
+        #main-header { 
+            background: #000; color: #fff; display: flex; justify-content: space-between; 
+            align-items: center; padding: 14px 22px; position: sticky; top: 0; z-index: 1001; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
         
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1002; }
+        .menu-toggle span { width: 25px; height: 3px; background: #febd69; border-radius: 2px; transition: 0.3s; }
+
+        #menu { display: flex; gap: 20px; }
+        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap; transition: 0.3s; }
+        #menu a:hover { color: var(--amz-orange); }
+
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
-            #menu { position: fixed; top: 0; right: -100%; width: 75%; height: 100vh; background: #131921; flex-direction: column; padding: 80px 30px; transition: 0.4s; z-index: 1000; }
+            #menu {
+                position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+                background: #131921; flex-direction: column; padding: 80px 30px;
+                transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.5); gap: 25px;
+            }
             #menu.active { right: 0; }
+            #menu a { font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
         }
 
-        /* --- VIDEO SYSTEM GRID --- */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; padding: 20px; max-width: 1200px; margin: auto; }
-        .video-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative; }
+        /* --- SYSTEM GRID --- */
+        .video-grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 20px; padding: 20px; max-width: 1200px; margin: auto; 
+        }
+
+        .video-card { 
+            background: #fff; border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative;
+        }
+
         .media-container { position: relative; width: 100%; height: 480px; background: #000; }
         iframe { width: 100%; height: 100%; border: none; }
         .slide-img { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s; }
         .slide-img.active { opacity: 1; }
 
+        .price-badge { 
+            position: absolute; top: 15px; right: 15px; background: #ff4757; 
+            color: #fff; padding: 6px 14px; border-radius: 50px; font-weight: 800; z-index: 10;
+        }
+
         .p-details { padding: 15px; text-align: center; }
-        .p-name { font-weight: 700; font-size: 16px; margin-bottom: 5px; color: #333; }
-        .price-badge { position: absolute; top: 15px; right: 15px; background: #ff4757; color: #fff; padding: 5px 12px; border-radius: 50px; font-weight: 800; z-index: 10; }
-        .buy-now-btn { background: linear-gradient(180deg, #f7dfa1, #f0c14b); border: 1px solid #a88734; color: #111; text-decoration: none; font-weight: 700; padding: 12px; border-radius: 10px; display: block; margin-top: 5px; }
+        .p-name { font-weight: 700; font-size: 16px; margin-bottom: 10px; color: #333; height: 40px; overflow: hidden; }
+        .buy-now-btn { 
+            background: linear-gradient(180deg, #f7dfa1, #f0c14b); border: 1px solid #a88734; 
+            color: #111; text-decoration: none; font-weight: 700; padding: 12px; 
+            border-radius: 10px; display: block; transition: 0.2s;
+        }
+        .buy-now-btn:active { transform: scale(0.95); }
 
         /* --- FOOTER (Same as Website) --- */
         #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px 30px; margin-top: 50px; border-top: 4px solid var(--amz-orange); }
@@ -51,6 +79,7 @@
         .sw-social-container { display: flex; gap: 10px; margin-top: 15px; }
         .sw-social-container a { border: 1px solid var(--amz-orange); padding: 5px 15px; border-radius: 8px; color: var(--amz-orange) !important; text-decoration: none; font-size: 13px; }
         #sw-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.5; font-size: 12px; }
+
         #loader { position: fixed; inset: 0; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; }
     </style>
 </head>
@@ -64,7 +93,7 @@
     <nav id="menu"></nav>
 </header>
 
-<div style="padding: 25px; font-weight: 900; font-size: 24px; text-align: center; background: #fff; margin-bottom: 10px;">📽️ Trending Product Videos</div>
+<div style="padding: 25px; font-weight: 900; font-size: 24px; text-align: center; background: #fff;">📽️ Featured Collections</div>
 
 <div class="video-grid" id="system-root"></div>
 
@@ -78,20 +107,27 @@
 </footer>
 
 <script>
-// Nayi API Keys
+// Updated API Endpoints
 const APIS = {
-    SYSTEM: "https://script.google.com/macros/s/AKfycbwjwoXVx-qPG-i38H37mBNQw6IpshKkJpA5vUiWMbQos7m6yNzTqhmvnTMSgXCtCB0/exec",
+    SYSTEM: "https://script.google.com/macros/s/AKfycbxwbTxcJCQq_upggMYNNh5Kmj_rxXXtAoqDNR6hS-AAN0HXpo9SUpqm8Nd1_hNg3Tn3/exec",
     HEAD: "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
     FOOTER: "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec"
 };
 
+// Mobile Menu Logic
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.getElementById('menu');
-menuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+menuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    const spans = menuBtn.querySelectorAll('span');
+    spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+    spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+    spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -7px)' : 'none';
+});
 
-async function loadSystem() {
+async function init() {
     try {
-        const [sysData, hData, fData] = await Promise.all([
+        const [sysRes, hRes, fRes] = await Promise.all([
             fetch(APIS.SYSTEM).then(r => r.json()),
             fetch(APIS.HEAD).then(r => r.json()),
             fetch(APIS.FOOTER).then(r => r.json())
@@ -99,46 +135,52 @@ async function loadSystem() {
 
         document.getElementById('loader').style.display = 'none';
 
-        // Load Menu
-        hData.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
+        // Load Header Menu
+        hRes.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
 
-        // Load System (Video/Image)
+        // Load System Data
         const root = document.getElementById('system-root');
-        sysData.forEach((item, index) => {
+        sysRes.forEach((item, index) => {
             let mediaHtml = "";
+            let links = item.MediaLink ? item.MediaLink.split(',') : [];
+
             if (item.ContentType === "Video") {
                 const reelId = item.MediaLink.split('/reel/')[1] || item.MediaLink.split('/reels/')[1];
                 const cleanId = reelId ? reelId.split('/')[0] : "";
                 mediaHtml = `<iframe src="https://www.instagram.com/reel/${cleanId}/embed" scrolling="no"></iframe>`;
             } else {
-                const images = item.MediaLink.split(',');
-                mediaHtml = images.map((img, i) => `<img src="${img.trim()}" class="slide-img ${i===0?'active':''}" data-card="${index}">`).join('');
+                mediaHtml = links.map((img, i) => `<img src="${img.trim()}" class="slide-img ${i===0?'active':''}">`).join('');
             }
+
+            // Auto-format Price
+            let price = item.PriceText;
+            if(!isNaN(price)) price = "₹" + price;
+
             root.innerHTML += `
                 <div class="video-card">
-                    <div class="price-badge">${item.PriceText}</div>
-                    <div class="media-container" id="container-${index}">${mediaHtml}</div>
+                    <div class="price-badge">${price}</div>
+                    <div class="media-container">${mediaHtml}</div>
                     <div class="p-details">
                         <div class="p-name">${item.ProductName}</div>
-                        <a href="${item.ProductURL}" class="buy-now-btn" target="_blank">🛒 Place Order Now</a>
+                        <a href="${item.ProductURL}" class="buy-now-btn" target="_blank">🛒 Buy Now</a>
                     </div>
                 </div>`;
         });
 
-        // Start Slideshow
+        // Slideshow Animation
         setInterval(() => {
             document.querySelectorAll('.media-container').forEach(container => {
                 const imgs = container.querySelectorAll('.slide-img');
                 if (imgs.length > 1) {
-                    let activeIdx = [...imgs].findIndex(img => img.classList.contains('active'));
-                    imgs[activeIdx].classList.remove('active');
-                    imgs[(activeIdx + 1) % imgs.length].classList.add('active');
+                    let active = [...imgs].findIndex(img => img.classList.contains('active'));
+                    imgs[active].classList.remove('active');
+                    imgs[(active + 1) % imgs.length].classList.add('active');
                 }
             });
         }, 3000);
 
-        // Load Footer (Social & Links)
-        fData.footer.forEach(i => {
+        // Load Footer
+        fRes.footer.forEach(i => {
             let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : i.POSITION === "RIGHT" ? document.getElementById("f-right") : null;
             if(!box && i.POSITION === "BOTTOM") { document.getElementById("sw-bottom").innerText = i.TEXT; return; }
             if(!box) return;
@@ -151,12 +193,9 @@ async function loadSystem() {
             }
         });
 
-    } catch (e) { 
-        console.error(e);
-        document.getElementById('loader').innerText = "Data load nahi ho paya. Refresh karein.";
-    }
+    } catch (e) { console.error(e); }
 }
-loadSystem();
+init();
 </script>
 </body>
 </html>
