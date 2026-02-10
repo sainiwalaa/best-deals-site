@@ -40,13 +40,13 @@ body{background:var(--bg); color:#333; overflow-x: hidden;}
 .products-grid{ max-width:1200px; margin:20px auto; padding:0 10px; display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:15px; }
 .card{ background:var(--card); border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.06); transition:0.3s; text-align:center; display: flex; flex-direction: column; }
 
-/* --- UPDATED IMAGE CSS (Sirf Yahan Badlav Hai) --- */
+/* --- IMAGE FIT UPDATE --- */
 .card img { 
     width: 100%; 
     height: 300px; 
     object-fit: contain; /* Image kategi nahi, puri fit hogi */
-    background: #fff;    /* Khali jagah white rahegi */
-    padding: 10px;       /* Look thoda premium banane ke liye padding */
+    background: #fff;    
+    padding: 5px;        
 }
 
 .card-info{ padding:12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
@@ -79,7 +79,7 @@ body{background:var(--bg); color:#333; overflow-x: hidden;}
   }
   #menu.active { right: 0; }
   .products-grid{ grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 8px; }
-  .card img{ height: 230px; padding: 5px; } /* Mobile image adjustment */
+  .card img{ height: 230px; padding: 5px; }
 }
 </style>
 </head>
@@ -121,18 +121,19 @@ menuBtn.addEventListener('click', () => {
   spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -7px)' : 'none';
 });
 
-// APIs (Wahi jo aapke original code mein the)
 const H_API = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
 const K_API = "https://script.google.com/macros/s/AKfycbBa6NpqTYj48z7Q2rrLfpMDii8D558sdUgG58Frq5ong-2yA-VSMCCzBzygQtV2Sa7/exec";
 const F_API = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
-// Header Logic
+// Header
 fetch(H_API).then(r=>r.json()).then(d=>{
   const menuBox = document.getElementById('menu');
-  d.menu.forEach(m=> menuBox.innerHTML+=`<a href="${m.link}">${m.text}</a>`);
-});
+  d.menu.forEach(m=> {
+    menuBox.innerHTML += `<a href="${m.link}">${m.text}</a>`;
+  });
+}).catch(e=>console.log("Header Error"));
 
-// Products Logic
+// Products
 fetch(K_API).then(r=>r.json()).then(data=>{
   const box = document.getElementById('product-box');
   box.innerHTML = ""; 
@@ -157,9 +158,12 @@ fetch(K_API).then(r=>r.json()).then(data=>{
         </div>
       </div>`;
   });
-}).catch(e=> document.getElementById('product-box').innerHTML="Error loading products.");
+}).catch(e=> {
+  document.getElementById('product-box').innerHTML="Error loading products.";
+  console.error(e);
+});
 
-// Footer Logic
+// Footer
 fetch(F_API).then(r=>r.json()).then(d=>{
   if(!d.footer) return;
   d.footer.forEach(i=>{
@@ -175,7 +179,7 @@ fetch(F_API).then(r=>r.json()).then(d=>{
       sc.innerHTML += `<a href="${i.LINK}" target="_blank">${i.TEXT}</a>`;
     }
   });
-});
+}).catch(e=>console.log("Footer Error"));
 </script>
 </body>
 </html>
