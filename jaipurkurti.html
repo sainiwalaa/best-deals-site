@@ -39,13 +39,22 @@ body{background:var(--bg); color:#333; overflow-x: hidden;}
 /* --- GRID --- */
 .products-grid{ max-width:1200px; margin:20px auto; padding:0 10px; display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:15px; }
 .card{ background:var(--card); border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.06); transition:0.3s; text-align:center; display: flex; flex-direction: column; }
-.card img{ width:100%; height:280px; object-fit:cover; background:#eee;}
+
+/* --- IMAGE UPDATE --- */
+.card img{ 
+    width:100%; 
+    height:320px; 
+    object-fit: contain; /* Image ko bina kaate pura fit dikhane ke liye */
+    background:#ffffff; /* Khali jagah ko white rakhne ke liye */
+    padding: 5px; 
+}
+
 .card-info{ padding:12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
 .card-info h3{ font-size:13px; margin-bottom:8px; height:36px; overflow:hidden; line-height: 1.4; color: #111; }
 .price{ font-size:16px; font-weight:700; color:#2e7d32; margin-bottom:10px; }
 .buy-btn{ display:block; background:var(--accent); color:#000; text-decoration:none; padding:8px; border-radius:6px; font-weight:700; font-size: 13px; }
 
-/* --- FOOTER (Updated Socials) --- */
+/* --- FOOTER --- */
 #sw-footer{ background:#050b1a; color:#fff; padding:40px 15px; margin-top:50px; border-top: 3px solid var(--accent); }
 #sw-marquee{ overflow:hidden; white-space:nowrap; padding-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:25px; text-align:center; }
 #sw-marquee span{ display:inline-block; animation:scroll 20s linear infinite; color:var(--accent); font-weight:600; }
@@ -70,7 +79,7 @@ body{background:var(--bg); color:#333; overflow-x: hidden;}
   }
   #menu.active { right: 0; }
   .products-grid{ grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 8px; }
-  .card img{ height: 210px; } 
+  .card img{ height: 240px; } /* Mobile pe height thodi badhayi hai fit ke liye */
 }
 </style>
 </head>
@@ -113,7 +122,7 @@ menuBtn.addEventListener('click', () => {
 });
 
 const H_API = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
-const K_API = "https://script.google.com/macros/s/AKfycbxBa6NpqTYj48z7Q2rrLfpMDii8D558sdUgG58Frq5ong-2yA-VSMCCzBzygQtV2Sa7/exec";
+const K_API = "https://script.google.com/macros/s/AKfycbBa6NpqTYj48z7Q2rrLfpMDii8D558sdUgG58Frq5ong-2yA-VSMCCzBzygQtV2Sa7/exec";
 const F_API = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
 
 // Header Logic
@@ -149,7 +158,7 @@ fetch(K_API).then(r=>r.json()).then(data=>{
   });
 }).catch(e=> document.getElementById('product-box').innerHTML="Error loading products.");
 
-// Footer Logic (With Social Links Support)
+// Footer Logic
 fetch(F_API).then(r=>r.json()).then(d=>{
   if(!d.footer) return;
   d.footer.forEach(i=>{
