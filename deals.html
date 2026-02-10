@@ -16,12 +16,13 @@
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg); color: #111; overflow-x: hidden; width: 100%; }
 
-        /* --- HEADER & MENU (Same as Index) --- */
+        /* --- HEADER & MENU --- */
         #main-header { background: #000; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 14px 22px; position: sticky; top: 0; z-index: 1001; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
         .menu-toggle span { width: 25px; height: 3px; background: #febd69; border-radius: 2px; }
         #menu { display: flex; gap: 20px; }
-        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; }
+        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        #menu a:hover { color: var(--amz-orange); }
         
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
@@ -30,81 +31,26 @@
         }
 
         /* --- VIDEO SYSTEM GRID --- */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .video-card {
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Responsive Media Container */
-        .media-container {
-            position: relative;
-            width: 100%;
-            height: 480px; /* Reel Format */
-            background: #000;
-        }
-
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; padding: 20px; max-width: 1200px; margin: auto; }
+        .video-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative; }
+        .media-container { position: relative; width: 100%; height: 480px; background: #000; }
         iframe { width: 100%; height: 100%; border: none; }
-
-        /* Image Slideshow Styling */
-        .slide-img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
+        .slide-img { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s; }
         .slide-img.active { opacity: 1; }
 
-        /* Product Info */
         .p-details { padding: 15px; text-align: center; }
         .p-name { font-weight: 700; font-size: 16px; margin-bottom: 5px; color: #333; }
-        .p-desc { font-size: 12px; color: #666; margin-bottom: 10px; height: 36px; overflow: hidden; }
-        
-        .price-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #ff4757;
-            color: #fff;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 14px;
-            z-index: 10;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
+        .price-badge { position: absolute; top: 15px; right: 15px; background: #ff4757; color: #fff; padding: 5px 12px; border-radius: 50px; font-weight: 800; z-index: 10; }
+        .buy-now-btn { background: linear-gradient(180deg, #f7dfa1, #f0c14b); border: 1px solid #a88734; color: #111; text-decoration: none; font-weight: 700; padding: 12px; border-radius: 10px; display: block; margin-top: 5px; }
 
-        .buy-now-btn {
-            background: linear-gradient(180deg, #f7dfa1, #f0c14b);
-            border: 1px solid #a88734;
-            color: #111;
-            text-decoration: none;
-            font-weight: 700;
-            padding: 12px;
-            border-radius: 10px;
-            display: block;
-            margin-top: 5px;
-            transition: 0.2s;
-        }
-        .buy-now-btn:active { transform: scale(0.95); }
-
-        /* Footer Styling (Same as index) */
-        #sw-footer { background: #050b1a; color: #fff; padding: 40px 20px; margin-top: 50px; border-top: 4px solid var(--amz-orange); }
+        /* --- FOOTER (Same as Website) --- */
+        #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px 30px; margin-top: 50px; border-top: 4px solid var(--amz-orange); }
+        #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .sw-col h2 { color: var(--amz-orange); font-size: 22px; margin-bottom: 20px; }
+        .sw-links-container a { display: block; margin: 10px 0; color: #fff; text-decoration: none; font-size: 14px; }
+        .sw-social-container { display: flex; gap: 10px; margin-top: 15px; }
+        .sw-social-container a { border: 1px solid var(--amz-orange); padding: 5px 15px; border-radius: 8px; color: var(--amz-orange) !important; text-decoration: none; font-size: 13px; }
+        #sw-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.5; font-size: 12px; }
         #loader { position: fixed; inset: 0; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; }
     </style>
 </head>
@@ -118,28 +64,27 @@
     <nav id="menu"></nav>
 </header>
 
-<div class="section-head" style="padding: 25px; font-weight: 900; font-size: 24px; text-align: center;">📽️ Trending Product Videos</div>
+<div style="padding: 25px; font-weight: 900; font-size: 24px; text-align: center; background: #fff; margin-bottom: 10px;">📽️ Trending Product Videos</div>
 
-<div class="video-grid" id="system-root">
-    </div>
+<div class="video-grid" id="system-root"></div>
 
 <footer id="sw-footer">
-    <div id="sw-inner" style="max-width:1200px; margin:auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
+    <div id="sw-inner">
         <div class="sw-col" id="f-left"></div>
         <div class="sw-col" id="f-center"></div>
         <div class="sw-col" id="f-right"></div>
     </div>
-    <div id="sw-bottom" style="text-align:center; margin-top:30px; opacity:0.5;"></div>
+    <div id="sw-bottom"></div>
 </footer>
 
 <script>
+// Nayi API Keys
 const APIS = {
-    SYSTEM: "https://script.google.com/macros/s/AKfycbwp3itn6bGxmyiWccxzL3aKyWC_iV_RZvVt7FkuvqAgUoLMRmt3kSu5chm6T1rvb2CS/exec",
+    SYSTEM: "https://script.google.com/macros/s/AKfycbwjwoXVx-qPG-i38H37mBNQw6IpshKkJpA5vUiWMbQos7m6yNzTqhmvnTMSgXCtCB0/exec",
     HEAD: "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec",
     FOOTER: "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec"
 };
 
-// Hamburger Menu Logic
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.getElementById('menu');
 menuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
@@ -154,69 +99,63 @@ async function loadSystem() {
 
         document.getElementById('loader').style.display = 'none';
 
-        // Load Menu & Footer (Same as Index)
+        // Load Menu
         hData.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
-        
-        // Load System Content
+
+        // Load System (Video/Image)
         const root = document.getElementById('system-root');
         sysData.forEach((item, index) => {
             let mediaHtml = "";
-            
             if (item.ContentType === "Video") {
-                // Extract Reel ID
                 const reelId = item.MediaLink.split('/reel/')[1] || item.MediaLink.split('/reels/')[1];
                 const cleanId = reelId ? reelId.split('/')[0] : "";
                 mediaHtml = `<iframe src="https://www.instagram.com/reel/${cleanId}/embed" scrolling="no"></iframe>`;
             } else {
-                // Multi-Image Slideshow
                 const images = item.MediaLink.split(',');
                 mediaHtml = images.map((img, i) => `<img src="${img.trim()}" class="slide-img ${i===0?'active':''}" data-card="${index}">`).join('');
             }
-
             root.innerHTML += `
                 <div class="video-card">
                     <div class="price-badge">${item.PriceText}</div>
-                    <div class="media-container" id="container-${index}">
-                        ${mediaHtml}
-                    </div>
+                    <div class="media-container" id="container-${index}">${mediaHtml}</div>
                     <div class="p-details">
                         <div class="p-name">${item.ProductName}</div>
-                        <p class="p-desc">${item.Description || ''}</p>
                         <a href="${item.ProductURL}" class="buy-now-btn" target="_blank">🛒 Place Order Now</a>
                     </div>
-                </div>
-            `;
+                </div>`;
         });
 
-        // Start Image Slideshows
-        startSlideshows();
+        // Start Slideshow
+        setInterval(() => {
+            document.querySelectorAll('.media-container').forEach(container => {
+                const imgs = container.querySelectorAll('.slide-img');
+                if (imgs.length > 1) {
+                    let activeIdx = [...imgs].findIndex(img => img.classList.contains('active'));
+                    imgs[activeIdx].classList.remove('active');
+                    imgs[(activeIdx + 1) % imgs.length].classList.add('active');
+                }
+            });
+        }, 3000);
 
-        // Footer Load (Same logic as index)
+        // Load Footer (Social & Links)
         fData.footer.forEach(i => {
-            let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : document.getElementById("f-right");
+            let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : i.POSITION === "RIGHT" ? document.getElementById("f-right") : null;
+            if(!box && i.POSITION === "BOTTOM") { document.getElementById("sw-bottom").innerText = i.TEXT; return; }
+            if(!box) return;
+
             if(i.TYPE === "TITLE") box.innerHTML += `<h2>${i.TEXT}</h2>`;
-            else if(i.TYPE === "LINK") box.innerHTML += `<a href="${i.LINK}" style="display:block; color:#fff; text-decoration:none; margin:5px 0;">${i.TEXT}</a>`;
-            else if(i.TYPE === "BOTTOM") document.getElementById("sw-bottom").innerText = i.TEXT;
-        });
-
-    } catch (e) { console.error("Error loading system:", e); }
-}
-
-function startSlideshows() {
-    setInterval(() => {
-        const containers = document.querySelectorAll('.media-container');
-        containers.forEach(container => {
-            const imgs = container.querySelectorAll('.slide-img');
-            if (imgs.length > 1) {
-                let activeIdx = [...imgs].findIndex(img => img.classList.contains('active'));
-                imgs[activeIdx].classList.remove('active');
-                let nextIdx = (activeIdx + 1) % imgs.length;
-                imgs[nextIdx].classList.add('active');
+            else if(i.TYPE === "LINK") box.innerHTML += `<div class="sw-links-container"><a href="${i.LINK}">${i.TEXT}</a></div>`;
+            else if(i.TYPE === "SOCIAL") {
+                let sc = box.querySelector('.sw-social-container') || box.insertAdjacentElement('beforeend', Object.assign(document.createElement('div'), {className:'sw-social-container'}));
+                sc.innerHTML += `<a href="${i.LINK}">${i.TEXT}</a>`;
             }
         });
-    }, 3000); // Change image every 3 seconds
-}
 
+    } catch (e) { 
+        console.error(e);
+        document.getElementById('loader').innerText = "Data load nahi ho paya. Refresh karein.";
+    }
+}
 loadSystem();
 </script>
 </body>
