@@ -40,13 +40,13 @@ body{background:var(--bg); color:#333; overflow-x: hidden;}
 .products-grid{ max-width:1200px; margin:20px auto; padding:0 10px; display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:15px; }
 .card{ background:var(--card); border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.06); transition:0.3s; text-align:center; display: flex; flex-direction: column; }
 
-/* --- IMAGE UPDATE --- */
-.card img{ 
-    width:100%; 
-    height:320px; 
-    object-fit: contain; /* Image ko bina kaate pura fit dikhane ke liye */
-    background:#ffffff; /* Khali jagah ko white rakhne ke liye */
-    padding: 5px; 
+/* --- UPDATED IMAGE CSS (Sirf Yahan Badlav Hai) --- */
+.card img { 
+    width: 100%; 
+    height: 300px; 
+    object-fit: contain; /* Image kategi nahi, puri fit hogi */
+    background: #fff;    /* Khali jagah white rahegi */
+    padding: 10px;       /* Look thoda premium banane ke liye padding */
 }
 
 .card-info{ padding:12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
@@ -79,7 +79,7 @@ body{background:var(--bg); color:#333; overflow-x: hidden;}
   }
   #menu.active { right: 0; }
   .products-grid{ grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 8px; }
-  .card img{ height: 240px; } /* Mobile pe height thodi badhayi hai fit ke liye */
+  .card img{ height: 230px; padding: 5px; } /* Mobile image adjustment */
 }
 </style>
 </head>
@@ -92,7 +92,7 @@ body{background:var(--bg); color:#333; overflow-x: hidden;}
 </header>
 
 <div class="hero-banner">
-  <h1> Jaipuri Kurtis-Saree  Collection</h1>
+  <h1> Jaipuri Kurtis-Saree Collection</h1>
   <p>Authentic Ethnic Wear from Jaipur</p>
 </div>
 
@@ -114,13 +114,14 @@ body{background:var(--bg); color:#333; overflow-x: hidden;}
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.getElementById('menu');
 menuBtn.addEventListener('click', () => {
-   navMenu.classList.toggle('active');
-   const spans = menuBtn.querySelectorAll('span');
-   spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
-   spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-   spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -7px)' : 'none';
+  navMenu.classList.toggle('active');
+  const spans = menuBtn.querySelectorAll('span');
+  spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+  spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+  spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -7px)' : 'none';
 });
 
+// APIs (Wahi jo aapke original code mein the)
 const H_API = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
 const K_API = "https://script.google.com/macros/s/AKfycbBa6NpqTYj48z7Q2rrLfpMDii8D558sdUgG58Frq5ong-2yA-VSMCCzBzygQtV2Sa7/exec";
 const F_API = "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec";
