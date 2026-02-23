@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sainiwalaa – Work From Home Portal</title>
+    <title>Sainiwalaa – Team Earning & Work Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -20,27 +20,13 @@
         }
         .logo { font-weight:900; font-size: 24px; color:var(--gold); text-decoration:none; }
 
-        /* --- THE MISSING HINDI SCROLL LINE (Fixed Speed) --- */
+        /* --- Ticker --- */
         .info-ticker { 
-            background: var(--orange); 
-            color: #000; 
-            padding: 12px 0; 
-            overflow: hidden; 
-            white-space: nowrap; 
-            font-weight: 700; 
-            font-size: 14px; 
-            border-bottom: 2px solid #000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: var(--orange); color: #000; padding: 12px 0; overflow: hidden; 
+            white-space: nowrap; font-weight: 700; font-size: 14px; border-bottom: 2px solid #000;
         }
-        .ticker-text { 
-            display: inline-block; 
-            animation: scroll-info 25s linear infinite; 
-            padding-left: 100%;
-        }
-        @keyframes scroll-info { 
-            0% { transform: translateX(0); } 
-            100% { transform: translateX(-100%); } 
-        }
+        .ticker-text { display: inline-block; animation: scroll-info 25s linear infinite; padding-left: 100%; }
+        @keyframes scroll-info { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
         /* --- Hero Slider --- */
         .hero-slider { position: relative; height: 480px; background: #000; overflow: hidden; }
@@ -50,45 +36,41 @@
         .hero-txt { position: relative; z-index: 10; text-align: center; color: white; padding: 20px; max-width: 850px; }
         .hero-txt h1 { font-size: clamp(30px, 7vw, 50px); font-weight: 900; color: var(--orange); margin-bottom: 15px; }
 
-        /* --- Brand Text Section --- */
-        .brand-box { background: #fff; padding: 25px 0; text-align: center; border-bottom: 1px solid #eee; }
-        .brand-container { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
-        .b-item { font-weight: 900; font-size: 20px; text-transform: uppercase; letter-spacing: -0.5px; animation: float 3s infinite ease-in-out; }
-        @keyframes float { 0%, 100% { transform: translateY(0); opacity: 0.7; } 50% { transform: translateY(-5px); opacity: 1; } }
-        
-        /* Brand Colors */
-        .amz { color: #FF9900; } .hdf { color: #004C8F; } .flp { color: #2874F0; } .p-tm { color: #00BAF2; }
+        /* --- Team Roadmap Section --- */
+        .team-section { background: var(--dark); border-radius: 30px; padding: 40px 20px; color: white; margin: -50px 20px 40px; position: relative; z-index: 100; border: 1px solid var(--orange); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .step-card { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; border: 1px dashed rgba(254,189,105,0.3); text-align: center; }
+        .step-icon { font-size: 35px; margin-bottom: 15px; display: block; }
+        .step-card h4 { color: var(--gold); margin-bottom: 10px; font-weight: 700; }
+        .step-card p { font-size: 12px; opacity: 0.8; line-height: 1.6; }
 
-        /* --- Stats --- */
-        .stats-grid { background: var(--dark); color: white; padding: 40px 20px; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; }
-        .stat-item h2 { color: var(--orange); font-size: clamp(24px, 5vw, 35px); font-weight: 900; }
-        .stat-item p { font-size: 11px; opacity: 0.6; text-transform: uppercase; }
+        /* --- Brand Box --- */
+        .brand-box { background: #fff; padding: 25px 0; text-align: center; }
+        .brand-container { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+        .b-item { font-weight: 900; font-size: 20px; text-transform: uppercase; opacity: 0.8; }
+        .amz { color: #FF9900; } .hdf { color: #004C8F; } .flp { color: #2874F0; }
 
         /* --- Cards --- */
-        .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         .refer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         .card { background: #fff; border-radius: 25px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.4s; border: 1px solid #f1f1f1; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-10px); border-color: var(--orange); }
-        .img-w { width: 100%; height: 200px; background: #eee; }
+        .img-w { width: 100%; height: 210px; background: #eee; }
         .img-w img, .img-w iframe { width: 100%; height: 100%; object-fit: cover; border:none; }
         .card-body { padding: 25px; flex-grow: 1; }
-        .card-body h3 { font-size: 19px; margin: 10px 0; font-weight: 700; color: var(--dark); }
-        .card-body p { font-size: 13px; color: #64748b; margin-bottom: 20px; height: 40px; overflow: hidden; }
-        .btns { display: flex; gap: 10px; }
-        .btn { flex: 1; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; text-align: center; border: none; transition: 0.3s; cursor: pointer; }
+        .btns { display: flex; gap: 10px; margin-top: 15px; }
+        .btn { flex: 1; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; text-align: center; transition: 0.3s; cursor: pointer; border:none; }
         .btn-d { background: #f1f5f9; color: #475569; }
         .btn-m { background: linear-gradient(135deg, #ff9900, #ffb84d); color: #000; }
 
         /* --- Modal --- */
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
         .modal-box { background: white; width: 100%; max-width: 500px; border-radius: 30px; padding: 30px; position: relative; }
-        .close { position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; color: #94a3b8; }
-
-        #footer { background: #000; color: #fff; padding: 40px 20px; text-align: center; }
+        .close { position: absolute; top: 15px; right: 25px; font-size: 30px; cursor: pointer; }
 
         @media (max-width: 768px) {
-            .stats-grid { grid-template-columns: 1fr; gap: 25px; }
-            .hero-slider { height: 380px; }
+            .hero-slider { height: 350px; }
+            .team-section { margin: -30px 15px 30px; padding: 30px 15px; }
         }
     </style>
 </head>
@@ -96,12 +78,12 @@
 
 <header id="main-header">
     <a href="index.html" class="logo">SAINIWALAA</a>
-    <div style="font-size: 10px; color: var(--gold); border: 1px solid var(--gold); padding: 2px 10px; border-radius: 50px;">OFFICIAL</div>
+    <div style="font-size: 10px; color: var(--gold); border: 1px solid var(--gold); padding: 2px 10px; border-radius: 50px;">OFFICIAL PORTAL</div>
 </header>
 
 <div class="info-ticker">
     <div class="ticker-text">
-        यहा आपको Work From Home के लिए फ्री प्लेटफार्म उपलब्ध है जिनमें  टास्क करके या एक टीम बना कर आप महीने की अच्छी इनकम कर सकते है | इसमें आप अपने मालिक खुद है जिसमे आपको खुद का डैशबोर्ड मिलेगा | लाखो लोग सोशल मीडिया पर अपने ब्रांड को प्रमोट करते हुए आज अर्निंग कर रहे है | Join Sainiwalaa Community & Start Earning! 🚀
+        यहा आपको Work From Home के लिए फ्री प्लेटफार्म उपलब्ध है जिनमें टास्क करके या एक टीम बना कर आप महीने की अच्छी इनकम कर सकते है | Join Sainiwalaa Community & Start Earning! 🚀
     </div>
 </div>
 
@@ -109,57 +91,82 @@
     <div class="slide active">
         <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470&auto=format&fit=crop" class="slide-img">
         <div class="hero-txt">
-            <h1 data-aos="fade-up">Trusted Earning Portal</h1>
-            <p>Begin your career with India's most verified Work From Home platforms. Zero Investment required.</p>
+            <h1 data-aos="fade-up">Earn With Your Team</h1>
+            <p>India's most trusted Work From Home community. Build your network, help others, and earn together.</p>
         </div>
     </div>
     <div class="slide">
         <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1470&auto=format&fit=crop" class="slide-img">
         <div class="hero-txt">
-            <h1>Daily Payouts & Support</h1>
-            <p>Kaam seekhein, Team banayein aur rozana payout payein. Hum dete hain aapko 24/7 support.</p>
+            <h1>Healthcare & Wealth Partner</h1>
+            <p>TSE App se judein aur medicines ki superfast delivery ke saath commissions kamayein.</p>
         </div>
     </div>
 </section>
 
+<div class="container">
+    <div class="team-section" data-aos="zoom-in">
+        <div style="text-align: center;">
+            <h2 style="color: var(--gold); font-weight: 900; letter-spacing: 1px;">🚀 TEAM BUILDING ROADMAP</h2>
+            <p style="font-size: 13px; opacity: 0.7; margin-top: 5px;">Akele nahi, Team ke saath milkar bada kamao!</p>
+        </div>
+        
+        <div class="roadmap-grid">
+            <div class="step-card">
+                <span class="step-icon">📲</span>
+                <h4>1. Join & Share</h4>
+                <p>Niche diye gaye kisi bhi verified app ko join karein aur apna link doston ko bhejein.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-icon">🤝</span>
+                <h4>2. Grow Network</h4>
+                <p>Jab aapke refer se log join honge, wo aapki team dashboard mein dikhenge.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-icon">💰</span>
+                <h4>3. Passive Income</h4>
+                <p>Team ke har order, task aur referral par aapko lifetime commission milta rahega.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 25px; text-align: center; padding: 10px; background: rgba(255,153,0,0.1); border-radius: 50px; border: 1px solid rgba(255,153,0,0.3);">
+            <span style="font-size: 11px; font-weight: 700; color: var(--gold);">💡 TIP: Team ko support karein taaki aapki income automatically badhti rahe.</span>
+        </div>
+    </div>
+</div>
+
 <div class="brand-box">
-    <p style="font-size: 10px; font-weight: 800; color: #94a3b8; letter-spacing: 2px;">TOP PARTNER BRANDS</p>
+    <p style="font-size: 10px; font-weight: 800; color: #94a3b8; letter-spacing: 2px;">TRUSTED BY TOP BRANDS</p>
     <div class="brand-container">
         <div class="b-item amz">amazon</div>
         <div class="b-item hdf">HDFC BANK</div>
         <div class="b-item flp">Flipkart</div>
-        <div class="b-item axis" style="color:#971237">Axis Bank</div>
-        <div class="b-item p-tm">Paytm</div>
+        <div class="b-item p-tm" style="color:#00BAF2">Paytm</div>
     </div>
-</div>
-
-<div class="stats-grid">
-    <div class="stat-item"><h2>50K+</h2><p>Active Users</p></div>
-    <div class="stat-item"><h2>100+</h2><p>Offers</p></div>
-    <div class="stat-item"><h2>₹1Cr+</h2><p>Paid Out</p></div>
 </div>
 
 <div class="container">
     <div style="text-align: center; margin-bottom: 40px;">
-        <h2 style="font-weight: 900;">🔥 Best Deals for You</h2>
-        <div style="width: 50px; height: 4px; background: var(--orange); margin: 10px auto; border-radius: 10px;"></div>
+        <h2 style="font-weight: 900; font-size: 28px;">🔥 Verified Opportunities</h2>
+        <div style="width: 60px; height: 4px; background: var(--orange); margin: 10px auto; border-radius: 10px;"></div>
     </div>
 
-    <div id="loading" style="text-align: center; color: var(--orange); font-weight: bold;">Loading Opportunities...</div>
+    <div id="loading" style="text-align: center; color: var(--orange); font-weight: bold;">Fetching Best Deals...</div>
     <div class="refer-grid" id="refer-root"></div>
 </div>
 
 <div class="modal" id="infoModal">
     <div class="modal-box">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle" style="color: var(--orange); margin-bottom: 15px; font-weight: 800;"></h2>
-        <div id="modalBody" style="font-size: 14px; line-height: 1.7; color: #475569; max-height: 300px; overflow-y: auto;"></div>
+        <h2 id="modalTitle" style="color: var(--orange); margin-bottom: 15px; font-weight: 800; font-size: 20px;"></h2>
+        <div id="modalBody" style="font-size: 14px; line-height: 1.7; color: #475569; max-height: 350px; overflow-y: auto;"></div>
     </div>
 </div>
 
-<footer id="footer">
+<footer id="footer" style="background: #000; color: #fff; padding: 50px 20px; text-align: center; border-top: 2px solid var(--orange);">
     <div class="logo">SAINIWALAA</div>
-    <p style="opacity: 0.4; font-size: 11px; margin-top: 10px;">© 2026 Sainiwalaa Official Portal</p>
+    <p style="opacity: 0.5; font-size: 12px; margin-top: 15px;">Build Your Future with Sainiwalaa Community.</p>
+    <p style="opacity: 0.3; font-size: 10px; margin-top: 5px;">© 2026 Official Portal. All Rights Reserved.</p>
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -193,18 +200,18 @@
                     <div class="card" data-aos="fade-up" data-aos-delay="${i * 50}">
                         <div class="img-w">${media}</div>
                         <div class="card-body">
-                            <span style="font-size:10px; font-weight:800; color:var(--orange)">VERIFIED DEAL</span>
-                            <h3>${item.TITLE}</h3>
-                            <p>${item.DESCRIPTION}</p>
+                            <span style="font-size:9px; font-weight:800; color:var(--orange); border:1px solid var(--orange); padding:2px 6px; border-radius:4px;">VERIFIED BY SAINIWALAA</span>
+                            <h3 style="margin: 10px 0; font-size:18px;">${item.TITLE}</h3>
+                            <p style="font-size:13px; color:#64748b; line-height:1.4; margin-bottom:15px; height:38px; overflow:hidden;">${item.DESCRIPTION}</p>
                             <div class="btns">
                                 <button class="btn btn-d" onclick="openModal('${item.TITLE}', \`${item.LONG_INFO}\`)">Details</button>
-                                <a href="${link}" target="_blank" class="btn btn-m">Start Now</a>
+                                <a href="${link}" target="_blank" class="btn btn-m">Start Earning</a>
                             </div>
                         </div>
                     </div>
                 `;
             });
-        } catch (e) { console.error(e); }
+        } catch (e) { console.error("Error loading data:", e); }
     }
 
     let sIdx = 0;
@@ -213,9 +220,9 @@
         slides[sIdx].classList.remove('active');
         sIdx = (sIdx + 1) % slides.length;
         slides[sIdx].classList.add('active');
-        setTimeout(cycle, 8000);
+        setTimeout(cycle, 6000);
     }
-    setTimeout(cycle, 8000);
+    setTimeout(cycle, 6000);
 
     function openModal(t, b) {
         document.getElementById('modalTitle').innerText = t;
