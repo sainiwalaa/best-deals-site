@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sainiwalaa – Work From Home Potential</title>
+    <title>Sainiwalaa – Work From Home Official Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -11,15 +11,14 @@
         :root { 
             --orange: #ff9900; 
             --dark-blue: #0f172a; 
-            --light-bg: #f1f5f9;
+            --light-bg: #f8fafc;
             --white: #ffffff;
-            --text-color: #1e293b;
         }
 
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--light-bg); color: var(--text-color); overflow-x: hidden; }
+        body { background: var(--light-bg); color: #1e293b; overflow-x: hidden; }
 
-        /* --- Header (Same as Index) --- */
+        /* --- Header --- */
         #main-header { 
             background: #000; color: #fff; display: flex; justify-content: space-between; 
             align-items: center; padding: 12px 20px; position: sticky; top: 0; z-index: 1001; 
@@ -27,116 +26,63 @@
         }
         .logo { font-weight:900; font-size: 22px; color:#febd69; text-decoration:none; letter-spacing:1px; }
 
-        /* --- Hero Section with Slider --- */
+        /* --- Scrolling Hindi Ticker --- */
+        .ticker-wrap { background: #ff9900; color: #000; padding: 8px 0; overflow: hidden; white-space: nowrap; font-weight: 700; font-size: 14px; }
+        .ticker-move { display: inline-block; animation: ticker 25s linear infinite; padding-left: 100%; }
+        @keyframes ticker { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
+
+        /* --- Hero Section Slider --- */
         .hero-slider-wrap {
-            position: relative; overflow: hidden; height: 380px; /* Adjust height as needed */
-            background: linear-gradient(135deg, #000 0%, #1e293b 100%);
-            border-bottom: 5px solid var(--orange);
+            position: relative; overflow: hidden; height: 450px; 
+            background: #000; border-bottom: 5px solid var(--orange);
         }
         .hero-slide {
-            position: absolute; inset: 0; opacity: 0; transition: opacity 1.5s ease-in-out;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; color: white;
-            padding: 20px;
+            position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease-in-out;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 20px;
         }
         .hero-slide.active { opacity: 1; }
-
-        .hero-slide-content { max-width: 900px; margin: auto; display: flex; flex-direction: column; align-items: center; }
-        .hero-slide-content h1 { 
-            font-size: clamp(28px, 6vw, 48px); font-weight: 800; color: var(--orange); 
-            margin-bottom: 10px; line-height: 1.2;
-        }
-        .hero-slide-content p { 
-            font-size: clamp(14px, 2.5vw, 18px); opacity: 0.9; font-weight: 300; 
-            max-width: 700px; line-height: 1.6;
-        }
-        .hero-slide-image {
-            position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; z-index: -1;
-        }
-
-        /* --- Main Content Grid --- */
-        .container { max-width: 1100px; margin: 30px auto; padding: 0 15px; }
+        .hero-slide-image { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; z-index: -1; }
         
-        .refer-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 25px; 
-        }
+        .hero-content { max-width: 850px; z-index: 10; }
+        .hero-content h1 { font-size: clamp(28px, 6vw, 45px); font-weight: 900; color: var(--orange); text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 16px; margin: 15px 0; opacity: 0.9; line-height: 1.6; }
+        .trust-badge { display: inline-block; background: rgba(255,153,0,0.2); padding: 5px 15px; border-radius: 50px; border: 1px solid var(--orange); font-size: 12px; margin-top: 10px; }
 
-        /* --- Premium Card Design --- */
+        /* --- Main Content --- */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 15px; }
+        .refer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+
+        /* --- Card Design --- */
         .card { 
-            background: var(--white); border-radius: 24px; overflow: hidden; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column;
+            background: var(--white); border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.4s; 
+            border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column;
         }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(255,153,0,0.15); }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(255,153,0,0.15); }
+        .img-box { width: 100%; height: 200px; background: #f1f5f9; position: relative; overflow: hidden; }
+        .img-box iframe, .img-box img { width: 100%; height: 100%; object-fit: cover; border:none; }
 
-        /* Image Box - Fixed Ratio */
-        .img-box { 
-            width: 100%; position: relative; padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            background: #f8fafc; overflow: hidden;
-        }
-        .img-box iframe, .img-box img { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: cover; border: none; transition: 0.5s;
-        }
-        .card:hover .img-box img { transform: scale(1.08); }
+        .card-body { padding: 20px; flex-grow: 1; }
+        .tag { background: #fff7ed; color: #c2410c; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 5px; text-transform: uppercase; }
+        .card-body h3 { font-size: 19px; color: var(--dark-blue); margin: 10px 0; font-weight: 700; }
+        .card-body p { font-size: 13px; color: #64748b; line-height: 1.5; margin-bottom: 20px; }
 
-        .card-content { padding: 20px; flex-grow: 1; text-align: left; }
-        .tag { 
-            display: inline-block; background: #fff7ed; color: #c2410c; 
-            font-size: 10px; font-weight: 800; padding: 4px 12px; 
-            border-radius: 50px; text-transform: uppercase; margin-bottom: 12px;
-            border: 1px solid #ffedd5;
-        }
-
-        .card-content h3 { font-size: 18px; color: var(--dark-blue); margin-bottom: 8px; font-weight: 700; }
-        .card-content p { font-size: 13px; color: #64748b; line-height: 1.5; margin-bottom: 20px; }
-
-        /* --- Buttons Design --- */
         .btn-row { display: grid; grid-template-columns: 1fr 1.2fr; gap: 10px; }
-        .btn { 
-            padding: 12px 5px; border-radius: 12px; text-align: center; 
-            text-decoration: none; font-weight: 700; font-size: 13px; transition: 0.3s;
-        }
-        .btn-details { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
-        .btn-details:hover { background: #e2e8f0; }
+        .btn { padding: 12px; border-radius: 10px; text-align: center; text-decoration: none; font-weight: 700; font-size: 13px; border: none; cursor: pointer; }
+        .btn-details { background: #f1f5f9; color: #475569; }
+        .btn-join { background: linear-gradient(180deg, #febd69, #ff9900); color: #000; border: 1px solid #a88734; }
 
-        .btn-join { 
-            background: linear-gradient(180deg, #febd69, #ff9900); color: #000; 
-            box-shadow: 0 4px 0 #ca8a04; border: 1px solid #a88734;
-        }
-        .btn-join:active { transform: translateY(3px); box-shadow: none; }
+        /* --- Modal --- */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(5px); }
+        .modal-box { background: white; width: 100%; max-width: 500px; border-radius: 25px; padding: 30px; position: relative; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; }
 
-        /* --- Modal Popup --- */
-        .modal { 
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); 
-            z-index: 2000; align-items: center; justify-content: center; padding: 20px;
-            backdrop-filter: blur(8px);
-        }
-        .modal-wrap { 
-            background: white; width: 100%; max-width: 500px; border-radius: 30px; 
-            padding: 30px; position: relative; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #cbd5e1; }
+        #footer { background: #000; color: #fff; padding: 50px 20px; text-align: center; border-top: 5px solid var(--orange); }
 
-        /* --- Footer --- */
-        #sw-footer { background: #000; color: #fff; padding: 40px 20px; text-align: center; border-top: 4px solid var(--orange); }
-
-        #loading { text-align: center; padding: 80px 20px; font-weight: bold; color: var(--orange); font-size: 18px; }
-
-        /* --- Mobile Responsiveness --- */
-        @media (max-width: 768px) {
-            .hero-slider-wrap { height: 300px; }
-            .hero-slide-content h1 { font-size: clamp(24px, 5vw, 36px); }
-            .hero-slide-content p { font-size: clamp(13px, 2.5vw, 16px); }
-        }
         @media (max-width: 480px) {
-            .refer-grid { grid-template-columns: 1fr; gap: 20px; }
-            .hero-slider-wrap { height: 250px; }
-            .card-content h3 { font-size: 17px; }
-            .img-box { padding-top: 50%; } /* Slightly shorter images on mobile */
+            .hero-slider-wrap { height: 350px; }
+            .ticker-wrap { font-size: 12px; }
         }
     </style>
 </head>
@@ -144,56 +90,55 @@
 
 <header id="main-header">
     <a href="index.html" class="logo">SAINIWALAA</a>
-    <div style="font-size: 10px; border: 1px solid #febd69; padding: 2px 8px; border-radius: 4px; color: #febd69;">OFFICIAL</div>
+    <div style="font-size: 10px; color: #ff9900; font-weight: bold;">TRUSTED PORTAL 2026</div>
 </header>
+
+<div class="ticker-wrap">
+    <div class="ticker-move">
+        यहा आपको Work From Home के लिए फ्री प्लेटफार्म उपलब्ध है जिनमे टास्क करके या एक टीम बना कर आप महीने की अच्छी इनकम कर सकते है | इसमें आप अपने मालिक खुद है जिसमे आपको खुद का डैशबोर्ड मिलेगा | लाखो लोग सोशल मीडिया पर अपने ब्रांड को प्रमोट करते हुए आज अर्निंग कर रहे है | Join Sainiwalaa Now!
+    </div>
+</div>
 
 <section class="hero-slider-wrap">
     <div class="hero-slide active">
-        <img src="https://images.unsplash.com/photo-1542435503-9214407b36f7?q=80&w=1470&auto=format&fit=crop" class="hero-slide-image" alt="Work from Home setup">
-        <div class="hero-slide-content">
-            <h1 data-aos="fade-up" data-aos-delay="100">Unlock Your **Work From Home** Potential</h1>
-            <p data-aos="fade-up" data-aos-delay="300">Sainiwalaa provides genuine opportunities to earn from the comfort of your home.</p>
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1474&auto=format&fit=crop" class="hero-slide-image">
+        <div class="hero-content">
+            <h1 data-aos="fade-down">Be Your Own Boss</h1>
+            <p>Sainiwalaa provides you verified platforms to work from home with Zero Investment. Build your own team and earn daily.</p>
+            <div class="trust-badge">Verified by 50K+ Users</div>
         </div>
     </div>
     <div class="hero-slide">
-        <img src="https://images.unsplash.com/photo-1573496359142-b8d877341ace?q=80&w=1470&auto=format&fit=crop" class="hero-slide-image" alt="Online earning success">
-        <div class="hero-slide-content">
-            <h1 data-aos="fade-up" data-aos-delay="100">Why Join **Sainiwalaa?**</h1>
-            <p data-aos="fade-up" data-aos-delay="300">✅ Curated Bonuses & Exclusive Deals <br> ✅ Daily Support & Easy Payouts <br> ✅ 100% Trusted & Verified Platforms</p>
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1426&auto=format&fit=crop" class="hero-slide-image">
+        <div class="hero-content">
+            <h1>Track Your Earnings</h1>
+            <p>Har platform par aapko apna personal Dashboard milega jaha aap apni Rozana ki income aur team ki growth track kar sakte hai.</p>
+            <div class="trust-badge">Instant Payout Systems</div>
         </div>
     </div>
-    <div class="hero-slide">
-        <img src="https://images.unsplash.com/photo-1620392301552-32049d115e06?q=80&w=1470&auto=format&fit=crop" class="hero-slide-image" alt="Team collaboration online">
-        <div class="hero-slide-content">
-            <h1 data-aos="fade-up" data-aos-delay="100">Start Your **Earning Journey** Today</h1>
-            <p data-aos="fade-up" data-aos-delay="300">Discover top apps and platforms. No investment, just dedication. Your success is our mission!</p>
-        </div>
-    </div>
-    </section>
+</section>
 
 <div class="container">
-    <div id="loading">Connecting to Database...</div>
+    <div id="loading" style="text-align: center; font-weight: bold; color: #ff9900;">Fetching Best Deals...</div>
     <div class="refer-grid" id="refer-root"></div>
 </div>
 
 <div class="modal" id="infoModal">
-    <div class="modal-wrap">
-        <span class="close-icon" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle" style="color: var(--orange); margin-bottom: 12px; font-size: 20px; font-weight: 800;"></h2>
-        <div id="modalBody" style="line-height: 1.6; font-size: 14px; color: #475569; max-height: 300px; overflow-y: auto;"></div>
-        <button class="btn btn-join" style="width: 100%; margin-top: 20px;" onclick="closeModal()">Got it!</button>
+    <div class="modal-box">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle" style="color: var(--orange); margin-bottom: 15px;"></h2>
+        <div id="modalBody" style="font-size: 14px; line-height: 1.6; color: #444; max-height: 350px; overflow-y: auto;"></div>
     </div>
 </div>
 
-<footer id="sw-footer">
-    <div class="logo">SAINIWALAA</div>
-    <p style="font-size: 11px; opacity: 0.5; margin-top: 10px;">© 2026 Earning Portal. All Rights Reserved.</p>
+<footer id="footer">
+    <div class="logo" style="margin-bottom: 15px;">SAINIWALAA</div>
+    <p style="font-size: 12px; opacity: 0.6;">Helping India to Earn Digitally. No Fees, Only Opportunities.</p>
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
-
     const API = "https://script.google.com/macros/s/AKfycbyQ6s-hGiq89aO0a2753HkuDwwEWi2wiSH9p02JJyKd_P-reqX0pVLImP4eSjVwPIbiBw/exec";
 
     function getYT(url) {
@@ -202,7 +147,7 @@
         return (match && match[2].length == 11) ? "https://www.youtube.com/embed/" + match[2] : null;
     }
 
-    async function init() {
+    async function loadData() {
         try {
             const res = await fetch(API);
             const data = await res.json();
@@ -211,58 +156,51 @@
 
             data.forEach((item, i) => {
                 let vid = getYT(item.VIDEO_URL);
+                let link = item.LINK.trim();
+                if(!link.startsWith('http')) link = 'https://' + link;
+
                 let media = vid 
                     ? `<iframe src="${vid}" allowfullscreen></iframe>`
-                    : `<img src="${item.IMAGE_URL}" onerror="this.src='https://via.placeholder.com/400x225?text=Sainiwalaa+Image'">`;
+                    : `<img src="${item.IMAGE_URL}" onerror="this.src='https://via.placeholder.com/400x225?text=Sainiwalaa+Earning'">`;
 
                 root.innerHTML += `
                     <div class="card" data-aos="fade-up" data-aos-delay="${i * 50}">
                         <div class="img-box">${media}</div>
-                        <div class="card-content">
-                            <span class="tag">${item.TAG || 'Referral'}</span>
+                        <div class="card-body">
+                            <span class="tag">${item.TAG || 'Best Offer'}</span>
                             <h3>${item.TITLE}</h3>
                             <p>${item.DESCRIPTION}</p>
                             <div class="btn-row">
                                 <button class="btn btn-details" onclick="openModal('${item.TITLE}', \`${item.LONG_INFO}\`)">Details</button>
-                                <a href="${item.LINK}" target="_blank" class="btn btn-join">Start Now</a>
+                                <a href="${link}" target="_blank" class="btn btn-join">Start Earning</a>
                             </div>
                         </div>
                     </div>
                 `;
             });
-        } catch (e) {
-            document.getElementById('loading').innerText = "Failed to load data!";
-        }
+        } catch (e) { console.error(e); }
     }
 
-    // Hero Slider Logic
-    let slideIndex = 0;
+    // Slider Logic
+    let sIdx = 0;
     const slides = document.querySelectorAll('.hero-slide');
-
-    function showSlides() {
-        slides.forEach(slide => slide.classList.remove('active'));
-        slideIndex++;
-        if (slideIndex > slides.length) { slideIndex = 1; }
-        slides[slideIndex - 1].classList.add('active');
-        setTimeout(showSlides, 5000); // Change image every 5 seconds
+    function cycleSlides() {
+        slides.forEach(s => s.classList.remove('active'));
+        sIdx = (sIdx + 1) % slides.length;
+        slides[sIdx].classList.add('active');
+        setTimeout(cycleSlides, 6000);
     }
-    showSlides(); // Start the slider
+    cycleSlides();
 
     function openModal(t, b) {
         document.getElementById('modalTitle').innerText = t;
         document.getElementById('modalBody').innerHTML = b.replace(/\n/g, "<br>");
         document.getElementById('infoModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
     }
-
-    function closeModal() {
-        document.getElementById('infoModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
+    function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
     window.onclick = (e) => { if(e.target == document.getElementById('infoModal')) closeModal(); }
 
-    init();
+    loadData();
 </script>
 </body>
 </html>
