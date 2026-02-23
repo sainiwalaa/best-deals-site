@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sainiwalaa – Refer & Earn (Work From Home)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root { 
+            --amz-blue: #131921; 
+            --amz-orange: #ff9900; 
+            --bg: #eaeded; 
+            --card: #ffffff; 
+        }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); color: #111; overflow-x: hidden; }
+
+        /* --- SAME HEADER AS INDEX --- */
+        #main-header { 
+            background: #000; color: #fff; display: flex; justify-content: space-between; 
+            align-items: center; padding: 14px 22px; position: sticky; top: 0; z-index: 1001; 
+        }
+        #menu { display: flex; gap: 20px; }
+        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; }
+
+        /* --- REFER PAGE CONTENT --- */
+        .refer-hero {
+            background: linear-gradient(45deg, #080d17, #1a1a1a);
+            color: white; padding: 60px 20px; text-align: center;
+        }
+        .refer-hero h1 { font-size: 32px; color: var(--amz-orange); margin-bottom: 10px; }
+        .refer-hero p { opacity: 0.8; font-size: 14px; }
+
+        .container { max-width: 1200px; margin: -40px auto 40px; padding: 0 15px; }
+        
+        .refer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .refer-card {
+            background: white; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: 0.3s; border: 1px solid #ddd;
+        }
+        .refer-card:hover { transform: translateY(-10px); }
+
+        .card-img { width: 100%; height: 180px; background: #f0f0f0; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .refer-card:hover .card-img img { scale: 1.1; }
+
+        .card-body { padding: 20px; }
+        .tag { background: #fff3e0; color: #e65100; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 5px; text-transform: uppercase; }
+        .card-body h3 { margin: 10px 0; font-size: 20px; color: var(--amz-blue); }
+        .card-body p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 20px; }
+
+        .apply-btn {
+            display: block; text-align: center; background: #febd69; color: #111;
+            text-decoration: none; font-weight: 700; padding: 12px; border-radius: 10px;
+            box-shadow: 0 4px 0 #a88734; transition: 0.2s;
+        }
+        .apply-btn:active { box-shadow: none; transform: translateY(4px); }
+
+        /* --- FOOTER --- */
+        #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px 30px; margin-top: 50px; border-top: 4px solid var(--amz-orange); text-align: center; }
+
+        @media (max-width: 768px) {
+            .refer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="main-header">
+    <div style="font-weight:900; font-size: 22px; color:#febd69; cursor: pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
+    <nav id="menu">
+        <a href="index.html">HOME</a>
+    </nav>
+</header>
+
+<section class="refer-hero">
+    <h1>Refer & Earn Opportunities</h1>
+    <p>Ghar baithe kuch ghante kaam karke 2026 mein shuru karein apni earning</p>
+</section>
+
+<div class="container">
+    <div class="refer-grid">
+        
+        <div class="refer-card" data-aos="fade-up">
+            <div class="card-img"><img src="https://images.unsplash.com/photo-1554224155-16974a4ea2c5?q=80&w=500" alt="ExtraPay"></div>
+            <div class="card-body">
+                <span class="tag">Direct Refer</span>
+                <h3>ExtraPay</h3>
+                <p>Is app ke zariye aap shopping links share karke achha commission kama sakte hain. Daily login aur referral par bonus payein.</p>
+                <a href="#" class="apply-btn">Register Now</a>
+            </div>
+        </div>
+
+        <div class="refer-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-img"><img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=500" alt="TSE App"></div>
+            <div class="card-body">
+                <span class="tag">Tasks & Earnings</span>
+                <h3>TSE APP</h3>
+                <p>Simple surveys aur app installs tasks pure karein. Student aur housewives ke liye sabse behtar earning app.</p>
+                <a href="#" class="apply-btn">Get App Link</a>
+            </div>
+        </div>
+
+        <div class="refer-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-img"><img src="https://images.unsplash.com/photo-1523474253046-2cd2c78b6ad1?q=80&w=500" alt="Amazon Seller"></div>
+            <div class="card-body">
+                <span class="tag">Business</span>
+                <h3>Amazon Seller</h3>
+                <p>Apna khud ka brand shuru karein. Amazon par account banayein aur desh bhar mein apna saaman bechein.</p>
+                <a href="#" class="apply-btn">Open Account</a>
+            </div>
+        </div>
+
+        <div class="refer-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-img"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=500" alt="Meesho"></div>
+            <div class="card-body">
+                <span class="tag">Reselling</span>
+                <h3>Meesho Reselling</h3>
+                <p>Bina kisi investment ke business karein. WhatsApp par catalog share karein aur apna margin set karein.</p>
+                <a href="#" class="apply-btn">Start Reselling</a>
+            </div>
+        </div>
+
+        <div class="refer-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="card-img"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=500" alt="Forever"></div>
+            <div class="card-body">
+                <span class="tag">Global Network</span>
+                <h3>Forever Living</h3>
+                <p>Health & Wellness sector mein career banayein. International brand ke sath jud kar mahina lakho kamane ka mauka.</p>
+                <a href="#" class="apply-btn">Join Team</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer id="sw-footer">
+    <h2 style="color:var(--amz-orange)">SAINIWALAA</h2>
+    <p style="font-size: 13px; opacity: 0.7; margin-top: 10px;">Connect with us for more updates</p>
+    <div style="margin-top: 20px;">
+        <a href="index.html" style="color:white; margin:0 10px; text-decoration: none;">HOME</a>
+        <a href="#" style="color:white; margin:0 10px; text-decoration: none;">WHATSAPP</a>
+    </div>
+    <div style="margin-top: 30px; font-size: 11px; opacity: 0.4;">© 2026 Sainiwalaa. Work From Home Portal.</div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ duration: 800, once: true });</script>
+</body>
+</html>
