@@ -3,156 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sainiwalaa – Refer & Earn (Work From Home)</title>
+    <title>Sainiwalaa – Work From Home Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root { 
-            --amz-blue: #131921; 
             --amz-orange: #ff9900; 
-            --bg: #eaeded; 
-            --card: #ffffff; 
+            --amz-dark: #131921; 
+            --bg: #f4f7f9;
+            --white: #ffffff;
         }
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: #111; overflow-x: hidden; }
 
-        /* --- SAME HEADER AS INDEX --- */
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); color: #333; overflow-x: hidden; width: 100%; }
+
+        /* --- SAINIWALAA HEADER --- */
         #main-header { 
             background: #000; color: #fff; display: flex; justify-content: space-between; 
-            align-items: center; padding: 14px 22px; position: sticky; top: 0; z-index: 1001; 
+            align-items: center; padding: 15px 20px; position: sticky; top: 0; z-index: 1001; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
-        #menu { display: flex; gap: 20px; }
-        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; }
+        .logo { font-weight:900; font-size: 20px; color:#febd69; letter-spacing:1px; text-decoration:none; }
 
-        /* --- REFER PAGE CONTENT --- */
-        .refer-hero {
-            background: linear-gradient(45deg, #080d17, #1a1a1a);
-            color: white; padding: 60px 20px; text-align: center;
+        /* --- HERO SECTION --- */
+        .hero-banner {
+            background: linear-gradient(135deg, #080d17 0%, #1a1a1a 100%);
+            padding: 50px 20px; text-align: center; color: white; position: relative; overflow: hidden;
         }
-        .refer-hero h1 { font-size: 32px; color: var(--amz-orange); margin-bottom: 10px; }
-        .refer-hero p { opacity: 0.8; font-size: 14px; }
-
-        .container { max-width: 1200px; margin: -40px auto 40px; padding: 0 15px; }
+        .hero-banner h1 { 
+            font-size: clamp(24px, 6vw, 40px); font-weight: 900; color: var(--amz-orange); 
+            text-transform: uppercase; margin-bottom: 10px;
+        }
+        .hero-banner p { font-size: 14px; opacity: 0.9; color: #ffe9b0; }
         
-        .refer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        /* Floating Animation Elements */
+        .circle { position: absolute; background: var(--amz-orange); border-radius: 50%; opacity: 0.1; animation: float 6s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        /* --- MAIN CONTAINER --- */
+        .container { max-width: 1200px; margin: -30px auto 40px; padding: 0 15px; position: relative; z-index: 10; }
+        
+        .refer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
         }
 
-        .refer-card {
-            background: white; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: 0.3s; border: 1px solid #ddd;
+        /* --- ATTRACTIVE CARD DESIGN --- */
+        .card { 
+            background: var(--white); border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: 0.4s; 
+            border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column;
         }
-        .refer-card:hover { transform: translateY(-10px); }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(255,153,0,0.2); }
 
-        .card-img { width: 100%; height: 180px; background: #f0f0f0; overflow: hidden; }
-        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .refer-card:hover .card-img img { scale: 1.1; }
+        .media-container { width: 100%; height: 200px; background: #000; position: relative; }
+        .media-container iframe, .media-container img { width: 100%; height: 100%; border: none; object-fit: cover; }
 
-        .card-body { padding: 20px; }
-        .tag { background: #fff3e0; color: #e65100; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 5px; text-transform: uppercase; }
-        .card-body h3 { margin: 10px 0; font-size: 20px; color: var(--amz-blue); }
-        .card-body p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 20px; }
+        .card-body { padding: 20px; flex-grow: 1; }
+        .tag-row { margin-bottom: 12px; }
+        .tag { background: #fff3e0; color: #e65100; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 50px; text-transform: uppercase; }
 
-        .apply-btn {
-            display: block; text-align: center; background: #febd69; color: #111;
-            text-decoration: none; font-weight: 700; padding: 12px; border-radius: 10px;
-            box-shadow: 0 4px 0 #a88734; transition: 0.2s;
+        .card-body h3 { font-size: 1.3rem; color: var(--amz-dark); margin-bottom: 8px; font-weight: 700; }
+        .card-body p { font-size: 13px; color: #666; line-height: 1.6; height: 40px; overflow: hidden; margin-bottom: 20px; }
+
+        /* --- BUTTONS --- */
+        .btn-group { display: flex; gap: 10px; }
+        .btn { 
+            flex: 1; padding: 12px; border-radius: 12px; text-align: center; 
+            text-decoration: none; font-weight: 700; font-size: 14px; transition: 0.3s; border: none; cursor: pointer;
         }
-        .apply-btn:active { box-shadow: none; transform: translateY(4px); }
+        .btn-info { background: #f0f2f5; color: #333; border: 1px solid #ddd; }
+        .btn-apply { background: linear-gradient(180deg, #febd69, #ff9900); color: #000; box-shadow: 0 4px 0 #a88734; }
+        .btn-apply:active { transform: translateY(2px); box-shadow: none; }
 
-        /* --- FOOTER --- */
-        #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px 30px; margin-top: 50px; border-top: 4px solid var(--amz-orange); text-align: center; }
+        /* --- MODAL (POPUP) --- */
+        .modal { 
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); 
+            z-index: 2000; align-items: center; justify-content: center; padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content { 
+            background: white; width: 100%; max-width: 550px; border-radius: 25px; 
+            padding: 30px; position: relative; animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+        @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #999; }
 
-        @media (max-width: 768px) {
+        /* --- SAINIWALAA FOOTER --- */
+        #sw-footer { background: #050b1a; color: #fff; padding: 40px 20px; text-align: center; margin-top: 50px; border-top: 4px solid var(--amz-orange); }
+        .footer-logo { font-size: 24px; font-weight: 900; color: var(--amz-orange); margin-bottom: 10px; }
+        
+        #loader { text-align: center; padding: 100px 20px; font-size: 18px; font-weight: bold; color: var(--amz-orange); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
             .refer-grid { grid-template-columns: 1fr; }
+            .hero-banner { padding: 40px 15px; }
+            .card-body h3 { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
 <header id="main-header">
-    <div style="font-weight:900; font-size: 22px; color:#febd69; cursor: pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
-    <nav id="menu">
-        <a href="index.html">HOME</a>
-    </nav>
+    <a href="index.html" class="logo">SAINIWALAA</a>
+    <div style="font-size: 10px; background: #333; padding: 4px 8px; border-radius: 5px;">2026 EARNINGS</div>
 </header>
 
-<section class="refer-hero">
-    <h1>Refer & Earn Opportunities</h1>
-    <p>Ghar baithe kuch ghante kaam karke 2026 mein shuru karein apni earning</p>
+<section class="hero-banner">
+    <div class="circle" style="width: 100px; height: 100px; top: 10%; left: 5%;"></div>
+    <div class="circle" style="width: 60px; height: 60px; bottom: 20%; right: 10%;"></div>
+    <h1 data-aos="fade-down">Refer & Earn Portal</h1>
+    <p data-aos="fade-up">Ghar baithe smartphone se paise kamane ke top tarike</p>
 </section>
 
 <div class="container">
-    <div class="refer-grid">
-        
-        <div class="refer-card" data-aos="fade-up">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1554224155-16974a4ea2c5?q=80&w=500" alt="ExtraPay"></div>
-            <div class="card-body">
-                <span class="tag">Direct Refer</span>
-                <h3>ExtraPay</h3>
-                <p>Is app ke zariye aap shopping links share karke achha commission kama sakte hain. Daily login aur referral par bonus payein.</p>
-                <a href="#" class="apply-btn">Register Now</a>
-            </div>
-        </div>
+    <div id="loader">🔄 Loading Opportunities...</div>
+    <div class="refer-grid" id="refer-root"></div>
+</div>
 
-        <div class="refer-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=500" alt="TSE App"></div>
-            <div class="card-body">
-                <span class="tag">Tasks & Earnings</span>
-                <h3>TSE APP</h3>
-                <p>Simple surveys aur app installs tasks pure karein. Student aur housewives ke liye sabse behtar earning app.</p>
-                <a href="#" class="apply-btn">Get App Link</a>
-            </div>
-        </div>
-
-        <div class="refer-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1523474253046-2cd2c78b6ad1?q=80&w=500" alt="Amazon Seller"></div>
-            <div class="card-body">
-                <span class="tag">Business</span>
-                <h3>Amazon Seller</h3>
-                <p>Apna khud ka brand shuru karein. Amazon par account banayein aur desh bhar mein apna saaman bechein.</p>
-                <a href="#" class="apply-btn">Open Account</a>
-            </div>
-        </div>
-
-        <div class="refer-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=500" alt="Meesho"></div>
-            <div class="card-body">
-                <span class="tag">Reselling</span>
-                <h3>Meesho Reselling</h3>
-                <p>Bina kisi investment ke business karein. WhatsApp par catalog share karein aur apna margin set karein.</p>
-                <a href="#" class="apply-btn">Start Reselling</a>
-            </div>
-        </div>
-
-        <div class="refer-card" data-aos="fade-up" data-aos-delay="400">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=500" alt="Forever"></div>
-            <div class="card-body">
-                <span class="tag">Global Network</span>
-                <h3>Forever Living</h3>
-                <p>Health & Wellness sector mein career banayein. International brand ke sath jud kar mahina lakho kamane ka mauka.</p>
-                <a href="#" class="apply-btn">Join Team</a>
-            </div>
-        </div>
-
+<div class="modal" id="infoModal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle" style="color: var(--amz-orange); margin-bottom: 15px; font-size: 22px;"></h2>
+        <div id="modalBody" style="line-height: 1.7; font-size: 14px; color: #444; max-height: 350px; overflow-y: auto;"></div>
+        <button class="btn btn-apply" style="width: 100%; margin-top: 20px;" onclick="closeModal()">Samaz gaya!</button>
     </div>
 </div>
 
 <footer id="sw-footer">
-    <h2 style="color:var(--amz-orange)">SAINIWALAA</h2>
-    <p style="font-size: 13px; opacity: 0.7; margin-top: 10px;">Connect with us for more updates</p>
+    <div class="footer-logo">SAINIWALAA</div>
+    <p style="font-size: 12px; opacity: 0.6;">Trusted Work From Home Resource</p>
     <div style="margin-top: 20px;">
-        <a href="index.html" style="color:white; margin:0 10px; text-decoration: none;">HOME</a>
-        <a href="#" style="color:white; margin:0 10px; text-decoration: none;">WHATSAPP</a>
+        <a href="index.html" style="color:white; text-decoration:none; font-size: 13px; border: 1px solid #333; padding: 5px 15px; border-radius: 5px;">Back to Home</a>
     </div>
-    <div style="margin-top: 30px; font-size: 11px; opacity: 0.4;">© 2026 Sainiwalaa. Work From Home Portal.</div>
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init({ duration: 800, once: true });</script>
+<script>
+    AOS.init({ duration: 800, once: true });
+
+    const API_URL = "https://script.google.com/macros/s/AKfycbyQ6s-hGiq89aO0a2753HkuDwwEWi2wiSH9p02JJyKd_P-reqX0pVLImP4eSjVwPIbiBw/exec";
+
+    function getEmbedUrl(url) {
+        if (!url || url.trim() === "") return null;
+        let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        let match = url.match(regExp);
+        return (match && match[2].length == 11) ? "https://www.youtube.com/embed/" + match[2] : null;
+    }
+
+    async function loadData() {
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            document.getElementById('loader').style.display = 'none';
+            const root = document.getElementById('refer-root');
+
+            data.forEach((item, index) => {
+                let videoLink = getEmbedUrl(item.VIDEO_URL);
+                let mediaHTML = videoLink 
+                    ? `<iframe src="${videoLink}" allowfullscreen></iframe>`
+                    : `<img src="${item.IMAGE_URL}" onerror="this.src='https://via.placeholder.com/400x250?text=Sainiwalaa+Deals'">`;
+
+                root.innerHTML += `
+                    <div class="card" data-aos="zoom-in" data-aos-delay="${index * 50}">
+                        <div class="media-container">${mediaHTML}</div>
+                        <div class="card-body">
+                            <div class="tag-row"><span class="tag">${item.TAG || 'Earning'}</span></div>
+                            <h3>${item.TITLE}</h3>
+                            <p>${item.DESCRIPTION}</p>
+                            <div class="btn-group">
+                                <button class="btn btn-info" onclick="openModal('${item.TITLE}', \`${item.LONG_INFO}\`)">Details</button>
+                                <a href="${item.LINK}" target="_blank" class="btn btn-apply">Start Now</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        } catch (err) {
+            document.getElementById('loader').innerText = "❌ Failed to load data. Please refresh.";
+        }
+    }
+
+    function openModal(title, info) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalBody').innerHTML = info.replace(/\n/g, "<br>");
+        document.getElementById('infoModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        document.getElementById('infoModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    window.onclick = (e) => { if(e.target == document.getElementById('infoModal')) closeModal(); }
+
+    loadData();
+</script>
 </body>
 </html>
