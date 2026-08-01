@@ -3,17 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sainiwalaa – Premium Deals & Updates</title>
+  <title>Sainiwalaa – Premium Experience</title>
 
-  <!-- Google Fonts (Outfit & Plus Jakarta Sans) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ==========================================
-       PREMIUM DESIGN SYSTEM
-       ========================================== */
     :root {
       --bg-dark: #0a0c10;
       --card-bg: rgba(255, 255, 255, 0.04);
@@ -29,13 +26,10 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
     body { background: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
 
-    /* ==========================================
-       GLASS HEADER
-       ========================================== */
+    /* HEADER */
     #main-header {
       background: var(--glass-bg);
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -56,9 +50,6 @@
       -webkit-text-fill-color: transparent;
       cursor: pointer;
       text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     #menu { display: flex; gap: 24px; align-items: center; }
@@ -68,44 +59,14 @@
       font-weight: 600;
       font-size: 0.95rem;
       transition: all 0.3s ease;
-      position: relative;
     }
     #menu a:hover { color: #ffffff; }
-    #menu a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -6px;
-      left: 0;
-      background: var(--gold-gradient);
-      transition: all 0.3s ease;
-      border-radius: 2px;
-    }
-    #menu a:hover::after { width: 100%; }
 
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 6px;
-      cursor: pointer;
-      z-index: 1002;
-    }
-    .menu-toggle span {
-      width: 26px;
-      height: 2px;
-      background: #ffffff;
-      transition: 0.3s ease;
-    }
-
-    /* ==========================================
-       HERO SECTION
-       ========================================== */
+    /* HERO SECTION */
     #hero-sainiwalaa {
       background: var(--primary-gradient);
       position: relative;
       padding: 80px 5% 70px;
-      overflow: hidden;
       border-bottom: 1px solid var(--border-light);
     }
 
@@ -117,8 +78,6 @@
       gap: 50px;
       align-items: center;
     }
-
-    .hero-left { color: var(--text-main); }
 
     .notice-wrapper {
       margin-bottom: 20px;
@@ -139,7 +98,7 @@
       border-radius: 12px;
       text-transform: uppercase;
     }
-    #hero-notice { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+    #hero-notice { font-size: 0.9rem; color: var(--text-muted); }
 
     #hero-title {
       font-family: 'Outfit', sans-serif;
@@ -147,13 +106,11 @@
       font-weight: 900;
       line-height: 1.15;
       margin-bottom: 20px;
-      letter-spacing: -0.5px;
       background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* TAGS / CATEGORIES */
     #hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
     .catbox {
       background: var(--card-bg);
@@ -163,16 +120,8 @@
       border-radius: 14px;
       font-weight: 600;
       font-size: 0.88rem;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .catbox:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--accent-gold);
-      transform: translateY(-3px);
     }
 
-    /* SLIDER FRAME */
     .slider-frame {
       width: 100%;
       max-width: 300px;
@@ -183,11 +132,6 @@
       padding: 10px;
       border-radius: 28px;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-      transition: all 0.4s ease;
-    }
-    .slider-frame:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 224, 130, 0.15);
     }
     .slider-frame img {
       width: 100%;
@@ -195,32 +139,13 @@
       object-fit: cover;
       border-radius: 20px;
       display: block;
-      transition: opacity 0.4s ease;
     }
 
-    /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
-      .hero-wrap { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-      #hero-title { font-size: 2.3rem; }
-      .notice-wrapper { justify-content: center; }
-      #hero-tags { justify-content: center; }
+      .hero-wrap { grid-template-columns: 1fr; text-align: center; }
+      #hero-title { font-size: 2.2rem; }
+      .notice-wrapper, #hero-tags { justify-content: center; }
       .slider-frame { margin: 0 auto; }
-
-      .menu-toggle { display: flex; }
-      #menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 75%;
-        height: 100vh;
-        background: #0a0c10;
-        flex-direction: column;
-        padding: 90px 30px;
-        transition: 0.4s ease;
-        border-left: 1px solid var(--border-light);
-      }
-      #menu.active { right: 0; }
-      #menu a { font-size: 1.1rem; width: 100%; }
     }
   </style>
 </head>
@@ -228,14 +153,7 @@
 
   <!-- HEADER -->
   <header id="main-header">
-    <div class="brand-logo" onclick="location.href='index.html'">SAINIWALAA</div>
-    
-    <div class="menu-toggle" id="mobile-menu-btn">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
+    <div class="brand-logo">SAINIWALAA</div>
     <nav id="menu"></nav>
   </header>
 
@@ -243,45 +161,30 @@
   <section id="hero-sainiwalaa">
     <div class="hero-wrap">
       <div class="hero-left">
-        
         <div class="notice-wrapper">
           <span class="notice-tag">Updates</span>
-          <span id="hero-notice">Loading details...</span>
+          <span id="hero-notice">Loading...</span>
         </div>
 
         <h1 id="hero-title">Sainiwalaa</h1>
-        
         <div id="hero-tags"></div>
       </div>
 
       <div class="hero-right">
         <div class="slider-frame">
-          <img id="sliderImg" src="https://via.placeholder.com/300x400?text=Sainiwalaa" alt="Hero Slide">
+          <img id="sliderImg" src="https://via.placeholder.com/300x400/7a1f26/ffffff?text=Sainiwalaa+Deals" alt="Hero Slide">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SCRIPT API INTEGRATION -->
   <script>
-    // Mobile Navigation Toggle
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const navMenu = document.getElementById('menu');
-
-    if(menuBtn) {
-      menuBtn.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-      });
-    }
-
-    // Google Apps Script API Call
     const API = "https://script.google.com/macros/s/AKfycbxajNF_583kuHsHZuky-oolW6vumnUtdy6t3OU_Rj94C5aYe8RDxO-qPhHR-0hixzjxuA/exec";
 
     fetch(API)
     .then(res => res.json())
     .then(data => {
-
-      /* HEADER MENU */
+      // Header Menu
       const menuBox = document.getElementById("menu");
       if(menuBox && data.menu){
         menuBox.innerHTML = "";
@@ -290,53 +193,44 @@
         });
       }
 
-      /* HERO TITLE */
+      // Hero Title
       const titleRow = data.hero ? data.hero.find(x => x.type === "TITLE") : null;
-      if(titleRow && document.getElementById("hero-title")){
-        document.getElementById("hero-title").innerText = titleRow.text;
-      }
+      if(titleRow) document.getElementById("hero-title").innerText = titleRow.text;
 
-      /* TAGS */
+      // Hero Tags
       const tagBox = document.getElementById("hero-tags");
       if(tagBox && data.hero){
         tagBox.innerHTML = "";
-        data.hero.filter(x => x.type === "TAG")
-          .forEach(t => {
-            tagBox.innerHTML += `<div class="catbox">${t.text}</div>`;
-          });
+        data.hero.filter(x => x.type === "TAG").forEach(t => {
+          tagBox.innerHTML += `<div class="catbox">${t.text}</div>`;
+        });
       }
 
-      /* NOTICE */
+      // Hero Notice
       const noticeRow = data.hero ? data.hero.find(x => x.type === "NOTICE") : null;
-      if(noticeRow && document.getElementById("hero-notice")){
-        document.getElementById("hero-notice").innerText = noticeRow.text;
-      }
+      if(noticeRow) document.getElementById("hero-notice").innerText = noticeRow.text;
 
-      /* SLIDER */
+      // Slider
       if(data.hero) {
-        const slides = data.hero
-          .filter(x => x.type === "SLIDE")
-          .map(x => x.image);
-
+        const slides = data.hero.filter(x => x.type === "SLIDE").map(x => x.image);
         let i = 0;
         const img = document.getElementById("sliderImg");
-
         if(slides.length && img){
           img.src = slides[0];
           setInterval(() => {
             i = (i + 1) % slides.length;
-            img.style.opacity = '0.3';
-            setTimeout(() => {
-              img.src = slides[i];
-              img.style.opacity = '1';
-            }, 200);
+            img.src = slides[i];
           }, 3500);
         }
       }
-
     })
     .catch(err => {
-      console.error("Header-Hero API Error:", err);
+      console.error("API Fetch Error:", err);
+      // FALLBACK MOCK DATA (Gives immediate display if API fails)
+      document.getElementById("menu").innerHTML = '<a href="#">Home</a><a href="#">Deals</a><a href="#">About</a>';
+      document.getElementById("hero-notice").innerText = "Welcome to Sainiwalaa Official Store!";
+      document.getElementById("hero-title").innerText = "Best Tech & Shopping Deals";
+      document.getElementById("hero-tags").innerHTML = '<div class="catbox">Electronics</div><div class="catbox">Fashion</div><div class="catbox">Offers</div>';
     });
   </script>
 </body>
