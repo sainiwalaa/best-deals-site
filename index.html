@@ -4,162 +4,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sainiwalaa – Premium Shopping & Deals 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts & Remix Icons for Modern Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <style>
         :root { 
-            --amz-blue: #131921; 
-            --amz-orange: #ff9900; 
-            --bg: #eaeded; 
-            --card: #ffffff; 
-            --frame-bg: #1a1a1a;
+            --primary-bg: #0d1117;
+            --accent-gold: #ffb703;
+            --accent-orange: #fb8500;
+            --body-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --glass-header: rgba(13, 17, 23, 0.85);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: #111; overflow-x: hidden; width: 100%; }
 
-        /* --- UPDATED HEADER & MOBILE MENU --- */
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--body-bg); color: var(--text-dark); overflow-x: hidden; width: 100%; -webkit-tap-highlight-color: transparent; }
+
+        /* --- LOADER --- */
+        #loader { 
+            position: fixed; inset: 0; background: var(--primary-bg); z-index: 9999; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            color: #fff; font-weight: 700; font-size: 1.2rem; gap: 15px;
+        }
+        .spinner {
+            width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1);
+            border-radius: 50%; border-top-color: var(--accent-orange);
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* --- HEADER & NAVIGATION --- */
         #main-header { 
-            background: #000; 
+            background: var(--glass-header); 
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             color: #fff; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 14px 22px; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1001; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 16px 32px; 
+            position: sticky; top: 0; z-index: 1000; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* Hamburger Icon */
+        .brand-logo {
+            font-weight: 800; font-size: 24px; letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            cursor: pointer; display: flex; align-items: center; gap: 8px;
+        }
+
         .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1002;
+            display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1002;
+            padding: 4px;
         }
         .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #febd69;
-            border-radius: 2px;
-            transition: 0.3s;
+            width: 26px; height: 2.5px; background: #fff; border-radius: 4px; transition: var(--transition);
         }
 
-        #menu { display: flex; gap: 20px; }
-        #menu a { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap; transition: 0.3s; }
-        #menu a:hover { color: var(--amz-orange); }
+        #menu { display: flex; gap: 28px; align-items: center; }
+        #menu a { 
+            color: rgba(255, 255, 255, 0.85); text-decoration: none; font-weight: 600; 
+            font-size: 14px; white-space: nowrap; transition: var(--transition);
+            position: relative; padding: 4px 0;
+        }
+        #menu a:hover { color: var(--accent-gold); }
+        #menu a::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background: var(--accent-gold); transition: var(--transition); border-radius: 2px;
+        }
+        #menu a:hover::after { width: 100%; }
 
-        /* --- HERO & ANIMATION --- */
+        /* --- HERO SECTION --- */
         #hero-sainiwalaa { 
-            position: relative; background: #080d17; padding: 60px 20px;
-            overflow: hidden; display: flex; align-items: center; min-height: 400px;
+            position: relative; background: radial-gradient(circle at 10% 20%, #1a2332 0%, #0d1117 90%);
+            padding: 80px 24px; overflow: hidden; min-height: 440px; display: flex; align-items: center;
         }
         .bg-animated-text { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
         .float-text { 
-            position: absolute; font-weight: 900; font-size: 5vw; opacity: 0.05; 
-            white-space: nowrap; animation: floatingText 20s linear infinite; color: #fff;
+            position: absolute; font-weight: 900; font-size: 4.5vw; opacity: 0.03; 
+            white-space: nowrap; animation: floatingText 25s linear infinite; color: #fff; letter-spacing: 2px;
         }
-        @keyframes floatingText { 0% { transform: translateX(110%); } 100% { transform: translateX(-110%); } }
+        @keyframes floatingText { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
         .hero-wrap { 
             max-width: 1200px; margin: auto; display: grid; 
-            grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center; 
+            grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; 
             position: relative; z-index: 10; width: 100%;
         }
         .hero-left h1 { 
-            font-size: clamp(32px, 5vw, 52px); font-weight: 900; color: #fff; margin-bottom: 20px;
-            background: linear-gradient(to right, #ffffff, #febd69);
+            font-size: clamp(34px, 5vw, 56px); font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-gold) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .hero-left p { color: #ffe9b0; border-left: 4px solid var(--amz-orange); padding-left: 15px; }
-
-        .cats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
-        .catbox { 
-            background: rgba(255,255,255,0.08); padding: 10px 18px; border-radius: 12px; 
-            color: #fff; font-size: 12px; border: 1px solid rgba(255,255,255,0.1);
+        .hero-left p { 
+            color: rgba(255, 255, 255, 0.8); font-size: 1.05rem;
+            border-left: 3px solid var(--accent-orange); padding-left: 18px; line-height: 1.6;
         }
+
+        .cats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+        .catbox { 
+            background: rgba(255, 255, 255, 0.06); padding: 8px 16px; border-radius: 30px; 
+            color: var(--accent-gold); font-size: 13px; font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(8px);
+            transition: var(--transition);
+        }
+        .catbox:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
 
         .slider-frame { 
-            width: 100%; max-width: 280px; height: 380px; margin: auto; 
-            background: rgba(255,255,255,0.05); padding: 10px; border-radius: 25px; 
-            border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            width: 100%; max-width: 300px; height: 390px; margin: auto; 
+            background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 24px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
         }
-        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+        .slider-frame:hover { transform: translateY(-5px); }
+        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
 
+        /* --- BANNER CAROUSEL --- */
         .banner-frame { 
-            width: 95%; max-width: 1100px; 
-            height: 250px; margin: 30px auto; 
-            border: 4px solid #333; 
-            border-radius: 15px; overflow: hidden; background: #000; position: relative; 
+            width: 92%; max-width: 1200px; height: 260px; margin: 40px auto 20px; 
+            border-radius: var(--radius-lg); overflow: hidden; background: #000; position: relative; 
+            box-shadow: var(--shadow-subtle);
         }
-        #banner-root { display: flex; height: 100%; transition: transform 0.8s ease-in-out; }
+        #banner-root { display: flex; height: 100%; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
         .banner-slide { min-width: 100%; height: 100%; }
-        .banner-slide img { width: 100%; height: 100%; object-fit: contain; }
+        .banner-slide img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- CATEGORIES & PRODUCTS --- */
-        .cat-row { display: flex; overflow-x: auto; padding: 20px 10px; gap: 20px; scrollbar-width: none; }
-        .cat-row::-webkit-scrollbar { display: none; }
-        .cat-item { text-align: center; min-width: 90px; cursor: pointer; }
-        .cat-circle { width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--amz-orange); background: #fff; margin: 0 auto 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .cat-circle img { width: 100%; height: 100%; object-fit: cover; }
-        .cat-item p { font-size: 12px; font-weight: 600; color: #444; }
-
-        .section-head { padding: 20px; font-weight: 800; font-size: 20px; letter-spacing: -0.5px; }
-        .grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); 
-            gap: 15px; padding: 0 15px 40px; max-width: 1200px; margin: auto; 
+        /* --- CATEGORIES CIRCLES --- */
+        .cat-row { 
+            display: flex; overflow-x: auto; padding: 20px 24px; gap: 24px; 
+            scrollbar-width: none; max-width: 1200px; margin: 0 auto; 
         }
-        .p-card { background: white; border-radius: 15px; padding: 15px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
-        .p-card:active { transform: scale(0.98); }
-        .p-card img { width: 100%; height: 150px; object-fit: contain; margin-bottom: 10px; }
-        .p-card h4 { font-size: 14px; height: 40px; overflow: hidden; color: #333; }
-        .p-price { color: #B12704; font-size: 20px; font-weight: 800; margin: 8px 0; }
-        .btn { background: linear-gradient(180deg, #f7dfa1, #f0c14b); border: 1px solid #a88734; border-radius: 8px; padding: 10px; display: block; text-decoration: none; color: #111; font-weight: 700; font-size: 14px; }
+        .cat-row::-webkit-scrollbar { display: none; }
+        .cat-item { text-align: center; min-width: 90px; cursor: pointer; transition: var(--transition); }
+        .cat-item:hover { transform: translateY(-4px); }
+        .cat-circle { 
+            width: 80px; height: 80px; border-radius: 50%; padding: 3px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold)); 
+            margin: 0 auto 10px; box-shadow: 0 8px 16px rgba(251, 133, 0, 0.15);
+        }
+        .cat-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: #fff; }
+        .cat-item p { font-size: 13px; font-weight: 600; color: var(--text-dark); }
+
+        /* --- PRODUCTS GRID --- */
+        .section-head { 
+            max-width: 1200px; margin: 20px auto 0; padding: 0 24px; 
+            font-weight: 800; font-size: 22px; letter-spacing: -0.5px; color: var(--text-dark);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+            gap: 20px; padding: 20px 24px 50px; max-width: 1200px; margin: auto; 
+        }
+        .p-card { 
+            background: var(--card-bg); border-radius: var(--radius-md); padding: 16px; 
+            display: flex; flex-direction: column; justify-content: space-between;
+            border: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-subtle); 
+            transition: var(--transition); position: relative; overflow: hidden;
+        }
+        .p-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .p-card img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 12px; transition: var(--transition); }
+        .p-card:hover img { transform: scale(1.05); }
+        .p-card h4 { 
+            font-size: 14px; font-weight: 600; color: var(--text-dark); line-height: 1.4;
+            height: 40px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; 
+        }
+        .p-price { color: #d90429; font-size: 22px; font-weight: 800; margin: 10px 0; letter-spacing: -0.5px; }
+        .btn { 
+            background: linear-gradient(135deg, var(--accent-orange), #e85d04); 
+            border: none; border-radius: var(--radius-sm); padding: 12px; text-align: center;
+            text-decoration: none; color: #fff; font-weight: 700; font-size: 13px; 
+            transition: var(--transition); box-shadow: 0 4px 12px rgba(251, 133, 0, 0.25);
+        }
+        .btn:hover { opacity: 0.95; box-shadow: 0 6px 16px rgba(251, 133, 0, 0.35); }
 
         /* --- FOOTER --- */
-        #sw-footer { background: #050b1a; color: #fff; padding: 50px 20px 30px; margin-top: 50px; border-top: 4px solid var(--amz-orange); }
-        #sw-marquee { overflow: hidden; white-space: nowrap; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 30px; }
-        #sw-marquee span { display: inline-block; animation: scroll-text 20s linear infinite; color: var(--amz-orange); font-weight: 700; }
+        #sw-footer { background: var(--primary-bg); color: #fff; padding: 60px 24px 30px; margin-top: 60px; border-top: 3px solid var(--accent-orange); }
+        #sw-marquee { overflow: hidden; white-space: nowrap; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 40px; }
+        #sw-marquee span { display: inline-block; animation: scroll-text 22s linear infinite; color: var(--accent-gold); font-weight: 700; letter-spacing: 1px; }
         @keyframes scroll-text { from { transform: translateX(100%) } to { transform: translateX(-100%) } }
         
-        #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .sw-col h2 { color: var(--amz-orange); font-size: 22px; margin-bottom: 20px; }
-        .sw-links-container a { display: block; margin: 10px 0; color: #fff; text-decoration: none; font-size: 14px; }
-        .sw-social-container { display: flex; gap: 10px; margin-top: 15px; }
-        .sw-social-container a { border: 1px solid var(--amz-orange); padding: 5px 15px; border-radius: 8px; color: var(--amz-orange) !important; text-decoration: none; font-size: 13px; }
-        #sw-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.5; font-size: 12px; }
+        #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px; }
+        .sw-col h2 { color: var(--accent-gold); font-size: 20px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.3px; }
+        .sw-col p { opacity: 0.8; font-size: 14px; line-height: 1.6; }
+        .sw-links-container a { display: block; margin: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: var(--transition); }
+        .sw-links-container a:hover { color: var(--accent-gold); transform: translateX(4px); }
+        .sw-social-container { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+        .sw-social-container a { 
+            border: 1px solid rgba(255,255,255,0.15); padding: 8px 18px; border-radius: 30px; 
+            color: #fff !important; text-decoration: none; font-size: 13px; font-weight: 600;
+            background: rgba(255,255,255,0.04); transition: var(--transition);
+        }
+        .sw-social-container a:hover { background: var(--accent-orange); border-color: var(--accent-orange); }
+        #sw-bottom { text-align: center; margin-top: 50px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); font-size: 13px; }
 
-        #loader { position: fixed; inset: 0; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-
-        /* --- MOBILE MENU ANIMATION & LOOK --- */
+        /* --- MOBILE RESPONSIVE DRAWER & BREAKPOINTS --- */
         @media (max-width: 768px) {
+            #main-header { padding: 14px 20px; }
             .menu-toggle { display: flex; }
             
             #menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 75%;
-                height: 100vh;
-                background: #131921;
-                flex-direction: column;
-                padding: 80px 30px;
-                transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-                gap: 25px;
+                position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+                background: #111827; flex-direction: column; padding: 100px 30px 40px;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5); gap: 20px; align-items: flex-start;
+                z-index: 1001;
             }
 
             #menu.active { right: 0; }
-            #menu a { font-size: 18px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+            #menu a { font-size: 16px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; }
 
+            #hero-sainiwalaa { padding: 50px 20px; }
             .hero-wrap { grid-template-columns: 1fr; text-align: center; }
-            .hero-left p { border-left: none; border-top: 3px solid var(--amz-orange); padding-top: 15px; }
+            .hero-left p { border-left: none; border-top: 3px solid var(--accent-orange); padding-left: 0; padding-top: 15px; }
             .cats { justify-content: center; }
-            .banner-frame { height: 160px; width: 92%; margin: 20px auto; }
-            .grid { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; }
-            .section-head { font-size: 18px; padding: 15px 10px; }
+            
+            .banner-frame { height: 170px; width: 92%; margin: 25px auto; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px 16px 40px; }
+            .p-card { padding: 12px; }
+            .p-card img { height: 130px; }
+            .p-price { font-size: 18px; }
+            .section-head { font-size: 18px; padding: 0 16px; }
             #sw-inner { text-align: center; }
             .sw-social-container { justify-content: center; }
         }
@@ -167,12 +240,15 @@
 </head>
 <body>
 
-<div id="loader">Sainiwalaa Loading...</div>
+<div id="loader">
+    <div class="spinner"></div>
+    <span>Sainiwalaa Loading...</span>
+</div>
 
 <header id="main-header">
-    <div style="font-weight:900; font-size: 22px; color:#febd69; letter-spacing:1px; cursor: pointer;" onclick="location.href='index.html'">SAINIWALAA</div>
+    <div class="brand-logo" onclick="location.href='index.html'">SAINIWALAA</div>
     
-    <div class="menu-toggle" id="mobile-menu-btn">
+    <div class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
         <span></span>
         <span></span>
         <span></span>
@@ -184,7 +260,7 @@
 <section id="hero-sainiwalaa">
     <div class="bg-animated-text">
         <div class="float-text" style="top:15%; animation-duration:25s;">JAIPURI KURTIS • DESIGNER SUITS • ETHNIC WEAR</div>
-        <div class="float-text" style="top:45%; animation-delay:5s;">NEW ARRIVALS • BEST SELLERS • 2026 DEALS</div>
+        <div class="float-text" style="top:55%; animation-delay:5s;">NEW ARRIVALS • BEST SELLERS • 2026 DEALS</div>
     </div>
     <div class="hero-wrap">
         <div class="hero-left">
@@ -192,13 +268,13 @@
             <p id="heroNotice">Connecting you to the best deals...</p>
             <div class="cats" id="heroTags"></div>
         </div>
-        <div class="slider-frame"><img id="heroImg"></div>
+        <div class="slider-frame"><img id="heroImg" alt="Hero Featured Product"></div>
     </div>
 </section>
 
 <div class="banner-frame"><div id="banner-root"></div></div>
 <div class="cat-row" id="cat-root"></div>
-<div class="section-head">🔥 Best Deals For You</div>
+<div class="section-head"><i class="ri-fire-fill" style="color: var(--accent-orange);"></i> Best Deals For You</div>
 <div class="grid" id="prod-root"></div>
 
 <footer id="sw-footer">
@@ -212,23 +288,32 @@
 </footer>
 
 <script>
-// Hamburger Logic
+// Mobile Hamburger Drawer Logic
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.getElementById('menu');
 
 menuBtn.addEventListener('click', () => {
     navMenu.classList.toggle('active');
-    // Animation for hamburger
     const spans = menuBtn.querySelectorAll('span');
-    spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
-    spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-    spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -7px)' : 'none';
+    if (navMenu.classList.contains('active')) {
+        spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+    } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+    }
 });
 
-// Close menu when clicking a link
+// Close menu when clicking outside
 document.addEventListener('click', (e) => {
     if(!menuBtn.contains(e.target) && !navMenu.contains(e.target)) {
         navMenu.classList.remove('active');
+        const spans = menuBtn.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
     }
 });
 
@@ -273,7 +358,7 @@ async function init() {
 
         home.forEach(item => {
             if(item.TYPE === "CAT") document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
-            if(item.TYPE === "PRODUCT") document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div>`;
+            if(item.TYPE === "PRODUCT") document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div></div>`;
         });
 
         f.footer.forEach(i => {
