@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sainiwalaa – Premium Shopping & Deals 2026</title>
-    <!-- Google Fonts & Remix Icons for Modern Icons -->
+    
+    <!-- Fast Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://script.google.com">
+    <link rel="preconnect" href="https://lh3.googleusercontent.com">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <style>
@@ -18,223 +22,150 @@
             --body-bg: #f8f9fa;
             --card-bg: #ffffff;
             --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --glass-header: rgba(13, 17, 23, 0.85);
             --radius-lg: 16px;
             --radius-md: 12px;
             --radius-sm: 8px;
             --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.25s ease-out;
         }
 
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: var(--body-bg); color: var(--text-dark); overflow-x: hidden; width: 100%; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--body-bg); color: var(--text-dark); overflow-x: hidden; width: 100%; }
 
-        /* --- LOADER --- */
+        /* FAST LOADER */
         #loader { 
             position: fixed; inset: 0; background: var(--primary-bg); z-index: 9999; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            color: #fff; font-weight: 700; font-size: 1.2rem; gap: 15px;
+            color: #fff; font-weight: 700; font-size: 1.1rem; gap: 12px;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         .spinner {
-            width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1);
+            width: 36px; height: 36px; border: 3px solid rgba(255,255,255,0.1);
             border-radius: 50%; border-top-color: var(--accent-orange);
-            animation: spin 0.8s linear infinite;
+            animation: spin 0.6s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* --- HEADER & NAVIGATION --- */
+        /* HEADER */
         #main-header { 
-            background: var(--glass-header); 
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            color: #fff; 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 16px 32px; 
-            position: sticky; top: 0; z-index: 1000; 
+            background: rgba(13, 17, 23, 0.9); 
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            color: #fff; display: flex; justify-content: space-between; align-items: center; 
+            padding: 14px 24px; position: sticky; top: 0; z-index: 1000; 
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .brand-logo {
-            font-weight: 800; font-size: 24px; letter-spacing: -0.5px;
+            font-weight: 800; font-size: 22px; letter-spacing: -0.5px;
             background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            cursor: pointer; display: flex; align-items: center; gap: 8px;
+            cursor: pointer;
         }
 
-        .menu-toggle {
-            display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1002;
-            padding: 4px;
-        }
-        .menu-toggle span {
-            width: 26px; height: 2.5px; background: #fff; border-radius: 4px; transition: var(--transition);
-        }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1002; }
+        .menu-toggle span { width: 24px; height: 2px; background: #fff; border-radius: 2px; }
 
-        #menu { display: flex; gap: 28px; align-items: center; }
-        #menu a { 
-            color: rgba(255, 255, 255, 0.85); text-decoration: none; font-weight: 600; 
-            font-size: 14px; white-space: nowrap; transition: var(--transition);
-            position: relative; padding: 4px 0;
-        }
+        #menu { display: flex; gap: 24px; align-items: center; }
+        #menu a { color: rgba(255, 255, 255, 0.85); text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap; }
         #menu a:hover { color: var(--accent-gold); }
-        #menu a::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
-            background: var(--accent-gold); transition: var(--transition); border-radius: 2px;
-        }
-        #menu a:hover::after { width: 100%; }
 
-        /* --- HERO SECTION --- */
+        /* HERO */
         #hero-sainiwalaa { 
             position: relative; background: radial-gradient(circle at 10% 20%, #1a2332 0%, #0d1117 90%);
-            padding: 80px 24px; overflow: hidden; min-height: 440px; display: flex; align-items: center;
+            padding: 60px 20px; overflow: hidden; min-height: 380px; display: flex; align-items: center;
         }
-        .bg-animated-text { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-        .float-text { 
-            position: absolute; font-weight: 900; font-size: 4.5vw; opacity: 0.03; 
-            white-space: nowrap; animation: floatingText 25s linear infinite; color: #fff; letter-spacing: 2px;
-        }
-        @keyframes floatingText { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
         .hero-wrap { 
             max-width: 1200px; margin: auto; display: grid; 
-            grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; 
+            grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center; 
             position: relative; z-index: 10; width: 100%;
         }
         .hero-left h1 { 
-            font-size: clamp(34px, 5vw, 56px); font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 20px;
+            font-size: clamp(30px, 4vw, 50px); font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 16px;
             background: linear-gradient(135deg, #ffffff 30%, var(--accent-gold) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .hero-left p { 
-            color: rgba(255, 255, 255, 0.8); font-size: 1.05rem;
-            border-left: 3px solid var(--accent-orange); padding-left: 18px; line-height: 1.6;
-        }
+        .hero-left p { color: rgba(255, 255, 255, 0.8); font-size: 1rem; border-left: 3px solid var(--accent-orange); padding-left: 14px; }
 
-        .cats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+        .cats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
         .catbox { 
-            background: rgba(255, 255, 255, 0.06); padding: 8px 16px; border-radius: 30px; 
-            color: var(--accent-gold); font-size: 13px; font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(8px);
-            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.08); padding: 6px 14px; border-radius: 20px; 
+            color: var(--accent-gold); font-size: 12px; font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .catbox:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
 
         .slider-frame { 
-            width: 100%; max-width: 300px; height: 390px; margin: auto; 
-            background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 24px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transition: var(--transition);
+            width: 100%; max-width: 280px; height: 350px; margin: auto; 
+            background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .slider-frame:hover { transform: translateY(-5px); }
-        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
 
-        /* --- BANNER CAROUSEL --- */
+        /* BANNERS */
         .banner-frame { 
-            width: 92%; max-width: 1200px; height: 260px; margin: 40px auto 20px; 
+            width: 92%; max-width: 1200px; height: 220px; margin: 30px auto 10px; 
             border-radius: var(--radius-lg); overflow: hidden; background: #000; position: relative; 
-            box-shadow: var(--shadow-subtle);
         }
-        #banner-root { display: flex; height: 100%; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
+        #banner-root { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1); }
         .banner-slide { min-width: 100%; height: 100%; }
         .banner-slide img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- CATEGORIES CIRCLES --- */
-        .cat-row { 
-            display: flex; overflow-x: auto; padding: 20px 24px; gap: 24px; 
-            scrollbar-width: none; max-width: 1200px; margin: 0 auto; 
-        }
+        /* CATEGORIES ROW */
+        .cat-row { display: flex; overflow-x: auto; padding: 20px; gap: 20px; scrollbar-width: none; max-width: 1200px; margin: 0 auto; }
         .cat-row::-webkit-scrollbar { display: none; }
-        .cat-item { text-align: center; min-width: 90px; cursor: pointer; transition: var(--transition); }
-        .cat-item:hover { transform: translateY(-4px); }
+        .cat-item { text-align: center; min-width: 80px; cursor: pointer; }
         .cat-circle { 
-            width: 80px; height: 80px; border-radius: 50%; padding: 3px;
+            width: 70px; height: 70px; border-radius: 50%; padding: 2px;
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold)); 
-            margin: 0 auto 10px; box-shadow: 0 8px 16px rgba(251, 133, 0, 0.15);
+            margin: 0 auto 8px; 
         }
         .cat-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: #fff; }
-        .cat-item p { font-size: 13px; font-weight: 600; color: var(--text-dark); }
+        .cat-item p { font-size: 12px; font-weight: 600; color: var(--text-dark); }
 
-        /* --- PRODUCTS GRID --- */
-        .section-head { 
-            max-width: 1200px; margin: 20px auto 0; padding: 0 24px; 
-            font-weight: 800; font-size: 22px; letter-spacing: -0.5px; color: var(--text-dark);
-            display: flex; align-items: center; gap: 8px;
-        }
-        .grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-            gap: 20px; padding: 20px 24px 50px; max-width: 1200px; margin: auto; 
-        }
+        /* PRODUCTS GRID */
+        .section-head { max-width: 1200px; margin: 15px auto 0; padding: 0 20px; font-weight: 800; font-size: 20px; color: var(--text-dark); display: flex; align-items: center; gap: 6px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; padding: 16px 20px 40px; max-width: 1200px; margin: auto; }
+        
         .p-card { 
-            background: var(--card-bg); border-radius: var(--radius-md); padding: 16px; 
+            background: var(--card-bg); border-radius: var(--radius-md); padding: 14px; 
             display: flex; flex-direction: column; justify-content: space-between;
-            border: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-subtle); 
-            transition: var(--transition); position: relative; overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.06); box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
         }
-        .p-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-        .p-card img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 12px; transition: var(--transition); }
-        .p-card:hover img { transform: scale(1.05); }
-        .p-card h4 { 
-            font-size: 14px; font-weight: 600; color: var(--text-dark); line-height: 1.4;
-            height: 40px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; 
-        }
-        .p-price { color: #d90429; font-size: 22px; font-weight: 800; margin: 10px 0; letter-spacing: -0.5px; }
+        .p-card:hover { transform: translateY(-4px); }
+        .p-card img { width: 100%; height: 160px; object-fit: contain; margin-bottom: 10px; }
+        .p-card h4 { font-size: 13px; font-weight: 600; height: 36px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .p-price { color: #d90429; font-size: 20px; font-weight: 800; margin: 8px 0; }
         .btn { 
             background: linear-gradient(135deg, var(--accent-orange), #e85d04); 
-            border: none; border-radius: var(--radius-sm); padding: 12px; text-align: center;
+            border: none; border-radius: var(--radius-sm); padding: 10px; text-align: center;
             text-decoration: none; color: #fff; font-weight: 700; font-size: 13px; 
-            transition: var(--transition); box-shadow: 0 4px 12px rgba(251, 133, 0, 0.25);
+            display: block; width: 100%;
         }
-        .btn:hover { opacity: 0.95; box-shadow: 0 6px 16px rgba(251, 133, 0, 0.35); }
 
-        /* --- FOOTER --- */
-        #sw-footer { background: var(--primary-bg); color: #fff; padding: 60px 24px 30px; margin-top: 60px; border-top: 3px solid var(--accent-orange); }
-        #sw-marquee { overflow: hidden; white-space: nowrap; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 40px; }
-        #sw-marquee span { display: inline-block; animation: scroll-text 22s linear infinite; color: var(--accent-gold); font-weight: 700; letter-spacing: 1px; }
+        /* FOOTER */
+        #sw-footer { background: var(--primary-bg); color: #fff; padding: 40px 20px 20px; margin-top: 40px; border-top: 3px solid var(--accent-orange); }
+        #sw-marquee { overflow: hidden; white-space: nowrap; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 30px; }
+        #sw-marquee span { display: inline-block; animation: scroll-text 20s linear infinite; color: var(--accent-gold); font-weight: 700; }
         @keyframes scroll-text { from { transform: translateX(100%) } to { transform: translateX(-100%) } }
         
-        #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px; }
-        .sw-col h2 { color: var(--accent-gold); font-size: 20px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.3px; }
-        .sw-col p { opacity: 0.8; font-size: 14px; line-height: 1.6; }
-        .sw-links-container a { display: block; margin: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; transition: var(--transition); }
-        .sw-links-container a:hover { color: var(--accent-gold); transform: translateX(4px); }
-        .sw-social-container { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
-        .sw-social-container a { 
-            border: 1px solid rgba(255,255,255,0.15); padding: 8px 18px; border-radius: 30px; 
-            color: #fff !important; text-decoration: none; font-size: 13px; font-weight: 600;
-            background: rgba(255,255,255,0.04); transition: var(--transition);
-        }
-        .sw-social-container a:hover { background: var(--accent-orange); border-color: var(--accent-orange); }
-        #sw-bottom { text-align: center; margin-top: 50px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); font-size: 13px; }
+        #sw-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
+        .sw-col h2 { color: var(--accent-gold); font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+        .sw-col p { opacity: 0.8; font-size: 13px; line-height: 1.5; }
+        .sw-links-container a { display: block; margin: 8px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; }
+        .sw-social-container { display: flex; gap: 8px; margin-top: 15px; flex-wrap: wrap; }
+        .sw-social-container a { border: 1px solid rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 20px; color: #fff !important; text-decoration: none; font-size: 12px; }
+        #sw-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); font-size: 12px; }
 
-        /* --- MOBILE RESPONSIVE DRAWER & BREAKPOINTS --- */
         @media (max-width: 768px) {
-            #main-header { padding: 14px 20px; }
             .menu-toggle { display: flex; }
-            
-            #menu {
-                position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
-                background: #111827; flex-direction: column; padding: 100px 30px 40px;
-                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-                box-shadow: -10px 0 30px rgba(0,0,0,0.5); gap: 20px; align-items: flex-start;
-                z-index: 1001;
-            }
-
+            #menu { position: fixed; top: 0; right: -100%; width: 75%; height: 100vh; background: #111827; flex-direction: column; padding: 80px 24px; transition: 0.3s ease; z-index: 1001; }
             #menu.active { right: 0; }
-            #menu a { font-size: 16px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; }
-
-            #hero-sainiwalaa { padding: 50px 20px; }
+            #menu a { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; }
             .hero-wrap { grid-template-columns: 1fr; text-align: center; }
-            .hero-left p { border-left: none; border-top: 3px solid var(--accent-orange); padding-left: 0; padding-top: 15px; }
+            .hero-left p { border-left: none; border-top: 2px solid var(--accent-orange); padding-top: 10px; }
             .cats { justify-content: center; }
-            
-            .banner-frame { height: 170px; width: 92%; margin: 25px auto; }
-            .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px 16px 40px; }
-            .p-card { padding: 12px; }
-            .p-card img { height: 130px; }
-            .p-price { font-size: 18px; }
-            .section-head { font-size: 18px; padding: 0 16px; }
-            #sw-inner { text-align: center; }
-            .sw-social-container { justify-content: center; }
+            .banner-frame { height: 150px; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px 14px; }
         }
     </style>
 </head>
@@ -242,26 +173,16 @@
 
 <div id="loader">
     <div class="spinner"></div>
-    <span>Sainiwalaa Loading...</span>
+    <span>Loading Deals...</span>
 </div>
 
 <header id="main-header">
     <div class="brand-logo" onclick="location.href='index.html'">SAINIWALAA</div>
-    
-    <div class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
+    <div class="menu-toggle" id="mobile-menu-btn"><span></span><span></span><span></span></div>
     <nav id="menu"></nav>
 </header>
 
 <section id="hero-sainiwalaa">
-    <div class="bg-animated-text">
-        <div class="float-text" style="top:15%; animation-duration:25s;">JAIPURI KURTIS • DESIGNER SUITS • ETHNIC WEAR</div>
-        <div class="float-text" style="top:55%; animation-delay:5s;">NEW ARRIVALS • BEST SELLERS • 2026 DEALS</div>
-    </div>
     <div class="hero-wrap">
         <div class="hero-left">
             <h1 id="heroTitle">Sainiwalaa</h1>
@@ -288,33 +209,13 @@
 </footer>
 
 <script>
-// Mobile Hamburger Drawer Logic
+// Hamburger Drawer Toggle
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.getElementById('menu');
 
-menuBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    const spans = menuBtn.querySelectorAll('span');
-    if (navMenu.classList.contains('active')) {
-        spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
-    } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    }
-});
-
-// Close menu when clicking outside
+menuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
 document.addEventListener('click', (e) => {
-    if(!menuBtn.contains(e.target) && !navMenu.contains(e.target)) {
-        navMenu.classList.remove('active');
-        const spans = menuBtn.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    }
+    if(!menuBtn.contains(e.target) && !navMenu.contains(e.target)) navMenu.classList.remove('active');
 });
 
 const APIs = {
@@ -323,44 +224,81 @@ const APIs = {
     FOOTER: "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec"
 };
 
-async function init() {
+// FAST FETCH WITH TIMEOUT
+async function fetchFast(url) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), 4000); // 4 Sec max timeout
     try {
-        const [h, home, f] = await Promise.all([
-            fetch(APIs.HEAD).then(r => r.json()),
-            fetch(APIs.HOME).then(r => r.json()),
-            fetch(APIs.FOOTER).then(r => r.json())
-        ]);
-        document.getElementById('loader').style.display = 'none';
+        const response = await fetch(url, { signal: controller.signal });
+        clearTimeout(id);
+        return await response.json();
+    } catch (e) {
+        return null;
+    }
+}
 
-        h.menu.forEach(m => document.getElementById('menu').innerHTML += `<a href="${m.link}">${m.text}</a>`);
-        
-        let hSlides = [];
-        h.hero.forEach(i => {
-            if(i.type === "TITLE") document.getElementById('heroTitle').innerText = i.text;
-            if(i.type === "NOTICE") document.getElementById('heroNotice').innerText = i.text;
-            if(i.type === "TAG") document.getElementById('heroTags').innerHTML += `<div class="catbox">${i.text}</div>`;
-            if(i.type === "SLIDE") hSlides.push(i.image);
-        });
-        if(hSlides.length) {
-            let hi = 0; document.getElementById('heroImg').src = hSlides[0];
-            setInterval(() => { hi = (hi + 1) % hSlides.length; document.getElementById('heroImg').src = hSlides[hi]; }, 3000);
+// FAST ASYNC INITIALIZATION (LOAD PARALLEL)
+async function init() {
+    // Hide Loader Fast as soon as DOM and main API returns
+    const hideLoader = () => {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 300);
         }
+    };
+
+    // Parallel background loading
+    fetchFast(APIs.HEAD).then(h => {
+        if (!h) return;
+        if (h.menu) {
+            document.getElementById('menu').innerHTML = h.menu.map(m => `<a href="${m.link}">${m.text}</a>`).join('');
+        }
+        let hSlides = [];
+        if (h.hero) {
+            h.hero.forEach(i => {
+                if(i.type === "TITLE") document.getElementById('heroTitle').innerText = i.text;
+                if(i.type === "NOTICE") document.getElementById('heroNotice').innerText = i.text;
+                if(i.type === "TAG") document.getElementById('heroTags').innerHTML += `<div class="catbox">${i.text}</div>`;
+                if(i.type === "SLIDE") hSlides.push(i.image);
+            });
+            if(hSlides.length) {
+                let hi = 0; 
+                document.getElementById('heroImg').src = hSlides[0];
+                setInterval(() => { hi = (hi + 1) % hSlides.length; document.getElementById('heroImg').src = hSlides[hi]; }, 3500);
+            }
+        }
+    });
+
+    fetchFast(APIs.HOME).then(home => {
+        hideLoader(); // Loader turns off fast when main products fetch finishes
+        if (!home) return;
 
         const bRoot = document.getElementById('banner-root');
         let banners = home.filter(i => i.TYPE === "BANNER");
-        banners.forEach(b => { bRoot.innerHTML += `<div class="banner-slide"><img src="${b.IMAGE_URL}"></div>`; });
-        if(banners.length) {
+        if (banners.length) {
+            bRoot.innerHTML = banners.map(b => `<div class="banner-slide"><img src="${b.IMAGE_URL}" loading="lazy"></div>`).join('');
             let cb = 0; setInterval(() => {
                 cb = (cb + 1) % banners.length;
                 bRoot.style.transform = `translateX(-${cb * 100}%)`;
             }, 4000);
         }
 
+        let catHTML = '', prodHTML = '';
         home.forEach(item => {
-            if(item.TYPE === "CAT") document.getElementById('cat-root').innerHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
-            if(item.TYPE === "PRODUCT") document.getElementById('prod-root').innerHTML += `<div class="p-card"><img src="${item.IMAGE_URL}"><h4>${item.TITLE}</h4><div><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div></div>`;
+            if(item.TYPE === "CAT") {
+                catHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}" loading="lazy"></div><p>${item.TITLE}</p></div>`;
+            }
+            if(item.TYPE === "PRODUCT") {
+                prodHTML += `<div class="p-card"><img src="${item.IMAGE_URL}" loading="lazy"><h4>${item.TITLE}</h4><div><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div></div>`;
+            }
         });
+        document.getElementById('cat-root').innerHTML = catHTML;
+        document.getElementById('prod-root').innerHTML = prodHTML;
+    });
 
+    fetchFast(APIs.FOOTER).then(f => {
+        if (!f || !f.footer) return;
         f.footer.forEach(i => {
             let box = i.POSITION === "LEFT" ? document.getElementById("f-left") : i.POSITION === "CENTER" ? document.getElementById("f-center") : i.POSITION === "RIGHT" ? document.getElementById("f-right") : i.POSITION === "BOTTOM" ? document.getElementById("sw-bottom") : document.getElementById("sw-marquee");
             if(i.TYPE === "MARQUEE") box.innerHTML = `<span>${i.TEXT}</span>`;
@@ -373,8 +311,13 @@ async function init() {
             }
             else if(i.TYPE === "BOTTOM") box.innerText = i.TEXT;
         });
-    } catch (e) { console.log(e); }
+    });
+
+    // Backup Safety Timeout for Loader
+    setTimeout(hideLoader, 3000);
 }
+
+// Fire init immediately
 init();
 </script>
 </body>
