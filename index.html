@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sainiwalaa – Premium Shopping & Deals 2026</title>
     
-    <!-- Fast Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://script.google.com">
-    <link rel="preconnect" href="https://lh3.googleusercontent.com">
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -19,13 +17,13 @@
             --primary-bg: #0d1117;
             --accent-gold: #ffb703;
             --accent-orange: #fb8500;
-            --body-bg: #f8f9fa;
+            --body-bg: #f4f6f8;
             --card-bg: #ffffff;
             --text-dark: #0f172a;
             --radius-lg: 16px;
-            --radius-md: 12px;
+            --radius-md: 14px;
             --radius-sm: 8px;
-            --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+            --shadow-subtle: 0 4px 18px rgba(0, 0, 0, 0.06);
             --transition: all 0.25s ease-out;
         }
 
@@ -48,7 +46,7 @@
 
         /* HEADER */
         #main-header { 
-            background: rgba(13, 17, 23, 0.9); 
+            background: rgba(13, 17, 23, 0.95); 
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             color: #fff; display: flex; justify-content: space-between; align-items: center; 
             padding: 14px 24px; position: sticky; top: 0; z-index: 1000; 
@@ -72,7 +70,7 @@
         /* HERO */
         #hero-sainiwalaa { 
             position: relative; background: radial-gradient(circle at 10% 20%, #1a2332 0%, #0d1117 90%);
-            padding: 60px 20px; overflow: hidden; min-height: 380px; display: flex; align-items: center;
+            padding: 50px 20px; overflow: hidden; min-height: 380px; display: flex; align-items: center;
         }
         .hero-wrap { 
             max-width: 1200px; margin: auto; display: grid; 
@@ -84,56 +82,81 @@
             background: linear-gradient(135deg, #ffffff 30%, var(--accent-gold) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .hero-left p { color: rgba(255, 255, 255, 0.8); font-size: 1rem; border-left: 3px solid var(--accent-orange); padding-left: 14px; }
+        .hero-left p { color: rgba(255, 255, 255, 0.85); font-size: 1rem; border-left: 3px solid var(--accent-orange); padding-left: 14px; }
 
         .cats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
         .catbox { 
             background: rgba(255, 255, 255, 0.08); padding: 6px 14px; border-radius: 20px; 
             color: var(--accent-gold); font-size: 12px; font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
+        /* HERO IMAGE FRAME FIX */
         .slider-frame { 
-            width: 100%; max-width: 280px; height: 350px; margin: auto; 
-            background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 20px; 
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%; max-width: 290px; height: 380px; margin: auto; 
+            background: #fff; padding: 6px; border-radius: 20px; 
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
-        .slider-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+        .slider-frame img { 
+            width: 100%; height: 100%; 
+            object-fit: cover; object-position: top center; 
+            border-radius: 14px; display: block;
+            image-rendering: -webkit-optimize-contrast;
+        }
 
-        /* BANNERS */
+        /* BANNER FRAME FIX */
         .banner-frame { 
-            width: 92%; max-width: 1200px; height: 220px; margin: 30px auto 10px; 
-            border-radius: var(--radius-lg); overflow: hidden; background: #000; position: relative; 
+            width: 92%; max-width: 1200px; height: 280px; margin: 30px auto 10px; 
+            border-radius: var(--radius-lg); overflow: hidden; background: #fff; position: relative;
+            box-shadow: var(--shadow-subtle);
         }
         #banner-root { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1); }
-        .banner-slide { min-width: 100%; height: 100%; }
-        .banner-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .banner-slide { min-width: 100%; height: 100%; background: #fff; }
+        .banner-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* CATEGORIES ROW */
+        /* CATEGORIES ROW FIX */
         .cat-row { display: flex; overflow-x: auto; padding: 20px; gap: 20px; scrollbar-width: none; max-width: 1200px; margin: 0 auto; }
         .cat-row::-webkit-scrollbar { display: none; }
-        .cat-item { text-align: center; min-width: 80px; cursor: pointer; }
+        .cat-item { text-align: center; min-width: 85px; cursor: pointer; }
         .cat-circle { 
-            width: 70px; height: 70px; border-radius: 50%; padding: 2px;
+            width: 76px; height: 76px; border-radius: 50%; padding: 2px;
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold)); 
-            margin: 0 auto 8px; 
+            margin: 0 auto 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
         }
-        .cat-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: #fff; }
-        .cat-item p { font-size: 12px; font-weight: 600; color: var(--text-dark); }
+        .cat-circle img { 
+            width: 100%; height: 100%; 
+            object-fit: cover; border-radius: 50%; background: #fff; display: block;
+        }
+        .cat-item p { font-size: 12px; font-weight: 600; color: var(--text-dark); margin-top: 4px; }
 
-        /* PRODUCTS GRID */
-        .section-head { max-width: 1200px; margin: 15px auto 0; padding: 0 20px; font-weight: 800; font-size: 20px; color: var(--text-dark); display: flex; align-items: center; gap: 6px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; padding: 16px 20px 40px; max-width: 1200px; margin: auto; }
+        /* PRODUCTS GRID & IMAGE HD FIX */
+        .section-head { max-width: 1200px; margin: 20px auto 0; padding: 0 20px; font-weight: 800; font-size: 20px; color: var(--text-dark); display: flex; align-items: center; gap: 6px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; padding: 16px 20px 40px; max-width: 1200px; margin: auto; }
         
         .p-card { 
-            background: var(--card-bg); border-radius: var(--radius-md); padding: 14px; 
+            background: var(--card-bg); border-radius: var(--radius-md); padding: 12px; 
             display: flex; flex-direction: column; justify-content: space-between;
-            border: 1px solid rgba(0,0,0,0.06); box-shadow: var(--shadow-subtle);
+            border: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-subtle);
             transition: var(--transition);
         }
-        .p-card:hover { transform: translateY(-4px); }
-        .p-card img { width: 100%; height: 160px; object-fit: contain; margin-bottom: 10px; }
-        .p-card h4 { font-size: 13px; font-weight: 600; height: 36px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .p-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        
+        /* IMAGE BOX FIX FOR SHARP DISPLAY */
+        .p-img-box {
+            width: 100%; height: 230px; border-radius: var(--radius-sm);
+            overflow: hidden; background: #f8f9fa; margin-bottom: 12px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .p-img-box img { 
+            width: 100%; height: 100%; 
+            object-fit: cover; object-position: top center;
+            transition: transform 0.3s ease; display: block;
+        }
+        .p-card:hover .p-img-box img { transform: scale(1.05); }
+
+        .p-card h4 { font-size: 14px; font-weight: 600; height: 38px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.35; color: #1e293b; }
         .p-price { color: #d90429; font-size: 20px; font-weight: 800; margin: 8px 0; }
         .btn { 
             background: linear-gradient(135deg, var(--accent-orange), #e85d04); 
@@ -164,8 +187,11 @@
             .hero-wrap { grid-template-columns: 1fr; text-align: center; }
             .hero-left p { border-left: none; border-top: 2px solid var(--accent-orange); padding-top: 10px; }
             .cats { justify-content: center; }
-            .banner-frame { height: 150px; }
-            .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px 14px; }
+            
+            .slider-frame { height: 320px; max-width: 250px; }
+            .banner-frame { height: 160px; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 10px 14px; }
+            .p-img-box { height: 180px; }
         }
     </style>
 </head>
@@ -189,7 +215,7 @@
             <p id="heroNotice">Connecting you to the best deals...</p>
             <div class="cats" id="heroTags"></div>
         </div>
-        <div class="slider-frame"><img id="heroImg" alt="Hero Featured Product"></div>
+        <div class="slider-frame"><img id="heroImg" alt="Featured Product"></div>
     </div>
 </section>
 
@@ -209,7 +235,6 @@
 </footer>
 
 <script>
-// Hamburger Drawer Toggle
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.getElementById('menu');
 
@@ -224,10 +249,9 @@ const APIs = {
     FOOTER: "https://script.google.com/macros/s/AKfycbwjpcQVkdSR_eXf5b9fWusK9JMqKBW9sP3Zz5rds4AxvcILAwICp9k89hMQNZ9rN1L1/exec"
 };
 
-// FAST FETCH WITH TIMEOUT
 async function fetchFast(url) {
     const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), 4000); // 4 Sec max timeout
+    const id = setTimeout(() => controller.abort(), 4000);
     try {
         const response = await fetch(url, { signal: controller.signal });
         clearTimeout(id);
@@ -237,9 +261,7 @@ async function fetchFast(url) {
     }
 }
 
-// FAST ASYNC INITIALIZATION (LOAD PARALLEL)
 async function init() {
-    // Hide Loader Fast as soon as DOM and main API returns
     const hideLoader = () => {
         const loader = document.getElementById('loader');
         if (loader) {
@@ -248,7 +270,6 @@ async function init() {
         }
     };
 
-    // Parallel background loading
     fetchFast(APIs.HEAD).then(h => {
         if (!h) return;
         if (h.menu) {
@@ -271,13 +292,13 @@ async function init() {
     });
 
     fetchFast(APIs.HOME).then(home => {
-        hideLoader(); // Loader turns off fast when main products fetch finishes
+        hideLoader();
         if (!home) return;
 
         const bRoot = document.getElementById('banner-root');
         let banners = home.filter(i => i.TYPE === "BANNER");
         if (banners.length) {
-            bRoot.innerHTML = banners.map(b => `<div class="banner-slide"><img src="${b.IMAGE_URL}" loading="lazy"></div>`).join('');
+            bRoot.innerHTML = banners.map(b => `<div class="banner-slide"><img src="${b.IMAGE_URL}"></div>`).join('');
             let cb = 0; setInterval(() => {
                 cb = (cb + 1) % banners.length;
                 bRoot.style.transform = `translateX(-${cb * 100}%)`;
@@ -287,10 +308,10 @@ async function init() {
         let catHTML = '', prodHTML = '';
         home.forEach(item => {
             if(item.TYPE === "CAT") {
-                catHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}" loading="lazy"></div><p>${item.TITLE}</p></div>`;
+                catHTML += `<div class="cat-item" onclick="location.href='${item.LINK}'"><div class="cat-circle"><img src="${item.IMAGE_URL}"></div><p>${item.TITLE}</p></div>`;
             }
             if(item.TYPE === "PRODUCT") {
-                prodHTML += `<div class="p-card"><img src="${item.IMAGE_URL}" loading="lazy"><h4>${item.TITLE}</h4><div><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div></div>`;
+                prodHTML += `<div class="p-card"><div class="p-img-box"><img src="${item.IMAGE_URL}" alt="${item.TITLE}"></div><h4>${item.TITLE}</h4><div><div class="p-price">₹${item.PRICE}</div><a href="${item.LINK}" class="btn">View Offer</a></div></div>`;
             }
         });
         document.getElementById('cat-root').innerHTML = catHTML;
@@ -313,11 +334,9 @@ async function init() {
         });
     });
 
-    // Backup Safety Timeout for Loader
     setTimeout(hideLoader, 3000);
 }
 
-// Fire init immediately
 init();
 </script>
 </body>
