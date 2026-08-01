@@ -1,201 +1,80 @@
 <style>
-/* ==========================================
-   CSS VARIABLES & BASE SETUP
-   ========================================== */
-:root {
-  --primary-gradient: linear-gradient(135deg, #4b0f14, #7a1f26, #2d0a0d);
-  --accent-gold: #fff6e1;
-  --accent-text: #5a1a1f;
-  --header-bg: rgba(0, 0, 0, 0.85);
-  --text-white: #ffffff;
-  --transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --box-shadow-glow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 246, 225, 0.1);
+/* HEADER */
+#main-header{
+  background:#000;
+  color:#fff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 22px;
+}
+#menu a{
+  color:#fff;
+  margin-left:18px;
+  text-decoration:none;
+  font-weight:600;
 }
 
-/* ==========================================
-   HEADER SECTION
-   ========================================== */
-#main-header {
-  background: var(--header-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--text-white);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 32px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* HERO */
+#hero-sainiwalaa{
+  background:linear-gradient(135deg,#4b0f14,#7a1f26);
+  padding:60px 20px;
 }
 
-#main-header .logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
+.hero-wrap{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr; /* LEFT text | RIGHT image */
+  gap:40px;
+  align-items:center;
 }
 
-#menu {
-  display: flex;
-  align-items: center;
-  gap: 24px;
+.hero-left{
+  color:#fff;
 }
 
-#menu a {
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: var(--transition-fast);
-  position: relative;
+.slider-frame{
+  width:100%;
+  max-width:260px;
+  height:360px;
+  margin-left:auto;   /* 🔥 RIGHT SIDE PUSH */
+  background:#fff6e1;
+  padding:6px;
+  border-radius:22px;
+  box-shadow:0 14px 30px rgba(0,0,0,.45);
 }
 
-#menu a:hover {
-  color: var(--accent-gold);
+.slider-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:16px;
 }
 
-/* Subtle Link Underline Animation */
-#menu a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: var(--accent-gold);
-  transition: var(--transition-fast);
+/* TAGS */
+.cats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:20px;
+}
+.catbox{
+  background:#fff6e1;
+  color:#5a1a1f;
+  padding:10px 14px;
+  border-radius:20px;
+  font-weight:700;
 }
 
-#menu a:hover::after {
-  width: 100%;
-}
-
-/* ==========================================
-   HERO SECTION
-   ========================================== */
-#hero-sainiwalaa {
-  background: var(--primary-gradient);
-  background-size: 200% 200%;
-  animation: gradientMove 12s ease infinite;
-  padding: 80px 24px;
-  position: relative;
-  overflow: hidden;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.hero-wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.hero-left {
-  color: var(--text-white);
-}
-
-.hero-left h1 {
-  font-size: 2.8rem;
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 16px;
-}
-
-.hero-left p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  line-height: 1.6;
-}
-
-/* ==========================================
-   SLIDER / IMAGE FRAME
-   ========================================== */
-.slider-frame {
-  width: 100%;
-  max-width: 280px;
-  height: 380px;
-  margin-left: auto;
-  background: var(--accent-gold);
-  padding: 8px;
-  border-radius: 24px;
-  box-shadow: var(--box-shadow-glow);
-  transition: var(--transition-fast);
-}
-
-.slider-frame:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 246, 225, 0.2);
-}
-
-.slider-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 18px;
-  display: block;
-}
-
-/* ==========================================
-   CATEGORIES / TAGS
-   ========================================== */
-.cats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.catbox {
-  background: var(--accent-gold);
-  color: var(--accent-text);
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.3px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: var(--transition-fast);
-  cursor: pointer;
-}
-
-.catbox:hover {
-  transform: translateY(-3px);
-  background: #ffffff;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-}
-
-/* ==========================================
-   RESPONSIVE DESIGN (MOBILE)
-   ========================================== */
-@media (max-width: 768px) {
-  #main-header {
-    padding: 14px 20px;
+/* MOBILE */
+@media(max-width:768px){
+  .hero-wrap{
+    grid-template-columns:1fr;
+    text-align:center;
   }
-
-  .hero-wrap {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 32px;
-  }
-
-  .hero-left h1 {
-    font-size: 2rem;
-  }
-
-  .cats {
-    justify-content: center;
-  }
-
-  .slider-frame {
-    margin: 20px auto 0;
+  .slider-frame{
+    margin:30px auto 0;
   }
 }
 </style>
